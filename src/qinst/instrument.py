@@ -1,8 +1,8 @@
 class Instrument:
-    def __init__(self, name, address, is_connected):
-        self.name: str = name
-        self.address: str = address
-        self.is_connected: bool = False
+    def __init__(self, name: str, address: str, is_connected: bool = False):
+        self.name = name
+        self.address = address
+        self.is_connected = is_connected
 
     def connect():
         raise NotImplementedError
