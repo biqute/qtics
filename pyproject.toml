@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "qinst"
+version = "0.0.1"
+description = "Collection of tools to handle instrumentation of the Biqute Lab"
+authors = ["The Biqute Team"]
+license = "Apache License 2.0"
+readme = "README.md"
+repository = "https://github.com/biqute/qinst/"
+keywords = []
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Topic :: Scientific/Engineering :: Physics",
+]
+
+[tool.poetry.dependencies]
+python = ">=3.8, <3.12"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
