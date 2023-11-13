@@ -23,9 +23,6 @@ class SerialInst(Instrument):
         self.timeout = timeout
         self.sleep = sleep
 
-        if address not in self.list_ports():
-            raise serial.SerialException("Serial port could not be found!")
-
     def __del__(self):
         self.disconnected()
 
