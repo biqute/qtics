@@ -5,25 +5,28 @@ CONNECTIONS: 11 PINS
 AVAILABLE RANGE: 0 to -64 dB
  */
 
+#include "Arduino.h"
+#include "Vrekrer_scpi_parser.h"
+
+const float map_db[11] = {0.03, 0.06, 0.13, 0.25, 0.5, 1.0,
+                          2.0,  4.0,  8.0,  16.0, 32.0};
+
+const int min_pin = 3;
+const int max_pin = 13;
+float attenuation = 0.;
+
 void setup() {
-  // initialize digital pins as outputs.
-  for (int i = 13; i >= 3; i--) {
+  my_instrument.RegisterCommand(F("*IDN?"), &Identify);
+  my_instrument.RegisterCommand(F(":ATTenuation"), &SetAttenuation);
+  my_instrument.RegisterCommand(F(":ATTenuation?"), &GetAttenuation);
+  
+  for (int i = min_pin; i < max_pin; i++) {
     pinMode(i, OUTPUT);
   }
   Serial.begin(9600);
 }
 
-float read_attenuation(float val) {
-  // enforce range limits
-  if (val > 64)
-    val = 64;
-  if (val < 0)
-    val = 0;
-  return val;
-}
-
-const float map_db[11] = {0.03, 0.06, 0.13, 0.25, 0.5, 1.0,
-                          2.0,  4.0,  8.0,  16.0, 32.0};
+void loop() { my_instrument.ProcessInput(Serial, "\n"); }
 
 int *find_bitstring(float val) {
   // convert float decimal to binary considering the pin mapping
@@ -39,26 +42,41 @@ int *find_bitstring(float val) {
     }
     bitstring[i] = bit_i;
   }
-
   return bitstring;
 }
 
-void loop() {
-  // wait for input from serial port, then set attenuation
-  if (Serial.available()) {
+void Identify(SCPI_C commands, SCPI_P parameters, Stream &interface) {
+  interface.println(F("KRATOS General Microwave, RF attenuator, 3494-64"));
+  //*IDN? Suggested return string should be in the following format:
+  // "<vendor>,<model>,<serial number>,<firmware>"
+}
 
-    float attenuation = read_attenuation(Serial.parseFloat());
-    int *binaryNum = find_bitstring(attenuation);
+void SetAttenuation(SCPI_C commands, SCPI_P parameters, Stream &interface) {
+  if (parameters.Size()>0){
+    float att = constrain(String(parameters[0]).toFloat(), 0, 64);
+    int *binaryNum = find_bitstring(att);
     for (int i = 0; i < 11; i++) {
       if (binaryNum[i] == 1) {
-        digitalWrite(i + 3, HIGH);
-        Serial.println((String) "LED " + (i + 3) + " HIGH " + map_db[i]);
+        digitalWrite(i + min_pin, HIGH);
       } else {
-        digitalWrite(i + 3, LOW);
-        Serial.println((String) "LED " + (i + 3) + " LOW " + map_db[i]);
+        digitalWrite(i + min_pin, LOW);
       }
     }
-    Serial.println("\n\n");
-    delay(10);
+    attenuation = att;
   }
+}
+
+
+void GetAttenuation(SCPI_C commands, SCPI_P parameters, Stream &interface) {
+  interface.print(String(attenuation));
+  interface.println(F(" dB"))
+}
+
+float read_attenuation(float val) {
+  // enforce range limits
+  if (val > 64)
+    val = 64;
+  if (val < 0)
+    val = 0;
+  return val;
 }
