@@ -29,6 +29,11 @@ class SerialInst(Instrument):
 
         self.sleep = sleep
 
+    @property
+    def device(self):
+        """Name of the specific device from SCPI standard query."""
+        return self.query("*IDN?")
+
     def __del__(self):
         self.disconnect()
 
@@ -36,7 +41,7 @@ class SerialInst(Instrument):
         self.serial.open()
 
     def disconnect(self):
-        if self.serial.isOpen():
+        if self.serial.is_open:
             self.serial.close()
 
     def write(self, cmd):
@@ -45,7 +50,7 @@ class SerialInst(Instrument):
 
     def read(self):
         return (
-            self.serial.read(self.serial.inWaiting())
+            self.serial.read(self.serial.in_waiting)
             if self.serial is not None
             else None
         )
