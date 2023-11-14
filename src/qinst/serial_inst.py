@@ -14,7 +14,7 @@ class SerialInst(Instrument):
         bytesize: int = serial.EIGHTBITS,
         parity: int = serial.PARITY_NONE,
         stopbits: int = serial.STOPBITS_ONE,
-        timeout: int = 0,
+        timeout: int = 5,
         sleep: int = 0,
     ):
         super().__init__(name, address)
