@@ -14,6 +14,7 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = ">=3.8, <3.12"
+pyserial = "^3.5"
 
 [build-system]
 requires = ["poetry-core"]
