@@ -4,8 +4,8 @@ class Instrument:
         self.address = address
         self.is_connected = is_connected
 
-    def connect():
+    def connect(self):
         raise NotImplementedError
 
-    def disconnect():
+    def disconnect(self):
         raise NotImplementedError
