@@ -1,5 +1,8 @@
+import time
+
 import serial
-from instrument import Instrument
+
+from qinst.instrument import Instrument
 
 
 class SerialInst(Instrument):
@@ -27,7 +30,7 @@ class SerialInst(Instrument):
         self.sleep = sleep
 
     def __del__(self):
-        self.disconnected()
+        self.disconnect()
 
     def connect(self):
         self.serial.open()
@@ -52,5 +55,4 @@ class SerialInst(Instrument):
             self.write(cmd)
             time.sleep(self.sleep)
             return self.read()
-        else:
-            return None
+        return None
