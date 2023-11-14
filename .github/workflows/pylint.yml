@@ -21,7 +21,7 @@ jobs:
         virtualenvs-in-project: true
     - name: Install dependencies
       run: |
-        poetry install --no-interaction --no-root --with analysis
+        poetry install --no-interaction --with analysis --all extras
     - name: Analysing the code with pylint
       run: |
         pylint $(git ls-files '*.py')
