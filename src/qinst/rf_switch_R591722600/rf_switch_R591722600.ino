@@ -59,10 +59,10 @@ void ResetSwitch(SCPI_C commands, SCPI_P parameters, Stream &interface) {
 
 void SetOpen(SCPI_C commands, SCPI_P parameters, Stream &interface) {
   if (parameters.Size() > 0) {
-    int pin = constrain(String(parameters[0]).toInt(), min_pin, max_pin);
-    if (open_pins[pin - min_pin] == 0) {
-      sendPulse(pin);
-      open_pins[pin - min_pin] = 1;
+    int pin = constrain(String(parameters[0]).toInt(), 1, 6);
+    if (open_pins[pin - 1] == 0) {
+      sendPulse(pin - 1 + min_pin);
+      open_pins[pin - 1] = 1;
     }
   }
 }
@@ -70,7 +70,7 @@ void SetOpen(SCPI_C commands, SCPI_P parameters, Stream &interface) {
 void GetOpen(SCPI_C commands, SCPI_P parameters, Stream &interface) {
   for (int i = 0; i < 6; i++) {
     if (open_pins[i] == 1) {
-      interface.println(String(i + min_pin));
+      interface.println(String(i + 1));
     }
   }
 }
