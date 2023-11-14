@@ -25,3 +25,4 @@ optional = true
 
 [tool.poetry.group.analysis.dependencies]
 pylint = ">=2.16.0"
+pylint-exit = "^1.2.0"
