@@ -14,7 +14,15 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = ">=3.8, <3.12"
+pyserial = "^3.5"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.analysis]
+optional = true
+
+[tool.poetry.group.analysis.dependencies]
+pylint = ">=2.16.0"
+pylint-exit = "^1.2.0"
