@@ -17,8 +17,8 @@ float attenuation = 0.;
 
 void setup() {
   my_instrument.RegisterCommand(F("*IDN?"), &Identify);
-  my_instrument.RegisterCommand(F(":ATTenuation"), &SetAttenuation);
-  my_instrument.RegisterCommand(F(":ATTenuation?"), &GetAttenuation);
+  my_instrument.RegisterCommand(F("ATTenuation"), &SetAttenuation);
+  my_instrument.RegisterCommand(F("ATTenuation?"), &GetAttenuation);
   
   for (int i = min_pin; i < max_pin; i++) {
     pinMode(i, OUTPUT);
@@ -70,13 +70,4 @@ void SetAttenuation(SCPI_C commands, SCPI_P parameters, Stream &interface) {
 void GetAttenuation(SCPI_C commands, SCPI_P parameters, Stream &interface) {
   interface.print(String(attenuation));
   interface.println(F(" dB"))
-}
-
-float read_attenuation(float val) {
-  // enforce range limits
-  if (val > 64)
-    val = 64;
-  if (val < 0)
-    val = 0;
-  return val;
 }
