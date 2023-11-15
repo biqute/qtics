@@ -42,7 +42,9 @@ jobs:
 
 
       - name: Compile documentation
-        run: make -C docs html
+        run: |
+          sudo apt-get install python3-sphinx
+          make -C docs html
 
 
       - name: Deploy
