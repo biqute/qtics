@@ -43,7 +43,7 @@ General functions
 Specific functions
 ------------------
 
-- get_open_pins()
+- get_pins_state()
 
 Properties
 ----------

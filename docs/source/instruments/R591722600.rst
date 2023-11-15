@@ -48,7 +48,8 @@ Specific functions
 
 - reset()
 - open(pin)
-- get_open_pins()
+- get_open_ports()
+- get_pins_state()
 
 Properties
 ----------
