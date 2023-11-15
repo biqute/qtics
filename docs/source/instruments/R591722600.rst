@@ -1,0 +1,5 @@
+RF switch Radiall R591722600
+============================
+
+Switch `R591722600` produced by Radiall.
+Manual of the instruments available at `Mouser <https://eu.mouser.com/datasheet/2/516/R591_Generic_TDS_09_02_18-1595491.pdf>`_
