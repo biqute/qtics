@@ -36,14 +36,12 @@ int *find_bitstring(float val) {
   static int bitstring[11];
 
   for (int i = 10; i >= 0; i--) {
-    int bit_i;
     if (map_db[i] > val)
-      bit_i = 0;
+      bitstring[i] = 0;
     else {
       val = val - map_db[i];
-      bit_i = 1;
+      bitstring[i] = 1;
     }
-    bitstring[i] = bit_i;
   }
   return bitstring;
 }

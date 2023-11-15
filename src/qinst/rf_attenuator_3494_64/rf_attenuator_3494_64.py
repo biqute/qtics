@@ -3,7 +3,7 @@ import serial
 from qinst.serial_inst import SerialInst
 
 
-class attenuator_3494_64(SerialInst):
+class Attenuator_3494_64(SerialInst):
     """Control for the latching RF attenuator."""
 
     def __init__(
