@@ -224,26 +224,24 @@
 <span id="arduino-firmware"></span><h1>Compile Arduino Firmwares<a class="headerlink" href="#compile-arduino-firmwares" title="Permalink to this heading">#</a></h1>
 <p>Some of the instruments include an Arduino firmware that requires to be compiled and uploaded on the Arduino controller.</p>
 <p>To compile the firmware, one should download the <a class="reference external" href="https://www.arduino.cc/en/software">Arduino</a> package.</p>
-<p>Then, two options are available: the Arduino IDE, the Arduino command line interface.</p>
+<p>Then, two options are available: the Arduino IDE and the Arduino command line interface.</p>
 <section id="installation-through-arduino-ide">
 <h2>Installation through Arduino IDE<a class="headerlink" href="#installation-through-arduino-ide" title="Permalink to this heading">#</a></h2>
-<p>First install the additional required library <cite>Vrekrer_scpi_parser</cite> (version 0.5.0).
-To do so, go to Tools -&gt; Manage Libraries. Search <cite>Vrekrer_scpi_parser</cite>, select the right version and install.</p>
+<p>First, install the additional required library <cite>Vrekrer_scpi_parser</cite> (version 0.5.0).
+To do so, go to Tools -&gt; Manage Libraries. Search <cite>Vrekrer_scpi_parser</cite>, select the right version, and install it.</p>
 <p>Then, upload the firmware using the dedicated upload button.</p>
 </section>
 <section id="installation-through-command-line">
 <h2>Installation through Command Line<a class="headerlink" href="#installation-through-command-line" title="Permalink to this heading">#</a></h2>
 <p>First, download the arduino CLI tool from <a class="reference external" href="https://arduino.github.io/arduino-cli/0.23/installation/">the official website</a>.</p>
 <p>Then download the additional required library <cite>Vrekrer_scpi_parser</cite> (version 0.5.0):</p>
-<dl class="simple">
-<dt>:: code-block: bash</dt><dd><p>arduino-cli lib <a class="reference external" href="mailto:vrekrer_scpi_parser&#37;&#52;&#48;0&#46;5&#46;0">vrekrer_scpi_parser<span>&#64;</span>0<span>&#46;</span>5<span>&#46;</span>0</a></p>
-</dd>
-</dl>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>arduino-cli<span class="w"> </span>lib<span class="w"> </span>vrekrer_scpi_parser@0.5.0
+</pre></div>
+</div>
 <p>Then compile and upload the firmware:</p>
-<dl class="simple">
-<dt>:: code-block: bash</dt><dd><p>arduino –upload [sketch.ino]</p>
-</dd>
-</dl>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>arduino<span class="w"> </span>--upload<span class="w"> </span><span class="o">[</span>sketch.ino<span class="o">]</span>
+</pre></div>
+</div>
 </section>
 </section>
 
