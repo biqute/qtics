@@ -24,7 +24,7 @@ void setup() {
   my_instrument.RegisterCommand(F(":ON"), &SetOpen);
   my_instrument.RegisterCommand(F(":ON?"), &GetOpen);
 
-  for (int i = min_pin; i < max_pin; i++) {
+  for (int i = min_pin; i <= max_pin; i++) {
     pinMode(i, OUTPUT);
   }
   pinMode(reset_pin, OUTPUT);
