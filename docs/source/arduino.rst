@@ -24,10 +24,12 @@ First, download the arduino CLI tool from `the official website <https://arduino
 
 Then download the additional required library `Vrekrer_scpi_parser` (version 0.5.0):
 
-:: code-block: bash
+.. code-block:: bash
+
     arduino-cli lib vrekrer_scpi_parser@0.5.0
 
 Then compile and upload the firmware:
 
-:: code-block: bash
+.. code-block:: bash
+
     arduino --upload [sketch.ino]
