@@ -36,7 +36,7 @@ class SerialInst(Instrument):
         self.serial.open()
 
     def disconnect(self):
-        if self.serial.isOpen():
+        if self.serial.is_open:
             self.serial.close()
 
     def write(self, cmd):
@@ -45,7 +45,7 @@ class SerialInst(Instrument):
 
     def read(self):
         if self.serial is not None:
-            return self.serial.read(self.serial.inWaiting())
+            return self.serial.read(self.serial.in_waiting)
         return None
 
     def query(self, cmd):
@@ -54,3 +54,7 @@ class SerialInst(Instrument):
             time.sleep(self.sleep)
             return self.read()
         return None
+
+    def get_id(self):
+        """Return name of the device from SCPI standard query."""
+        return self.query("*IDN?")
