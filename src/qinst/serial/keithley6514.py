@@ -24,15 +24,15 @@ class Keithley6514(SerialInst):
     """Put Keithley 6514 Electrometer in remote."""
 
     def connect(self):
-        super().connect(self)
+        super().connect()
         self.write("SYST:REM")
 
     """Take Keithley 6514 Electrometer out of remote."""
 
     def disconnect(self):
-        if super().serial.is_open:
+        if self.serial.is_open:
             self.write("SYST:LOC")
-        super().disconnect(self)
+        super().disconnect()
 
     """Returns Model 6514 to the *RST default conditions."""
 
@@ -49,7 +49,7 @@ class Keithley6514(SerialInst):
         return self.query("SYST:ZCHE?")
 
     def zcorrect(self):
-        self.write("SYST:ZCOR OFF")
+        self.write("SYST:ZCOR ON")
 
     def time_reset(self):
         self.write("SYST:TIME:RES")
