@@ -1,4 +1,5 @@
 import time
+
 import serial
 
 from qinst.instrument import Instrument
@@ -13,7 +14,7 @@ class SerialInst(Instrument):
         bytesize: int = serial.EIGHTBITS,
         parity: int = serial.PARITY_NONE,
         stopbits: int = serial.STOPBITS_ONE,
-        timeout: int = 0,
+        timeout: int = 5,
         sleep: int = 0,
     ):
         super().__init__(name, address)
@@ -43,11 +44,9 @@ class SerialInst(Instrument):
             self.serial.write((cmd + "\n").encode())
 
     def read(self):
-        return (
-            self.serial.read(self.serial.in_waiting)
-            if self.serial is not None
-            else None
-        )
+        if self.serial is not None:
+            return self.serial.read(self.serial.in_waiting)
+        return None
 
     def query(self, cmd):
         if self.serial is not None:
