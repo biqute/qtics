@@ -1,4 +1,5 @@
 import serial
+
 from qinst.serial_inst import SerialInst
 
 
@@ -42,6 +43,10 @@ class switch_R591(SerialInst):
         """Open port at specififed pin."""
         self.write(f"SWI:ON {pin}")
 
-    def get_open_pins(self):
+    def get_open_ports(self):
         """Get currently open RF ports."""
         return self.query("SWI:ON?")
+
+    def get_pins_state(self):
+        """Get status of digital arduino pins."""
+        return self.query("DIG:PIN?")
