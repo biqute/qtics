@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - docs
-  pull_request:
 
 jobs:
   deploy:
@@ -43,7 +42,7 @@ jobs:
 
 
       - name: Compile documentation
-        run: make -C ../../docs html
+        run: make -C docs html
 
 
       - name: Deploy
