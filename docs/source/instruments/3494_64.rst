@@ -4,14 +4,14 @@ Attenuator Kratos 3494-64
 Programmable attenuator produced by Kratos.
 Manual of the instrument is available at `Kratosmed <https://www.kratosmed.com/gmcatalog/microwave-attenuators/series-349-and-349h-octave-band-11-bit-digital-pin-diode-attenuators>`_.
 
-This instrument requires the correspondent Arduino firmware do be compiled and loaded.
+This instrument requires the correspondent Arduino firmware to be compiled and loaded.
 See related instruction at :ref:`arduino_firmware`.
 
 
 Example of operations
 """""""""""""""""""""
 
-To initialise a controller you can execute the following directives on any Python script or notebook:
+To initialize a controller you can execute the following directives on any Python script or notebook:
 
 .. code-block:: python
 
