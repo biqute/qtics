@@ -5,6 +5,7 @@ Welcome to Qinst's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   arduino
    instruments/modules
 
 .. toctree::
