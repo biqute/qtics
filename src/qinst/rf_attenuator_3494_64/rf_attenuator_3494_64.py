@@ -1,8 +1,9 @@
 import serial
+
 from qinst.serial_inst import SerialInst
 
 
-class switch_R591(SerialInst):
+class attenuator_3494_64(SerialInst):
     """Control for the latching RF attenuator."""
 
     def __init__(
@@ -26,7 +27,6 @@ class switch_R591(SerialInst):
         return self.query("ATT?")
 
     @attenuation.setter
-    def pulse_lenght(self, value: float):
+    def attenuation(self, value: float):
         self._attenuation = value
         self.write(f"ATT {value}")
-
