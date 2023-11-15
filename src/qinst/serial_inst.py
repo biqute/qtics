@@ -1,5 +1,4 @@
 import time
-
 import serial
 
 from qinst.instrument import Instrument
@@ -29,11 +28,6 @@ class SerialInst(Instrument):
 
         self.sleep = sleep
 
-    @property
-    def device(self):
-        """Name of the specific device from SCPI standard query."""
-        return self.query("*IDN?")
-
     def __del__(self):
         self.disconnect()
 
@@ -61,3 +55,7 @@ class SerialInst(Instrument):
             time.sleep(self.sleep)
             return self.read()
         return None
+
+    def get_id(self):
+        """Return name of the device from SCPI standard query."""
+        return self.query("*IDN?")
