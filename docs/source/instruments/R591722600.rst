@@ -10,7 +10,7 @@ See related instruction at :ref:`arduino_firmware`.
 Example of operations
 """""""""""""""""""""
 
-To initialise a controller you can execute the following directives on any Python script or notebook:
+To initialize a controller you can execute the following directives on any Python script or notebook:
 
 .. code-block:: python
 
