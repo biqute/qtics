@@ -9,3 +9,6 @@ class Instrument:
 
     def disconnect(self):
         raise NotImplementedError
+
+    def get_id(self):
+        raise NotImplementedError
