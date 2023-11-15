@@ -1,0 +1,51 @@
+Attenuator Kratos 3494-64
+=========================
+
+Programmable attenuator produced by Kratos.
+Manual of the instrument is available at `Kratosmed <https://www.kratosmed.com/gmcatalog/microwave-attenuators/series-349-and-349h-octave-band-11-bit-digital-pin-diode-attenuators>`_.
+
+This instrument requires the correspondent Arduino firmware to be compiled and loaded.
+See related instruction at :ref:`arduino_firmware`.
+
+
+Example of operations
+"""""""""""""""""""""
+
+To initialize a controller you can execute the following directives on any Python script or notebook:
+
+.. code-block:: python
+
+  from qinst import Kratos_349464
+
+  attenuator = Kratos_349464(name = "my_attenuator", address = "/dev/ttyACM0")
+  attenuator.connect()
+
+To execute commands:
+
+.. code-block:: python
+
+   attenuator.attenuation = 20.5  # set attenuation at 20 dB
+   print(attenuator.attenuation)  # get attenuation from instrument
+
+Commands
+""""""""
+
+General functions
+-----------------
+
+- connect()
+- disconnect()
+- get_id
+- write(cmd)
+- read()
+- query(cmd)
+
+Specific functions
+------------------
+
+- get_pins_state()
+
+Properties
+----------
+
+- attenuation
