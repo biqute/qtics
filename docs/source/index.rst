@@ -5,6 +5,8 @@ Welcome to Qinst's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   instruments/modules
+
 .. toctree::
     :maxdepth: 2
     :caption: Api reference
