@@ -1,5 +1,5 @@
 /*
-RF switch Radiall R591722600
+  RF switch Radiall R591722600
 */
 
 #include "Arduino.h"
@@ -14,6 +14,7 @@ int open_pins[6] = {0, 0, 0, 0, 0, 0};
 
 void setup() {
   my_instrument.RegisterCommand(F("*IDN?"), &Identify);
+  my_instrument.RegisterCommand(F("DIGital:PINs?"), &GetDigitalPins);
 
   my_instrument.SetCommandTreeBase(F("PULse"));
   my_instrument.RegisterCommand(F(":LENght"), &SetPulseLenght);
@@ -34,7 +35,7 @@ void setup() {
 void loop() { my_instrument.ProcessInput(Serial, "\n"); }
 
 void Identify(SCPI_C commands, SCPI_P parameters, Stream &interface) {
-  interface.println(F("Radiall, RF Switch, R591722600"));
+  interface.println(F("Radiall, R591722600, A2146600495"));
   //*IDN? Suggested return string should be in the following format:
   // "<vendor>,<model>,<serial number>,<firmware>"
 }
@@ -79,4 +80,21 @@ void sendPulse(int pin) {
   digitalWrite(pin, HIGH);
   delay(pulseLenght);
   digitalWrite(pin, LOW);
+}
+
+void GetDigitalPins(SCPI_C commands, SCPI_P parameters, Stream &interface) {
+  for (int i = min_pin; i <= max_pin; i++) {
+    PrintPinState(i, interface);
+  }
+  PrintPinState(reset_pin, interface);
+}
+
+void PrintPinState(int pin, Stream &interface) {
+  interface.print(String(pin));
+  interface.print(F("\t"));
+  if (digitalRead(pin) == HIGH) {
+    interface.println(F("HIGH"));
+  } else {
+    interface.println(F("LOW"));
+  }
 }
