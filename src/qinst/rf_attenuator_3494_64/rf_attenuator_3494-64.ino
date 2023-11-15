@@ -21,6 +21,7 @@ void setup() {
   my_instrument.RegisterCommand(F("*IDN?"), &Identify);
   my_instrument.RegisterCommand(F("ATTenuation"), &SetAttenuation);
   my_instrument.RegisterCommand(F("ATTenuation?"), &GetAttenuation);
+  my_instrument.RegisterCommand(F("DIGital:PINs?"), &GetDigitalPins);
 
   for (int i = min_pin; i <= max_pin; i++) {
     pinMode(i, OUTPUT);
@@ -35,20 +36,18 @@ int *find_bitstring(float val) {
   static int bitstring[11];
 
   for (int i = 10; i >= 0; i--) {
-    int bit_i;
     if (map_db[i] > val)
-      bit_i = 0;
+      bitstring[i] = 0;
     else {
       val = val - map_db[i];
-      bit_i = 1;
+      bitstring[i] = 1;
     }
-    bitstring[i] = bit_i;
   }
   return bitstring;
 }
 
 void Identify(SCPI_C commands, SCPI_P parameters, Stream &interface) {
-  interface.println(F("KRATOS General Microwave, RF attenuator, 3494-64"));
+  interface.println(F("KRATOS General Microwave, 3494-64, 20060680"));
   //*IDN? Suggested return string should be in the following format:
   // "<vendor>,<model>,<serial number>,<firmware>"
 }
@@ -70,5 +69,17 @@ void SetAttenuation(SCPI_C commands, SCPI_P parameters, Stream &interface) {
 
 void GetAttenuation(SCPI_C commands, SCPI_P parameters, Stream &interface) {
   interface.print(String(attenuation));
-  interface.println(F(" dB"));
+  interface.println(F("\tdB"));
+}
+
+void GetDigitalPins(SCPI_C commands, SCPI_P parameters, Stream &interface) {
+  for (int i = min_pin; i <= max_pin; i++) {
+    interface.print(String(i));
+    interface.print(F("\t"));
+    if (digitalRead(i) == HIGH) {
+      interface.println(F("HIGH"));
+    } else {
+      interface.println(F("LOW"));
+    }
+  }
 }
