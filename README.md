@@ -8,6 +8,7 @@ To install in developer mode:
 
 ```bash
 poetry install
+pre-commit install
 ```
 
 Otherwise:
