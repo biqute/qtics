@@ -1,4 +1,5 @@
 import time
+
 import serial
 
 from qinst.instrument import Instrument
@@ -14,7 +15,7 @@ class SerialInst(Instrument):
         parity: int = serial.PARITY_NONE,
         stopbits: int = serial.STOPBITS_ONE,
         timeout: int = 0,
-        sleep: int = 0,
+        sleep: float = 0.1,
     ):
         super().__init__(name, address)
 
