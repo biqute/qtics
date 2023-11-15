@@ -1,0 +1,57 @@
+RF switch Radiall R591722600
+============================
+
+Switch `R591722600` produced by Radiall.
+Manual of the instrument is available at `Mouser <https://eu.mouser.com/datasheet/2/516/R591_Generic_TDS_09_02_18-1595491.pdf>`_.
+
+This instrument requires the correspondent Arduino firmware do be compiled and loaded.
+See related instruction at :ref:`arduino_firmware`.
+
+Example of operations
+"""""""""""""""""""""
+
+To initialise a controller you can execute the following directives on any Python script or notebook:
+
+.. code-block:: python
+
+  from qinst import Radiall_R591722600
+
+  switch = Radiall_R591722600(name = "my_switch", address = "/dev/ttyACM0")
+  switch.connect()
+
+
+To execute commands:
+
+.. code-block:: python
+
+   switch.pulse_length = 20  # set length of pulses as 20ms
+   print(switch.pulse_length)  # get pulse length from instrument
+   switch.reset()  # reset all pins
+
+   switch.open(pin=5)   # open 5th pin on the switch
+
+Commands
+""""""""
+
+General functions
+-----------------
+
+- connect()
+- disconnect()
+- get_id
+- write(cmd)
+- read()
+- query(cmd)
+
+Specific functions
+------------------
+
+- reset()
+- open(pin)
+- get_open_ports()
+- get_pins_state()
+
+Properties
+----------
+
+- pulse_length
