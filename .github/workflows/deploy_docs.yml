@@ -44,6 +44,7 @@ jobs:
       - name: Compile documentation
         run: |
           sudo apt-get install python3-sphinx
+          source $VENV
           make -C docs html
 
 
