@@ -45,7 +45,7 @@ class SerialInst(Instrument):
 
     def read(self):
         if self.serial is not None:
-            return self.serial.read(self.serial.inWaiting())
+            return self.serial.read(self.serial.in_waiting)
         return None
 
     def query(self, cmd):
