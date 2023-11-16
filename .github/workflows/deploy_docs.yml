@@ -2,8 +2,6 @@ name: Deploy Sphinx documentation
 
 on:
   push:
-    branches:
-      - main
 
 jobs:
   deploy:
