@@ -3,7 +3,7 @@ import serial
 from qinst.serial_inst import SerialInst
 
 
-class attenuator_3494_64(SerialInst):
+class Attenuator_3494_64(SerialInst):
     """Control for the latching RF attenuator."""
 
     def __init__(
@@ -30,3 +30,7 @@ class attenuator_3494_64(SerialInst):
     def attenuation(self, value: float):
         self._attenuation = value
         self.write(f"ATT {value}")
+
+    def get_pins_state(self):
+        """Get status of digital arduino pins."""
+        return self.query("DIG:PIN?")
