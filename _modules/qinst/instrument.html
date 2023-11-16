@@ -219,24 +219,35 @@
         </div>
         <article role="main">
           <h1>Source code for qinst.instrument</h1><div class="highlight"><pre>
-<div class="viewcode-block" id="Instrument"><a class="viewcode-back" href="../../api-reference/qinst.html#qinst.instrument.Instrument">[docs]</a><span></span><span class="k">class</span> <span class="nc">Instrument</span><span class="p">:</span>
+<span></span><span class="sd">&quot;&quot;&quot;Base Instrument.&quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="Instrument"><a class="viewcode-back" href="../../api-reference/qinst.html#qinst.instrument.Instrument">[docs]</a><span class="k">class</span> <span class="nc">Instrument</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Base instrument class.&quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">address</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">address</span> <span class="o">=</span> <span class="n">address</span>
 
 <div class="viewcode-block" id="Instrument.connect"><a class="viewcode-back" href="../../api-reference/qinst.html#qinst.instrument.Instrument.connect">[docs]</a>    <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Connect to the instrument.&quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
 <div class="viewcode-block" id="Instrument.disconnect"><a class="viewcode-back" href="../../api-reference/qinst.html#qinst.instrument.Instrument.disconnect">[docs]</a>    <span class="k">def</span> <span class="nf">disconnect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Disonnect from the instrument.&quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
 <div class="viewcode-block" id="Instrument.write"><a class="viewcode-back" href="../../api-reference/qinst.html#qinst.instrument.Instrument.write">[docs]</a>    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Send a command to the instrument.&quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
 <div class="viewcode-block" id="Instrument.read"><a class="viewcode-back" href="../../api-reference/qinst.html#qinst.instrument.Instrument.read">[docs]</a>    <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Read from the instrument.&quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
-<div class="viewcode-block" id="Instrument.query"><a class="viewcode-back" href="../../api-reference/qinst.html#qinst.instrument.Instrument.query">[docs]</a>    <span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Instrument.query"><a class="viewcode-back" href="../../api-reference/qinst.html#qinst.instrument.Instrument.query">[docs]</a>    <span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Send a command and read from the instrument.&quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
 <div class="viewcode-block" id="Instrument.get_id"><a class="viewcode-back" href="../../api-reference/qinst.html#qinst.instrument.Instrument.get_id">[docs]</a>    <span class="k">def</span> <span class="nf">get_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>

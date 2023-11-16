@@ -219,7 +219,11 @@
         </div>
         <article role="main">
           <h1>Source code for qinst.serial.rf_attenuator_3494_64.rf_attenuator_3494_64</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">serial</span>
+<span></span><span class="sd">&quot;&quot;&quot;Attenuator349464.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Literal</span>
+
+<span class="kn">import</span> <span class="nn">serial</span>
 
 <span class="kn">from</span> <span class="nn">qinst.serial_inst</span> <span class="kn">import</span> <span class="n">SerialInst</span>
 
@@ -233,14 +237,16 @@
         <span class="n">address</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">baudrate</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">9600</span><span class="p">,</span>
         <span class="n">bytesize</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">serial</span><span class="o">.</span><span class="n">EIGHTBITS</span><span class="p">,</span>
-        <span class="n">parity</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">serial</span><span class="o">.</span><span class="n">PARITY_NONE</span><span class="p">,</span>
+        <span class="n">parity</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;N&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">serial</span><span class="o">.</span><span class="n">PARITY_NONE</span><span class="p">,</span>
         <span class="n">stopbits</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">serial</span><span class="o">.</span><span class="n">STOPBITS_ONE</span><span class="p">,</span>
         <span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
         <span class="n">sleep</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
     <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize.&quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">name</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">baudrate</span><span class="p">,</span> <span class="n">bytesize</span><span class="p">,</span> <span class="n">parity</span><span class="p">,</span> <span class="n">stopbits</span><span class="p">,</span> <span class="n">timeout</span><span class="p">,</span> <span class="n">sleep</span>
         <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_attenuation</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">attenuation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -249,7 +255,7 @@
 
     <span class="nd">@attenuation</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">attenuation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_attenuation</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_attenuation</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ATT </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Attenuator_3494_64.get_pins_state"><a class="viewcode-back" href="../../../../api-reference/qinst.serial.rf_attenuator_3494_64.html#qinst.serial.rf_attenuator_3494_64.rf_attenuator_3494_64.Attenuator_3494_64.get_pins_state">[docs]</a>    <span class="k">def</span> <span class="nf">get_pins_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
