@@ -1,4 +1,4 @@
-name: Compile/Deploy Sphinx documentation
+name: Docs
 
 on:
   push:
