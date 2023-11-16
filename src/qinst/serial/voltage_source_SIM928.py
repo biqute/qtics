@@ -117,13 +117,13 @@ class SIM928(SerialInst):
 
     def battery_full_spec(self):
         """Print the full battery specifications."""
-        options = [
+        options = (
             "Battery pack part number",
             "Battery pack serial number",
             "Design life (number of charge cycles)",
             "Charge cycles used",
             "Battery pack production date (YYYY-MM-DD)",
-        ]
+        )
 
         parameters = ["PNUM", "SERIAL", "MAXCY", "CYCLES", "PDATE"]
 
@@ -135,18 +135,18 @@ class SIM928(SerialInst):
     def exe_error(self) -> str:
         """Get last execution error."""
         a = self.query("LEXE?")
-        options = [
+        options = (
             "No execution error since last LEXE?",
             "Illegal value",
             "Wrong token",
             "Invalid bit",
-        ]
+        )
         return options[int(a)]
 
     def dev_error(self) -> str:
         """Get last command/device error."""
         a = self.query("LCME?")
-        options = [
+        options = (
             "No command error since last LCME?",
             "Illegal command",
             "Undefined command",
@@ -162,5 +162,5 @@ class SIM928(SerialInst):
             "Bad token value",
             "Bad hex block",
             "Unknown token",
-        ]
+        )
         return options[int(a)]
