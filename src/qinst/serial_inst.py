@@ -34,22 +34,24 @@ class SerialInst(Instrument):
 
     def connect(self):
         self.serial.open()
+        self.is_connected = True
 
     def disconnect(self):
         if self.serial.is_open:
             self.serial.close()
+            self.is_connected = False
 
     def write(self, cmd):
-        if self.serial is not None:
+        if self.serial.is_open:
             self.serial.write((cmd + "\n").encode())
 
     def read(self):
-        if self.serial is not None:
+        if self.serial.is_open:
             return self.serial.read(self.serial.in_waiting)
         return None
 
     def query(self, cmd):
-        if self.serial is not None:
+        if self.serial.is_open:
             self.write(cmd)
             time.sleep(self.sleep)
             return self.read()
