@@ -36,30 +36,26 @@ class SerialInst(Instrument):
     def connect(self):
         """Connect to the device."""
         self.serial.open()
-        self.is_connected = True
 
     def disconnect(self):
         """Disconnect from the device."""
         if self.serial.is_open:
             self.serial.close()
-            self.is_connected = False
 
     def write(self, cmd):
         """Write a message to the serial port."""
-        if self.serial is not None:
+        if self.serial.is_open:
             self.serial.write((cmd + "\n").encode())
 
     def read(self) -> str:
         """Read a message from the serial port."""
-        return (
-            self.serial.read(self.serial.in_waiting).decode("utf-8")
-            if self.serial is not None
-            else ""
-        )
+        if self.serial.is_open:
+            return self.serial.read(self.serial.in_waiting).decode("utf-8")
+        return ""
 
     def query(self, cmd) -> str:
         """Send a message, then read from the serial port."""
-        if self.serial is not None:
+        if self.serial.is_open:
             self.write(cmd)
             time.sleep(self.sleep)
             return self.read()

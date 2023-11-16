@@ -17,7 +17,6 @@ def test_init():
     assert isinstance(inst, Instrument)
     assert inst.name == "name_inst"
     assert inst.address == "address"
-    assert not inst.is_connected
 
 
 def test_get_id(mocker):

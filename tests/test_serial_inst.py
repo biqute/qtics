@@ -13,7 +13,7 @@ def mock_pass(_=None, __=None):
 
 def mock_read(_, __):
     """Mock read function."""
-    return "test_read"
+    return b"test_read"
 
 
 def test_init():
@@ -29,8 +29,8 @@ def test_init():
     assert inst.serial.bytesize == EIGHTBITS
     assert inst.serial.parity == PARITY_NONE
     assert inst.serial.stopbits == STOPBITS_ONE
-    assert inst.serial.timeout == 5
-    assert inst.sleep == 0
+    assert inst.serial.timeout == 10
+    assert inst.sleep == 0.1
 
 
 def test_del(mocker):
@@ -47,7 +47,6 @@ def test_connect(mocker):
     mocker.patch("serial.Serial.open", new_callable=lambda: mock_pass)
     inst = SerialInst("name_inst", "address")
     inst.connect()
-    assert inst.is_connected
 
 
 def test_disconnect(mocker):
@@ -58,7 +57,6 @@ def test_disconnect(mocker):
     inst.connect()
     inst.serial.is_open = True  # patch connection
     inst.disconnect()
-    assert not inst.is_connected
 
 
 def test_write(mocker):
@@ -73,7 +71,7 @@ def test_read(mocker):
     mocker.patch("serial.Serial.read", new_callable=lambda: mock_read)
     mocker.patch("serial.Serial.in_waiting", new_callable=lambda: 5)
     inst = SerialInst("name_inst", "address")
-    assert inst.read() == None
+    assert inst.read() == ""
     inst.serial.is_open = True
     inst.serial.fd = None
     assert inst.read() == "test_read"
@@ -85,7 +83,7 @@ def test_query(mocker):
     mocker.patch("serial.Serial.read", new_callable=lambda: mock_read)
     mocker.patch("serial.Serial.in_waiting", new_callable=lambda: 5)
     inst = SerialInst("name_inst", "address")
-    assert inst.query("cmd") == None
+    assert inst.query("cmd") == ""
     inst.serial.is_open = True
     inst.serial.fd = None
     assert inst.read() == "test_read"
