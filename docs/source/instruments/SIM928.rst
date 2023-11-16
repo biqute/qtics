@@ -1,0 +1,63 @@
+Isolated voltage source Stanford Research Systems SIM928
+========================================================
+
+Isolated voltage source SIM928 produced by Stanford Research Systems.
+The manual of the instrument is available at `SRS <https://www.thinksrs.com/products/sim928.html>`_.
+
+This instrument requires to use the corresponding `SRS SIM900 mainframe <https://www.thinksrs.com/products/sim900.html>`_. The connection will be established first to the mainframe, which will then create a passthrough to the port where the SIM928 is installed.
+
+Example of operations
+"""""""""""""""""""""
+
+.. code-block:: python
+
+  from qinst import SRS_SIM928
+
+  source = SRS_SIM928(name = "source", address = "/dev/ttyACM0")
+  source.connect()
+
+
+To execute commands:
+
+.. code-block:: python
+
+   source.voltage = 1 # set output voltage in volts
+   print(source.voltage)  # get output voltage from instrument
+   source.output_on() # turn on output
+   source.output_off() # turn off output
+   source.dev_error() # get last device error
+
+   source.connect_port(2) # change port of SIM900 mainframe
+   source.disconnect_port() # disconnect the device and reset the SIM900 mainframe
+
+Commands
+""""""""
+
+General functions
+-----------------
+
+- connect()
+- disconnect()
+- get_id
+- write(cmd)
+- read()
+- query(cmd)
+
+Specific functions
+------------------
+
+- connect_port(port)
+- reset()
+- output_on
+- output_off()
+- battery_charger_override()
+- battery_state()
+- battery_spec(option)
+- battery_full_spec()
+- exe_error()
+- dev_error()
+
+Properties
+----------
+
+- voltage
