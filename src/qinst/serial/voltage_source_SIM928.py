@@ -1,4 +1,5 @@
 import time
+from typing import Literal
 
 import serial
 
@@ -18,12 +19,13 @@ class SIM928(SerialInst):
         address: str,
         baudrate: int = 9600,
         bytesize: int = serial.EIGHTBITS,
-        parity: int = serial.PARITY_NONE,
+        parity: Literal["N"] = serial.PARITY_NONE,
         stopbits: int = serial.STOPBITS_ONE,
         timeout: int = 10,
         sleep: float = 0.1,
         mainframe_port: int = 1,
     ):
+        """Initialize the class."""
         super().__init__(
             name,
             address,
@@ -162,18 +164,3 @@ class SIM928(SerialInst):
             "Unknown token",
         ]
         return options[int(a)]
-
-    # Communication commands
-    @property
-    def flow_control(self) -> str:
-        """Get the data flow control setting."""
-        return self.query("FLOW?")
-
-    @flow_control.setter
-    def flow_control(self, value: int):
-        """Set the flow control to the specified value."""
-        self.write(f"FLOW {value}")
-
-    def status_byte(self, bit: int) -> str:
-        """Read the Status Byte register."""
-        return self.query(f"*STB? {bit}")
