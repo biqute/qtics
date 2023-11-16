@@ -60,7 +60,3 @@ class SerialInst(Instrument):
             time.sleep(self.sleep)
             return self.read()
         return ""
-
-    def get_id(self) -> str:
-        """Return name of the device from SCPI standard query."""
-        return self.query("*IDN?")
