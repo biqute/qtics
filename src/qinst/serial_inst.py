@@ -33,30 +33,35 @@ class SerialInst(Instrument):
         self.disconnect()
 
     def connect(self):
+        """Connect to the device."""
         self.serial.open()
 
     def disconnect(self):
+        """Disconnect from the device."""
         if self.serial.is_open:
             self.serial.close()
 
     def write(self, cmd):
+        """Write a message to the serial port."""
         if self.serial is not None:
             self.serial.write((cmd + "\n").encode())
 
-    def read(self):
+    def read(self) -> str:
+        """Read a message from the serial port."""
         return (
-            self.serial.read(self.serial.in_waiting)
+            self.serial.read(self.serial.in_waiting).decode("utf-8")
             if self.serial is not None
-            else None
+            else ""
         )
 
-    def query(self, cmd):
+    def query(self, cmd) -> str:
+        """Send a message, then read from the serial port."""
         if self.serial is not None:
             self.write(cmd)
             time.sleep(self.sleep)
             return self.read()
-        return None
+        return ""
 
-    def get_id(self):
+    def get_id(self) -> str:
         """Return name of the device from SCPI standard query."""
         return self.query("*IDN?")

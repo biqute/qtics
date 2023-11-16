@@ -34,15 +34,17 @@ class SIM928(SerialInst):
             timeout,
             sleep,
         )
-        self.mainframe_port = mainframe_port
+        self._mainframe_port = mainframe_port
 
     def connect(self):
+        """Connect to the device."""
         self.serial.open()
         time.sleep(self.sleep)
-        self.connect_port(self.mainframe_port)
+        self.connect_port(self._mainframe_port)
 
     def connect_port(self, port: int):
-        self.mainframe_port = port
+        """Connect to the a specific port in the mainframe."""
+        self._mainframe_port = port
         self.write(f'CONN {port}, "esc"')
 
     def disconnect(self):
@@ -70,7 +72,7 @@ class SIM928(SerialInst):
         self.write("OPOF")
 
     @property
-    def voltage(self):
+    def voltage(self) -> str:
         """Output voltage."""
         return self.query("VOLT?")
 
@@ -85,7 +87,7 @@ class SIM928(SerialInst):
         """Force the SIM928 to switch the active output battery."""
         self.write("BCOR")
 
-    def battery_state(self):
+    def battery_state(self) -> str:
         """
         Query the battery status of the SIM928.
 
@@ -98,7 +100,7 @@ class SIM928(SerialInst):
         """
         return self.query("BATS?")
 
-    def battery_spec(self, parameter: str):
+    def battery_spec(self, parameter: str) -> str:
         """
         Query the battery specification for parameter i.
 
@@ -112,6 +114,7 @@ class SIM928(SerialInst):
         return self.query("BIDN? " + parameter)
 
     def battery_full_spec(self):
+        """Print the full battery specifications."""
         options = [
             "Battery pack part number",
             "Battery pack serial number",
@@ -124,11 +127,12 @@ class SIM928(SerialInst):
 
         for i in range(5):
             print(options[i] + ": ")
-            print(self.battery_spec(parameters[i]).decode("utf-8"))
+            print(self.battery_spec(parameters[i]))
 
     # Error commands
-    def exe_error(self):
-        a = self.query("LEXE?").decode("utf-8")
+    def exe_error(self) -> str:
+        """Get last execution error."""
+        a = self.query("LEXE?")
         options = [
             "No execution error since last LEXE?",
             "Illegal value",
@@ -137,8 +141,9 @@ class SIM928(SerialInst):
         ]
         return options[int(a)]
 
-    def dev_error(self):
-        a = self.query("LCME?").decode("utf-8")
+    def dev_error(self) -> str:
+        """Get last command/device error."""
+        a = self.query("LCME?")
         options = [
             "No command error since last LCME?",
             "Illegal command",
@@ -160,7 +165,7 @@ class SIM928(SerialInst):
 
     # Communication commands
     @property
-    def flow_control(self):
+    def flow_control(self) -> str:
         """Get the data flow control setting."""
         return self.query("FLOW?")
 
@@ -169,6 +174,6 @@ class SIM928(SerialInst):
         """Set the flow control to the specified value."""
         self.write(f"FLOW {value}")
 
-    def status_byte(self, bit: int):
+    def status_byte(self, bit: int) -> str:
         """Read the Status Byte register."""
         return self.query(f"*STB? {bit}")
