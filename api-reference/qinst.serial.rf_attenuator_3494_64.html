@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="qinst package" href="qinst.html" /><link rel="prev" title="Isolated voltage source Stanford Research Systems SIM928" href="../instruments/SIM928.html" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="qinst.serial.rf_switch_R591722600 package" href="qinst.serial.rf_switch_R591722600.html" /><link rel="prev" title="qinst.serial package" href="qinst.serial.html" />
 
     <link rel="shortcut icon" href="../_static/favicon.ico"/><!-- Generated with Sphinx 6.2.1 and Furo 2023.09.10 -->
-        <title>qinst - Qinst · 0.0.1</title>
+        <title>qinst.serial.rf_attenuator_3494_64 package - Qinst · 0.0.1</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=369552022d0b975c8e74270ce6eabe0fb7978f24" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -139,7 +139,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -175,10 +175,10 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Api reference</span></p>
 <ul class="current">
-<li class="toctree-l1 current has-children current-page"><a class="current reference internal" href="#">qinst</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of qinst</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2 has-children"><a class="reference internal" href="qinst.html">qinst package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of qinst package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l3 has-children"><a class="reference internal" href="qinst.serial.html">qinst.serial package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of qinst.serial package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l4"><a class="reference internal" href="qinst.serial.rf_attenuator_3494_64.html">qinst.serial.rf_attenuator_3494_64 package</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="modules.html">qinst</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of qinst</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current has-children"><a class="reference internal" href="qinst.html">qinst package</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of qinst package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3 current has-children"><a class="reference internal" href="qinst.serial.html">qinst.serial package</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of qinst.serial package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l4 current current-page"><a class="current reference internal" href="#">qinst.serial.rf_attenuator_3494_64 package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="qinst.serial.rf_switch_R591722600.html">qinst.serial.rf_switch_R591722600 package</a></li>
 </ul>
 </li>
@@ -213,55 +213,39 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
         <article role="main">
-          <section id="qinst">
-<h1>qinst<a class="headerlink" href="#qinst" title="Permalink to this heading">#</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="qinst.html">qinst package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="qinst.html#subpackages">Subpackages</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="qinst.serial.html">qinst.serial package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="qinst.serial.html#subpackages">Subpackages</a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.serial.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.serial.html#module-qinst.serial.voltage_source_SIM928">qinst.serial.voltage_source_SIM928 module</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="qinst.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="qinst.html#module-qinst.instrument">qinst.instrument module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="qinst.html#qinst.instrument.Instrument"><code class="docutils literal notranslate"><span class="pre">Instrument</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="qinst.html#qinst.instrument.Instrument.connect"><code class="docutils literal notranslate"><span class="pre">Instrument.connect()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.html#qinst.instrument.Instrument.disconnect"><code class="docutils literal notranslate"><span class="pre">Instrument.disconnect()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.html#qinst.instrument.Instrument.get_id"><code class="docutils literal notranslate"><span class="pre">Instrument.get_id()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.html#qinst.instrument.Instrument.query"><code class="docutils literal notranslate"><span class="pre">Instrument.query()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.html#qinst.instrument.Instrument.read"><code class="docutils literal notranslate"><span class="pre">Instrument.read()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.html#qinst.instrument.Instrument.write"><code class="docutils literal notranslate"><span class="pre">Instrument.write()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="qinst.html#module-qinst.serial_inst">qinst.serial_inst module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="qinst.html#qinst.serial_inst.SerialInst"><code class="docutils literal notranslate"><span class="pre">SerialInst</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="qinst.html#qinst.serial_inst.SerialInst.connect"><code class="docutils literal notranslate"><span class="pre">SerialInst.connect()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.html#qinst.serial_inst.SerialInst.disconnect"><code class="docutils literal notranslate"><span class="pre">SerialInst.disconnect()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.html#qinst.serial_inst.SerialInst.get_id"><code class="docutils literal notranslate"><span class="pre">SerialInst.get_id()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.html#qinst.serial_inst.SerialInst.query"><code class="docutils literal notranslate"><span class="pre">SerialInst.query()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.html#qinst.serial_inst.SerialInst.read"><code class="docutils literal notranslate"><span class="pre">SerialInst.read()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.html#qinst.serial_inst.SerialInst.write"><code class="docutils literal notranslate"><span class="pre">SerialInst.write()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</div>
+          <section id="module-qinst.serial.rf_attenuator_3494_64">
+<span id="qinst-serial-rf-attenuator-3494-64-package"></span><h1>qinst.serial.rf_attenuator_3494_64 package<a class="headerlink" href="#module-qinst.serial.rf_attenuator_3494_64" title="Permalink to this heading">#</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="module-qinst.serial.rf_attenuator_3494_64.rf_attenuator_3494_64">
+<span id="qinst-serial-rf-attenuator-3494-64-rf-attenuator-3494-64-module"></span><h2>qinst.serial.rf_attenuator_3494_64.rf_attenuator_3494_64 module<a class="headerlink" href="#module-qinst.serial.rf_attenuator_3494_64.rf_attenuator_3494_64" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="qinst.serial.rf_attenuator_3494_64.rf_attenuator_3494_64.Attenuator_3494_64">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qinst.serial.rf_attenuator_3494_64.rf_attenuator_3494_64.</span></span><span class="sig-name descname"><span class="pre">Attenuator_3494_64</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">baudrate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">9600</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bytesize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'N'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stopbits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sleep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/serial/rf_attenuator_3494_64/rf_attenuator_3494_64.html#Attenuator_3494_64"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.serial.rf_attenuator_3494_64.rf_attenuator_3494_64.Attenuator_3494_64" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="qinst.html#qinst.serial_inst.SerialInst" title="qinst.serial_inst.SerialInst"><code class="xref py py-class docutils literal notranslate"><span class="pre">SerialInst</span></code></a></p>
+<p>Control for the latching RF attenuator.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.serial.rf_attenuator_3494_64.rf_attenuator_3494_64.Attenuator_3494_64.attenuation">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">attenuation</span></span><a class="headerlink" href="#qinst.serial.rf_attenuator_3494_64.rf_attenuator_3494_64.Attenuator_3494_64.attenuation" title="Permalink to this definition">#</a></dt>
+<dd><p>The pulse_lenght in ms.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qinst.serial.rf_attenuator_3494_64.rf_attenuator_3494_64.Attenuator_3494_64.get_pins_state">
+<span class="sig-name descname"><span class="pre">get_pins_state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/serial/rf_attenuator_3494_64/rf_attenuator_3494_64.html#Attenuator_3494_64.get_pins_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.serial.rf_attenuator_3494_64.rf_attenuator_3494_64.Attenuator_3494_64.get_pins_state" title="Permalink to this definition">#</a></dt>
+<dd><p>Get status of digital arduino pins.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
 </section>
 
         </article>
@@ -269,23 +253,23 @@
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="qinst.html">
+          <a class="next-page" href="qinst.serial.rf_switch_R591722600.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">qinst package</div>
+                <div class="title">qinst.serial.rf_switch_R591722600 package</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="../instruments/SIM928.html">
+          <a class="prev-page" href="qinst.serial.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Isolated voltage source Stanford Research Systems SIM928</div>
+                <div class="title">qinst.serial package</div>
                 
               </div>
             </a>
@@ -314,8 +298,35 @@
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">qinst.serial.rf_attenuator_3494_64 package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-qinst.serial.rf_attenuator_3494_64.rf_attenuator_3494_64">qinst.serial.rf_attenuator_3494_64.rf_attenuator_3494_64 module</a><ul>
+<li><a class="reference internal" href="#qinst.serial.rf_attenuator_3494_64.rf_attenuator_3494_64.Attenuator_3494_64"><code class="docutils literal notranslate"><span class="pre">Attenuator_3494_64</span></code></a><ul>
+<li><a class="reference internal" href="#qinst.serial.rf_attenuator_3494_64.rf_attenuator_3494_64.Attenuator_3494_64.attenuation"><code class="docutils literal notranslate"><span class="pre">Attenuator_3494_64.attenuation</span></code></a></li>
+<li><a class="reference internal" href="#qinst.serial.rf_attenuator_3494_64.rf_attenuator_3494_64.Attenuator_3494_64.get_pins_state"><code class="docutils literal notranslate"><span class="pre">Attenuator_3494_64.get_pins_state()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>
