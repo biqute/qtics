@@ -15,7 +15,7 @@ class Attenuator_3494_64(SerialInst):
         parity: int = serial.PARITY_NONE,
         stopbits: int = serial.STOPBITS_ONE,
         timeout: int = 5,
-        sleep: int = 1,
+        sleep: float = 0.1,
     ):
         super().__init__(
             name, address, baudrate, bytesize, parity, stopbits, timeout, sleep
