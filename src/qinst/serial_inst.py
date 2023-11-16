@@ -14,8 +14,8 @@ class SerialInst(Instrument):
         bytesize: int = serial.EIGHTBITS,
         parity: int = serial.PARITY_NONE,
         stopbits: int = serial.STOPBITS_ONE,
-        timeout: int = 5,
-        sleep: int = 0,
+        timeout: int = 10,
+        sleep: float = 0.1,
     ):
         super().__init__(name, address)
 
@@ -39,9 +39,11 @@ class SerialInst(Instrument):
         if self.serial.is_open:
             self.serial.close()
 
-    def write(self, cmd):
+    def write(self, cmd, sleep=False):
         if self.serial is not None:
             self.serial.write((cmd + "\n").encode())
+            if sleep:
+                time.sleep(self.sleep)
 
     def read(self):
         if self.serial is not None:
@@ -50,7 +52,6 @@ class SerialInst(Instrument):
 
     def query(self, cmd):
         if self.serial is not None:
-            self.write(cmd)
-            time.sleep(self.sleep)
+            self.write(cmd, sleep=True)
             return self.read()
         return None
