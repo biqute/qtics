@@ -1,3 +1,7 @@
+![docs](https://github.com/biqute/qinst/actions/workflows/deploy_docs.yml/badge.svg)
+![Pylint](https://github.com/biqute/qinst/actions/workflows/pylint.yml/badge.svg)
+![Tests](https://github.com/biqute/qinst/actions/workflows/tests.yml/badge.svg)
+
 # qinst
 
 Collection of tools to handle instrumentation of the biqute lab
