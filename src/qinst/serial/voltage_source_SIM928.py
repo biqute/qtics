@@ -113,7 +113,13 @@ class SIM928(SerialInst):
         - CYCLES (3): # charge cycles used
         - PDATE (4): Battery pack production date (YYYY-MM-DD)
         """
-        return self.query("BIDN? " + parameter)
+
+        parameters = ("PNUM", "SERIAL", "MAXCY", "CYCLES", "PDATE")
+
+        if parameter in parameters:
+            return self.query("BIDN? " + parameter)
+        else:
+            raise ValueError("Invalid parameter for the battery_spec() method.")
 
     def battery_full_spec(self):
         """Print the full battery specifications."""
@@ -125,7 +131,7 @@ class SIM928(SerialInst):
             "Battery pack production date (YYYY-MM-DD)",
         )
 
-        parameters = ["PNUM", "SERIAL", "MAXCY", "CYCLES", "PDATE"]
+        parameters = ("PNUM", "SERIAL", "MAXCY", "CYCLES", "PDATE")
 
         for i in range(5):
             print(options[i] + ": ")
