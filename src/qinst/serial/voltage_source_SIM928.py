@@ -94,11 +94,11 @@ class SIM928(SerialInst):
         Query the battery status of the SIM928.
 
         Return:
-        str: A string in the format "<a>,<b>,<x>", where <a> and <b>
-             correspond to batteries “A” and “B”, and are equal to
-             1 for in use, 2 for charging, and 3 for ready/standby.
-             The third parameter, <x>, is normally 0; it is set to 1 if
-             the service batteries indicator is lit.
+          str: A string in the format "<a>,<b>,<x>", where <a> and <b>
+          correspond to batteries “A” and “B”, and are equal to
+          1 for in use, 2 for charging, and 3 for ready/standby.
+          The third parameter, <x>, is normally 0; it is set to 1 if
+          the service batteries indicator is lit.
         """
         return self.query("BATS?")
 

@@ -6,8 +6,24 @@ qinst package
    :undoc-members:
    :show-inheritance:
 
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   qinst.serial
+
 Submodules
 ----------
+
+qinst.gpib\_inst module
+-----------------------
+
+.. automodule:: qinst.gpib_inst
+   :members:
+   :undoc-members:
+   :show-inheritance:
 
 qinst.instrument module
 -----------------------
