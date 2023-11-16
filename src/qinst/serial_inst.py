@@ -1,4 +1,5 @@
 import time
+from typing import Literal
 
 import serial
 
@@ -12,7 +13,7 @@ class SerialInst(Instrument):
         address: str,
         baudrate: int = 9600,
         bytesize: int = serial.EIGHTBITS,
-        parity: int = serial.PARITY_NONE,
+        parity: Literal["N"] = serial.PARITY_NONE,
         stopbits: int = serial.STOPBITS_ONE,
         timeout: int = 10,
         sleep: float = 0.1,
@@ -43,25 +44,19 @@ class SerialInst(Instrument):
 
     def write(self, cmd):
         """Write a message to the serial port."""
-        if self.serial is not None:
+        if self.serial.is_open:
             self.serial.write((cmd + "\n").encode())
 
     def read(self) -> str:
         """Read a message from the serial port."""
-        return (
-            self.serial.read(self.serial.in_waiting).decode("utf-8")
-            if self.serial is not None
-            else ""
-        )
+        if self.serial.is_open:
+            return self.serial.read(self.serial.in_waiting).decode("utf-8")
+        return ""
 
     def query(self, cmd) -> str:
         """Send a message, then read from the serial port."""
-        if self.serial is not None:
+        if self.serial.is_open:
             self.write(cmd)
             time.sleep(self.sleep)
             return self.read()
         return ""
-
-    def get_id(self) -> str:
-        """Return name of the device from SCPI standard query."""
-        return self.query("*IDN?")
