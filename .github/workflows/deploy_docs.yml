@@ -1,0 +1,57 @@
+name: Deploy Sphinx documentation
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.8"]
+    permissions:
+      contents: write
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+
+
+    steps:
+      - uses: actions/checkout@v3
+
+
+      - name: Install and configure poetry
+        uses: snok/install-poetry@v1
+        with:
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+      - name: Disable modern installer
+        run: poetry config installer.modern-installation false
+      - name: Load cached venv
+        id: cached-pip-wheels
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache
+          key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
+      - name: Install dependencies
+        run: poetry install --no-interaction --no-root --with analysis,docs
+        if: steps.cache.outputs.cache-hit != 'true'
+      - name: Install project
+        run: poetry install --no-interaction ${{ inputs.poetry-extras }}
+
+
+      - name: Compile documentation
+        run: |
+          sudo apt-get install python3-sphinx
+          source $VENV
+          make -C docs html
+
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+
+        if: github.ref == 'refs/heads/main'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: '**/docs/build/html'
