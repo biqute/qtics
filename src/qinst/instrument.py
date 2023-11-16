@@ -9,5 +9,15 @@ class Instrument:
     def disconnect(self):
         raise NotImplementedError
 
-    def get_id(self):
+    def write(self):
         raise NotImplementedError
+
+    def read(self):
+        raise NotImplementedError
+
+    def query(self):
+        raise NotImplementedError
+
+    def get_id(self):
+        """Return name of the device from SCPI standard query."""
+        return self.query("*IDN?")
