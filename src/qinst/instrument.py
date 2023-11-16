@@ -25,7 +25,7 @@ class Instrument:
         """Read from the instrument."""
         raise NotImplementedError
 
-    def query(self, _):
+    def query(self, _=None):
         """Send a command and read from the instrument."""
         raise NotImplementedError
 
