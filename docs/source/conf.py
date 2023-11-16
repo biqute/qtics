@@ -1,5 +1,6 @@
 """Configuration file for sphinx documentation."""
 
+import shutil
 from pathlib import Path
 
 from recommonmark.transform import AutoStructify
@@ -73,6 +74,8 @@ def run_apidoc(_):
     """Extract autodoc directives from package structure."""
     source = Path(__file__).parent
     docs_dest = source / "api-reference"
+    if docs_dest.is_dir():
+        shutil.rmtree(docs_dest, ignore_errors=False, onerror=None)
     package = source.parents[1] / "src" / "qinst"
     apidoc.main(["--module-first", "-o", str(docs_dest), str(package)])
 

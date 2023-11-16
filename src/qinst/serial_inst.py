@@ -14,8 +14,8 @@ class SerialInst(Instrument):
         bytesize: int = serial.EIGHTBITS,
         parity: int = serial.PARITY_NONE,
         stopbits: int = serial.STOPBITS_ONE,
-        timeout: int = 5,
-        sleep: int = 0,
+        timeout: int = 10,
+        sleep: float = 0.1,
     ):
         super().__init__(name, address)
 
@@ -33,24 +33,35 @@ class SerialInst(Instrument):
         self.disconnect()
 
     def connect(self):
+        """Connect to the device."""
         self.serial.open()
 
     def disconnect(self):
+        """Disconnect from the device."""
         if self.serial.is_open:
             self.serial.close()
 
     def write(self, cmd):
+        """Write a message to the serial port."""
         if self.serial is not None:
             self.serial.write((cmd + "\n").encode())
 
-    def read(self):
-        if self.serial is not None:
-            return self.serial.read(self.serial.in_waiting)
-        return None
+    def read(self) -> str:
+        """Read a message from the serial port."""
+        return (
+            self.serial.read(self.serial.in_waiting).decode("utf-8")
+            if self.serial is not None
+            else ""
+        )
 
-    def query(self, cmd):
+    def query(self, cmd) -> str:
+        """Send a message, then read from the serial port."""
         if self.serial is not None:
             self.write(cmd)
             time.sleep(self.sleep)
             return self.read()
-        return None
+        return ""
+
+    def get_id(self) -> str:
+        """Return name of the device from SCPI standard query."""
+        return self.query("*IDN?")
