@@ -15,8 +15,8 @@ class Switch_R591(SerialInst):
         parity: int = serial.PARITY_NONE,
         stopbits: int = serial.STOPBITS_ONE,
         timeout: int = 5,
-        sleep: int = 1,
-        pulse_lenght: int = 5,
+        sleep: float = 0.1,
+        pulse_lenght: int = 5,  # milliseconds
     ):
         super().__init__(
             name, address, baudrate, bytesize, parity, stopbits, timeout, sleep
