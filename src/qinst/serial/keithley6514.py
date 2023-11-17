@@ -1,3 +1,9 @@
+"""
+Controller of the Keithley6514 electrometer.
+
+.. module:: keithley6514.py
+.. moduleauthor:: Marco Gobbo <marco.gobbo@mib.infn.it>
+"""
 import serial
 
 from qinst.serial_inst import SerialInst
@@ -34,7 +40,7 @@ class Keithley6514(SerialInst):
 
     # Basic commands
     def reset(self):
-        """Returns Model 6514 to the *RST default conditions."""
+        """Return Model 6514 to the RST default conditions."""
         self.write("*RST", True)
 
     def zcheck_on(self):
