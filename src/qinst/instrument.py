@@ -32,3 +32,11 @@ class Instrument:
     def get_id(self):
         """Return name of the device from SCPI standard query."""
         return self.query("*IDN?")
+
+    def setup(self, **kwargs):
+        """Set an instrument via kwargs."""
+        for key in kwargs:
+            if hasattr(self, key):
+                setattr(self, key, kwargs[key])
+            else:
+                raise RuntimeError(f"The instrument does not have the {key} parameter.")
