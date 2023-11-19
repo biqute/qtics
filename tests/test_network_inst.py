@@ -1,0 +1,81 @@
+"""Test network instrument base class."""
+import socket
+
+import pytest
+
+from qinst.instrument import Instrument
+from qinst.network_inst import NetworkInst
+
+
+def mock_pass(_=None, __=None):
+    """Mock function with no return."""
+    pass
+
+
+def mock_read(_, __):
+    """Mock read function."""
+    return b"test_read\n"
+
+
+class TestNetworklInst:
+    """Test class for NetworkInst."""
+
+    @pytest.fixture
+    def network_inst(self, mocker):
+        """Patch functions used in other methods."""
+        mocker.patch("ipaddress.ip_address", new_callable=lambda: mock_pass)
+        mocker.patch("socket.socket.connect", new_callable=lambda: mock_pass)
+        mocker.patch("socket.socket.shutdown", new_callable=lambda: mock_pass)
+        mocker.patch("socket.socket.close", new_callable=lambda: mock_pass)
+        return NetworkInst("name_inst", "address")
+
+    def test_init(self, network_inst):
+        """Test initialization."""
+        inst = network_inst
+        assert isinstance(inst, NetworkInst)
+        assert isinstance(inst, Instrument)
+        assert inst.name == "name_inst"
+        assert inst.address == "address"
+        assert inst.port == 5025
+        assert inst.sleep == 0.1
+        assert isinstance(inst.socket, socket.socket)
+        assert inst.no_delay == True
+        assert inst.socket.timeout == 10
+
+    def test_del(self, network_inst):
+        """Test destructor."""
+        inst = network_inst
+        inst.connect()
+        del inst
+
+    def test_connect(self, network_inst):
+        """Test connect function."""
+        inst = network_inst
+        inst.connect()
+
+    def test_disconnect(self, network_inst):
+        """Test disconnect function."""
+        inst = network_inst
+        inst.connect()
+        inst.disconnect()
+
+    def test_write(self, network_inst, mocker):
+        """Test write function."""
+        mocker.patch("socket.socket.sendall", new_callable=lambda: mock_pass)
+        inst = network_inst
+        inst.write("test_cmd")
+
+    def test_read(self, network_inst, mocker):
+        """Test read function."""
+        mocker.patch("socket.socket.recv", new_callable=lambda: mock_read)
+        inst = network_inst
+        assert inst.read() == "test_read"
+
+    def test_query(self, network_inst, mocker):
+        """Test query function."""
+        mocker.patch("socket.socket.recv", new_callable=lambda: mock_read)
+        mocker.patch("socket.socket.sendall", new_callable=lambda: mock_pass)
+        inst = network_inst
+        assert inst.query("CMD?") == "test_read"
+        with pytest.raises(ValueError):
+            inst.query("CMD")

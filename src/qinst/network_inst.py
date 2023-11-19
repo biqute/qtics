@@ -15,21 +15,17 @@ class NetworkInst(Instrument):
         port: int = 5025,  # Keysight instruments standard port
         timeout: int = 10,
         sleep: float = 0.1,
-        noDelay=True,
+        no_delay=True,
     ):
         super().__init__(name, address)
 
         # Validate IP
-        ipaddress.ip_address(address)
+        _ = ipaddress.ip_address(address)
         self.port = port
-        self.timeout = timeout
         self.sleep = sleep
-
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        if noDelay:
-            self.socket.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
-        self.socket.setblocking(False)
-        self.socket.settimeout(timeout)
+        self.timeout = timeout
+        self.no_delay = no_delay
 
     def __del__(self):
         self.disconnect()
@@ -40,8 +36,9 @@ class NetworkInst(Instrument):
 
     def disconnect(self):
         """Disconnect from the device."""
-        self.socket.shutdown(socket.SHUT_RDWR)
-        self.socket.close()
+        if self.socket.getsockname() != ("0.0.0.0", 0):
+            self.socket.shutdown(socket.SHUT_RDWR)
+            self.socket.close()
 
     def read(self) -> str:
         """Read the output buffer of the instrument."""
@@ -51,7 +48,7 @@ class NetworkInst(Instrument):
                 response += self.socket.recv(1024)
         except socket.timeout:
             raise TimeoutError("Reached timeout limit.")
-        return response.decode("utf-8").strip()
+        return response.decode("utf-8").strip("\n")
 
     def write(self, cmd: str):
         """Write a message to the serial port."""
@@ -64,3 +61,22 @@ class NetworkInst(Instrument):
         self.write(cmd)
         time.sleep(self.sleep)
         return self.read()
+
+    @property
+    def no_delay(self):
+        """"""
+        return bool(self.socket.getsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY))
+
+    @no_delay.setter
+    def no_delay(self, opt: bool):
+        """Send data immediately without concatenating multiple packets together."""
+        self.socket.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, int(opt))
+
+    @property
+    def timeout(self):
+        """Maximum waiting time for connection and communication."""
+        return self.socket.timeout
+
+    @timeout.setter
+    def timeout(self, nsec: float):
+        self.socket.settimeout(nsec)
