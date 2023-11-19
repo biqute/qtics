@@ -11,11 +11,11 @@ class N9916A(NetworkInst):
         port: int = 5025,
         timeout: int = 8000,
         sleep: float = 0.1,
-        noDelay=True,
-        maxpoints=10001,
+        no_delay: bool = True,
+        max_points: int = 10001,
     ):
-        super().__init__(name, address, port, timeout, sleep, noDelay)
-        self._maxpoints = maxpoints
+        super().__init__(name, address, port, timeout, sleep, no_delay)
+        self._max_points = max_points
 
     def write_and_hold(self, cmd: str):
         """Write command and wait until it has been processed."""
@@ -87,7 +87,7 @@ class N9916A(NetworkInst):
 
     @sweep_points.setter
     def sweep_points(self, npoints):
-        npoints = min(abs(npoints), self._maxpoints)
+        npoints = min(abs(npoints), self._max_points)
         self.write(f"SWE:POIN {npoints}")
 
     @property
@@ -103,10 +103,10 @@ class VNA9916A(N9916A):
         port: int = 5025,
         timeout: int = 10,
         sleep: float = 0.1,
-        noDelay = True,
-        maxpoints = 100000,
+        no_delay=True,
+        max_points=100000,
     ):
-        super().__init__(name, address, port, timeout, sleep, noDelay, maxpoints)
+        super().__init__(name, address, port, timeout, sleep, no_delay, max_points)
         self.connect()
         self.clear()
         self.reset()
@@ -163,7 +163,7 @@ class VNA9916A(N9916A):
             return 0
 
     @smoothing.setter
-    def smoothing(self, aperture):
+    def smoothing(self, aperture: int):
         if aperture > 0:
             self.query("CALC:SMO 1")
             self.write(f"CALC:SMO:APER {min(abs(aperture), 25)}")
