@@ -103,8 +103,8 @@ class VNA9916A(N9916A):
         port: int = 5025,
         timeout: int = 10,
         sleep: float = 0.1,
-        noDelay=True,
-        maxpoints=100000,
+        noDelay = True,
+        maxpoints = 100000,
     ):
         super().__init__(name, address, port, timeout, sleep, noDelay, maxpoints)
         self.connect()
