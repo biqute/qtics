@@ -42,10 +42,12 @@ class SerialInst(Instrument):
         if self.serial.is_open:
             self.serial.close()
 
-    def write(self, cmd):
+    def write(self, cmd, sleep=False):
         """Write a message to the serial port."""
         if self.serial.is_open:
             self.serial.write((cmd + "\n").encode())
+            if sleep:
+                time.sleep(self.sleep)
 
     def read(self) -> str:
         """Read a message from the serial port."""
@@ -56,7 +58,6 @@ class SerialInst(Instrument):
     def query(self, cmd) -> str:
         """Send a message, then read from the serial port."""
         if self.serial.is_open:
-            self.write(cmd)
-            time.sleep(self.sleep)
+            self.write(cmd, sleep=True)
             return self.read()
         return ""
