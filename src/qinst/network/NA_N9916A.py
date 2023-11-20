@@ -91,8 +91,13 @@ class N9916A(NetworkInst):
         self.write(f"SWE:POIN {npoints}")
 
     @property
-    def continuous(self, status=True):
-        self.write(f"INIT:CONT {int(status)}")
+    def continuous(self):
+        """Acquisition mode."""
+        return self.query("INIT:CONT?")
+
+    @continuous.setter
+    def continuous(self, status: bool):
+        self.write_and_hold(f"INIT:CONT {int(status)}")
 
 
 class VNA9916A(N9916A):
@@ -171,8 +176,20 @@ class VNA9916A(N9916A):
             self.write("CALC:SMO 0")
 
     @property
+    def average(self):
+        """The number of sweep averages."""
+        return int(self.query("AVER:COUN?"))
+
+    @average.setter
+    def average(self, n_avg: int):
+        if n_avg <= 0:
+            self.write("AVER:CLE")
+
+        self.write(f"AVER:COUN {min(n_avg, 100)}")
+
+    @property
     def bandwidth(self):
-        """Frequency bandwidth."""
+        """IF bandwidth of the receiver."""
         return float(self.query("BWID?"))
 
     @bandwidth.setter
