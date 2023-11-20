@@ -170,6 +170,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../instruments/R591722600.html">RF switch Radiall R591722600</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../instruments/3494_64.html">Attenuator Kratos 3494-64</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../instruments/SIM928.html">Isolated voltage source Stanford Research Systems SIM928</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../instruments/6514.html">Keithley Model 6514 System Electrometer</a></li>
 </ul>
 </li>
 </ul>
@@ -257,6 +258,76 @@
 </section>
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="module-qinst.serial.keithley6514">
+<span id="qinst-serial-keithley6514-module"></span><h2>qinst.serial.keithley6514 module<a class="headerlink" href="#module-qinst.serial.keithley6514" title="Permalink to this heading">#</a></h2>
+<p>Controller of the Keithley6514 electrometer.</p>
+<span class="target" id="module-keithley6514.py"></span><dl class="py class">
+<dt class="sig sig-object py" id="qinst.serial.keithley6514.Keithley6514">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qinst.serial.keithley6514.</span></span><span class="sig-name descname"><span class="pre">Keithley6514</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">baudrate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">9600</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bytesize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'N'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stopbits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sleep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/serial/keithley6514.html#Keithley6514"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.serial.keithley6514.Keithley6514" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="qinst.html#qinst.serial_inst.SerialInst" title="qinst.serial_inst.SerialInst"><code class="xref py py-class docutils literal notranslate"><span class="pre">SerialInst</span></code></a></p>
+<p>Keithley 6514 Programmable Electrometer by Keithley Instruments.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="qinst.serial.keithley6514.Keithley6514.connect">
+<span class="sig-name descname"><span class="pre">connect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/serial/keithley6514.html#Keithley6514.connect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.serial.keithley6514.Keithley6514.connect" title="Permalink to this definition">#</a></dt>
+<dd><p>Put Keithley 6514 Electrometer in remote.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qinst.serial.keithley6514.Keithley6514.disconnect">
+<span class="sig-name descname"><span class="pre">disconnect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/serial/keithley6514.html#Keithley6514.disconnect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.serial.keithley6514.Keithley6514.disconnect" title="Permalink to this definition">#</a></dt>
+<dd><p>Take Keithley 6514 Electrometer out of remote.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qinst.serial.keithley6514.Keithley6514.read_data">
+<span class="sig-name descname"><span class="pre">read_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span></span><a class="reference internal" href="../_modules/qinst/serial/keithley6514.html#Keithley6514.read_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.serial.keithley6514.Keithley6514.read_data" title="Permalink to this definition">#</a></dt>
+<dd><p>Return the value of the parameter under measurement.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qinst.serial.keithley6514.Keithley6514.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/serial/keithley6514.html#Keithley6514.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.serial.keithley6514.Keithley6514.reset" title="Permalink to this definition">#</a></dt>
+<dd><p>Return Model 6514 to the RST default conditions.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qinst.serial.keithley6514.Keithley6514.set_measure">
+<span class="sig-name descname"><span class="pre">set_measure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/serial/keithley6514.html#Keithley6514.set_measure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.serial.keithley6514.Keithley6514.set_measure" title="Permalink to this definition">#</a></dt>
+<dd><p>Basic settings for measure a parameter.</p>
+<p>Valid parameters to write:
+- VOLT: Voltage measurement
+- CURR: Current measurement
+- RES: Resistance measurement
+- CHAR: Charge measurement</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qinst.serial.keithley6514.Keithley6514.set_zero">
+<span class="sig-name descname"><span class="pre">set_zero</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/serial/keithley6514.html#Keithley6514.set_zero"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.serial.keithley6514.Keithley6514.set_zero" title="Permalink to this definition">#</a></dt>
+<dd><p>Perform zero correction sequence.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qinst.serial.keithley6514.Keithley6514.zcheck_off">
+<span class="sig-name descname"><span class="pre">zcheck_off</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/serial/keithley6514.html#Keithley6514.zcheck_off"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.serial.keithley6514.Keithley6514.zcheck_off" title="Permalink to this definition">#</a></dt>
+<dd><p>Disable zero check.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qinst.serial.keithley6514.Keithley6514.zcheck_on">
+<span class="sig-name descname"><span class="pre">zcheck_on</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/serial/keithley6514.html#Keithley6514.zcheck_on"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.serial.keithley6514.Keithley6514.zcheck_on" title="Permalink to this definition">#</a></dt>
+<dd><p>Enable zero check.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qinst.serial.keithley6514.Keithley6514.zcorrect">
+<span class="sig-name descname"><span class="pre">zcorrect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/serial/keithley6514.html#Keithley6514.zcorrect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.serial.keithley6514.Keithley6514.zcorrect" title="Permalink to this definition">#</a></dt>
+<dd><p>Perform zero correction.</p>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 <section id="module-qinst.serial.voltage_source_SIM928">
 <span id="qinst-serial-voltage-source-sim928-module"></span><h2>qinst.serial.voltage_source_SIM928 module<a class="headerlink" href="#module-qinst.serial.voltage_source_SIM928" title="Permalink to this heading">#</a></h2>
@@ -433,6 +504,21 @@ the service batteries indicator is lit.</p>
 <li><a class="reference internal" href="#">qinst.serial package</a><ul>
 <li><a class="reference internal" href="#subpackages">Subpackages</a></li>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-qinst.serial.keithley6514">qinst.serial.keithley6514 module</a><ul>
+<li><a class="reference internal" href="#qinst.serial.keithley6514.Keithley6514"><code class="docutils literal notranslate"><span class="pre">Keithley6514</span></code></a><ul>
+<li><a class="reference internal" href="#qinst.serial.keithley6514.Keithley6514.connect"><code class="docutils literal notranslate"><span class="pre">Keithley6514.connect()</span></code></a></li>
+<li><a class="reference internal" href="#qinst.serial.keithley6514.Keithley6514.disconnect"><code class="docutils literal notranslate"><span class="pre">Keithley6514.disconnect()</span></code></a></li>
+<li><a class="reference internal" href="#qinst.serial.keithley6514.Keithley6514.read_data"><code class="docutils literal notranslate"><span class="pre">Keithley6514.read_data()</span></code></a></li>
+<li><a class="reference internal" href="#qinst.serial.keithley6514.Keithley6514.reset"><code class="docutils literal notranslate"><span class="pre">Keithley6514.reset()</span></code></a></li>
+<li><a class="reference internal" href="#qinst.serial.keithley6514.Keithley6514.set_measure"><code class="docutils literal notranslate"><span class="pre">Keithley6514.set_measure()</span></code></a></li>
+<li><a class="reference internal" href="#qinst.serial.keithley6514.Keithley6514.set_zero"><code class="docutils literal notranslate"><span class="pre">Keithley6514.set_zero()</span></code></a></li>
+<li><a class="reference internal" href="#qinst.serial.keithley6514.Keithley6514.zcheck_off"><code class="docutils literal notranslate"><span class="pre">Keithley6514.zcheck_off()</span></code></a></li>
+<li><a class="reference internal" href="#qinst.serial.keithley6514.Keithley6514.zcheck_on"><code class="docutils literal notranslate"><span class="pre">Keithley6514.zcheck_on()</span></code></a></li>
+<li><a class="reference internal" href="#qinst.serial.keithley6514.Keithley6514.zcorrect"><code class="docutils literal notranslate"><span class="pre">Keithley6514.zcorrect()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a class="reference internal" href="#module-qinst.serial.voltage_source_SIM928">qinst.serial.voltage_source_SIM928 module</a><ul>
 <li><a class="reference internal" href="#qinst.serial.voltage_source_SIM928.SIM928"><code class="docutils literal notranslate"><span class="pre">SIM928</span></code></a><ul>
 <li><a class="reference internal" href="#qinst.serial.voltage_source_SIM928.SIM928.battery_charger_override"><code class="docutils literal notranslate"><span class="pre">SIM928.battery_charger_override()</span></code></a></li>
