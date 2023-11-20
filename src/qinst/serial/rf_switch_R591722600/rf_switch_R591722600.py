@@ -1,3 +1,5 @@
+from typing import Literal
+
 import serial
 
 from qinst.serial_inst import SerialInst
@@ -12,9 +14,9 @@ class Switch_R591(SerialInst):
         address: str,
         baudrate: int = 9600,
         bytesize: int = serial.EIGHTBITS,
-        parity: int = serial.PARITY_NONE,
+        parity: Literal["N"] = serial.PARITY_NONE,
         stopbits: int = serial.STOPBITS_ONE,
-        timeout: int = 5,
+        timeout: int = 10,
         sleep: float = 0.1,
         pulse_lenght: int = 5,  # milliseconds
     ):
