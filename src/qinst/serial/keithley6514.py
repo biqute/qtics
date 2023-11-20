@@ -74,8 +74,8 @@ class Keithley6514(SerialInst):
         parameters = ("VOLT", "CURR", "RES", "CHAR")
 
         if parameter in parameters:
-            self.write("SENS:FUNC '" + parameter + "'", True)
-            self.write("SENS:" + parameter + ":RANG:AUTO ON", True)
+            self.write(f"SENS:FUNC '{parameter}'", True)
+            self.write("f"SENS:{parameter}":RANG:AUTO ON", True)
             self.set_zero()
         else:
             raise ValueError("Invalid parameter for the set_measure() method.")
