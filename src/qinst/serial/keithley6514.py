@@ -75,13 +75,15 @@ class Keithley6514(SerialInst):
 
         if parameter in parameters:
             self.write(f"SENS:FUNC '{parameter}'", True)
-            self.write("f"SENS:{parameter}":RANG:AUTO ON", True)
+            self.write(f"SENS:{parameter}:RANG:AUTO ON", True)
             self.set_zero()
         else:
-            raise ValueError(f"Invalid parameter {parameter} for the set_measure() method.")
+            raise ValueError(
+                f"Invalid parameter {parameter} for the set_measure() method."
+            )
 
-    def read_data(self) -> str:
-        """Read the parameter data."""
+    def read_data(self) -> float:
+        """Return the value of the parameter under measurement."""
         self.write("FORM:ELEM READ", True)
         self.write("ARM:COUNT 1", True)
         self.write("READ?", True)
