@@ -43,7 +43,7 @@ class SerialInst(Instrument):
 
     def write(self, cmd, sleep=False):
         """Write a message to the serial port."""
-        if self.serial is not None:
+        if self.serial.is_open:
             self.serial.write((cmd + "\n").encode())
             if sleep:
                 time.sleep(self.sleep)
