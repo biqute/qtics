@@ -119,7 +119,7 @@ class SIM928(SerialInst):
         if parameter in parameters:
             return self.query("BIDN? " + parameter)
         else:
-            raise ValueError("Invalid parameter for the battery_spec() method.")
+            raise ValueError(f"Invalid parameter {parameter} for the battery_spec() method.")
 
     def battery_full_spec(self):
         """Print the full battery specifications."""
