@@ -1,8 +1,8 @@
 """
 Controller of the N9916A Vector Analyzer by Keysight.
 
-.. module:: NA_N9916A.py
-.. moduleauthor:: Pietro Campana <campana.pietro@campus.unimib.it>
+module: NA_N9916A.py
+moduleauthor: Pietro Campana <campana.pietro@campus.unimib.it>
 """
 import numpy as np
 
@@ -35,7 +35,7 @@ class N9916A(NetworkInst):
         self.write_and_hold("*CLS")
 
     def reset(self):
-        """Resetthe device and cancel any pending *OPC command or query."""
+        """Reset the device and cancel any pending *OPC command or query."""
         self.write_and_hold("*RST")
 
     def hold(self):
@@ -188,12 +188,14 @@ class N9916A(NetworkInst):
 
 
 class VNA9916A(N9916A):
+    """VNA mode of the N9916A."""
+
     def __init__(
         self,
         name: str,
         address: str,
         port: int = 5025,
-        timeout: int = 10,
+        timeout: int = 1000,
         sleep: float = 0.1,
         no_delay=True,
         max_points=100000,
@@ -305,14 +307,14 @@ class VNA9916A(N9916A):
         IQ = self.query_data("CALC:DATA:SDATA?")
         len_2 = int(len(IQ) / 2)
         z = np.empty(len_2, dtype=np.complex128)
-        z.real = IQ[0:len_2]
-        z.imag = IQ[len_2:]
+        z.real = IQ[0::2]
+        z.imag = IQ[1::2]
         return z
 
     def read_formatted_data(self) -> np.ndarray:
         """Read formatted data."""
         self.single_sweep()
-        return self.query_data("CALC:DATA:SDATA?")
+        return self.query_data("CALC:DATA:FDATA?")
 
     def snapshot(self, **kwargs):
         """Get frequency and IQ values for a single sweep."""
@@ -330,7 +332,7 @@ class VNA9916A(N9916A):
         z = np.array([])
         for f_min in np.arange(f_win_start, f_win_end, f_win_size):
             f_temp, z_temp = self.snapshot(
-                f_min=f_min, f_span=f_win_size, n_points=n_points, IFBW=3000, **kwargs
+                f_min=f_min, f_span=f_win_size, n_points=n_points, IFBW=IFBW, **kwargs
             )
             np.concatenate(f, f_temp)
             np.concatenate(z, z_temp)

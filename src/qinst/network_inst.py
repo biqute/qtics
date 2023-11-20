@@ -26,6 +26,7 @@ class NetworkInst(Instrument):
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.timeout = timeout
         self.no_delay = no_delay
+        self.__is_connected = False
 
     def __del__(self):
         self.disconnect()
@@ -33,10 +34,11 @@ class NetworkInst(Instrument):
     def connect(self):
         """Connect to the device."""
         self.socket.connect((self.address, self.port))
+        self.__is_connected = True
 
     def disconnect(self):
         """Disconnect from the device."""
-        if self.socket.getsockname() != ("0.0.0.0", 0):
+        if self.__is_connected == False:
             self.socket.shutdown(socket.SHUT_RDWR)
             self.socket.close()
 
