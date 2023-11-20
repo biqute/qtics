@@ -64,7 +64,7 @@ class NetworkInst(Instrument):
 
     @property
     def no_delay(self):
-        """Send data immediately without concatenating multiple packets together."""
+        """"""
         return bool(self.socket.getsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY))
 
     @no_delay.setter
