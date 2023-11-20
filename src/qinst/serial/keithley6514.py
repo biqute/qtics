@@ -78,7 +78,7 @@ class Keithley6514(SerialInst):
             self.write("f"SENS:{parameter}":RANG:AUTO ON", True)
             self.set_zero()
         else:
-            raise ValueError("Invalid parameter for the set_measure() method.")
+            raise ValueError(f"Invalid parameter {parameter} for the set_measure() method.")
 
     def read_data(self) -> str:
         """Read the parameter data."""
