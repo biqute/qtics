@@ -1,0 +1,63 @@
+Handheld Microwave Analyzer FieldFox N9916A
+========================================================
+
+N9916A FieldFox Handheld Microwave Analyzer by Keysight
+The manual of the instrument and other NAs are available at `Keysight <https://www.keysight.com/us/en/lib/resources/service-manuals/keysight-fieldfox-library-help-and-manuals-2153870.html>`_.
+The SCPI commands and functions of the instrument can be found in the `programming guide <https://www.keysight.com/us/en/assets/9921-02561/programming-guides/FFProgrammingHelp.pdf>`_.
+
+
+Example of operations
+"""""""""""""""""""""
+
+.. code-block:: python
+
+  from qinst import SRS_SIM928
+
+  source = SRS_SIM928(name = "source", address = "/dev/ttyACM0")
+  source.connect()
+
+
+To execute commands:
+
+.. code-block:: python
+
+   source.voltage = 1 # set output voltage in volts
+   print(source.voltage)  # get output voltage from instrument
+   source.output_on() # turn on output
+   source.output_off() # turn off output
+   source.dev_error() # get last device error
+
+   source.connect_port(2) # change port of SIM900 mainframe
+   source.disconnect_port() # disconnect the device and reset the SIM900 mainframe
+
+Commands
+""""""""
+
+General functions
+-----------------
+
+- connect()
+- disconnect()
+- get_id
+- write(cmd)
+- read()
+- query(cmd)
+
+Specific functions
+------------------
+
+- connect_port(port)
+- reset()
+- output_on
+- output_off()
+- battery_charger_override()
+- battery_state()
+- battery_spec(option)
+- battery_full_spec()
+- exe_error()
+- dev_error()
+
+Properties
+----------
+
+- voltage
