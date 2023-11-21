@@ -90,6 +90,11 @@ class N9916A(NetworkInst):
         """Frequency span."""
         return float(self.query("FREQ:SPAN?"))
 
+    @f_span.setter
+    def f_span(self, f: float):
+        """Frequency span."""
+        return self.write(f"FREQ:SPAN {abs(f)}")
+
     @property
     def sweep_points(self):
         """Number of points in sweep."""
@@ -103,7 +108,7 @@ class N9916A(NetworkInst):
     @property
     def continuous(self):
         """Acquisition mode."""
-        return self.query("INIT:CONT?")
+        return self.query("INIT:CONT?") != "0"
 
     @continuous.setter
     def continuous(self, status: bool):
@@ -144,7 +149,9 @@ class N9916A(NetworkInst):
         <data> is the data payload in binary format.
         <newline> is a single byte new line character at the end of the data.
         """
-        if datatype == "ASCII,0":
+        self.data_format = datatype
+
+        if datatype == "ASC,0":
             return np.array(self.query(cmd).split(",")).astype(float)
         elif datatype == "REAL,32":
             dtype = np.float32
@@ -167,7 +174,7 @@ class N9916A(NetworkInst):
         rawData = bytearray(numBytes)
         buf = memoryview(rawData)
 
-        # While there is data left to read...
+        # While there is data left to read, the reader will read it
         while numBytes:
             # Read data from instrument into buffer.
             bytesRecv = self.socket.recv_into(buf, numBytes)
@@ -229,7 +236,7 @@ class VNA9916A(N9916A):
     def S_par(self, par="S21"):
         allowed = ("S11", "S21", "S12", "S22")
         if par in allowed:
-            self.write(f"CALC:PAR{self.__trace}:DEF{par}")
+            self.write(f"CALC:PAR{self.__trace}:DEF {par}")
         else:
             raise ValueError(f"Invalid mode selected, choose between {allowed}.")
 
@@ -259,8 +266,8 @@ class VNA9916A(N9916A):
     @smoothing.setter
     def smoothing(self, aperture: int):
         if aperture > 0:
-            self.query("CALC:SMO 1")
-            self.write(f"CALC:SMO:APER {min(abs(aperture), 25)}")
+            self.write("CALC:SMO 1")
+            self.write(f"CALC:SMO:APER {abs(aperture)}")
         else:
             self.write("CALC:SMO 0")
 
@@ -299,7 +306,7 @@ class VNA9916A(N9916A):
 
     def read_freqs(self):
         """Read frequencies."""
-        return np.array(self.query("FREQ:DATA?").split(",")).astype(float)
+        return self.query_data("FREQ:DATA?", self.data_format)
 
     def read_IQ(self) -> np.ndarray:
         """Read unformatted IQ data."""
@@ -325,14 +332,18 @@ class VNA9916A(N9916A):
         return f, z
 
     def survey(
-        self, f_win_start, f_win_end, f_win_size, n_points=1600, IFBW=3000, **kwargs
+        self, f_win_start, f_win_end, f_win_size, sweep_points=1600, IFBW=3000, **kwargs
     ):
         """Execute multiple scans with higher resolution."""
         f = np.array([])
         z = np.array([])
         for f_min in np.arange(f_win_start, f_win_end, f_win_size):
             f_temp, z_temp = self.snapshot(
-                f_min=f_min, f_span=f_win_size, n_points=n_points, IFBW=IFBW, **kwargs
+                f_min=f_min,
+                f_span=f_win_size,
+                sweep_points=sweep_points,
+                IFBW=IFBW,
+                **kwargs,
             )
             np.concatenate(f, f_temp)
             np.concatenate(z, z_temp)
