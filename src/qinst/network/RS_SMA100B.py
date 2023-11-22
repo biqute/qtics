@@ -1,3 +1,9 @@
+"""
+Controller of the R&S SMA100B RF and microwave signal generator.
+
+.. module:: RS_SMA100B.py
+.. moduleauthor:: Marco Gobbo <marco.gobbo@mib.infn.it>
+"""
 from qinst.network_inst import NetworkInst
 
 
@@ -118,7 +124,7 @@ class SMA100B(NetworkInst):
         """
         Sets the frequency of the RF output signal in the selected path.
         """
-        self.write(f"SOUR:FREQ:CW {abs(f)}")
+        self.write(f"SOUR:FREQ:CW {f}")
 
     @property
     def f_min(self):
@@ -132,7 +138,7 @@ class SMA100B(NetworkInst):
         """
         Sets the start frequency for the RF sweep.
         """
-        self.write(f"SOUR:FREQ:STAR {abs(f)}")
+        self.write(f"SOUR:FREQ:STAR {f}")
 
     @property
     def f_max(self):
@@ -146,7 +152,7 @@ class SMA100B(NetworkInst):
         """
         Sets the stop frequency for the RF sweep.
         """
-        self.write(f"SOUR:FREQ:STOP {abs(f)}")
+        self.write(f"SOUR:FREQ:STOP {f}")
 
     @property
     def f_center(self):
@@ -160,7 +166,7 @@ class SMA100B(NetworkInst):
         """
         Sets the center frequency of the sweep.
         """
-        self.write(f"SOUR:FREQ:CENT {abs(f)}")
+        self.write(f"SOUR:FREQ:CENT {f}")
 
     @property
     def f_span(self):
@@ -188,7 +194,7 @@ class SMA100B(NetworkInst):
         """
         Sets the multiplication factor of a subsequent downstream instrument.
         """
-        self.write(f"SOUR:FREQ:MULT {abs(n)}")
+        self.write(f"SOUR:FREQ:MULT {n}")
 
     @property
     def f_offset(self):
@@ -202,7 +208,7 @@ class SMA100B(NetworkInst):
         """
         Sets the frequency offset of a downstream instrument.
         """
-        self.write(f"SOUR:FREQ:OFFS {abs(f)}")
+        self.write(f"SOUR:FREQ:OFFS {f}")
 
     def f_sweep(self):
         """
@@ -211,9 +217,9 @@ class SMA100B(NetworkInst):
         self.write("SOUR:SWE:FREQ:EXEC")
 
     @property
-    def is_sweep_completed(self) -> bool:
+    def is_f_sweep_completed(self) -> bool:
         """
-        Return the status of the frequency sweep is running.
+        Return the status of the frequency sweep that is running.
         """
         status = self.query("SOUR:SWE:FREQ:RUNN?")
         return not status == "0"
@@ -234,3 +240,77 @@ class SMA100B(NetworkInst):
         Assigns the value set as the reference phase.
         """
         self.write("SOUR:PHAS:REF")
+
+    @property
+    def p_mode(self):
+        """
+        Return the operating mode of the instrument of the set output level.
+        """
+        return str(self.query("SOUR:POW:MODE?"))
+
+    @p_mode.setter
+    def p_mode(self, mode):
+        """
+        Selects the operating mode of the instrument to set the output level.
+        """
+        allowed = ("CW", "SWEEP")
+        if mode in allowed:
+            self.write(f"SOUR:POW:MODE {mode}")
+        else:
+            raise ValueError(f"Invalid mode selected, choose between {allowed}.")
+
+    @property
+    def p_fixed(self):
+        """
+        Return the RF level applied to the DUT.
+        """
+        return float(self.query("SOUR:POW:LEV:IMM:AMPL?"))
+
+    @p_fixed.setter
+    def p_fixed(self, p):
+        """
+        Sets the RF level applied to the DUT.
+        """
+        self.write(f"SOUR:POW:LEV:IMM:AMPL {p}")
+
+    @property
+    def p_min(self):
+        """
+        Return the start RF level for the RF sweep.
+        """
+        return float(self.query("SOUR:POW:STAR?"))
+
+    @p_min.setter
+    def p_min(self, p: float):
+        """
+        Sets the start RF level for the RF sweep.
+        """
+        self.write(f"SOUR:POW:STAR {p}")
+
+    @property
+    def p_max(self):
+        """
+        Return the stop RF level for the RF sweep.
+        """
+        return float(self.query("SOUR:POW:STOP?"))
+
+    @p_max.setter
+    def p_max(self, p: float):
+        """
+        Sets the stop RF level for the RF sweep.
+        """
+        self.write(f"SOUR:POW:STOP {p}")
+
+    def p_sweep(self):
+        """
+        Perform a one-off RF level sweep.
+        """
+        self.write("SOUR:SWE:POW:EXEC")
+
+    @property
+    def is_p_sweep_completed(self) -> bool:
+        """
+        Return the status of the RF level sweep that is running.
+        """
+        status = self.query("SOUR:SWE:POW:RUNN?")
+        return not status == "0"
