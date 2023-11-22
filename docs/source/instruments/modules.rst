@@ -7,4 +7,5 @@ Supported Instruments
    R591722600
    3494_64
    SIM928
+   6514
    N9916A
