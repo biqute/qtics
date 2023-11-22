@@ -14,7 +14,8 @@ ENABLE_SETTERS = False
 
 
 class Triton(NetworkInst):
-    """CTriton controllery by Oxford Instruments."""
+    """Controller of Triton dilution refrigerator by Oxford Instruments."""
+
 
     def __init__(
         self,
@@ -23,7 +24,8 @@ class Triton(NetworkInst):
         port: int = 33576,
         timeout: int = 10,
         sleep: float = 0.1,
-        no_delay=True,
+        no_delay: bool = True,
+
     ):
         """Initialize."""
         super().__init__(name, address, port, timeout, sleep, no_delay)
@@ -61,7 +63,8 @@ class Triton(NetworkInst):
             raise RuntimeError("Setter not enabled!")
         ranges = (31.6 / 1e3, 100 / 1e3, 316 / 1e3, 1, 3.16, 10, 31.6, 100)
         if hrange not in ranges:
-            raise ValueError(f"Range {hrange} not allaowed. Choose between {ranges}.")
+            raise ValueError(f"Range {hrange} not allowed. Choose between {ranges}.")
+
         self.write(f"SET:DEV:T{self.mixing_chamber_ch}:TEMP:LOOP:RANGE:{hrange/1000}")
 
     def get_mixing_chamber_temp(self):
@@ -81,7 +84,6 @@ class Triton(NetworkInst):
     def mixing_chamber_tset(self, temp: float):
         if not ENABLE_SETTERS:
             raise RuntimeError("Setter not enabled!")
-        """Return mixing chamber set temperature in mK."""
         if temp > 200:
             raise ValueError(f"Temperature set too high! Was {temp}.")
         self.write(f"SET:DEV:T{self.mixing_chamber_ch}:TEMP:LOOP:TSET:{temp/1000}")
