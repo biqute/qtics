@@ -94,7 +94,6 @@ class N9916A(NetworkInst):
     def f_center(self, f: float):
         self.write(f"SENS:FREQ:CENT {abs(f)}")
 
-
     @property
     def f_span(self) -> float:
         """Frequency span."""
