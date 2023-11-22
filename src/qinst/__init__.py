@@ -1,6 +1,7 @@
 """List of supported instruments."""
 
 from qinst.network.NA_N9916A import VNAN9916A
+from qinst.network.triton_ctrl import Triton
 from qinst.serial.keithley6514 import Keithley6514
 from qinst.serial.rf_attenuator_3494_64.rf_attenuator_3494_64 import Attenuator_3494_64
 from qinst.serial.rf_switch_R591722600.rf_switch_R591722600 import Switch_R591

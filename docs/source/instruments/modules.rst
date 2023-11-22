@@ -9,3 +9,4 @@ Supported Instruments
    SIM928
    6514
    N9916A
+   triton
