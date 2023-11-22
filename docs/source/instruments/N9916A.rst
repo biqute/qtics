@@ -9,7 +9,7 @@ This instrument features different operational modes (VNA, SA, CAT...), with mos
 
 Commands
 """"""""
-Other than featuring all the methods of :py:class:`NetworkInst`, the base :py:class:`N9916A` class contains the following methods and properties common to all the operational modes of the instrument.
+Other than featuring all the methods of :class:`qinst.network_inst.NetworkInst`, the base :py:class:`N9916A` class contains the following methods and properties common to all the operational modes of the instrument.
 
 
 Functions
