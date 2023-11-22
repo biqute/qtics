@@ -5,6 +5,7 @@ module: NA_N9916A.py
 moduleauthor: Pietro Campana <campana.pietro@campus.unimib.it>
 """
 import time
+from typing import Tuple
 
 import numpy as np
 
@@ -369,7 +370,7 @@ class VNA9916A(N9916A):
         self.sweep()
         return self.query_data("CALC:DATA:FDATA?")
 
-    def snapshot(self, **kwargs) -> tuple[np.ndarray, np.ndarray]:
+    def snapshot(self, **kwargs) -> Tuple[np.ndarray, np.ndarray]:
         """Get frequency and IQ values for a single sweep."""
         self.set(**kwargs)
         self.clear_average()
@@ -382,7 +383,7 @@ class VNA9916A(N9916A):
 
     def survey(
         self, f_win_start, f_win_end, f_win_size, **kwargs
-    ) -> tuple[np.ndarray, np.ndarray]:
+    ) -> Tuple[np.ndarray, np.ndarray]:
         """Execute multiple scans with higher resolution."""
         f = []
         z = []
