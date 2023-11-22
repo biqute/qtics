@@ -8,3 +8,4 @@ Supported Instruments
    3494_64
    SIM928
    N9916A
+   triton

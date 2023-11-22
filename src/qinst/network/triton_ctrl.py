@@ -35,7 +35,10 @@ class Triton(NetworkInst):
         """
         if self._mixing_chamber_ch is not None:
             return self._mixing_chamber_ch
-        return int(self.query("READ:SYS:DR:CHAN:MC")[len("STAT:SYS:DR:CHAN:MC:") + 1 :])
+        self._mixing_chamber_ch = int(
+            self.query("READ:SYS:DR:CHAN:MC")[len("STAT:SYS:DR:CHAN:MC:") + 1 :]
+        )
+        return self._mixing_chamber_ch
 
     @property
     def heater_range(self) -> float:
@@ -46,11 +49,11 @@ class Triton(NetworkInst):
         return float(answer[:-2]) * conversions[answer[-2:]]
 
     @heater_range.setter
-    def heater_range(self, range: float):
+    def heater_range(self, hrange: float):
         ranges = (31.6 / 1e3, 100 / 1e3, 316 / 1e3, 1, 3.16, 10, 31.6, 100)
-        if range not in ranges:
-            raise ValueError(f"Range {range} not allaowed. Choose between {ranges}.")
-        self.write(f"SET:DEV:T{self.mixing_chamber_ch}:TEMP:LOOP:RANGE:{range/1000}")
+        if hrange not in ranges:
+            raise ValueError(f"Range {hrange} not allaowed. Choose between {ranges}.")
+        self.write(f"SET:DEV:T{self.mixing_chamber_ch}:TEMP:LOOP:RANGE:{hrange/1000}")
 
     def get_mixing_chamber_temp(self):
         """Return mixing chamber temperature in mK."""
