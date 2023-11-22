@@ -7,6 +7,8 @@ Manual of the instrument is available at `Kratosmed <https://www.kratosmed.com/g
 This instrument requires the correspondent Arduino firmware to be compiled and loaded.
 See related instruction at :ref:`arduino_firmware`.
 
+Base class: :class:`qinst.serial_inst.SerialInst`.
+
 
 Example of operations
 """""""""""""""""""""
@@ -30,18 +32,8 @@ To execute commands:
 Commands
 """"""""
 
-General functions
------------------
-
-- connect()
-- disconnect()
-- get_id
-- write(cmd)
-- read()
-- query(cmd)
-
-Specific functions
-------------------
+Functions
+---------
 
 - get_pins_state()
 
