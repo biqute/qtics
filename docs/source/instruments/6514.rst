@@ -1,0 +1,50 @@
+Keithley Model 6514 System Electrometer
+=======================================
+
+Keithley Model `6514` System Electrometer produced by Keithley Instruments.
+Manual of the instrument is available at `Tek <https://download.tek.com/manual/6514-901-01(D-May2003)(Instruction).pdf>`_.
+
+Example of operations
+"""""""""""""""""""""
+
+To initialize a controller you can execute the following directives on any Python script or notebook:
+
+.. code-block:: python
+
+  from qinst import Keithley6514
+
+  electrometer = Keithley6514(name = "my_electrometer", address = "/dev/ttyACM0")
+  electrometer.connect()
+
+
+To execute commands:
+
+.. code-block:: python
+
+   electrometer.reset() # reset the device to default conditions
+   electrometer.set_measure('CURR') # set the device to perform a current measurement
+   print(electrometer.read_data()) # get the value of the measured current
+
+Commands
+""""""""
+
+General functions
+-----------------
+
+- connect()
+- disconnect()
+- get_id
+- write(cmd)
+- read()
+- query(cmd)
+
+Specific functions
+------------------
+
+- reset()
+- zcheck_on()
+- zcheck_off()
+- zcorrect()
+- set_zero()
+- set_measure(parameter)
+- read_data()
