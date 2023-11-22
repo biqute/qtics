@@ -24,6 +24,11 @@ class N9916A(NetworkInst):
         no_delay: bool = True,
         max_points: int = 10001,
     ):
+        """Initialize instrument and base network."""
+        if type(self) == N9916A:
+            raise RuntimeError(
+                "You cannot instantiation directly N9916A: usea subclass."
+            )
         super().__init__(name, address, port, timeout, sleep, no_delay)
         self._max_points = max_points
 
@@ -57,8 +62,7 @@ class N9916A(NetworkInst):
         allowed = ("SA", "NA", "CAT")
         if mode in allowed:
             return self.write_and_hold(f'INST:SEL "{mode}"')
-        else:
-            raise ValueError(f"Invalid mode selected, choose between {allowed}.")
+        raise ValueError(f"Invalid mode selected, choose between {allowed}.")
 
     @property
     def f_min(self):
@@ -160,7 +164,7 @@ class N9916A(NetworkInst):
 
         if datatype == "ASC,0":
             return np.array(self.query(cmd).split(",")).astype(float)
-        elif datatype == "REAL,32":
+        if datatype == "REAL,32":
             dtype = np.float32
         elif datatype == "REAL,64":
             dtype = np.float64
@@ -194,7 +198,6 @@ class N9916A(NetworkInst):
         term = self.socket.recv(1)
         # If term char is incorrect or not present, raise exception.
         if term != b"\n":
-            print("Term char: {}, rawData Length: {}".format(term, len(rawData)))
             raise ValueError("Data not terminated correctly.")
 
         # Convert binary data to NumPy array of specified data type and return.
@@ -214,6 +217,7 @@ class VNA9916A(N9916A):
         no_delay=True,
         max_points=100000,
     ):
+        """Initialize super instrument and setup VNA mode."""
         super().__init__(name, address, port, timeout, sleep, no_delay, max_points)
         self.connect()
         self.clear()
@@ -229,6 +233,11 @@ class VNA9916A(N9916A):
         self.activate_trace()
         self.hold()
         self.set(format="MLOG", IFBW=1000, smoothing=0)
+        self.data_format = "REAL,64"
+
+    def autoscale(self):
+        """Autoscale all."""
+        self.write(f"DISP:WIND:TRAC{self.__trace}:Y:AUTO")
 
     def activate_trace(self):
         """Make active the selected trace."""
@@ -267,8 +276,7 @@ class VNA9916A(N9916A):
         if status:
             aperture = int(self.query("CALC:SMO:APER?"))
             return aperture
-        else:
-            return 0
+        return 0
 
     @smoothing.setter
     def smoothing(self, aperture: int):
@@ -365,6 +373,7 @@ class VNA9916A(N9916A):
         self.set(**kwargs)
         self.clear_average()
         self.hold()
+        self.autoscale()
         z = self.read_IQ()
         f = self.read_freqs()
         self.hold()
