@@ -16,7 +16,6 @@ ENABLE_SETTERS = False
 class Triton(NetworkInst):
     """Controller of Triton dilution refrigerator by Oxford Instruments."""
 
-
     def __init__(
         self,
         name: str,
@@ -25,7 +24,6 @@ class Triton(NetworkInst):
         timeout: int = 10,
         sleep: float = 0.1,
         no_delay: bool = True,
-
     ):
         """Initialize."""
         super().__init__(name, address, port, timeout, sleep, no_delay)
