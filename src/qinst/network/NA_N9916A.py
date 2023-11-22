@@ -44,7 +44,8 @@ class N9916A(NetworkInst):
         self.write_and_hold("*CLS")
 
     def reset(self):
-        """Reset the device and cancel any pending *OPC command or query."""
+        """Reset the device and cancel any pending OPC command or query."""
+
         self.write_and_hold("*RST")
 
     def hold(self):
@@ -91,7 +92,8 @@ class N9916A(NetworkInst):
 
     @f_center.setter
     def f_center(self, f: float):
-        self.write(f"SENS:FREQ:CENT {abs(f):5.6f}")
+        self.write(f"SENS:FREQ:CENT {abs(f)}")
+
 
     @property
     def f_span(self) -> float:
