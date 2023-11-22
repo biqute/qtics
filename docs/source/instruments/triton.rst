@@ -2,7 +2,6 @@ Triton controller
 =================
 
 Controller of the Triton Cryostat by Oxford Instruments.
-Manual of the instrument is available at
 
 
 Example of opertations
