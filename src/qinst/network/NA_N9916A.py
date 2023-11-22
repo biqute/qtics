@@ -3,6 +3,7 @@ Controller of the N9916A Vector Analyzer by Keysight.
 
 module: NA_N9916A.py
 moduleauthor: Pietro Campana <campana.pietro@campus.unimib.it>
+The code for query_data() was partially taken from https://github.com/morgan-at-keysight/socketscpi
 """
 import time
 from typing import Tuple
@@ -25,10 +26,10 @@ class N9916A(NetworkInst):
         no_delay: bool = True,
         max_points: int = 10001,
     ):
-        """Initialize instrument and base network."""
+        """Initialize."""
         if type(self) == N9916A:
             raise RuntimeError(
-                "You cannot instantiation directly N9916A: usea subclass."
+                "You cannot instantiate directly N9916A: use a subclass."
             )
         super().__init__(name, address, port, timeout, sleep, no_delay)
         self._max_points = max_points
@@ -43,7 +44,8 @@ class N9916A(NetworkInst):
         self.write_and_hold("*CLS")
 
     def reset(self):
-        """Reset the device and cancel any pending *OPC command or query."""
+        """Reset the device and cancel any pending OPC command or query."""
+
         self.write_and_hold("*RST")
 
     def hold(self):
@@ -90,7 +92,7 @@ class N9916A(NetworkInst):
 
     @f_center.setter
     def f_center(self, f: float):
-        self.write(f"SENS:FREQ:CENT {abs(f):5.6f}")
+        self.write(f"SENS:FREQ:CENT {abs(f)}")
 
     @property
     def f_span(self) -> float:
@@ -127,7 +129,11 @@ class N9916A(NetworkInst):
         self.write_and_hold(f"INIT:CONT {int(status)}")
 
     def single_sweep(self):
-        """Perform a single sweep, then hold. Use this sweep mode for reading trace data. Only works with continuous=False."""
+        """
+        Perform a single sweep, then hold. Use this sweep mode for reading trace data.
+
+        Triggering single sweeps is only possible with continuous=False.
+        """
         if self.continuous == True:
             self.continuous = False
             self.write_and_hold("INIT:IMM")
@@ -180,33 +186,30 @@ class N9916A(NetworkInst):
             raise ValueError("Data in buffer is not in binblock format.")
 
         # Extract header length and number of bytes in binblock.
-        headerLength = int(self.socket.recv(1).decode("utf-8"), 16)
-        numBytes = int(self.socket.recv(headerLength).decode("utf-8"))
+        header_length = int(self.socket.recv(1).decode("utf-8"), 16)
+        n_bytes = int(self.socket.recv(header_length).decode("utf-8"))
 
-        # Create a buffer object of the correct size and expose a memoryview for efficient socket reading
-        rawData = bytearray(numBytes)
-        buf = memoryview(rawData)
+        # Create a buffer and expose a memoryview for efficient socket reading
+        raw_data = bytearray(n_bytes)
+        buf = memoryview(raw_data)
 
-        # While there is data left to read, the reader will read it
-        while numBytes:
+        while n_bytes:
             # Read data from instrument into buffer.
-            bytesRecv = self.socket.recv_into(buf, numBytes)
-            # Slice buffer to preserve data already written to it. This syntax seems odd, but it works correctly.
-            buf = buf[bytesRecv:]
+            bytes_recv = self.socket.recv_into(buf, n_bytes)
+            # Slice buffer to preserve data already written to it.
+            buf = buf[bytes_recv:]
             # Subtract bytes received from total bytes.
-            numBytes -= bytesRecv
+            n_bytes -= bytes_recv
 
         # Receive termination character.
         term = self.socket.recv(1)
-        # If term char is incorrect or not present, raise exception.
         if term != b"\n":
             raise ValueError("Data not terminated correctly.")
 
-        # Convert binary data to NumPy array of specified data type and return.
-        return np.frombuffer(rawData, dtype=dtype).astype(float)
+        return np.frombuffer(raw_data, dtype=dtype).astype(float)
 
 
-class VNA9916A(N9916A):
+class VNAN9916A(N9916A):
     """VNA mode of the N9916A."""
 
     def __init__(
@@ -352,7 +355,7 @@ class VNA9916A(N9916A):
             self.write_and_hold("INIT:IMM")
             return
         raise RuntimeError(
-            f"Bad combination of average mode {self.average_mode} and number of averages {self.average}."
+            f"Bad combination of average mode {self.average_mode} and number {self.average}."
         )
 
     def read_IQ(self) -> np.ndarray:

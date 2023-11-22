@@ -1,54 +1,97 @@
 Handheld Microwave Analyzer FieldFox N9916A
-========================================================
+===========================================
 
 N9916A FieldFox Handheld Microwave Analyzer by Keysight
-The manual of the instrument and other NAs are available at `Keysight <https://www.keysight.com/us/en/lib/resources/service-manuals/keysight-fieldfox-library-help-and-manuals-2153870.html>`_.
-The SCPI commands and functions of the instrument can be found in the `programming guide <https://www.keysight.com/us/en/assets/9921-02561/programming-guides/FFProgrammingHelp.pdf>`_.
+The manuals of this instrument and similar models are available at `Keysight <https://www.keysight.com/us/en/lib/resources/service-manuals/keysight-fieldfox-library-help-and-manuals-2153870.html>`_.
+The SCPI commands and functions can be found in the `programming guide <https://www.keysight.com/us/en/assets/9921-02561/programming-guides/FFProgrammingHelp.pdf>`_.
 
 Base class: :class:`qinst.network_inst.NetworkInst`.
 
-Example of operations
-"""""""""""""""""""""
-
-.. code-block:: python
-
-  from qinst import SRS_SIM928
-
-  source = SRS_SIM928(name = "source", address = "/dev/ttyACM0")
-  source.connect()
-
-
-To execute commands:
-
-.. code-block:: python
-
-   source.voltage = 1 # set output voltage in volts
-   print(source.voltage)  # get output voltage from instrument
-   source.output_on() # turn on output
-   source.output_off() # turn off output
-   source.dev_error() # get last device error
-
-   source.connect_port(2) # change port of SIM900 mainframe
-   source.disconnect_port() # disconnect the device and reset the SIM900 mainframe
+This instrument features different operational modes (VNA, SA, CAT...), with mostly different commands. Each mode is controlled by its respective class. When instantiated, these classes will automatically try to connect to the instrument and initialize a basic measurement setup.
 
 Commands
 """"""""
+Other than featuring all the methods of :class:`qinst.network_inst.NetworkInst`, the base :py:class:`N9916A` class contains the following methods and properties common to all the operational modes of the instrument.
 
 Functions
 ---------
-
+- clear()
 - connect_port(port)
 - reset()
-- output_on
-- output_off()
-- battery_charger_override()
-- battery_state()
-- battery_spec(option)
-- battery_full_spec()
-- exe_error()
-- dev_error()
+- hold()
+- write_and_hold()
+- f_min()
+- f_max()
+- f_center()
+- f_span()
+- sweep_points()
+- sweep_time()
+- continuous()
+- single_sweep()
+- data_format()
+- query_data()
 
 Properties
-----------
+------------
+- f_min
+- f_max
+- f_center
+- f_span
+- sweep_points
+- sweep_time
+- continuous
+- data_format
 
-- voltage
+VNA mode
+""""""""
+Measure the scattering value parameter of a connected RF network by sweeping a probe signal over a range of frequencies. This mode is implemented by the :py:class:`VNAN9916A` class.
+
+Example of operation
+---------------------
+
+.. code-block:: python
+
+  from qinst import VNAN9916A
+
+  VNA = VNAN9916A(name = "myVNA", address = "192.168.40.10")
+
+
+Measure the :math:`S_{11}` parameter in the 4-8 GHz frequency range, averaging 5 sweeps of the VNA. The result consists of the frequency array and the raw IQ values, given as an array of complex numbers:
+
+.. code-block:: python
+
+  VNA.S_par = "S11"
+  VNA.average = 5 # number of averages of the recorded trace
+  VNA.power = -20 # power of the probe signal in dB
+  f, z = VNA.snapshot(f_min=4e9, f_max=8e9)
+
+Since the instrument allows a maximum number of 10001 points in a single sweep, the ``survey()`` function allows to perform more precise measurements over a large frequency range by patching togheter multiple snapshots over smaller ranges.
+
+.. code-block:: python
+
+  VNA.sweep_points = 10001
+  f, z = VNA.survey(4e9, 8e9, 0.5e9) # patch multiple snapshots, each with 10001 points and a 500 MHz span
+
+
+Functions
+------------
+- setup()
+- autoscale()
+- activate_trace()
+- clear_average()
+- read_freqs()
+- sweep()
+- read_IQ()
+- read_formatted_data()
+- snapshot()
+- survey()
+
+Properties
+------------
+- S_par
+- yformat
+- smoothing
+- average
+- average_mode
+- IFBW
+- power

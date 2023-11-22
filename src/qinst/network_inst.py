@@ -1,3 +1,10 @@
+"""
+Base class for instruments communicating via network connection.
+
+module: network_inst.py
+moduleauthor: Pietro Campana <campana.pietro@campus.unimib.it>
+The code was partially taken from https://github.com/morgan-at-keysight/socketscpi
+"""
 import ipaddress
 import socket
 import time
@@ -17,6 +24,7 @@ class NetworkInst(Instrument):
         sleep: float = 0.1,
         no_delay=True,
     ):
+        """Initialize."""
         super().__init__(name, address)
 
         # Validate IP
@@ -29,6 +37,7 @@ class NetworkInst(Instrument):
         self.__is_connected = False
 
     def __del__(self):
+        """Delete the object."""
         self.disconnect()
 
     def connect(self):
@@ -67,7 +76,7 @@ class NetworkInst(Instrument):
 
     @property
     def no_delay(self):
-        """"""
+        """If True, send data immediately without concatenating multiple packets together."""
         return bool(self.socket.getsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY))
 
     @no_delay.setter
