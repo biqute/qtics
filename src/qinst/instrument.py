@@ -32,3 +32,21 @@ class Instrument:
     def get_id(self):
         """Return name of the device from SCPI standard query."""
         return self.query("*IDN?")
+
+    def set(self, **kwargs):
+        """Set multiple attributes and/or properties."""
+        for key, value in kwargs.items():
+            if hasattr(self, key):
+                setattr(self, key, value)
+            else:
+                raise RuntimeError(f"The instrument does not have the {key} parameter.")
+
+    def get(self, *args) -> dict:
+        """Get multiple attributes and/or properties."""
+        values = {}
+        for key in args:
+            if hasattr(self, key):
+                values[key] = getattr(self, key)
+            else:
+                raise RuntimeError(f"The instrument does not have the {key} parameter.")
+        return values

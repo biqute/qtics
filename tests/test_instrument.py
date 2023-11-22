@@ -26,6 +26,20 @@ def test_get_id(mocker):
     assert "identity" == inst.get_id()
 
 
+def test_get():
+    """Test multiple getter."""
+    inst = Instrument("name_inst", "address")
+    assert inst.get("name", "address") == {"name": "name_inst", "address": "address"}
+
+
+def test_set():
+    """Test multiple setter."""
+    inst = Instrument("name_inst", "address")
+    inst.set(name="testname", address="testaddress")
+    assert inst.name == "testname"
+    assert inst.address == "testaddress"
+
+
 def test_not_implemented_functions():
     """Test functions not implemented."""
     inst = Instrument("name_inst", "address")
