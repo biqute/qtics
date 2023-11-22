@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Keithley Model 6514 System Electrometer" href="6514.html" /><link rel="prev" title="Attenuator Kratos 3494-64" href="3494_64.html" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="qinst" href="../api-reference/modules.html" /><link rel="prev" title="Keithley Model 6514 System Electrometer" href="6514.html" />
 
     <link rel="shortcut icon" href="../_static/favicon.ico"/><!-- Generated with Sphinx 6.2.1 and Furo 2023.09.10 -->
-        <title>Isolated voltage source Stanford Research Systems SIM928 - Qinst · 0.0.1</title>
+        <title>Handheld Microwave Analyzer FieldFox N9916A - Qinst · 0.0.1</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=369552022d0b975c8e74270ce6eabe0fb7978f24" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -169,9 +169,9 @@
 <li class="toctree-l1 current has-children"><a class="reference internal" href="modules.html">Supported Instruments</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Supported Instruments</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="R591722600.html">RF switch Radiall R591722600</a></li>
 <li class="toctree-l2"><a class="reference internal" href="3494_64.html">Attenuator Kratos 3494-64</a></li>
-<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Isolated voltage source Stanford Research Systems SIM928</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SIM928.html">Isolated voltage source Stanford Research Systems SIM928</a></li>
 <li class="toctree-l2"><a class="reference internal" href="6514.html">Keithley Model 6514 System Electrometer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="N9916A.html">Handheld Microwave Analyzer FieldFox N9916A</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Handheld Microwave Analyzer FieldFox N9916A</a></li>
 </ul>
 </li>
 </ul>
@@ -209,7 +209,7 @@
         </a>
         <div class="content-icon-container">
           <div class="edit-this-page">
-  <a class="muted-link" href="https://github.com/biqute/qinst/edit/main/docs/source/instruments/SIM928.rst" title="Edit this page">
+  <a class="muted-link" href="https://github.com/biqute/qinst/edit/main/docs/source/instruments/N9916A.rst" title="Edit this page">
     <svg aria-hidden="true" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
       <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
       <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />
@@ -231,63 +231,96 @@
           </label>
         </div>
         <article role="main">
-          <section id="isolated-voltage-source-stanford-research-systems-sim928">
-<h1>Isolated voltage source Stanford Research Systems SIM928<a class="headerlink" href="#isolated-voltage-source-stanford-research-systems-sim928" title="Permalink to this heading">#</a></h1>
-<p>Isolated voltage source SIM928 produced by Stanford Research Systems.
-The manual of the instrument is available at <a class="reference external" href="https://www.thinksrs.com/products/sim928.html">SRS</a>.</p>
-<p>This instrument requires to use the corresponding <a class="reference external" href="https://www.thinksrs.com/products/sim900.html">SRS SIM900 mainframe</a>. The connection will be established first to the mainframe, which will then create a passthrough to the port where the SIM928 is installed.</p>
-<section id="example-of-operations">
-<h2>Example of operations<a class="headerlink" href="#example-of-operations" title="Permalink to this heading">#</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qinst</span> <span class="kn">import</span> <span class="n">SRS_SIM928</span>
-
-<span class="n">source</span> <span class="o">=</span> <span class="n">SRS_SIM928</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;source&quot;</span><span class="p">,</span> <span class="n">address</span> <span class="o">=</span> <span class="s2">&quot;/dev/ttyACM0&quot;</span><span class="p">)</span>
-<span class="n">source</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>To execute commands:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">source</span><span class="o">.</span><span class="n">voltage</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># set output voltage in volts</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">source</span><span class="o">.</span><span class="n">voltage</span><span class="p">)</span>  <span class="c1"># get output voltage from instrument</span>
-<span class="n">source</span><span class="o">.</span><span class="n">output_on</span><span class="p">()</span> <span class="c1"># turn on output</span>
-<span class="n">source</span><span class="o">.</span><span class="n">output_off</span><span class="p">()</span> <span class="c1"># turn off output</span>
-<span class="n">source</span><span class="o">.</span><span class="n">dev_error</span><span class="p">()</span> <span class="c1"># get last device error</span>
-
-<span class="n">source</span><span class="o">.</span><span class="n">connect_port</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># change port of SIM900 mainframe</span>
-<span class="n">source</span><span class="o">.</span><span class="n">disconnect_port</span><span class="p">()</span> <span class="c1"># disconnect the device and reset the SIM900 mainframe</span>
-</pre></div>
-</div>
-</section>
+          <section id="handheld-microwave-analyzer-fieldfox-n9916a">
+<h1>Handheld Microwave Analyzer FieldFox N9916A<a class="headerlink" href="#handheld-microwave-analyzer-fieldfox-n9916a" title="Permalink to this heading">#</a></h1>
+<p>N9916A FieldFox Handheld Microwave Analyzer by Keysight
+The manuals of this instrument and similar models are available at <a class="reference external" href="https://www.keysight.com/us/en/lib/resources/service-manuals/keysight-fieldfox-library-help-and-manuals-2153870.html">Keysight</a>.
+The SCPI commands and functions can be found in the <a class="reference external" href="https://www.keysight.com/us/en/assets/9921-02561/programming-guides/FFProgrammingHelp.pdf">programming guide</a>.</p>
+<p>This instrument features different operational modes (VNA, SA, CAT…), with mostly different commands. Each mode is controlled by its respective class. When instantiated, these classes will automatically try to connect to the instrument and initialize a basic measurement setup.</p>
 <section id="commands">
 <h2>Commands<a class="headerlink" href="#commands" title="Permalink to this heading">#</a></h2>
-<section id="general-functions">
-<h3>General functions<a class="headerlink" href="#general-functions" title="Permalink to this heading">#</a></h3>
+<p>Other than featuring all the methods of <a class="reference internal" href="../api-reference/qinst.html#qinst.network_inst.NetworkInst" title="qinst.network_inst.NetworkInst"><code class="xref py py-class docutils literal notranslate"><span class="pre">qinst.network_inst.NetworkInst</span></code></a>, the base <code class="xref py py-class docutils literal notranslate"><span class="pre">N9916A</span></code> class contains the following methods and properties common to all the operational modes of the instrument.</p>
+<section id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
-<li><p>connect()</p></li>
-<li><p>disconnect()</p></li>
-<li><p>get_id</p></li>
-<li><p>write(cmd)</p></li>
-<li><p>read()</p></li>
-<li><p>query(cmd)</p></li>
-</ul>
-</section>
-<section id="specific-functions">
-<h3>Specific functions<a class="headerlink" href="#specific-functions" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>connect_port(port)</p></li>
+<li><p>clear()</p></li>
 <li><p>reset()</p></li>
-<li><p>output_on</p></li>
-<li><p>output_off()</p></li>
-<li><p>battery_charger_override()</p></li>
-<li><p>battery_state()</p></li>
-<li><p>battery_spec(option)</p></li>
-<li><p>battery_full_spec()</p></li>
-<li><p>exe_error()</p></li>
-<li><p>dev_error()</p></li>
+<li><p>hold()</p></li>
+<li><p>write_and_hold()</p></li>
+<li><p>f_min()</p></li>
+<li><p>f_max()</p></li>
+<li><p>f_center()</p></li>
+<li><p>f_span()</p></li>
+<li><p>sweep_points()</p></li>
+<li><p>sweep_time()</p></li>
+<li><p>continuous()</p></li>
+<li><p>single_sweep()</p></li>
+<li><p>data_format()</p></li>
+<li><p>query_data()</p></li>
 </ul>
 </section>
 <section id="properties">
 <h3>Properties<a class="headerlink" href="#properties" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
-<li><p>voltage</p></li>
+<li><p>f_min</p></li>
+<li><p>f_max</p></li>
+<li><p>f_center</p></li>
+<li><p>f_span</p></li>
+<li><p>sweep_points</p></li>
+<li><p>sweep_time</p></li>
+<li><p>continuous</p></li>
+<li><p>data_format</p></li>
+</ul>
+</section>
+</section>
+<section id="vna-mode">
+<h2>VNA mode<a class="headerlink" href="#vna-mode" title="Permalink to this heading">#</a></h2>
+<p>Measure the scattering value parameter of a connected RF network by sweeping a probe signal over a range of frequencies. This mode is implemented by the <code class="xref py py-class docutils literal notranslate"><span class="pre">VNAN9916A</span></code> class.</p>
+<section id="example-of-operation">
+<h3>Example of operation<a class="headerlink" href="#example-of-operation" title="Permalink to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qinst</span> <span class="kn">import</span> <span class="n">VNAN9916A</span>
+
+<span class="n">VNA</span> <span class="o">=</span> <span class="n">VNAN9916A</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;myVNA&quot;</span><span class="p">,</span> <span class="n">address</span> <span class="o">=</span> <span class="s2">&quot;192.168.40.10&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Measure the <span class="math notranslate nohighlight">\(S_{11}\)</span> parameter in the 4-8 GHz frequency range, averaging 5 sweeps of the VNA. The result consists of the frequency array and the raw IQ values, given as an array of complex numbers:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">VNA</span><span class="o">.</span><span class="n">S_par</span> <span class="o">=</span> <span class="s2">&quot;S11&quot;</span>
+<span class="n">VNA</span><span class="o">.</span><span class="n">average</span> <span class="o">=</span> <span class="mi">5</span> <span class="c1"># number of averages of the recorded trace</span>
+<span class="n">VNA</span><span class="o">.</span><span class="n">power</span> <span class="o">=</span> <span class="o">-</span><span class="mi">20</span> <span class="c1"># power of the probe signal in dB</span>
+<span class="n">f</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">VNA</span><span class="o">.</span><span class="n">snapshot</span><span class="p">(</span><span class="n">f_min</span><span class="o">=</span><span class="mf">4e9</span><span class="p">,</span> <span class="n">f_max</span><span class="o">=</span><span class="mf">8e9</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Since the instrument allows a maximum number of 10001 points in a single sweep, the <code class="docutils literal notranslate"><span class="pre">survey()</span></code> function allows to perform more precise measurements over a large frequency range by patching togheter multiple snapshots over smaller ranges.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">VNA</span><span class="o">.</span><span class="n">sweep_points</span> <span class="o">=</span> <span class="mi">10001</span>
+<span class="n">f</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">VNA</span><span class="o">.</span><span class="n">survey</span><span class="p">(</span><span class="mf">4e9</span><span class="p">,</span> <span class="mf">8e9</span><span class="p">,</span> <span class="mf">0.5e9</span><span class="p">)</span> <span class="c1"># patch multiple snapshots, each with 10001 points and a 500 MHz span</span>
+</pre></div>
+</div>
+</section>
+<section id="id1">
+<h3>Functions<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>setup()</p></li>
+<li><p>autoscale()</p></li>
+<li><p>activate_trace()</p></li>
+<li><p>clear_average()</p></li>
+<li><p>read_freqs()</p></li>
+<li><p>sweep()</p></li>
+<li><p>read_IQ()</p></li>
+<li><p>read_formatted_data()</p></li>
+<li><p>snapshot()</p></li>
+<li><p>survey()</p></li>
+</ul>
+</section>
+<section id="id2">
+<h3>Properties<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>S_par</p></li>
+<li><p>yformat</p></li>
+<li><p>smoothing</p></li>
+<li><p>average</p></li>
+<li><p>average_mode</p></li>
+<li><p>IFBW</p></li>
+<li><p>power</p></li>
 </ul>
 </section>
 </section>
@@ -298,23 +331,23 @@ The manual of the instrument is available at <a class="reference external" href=
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="6514.html">
+          <a class="next-page" href="../api-reference/modules.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Keithley Model 6514 System Electrometer</div>
+                <div class="title">qinst</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="3494_64.html">
+          <a class="prev-page" href="6514.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Attenuator Kratos 3494-64</div>
+                <div class="title">Keithley Model 6514 System Electrometer</div>
                 
               </div>
             </a>
@@ -355,12 +388,16 @@ The manual of the instrument is available at <a class="reference external" href=
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">Isolated voltage source Stanford Research Systems SIM928</a><ul>
-<li><a class="reference internal" href="#example-of-operations">Example of operations</a></li>
+<li><a class="reference internal" href="#">Handheld Microwave Analyzer FieldFox N9916A</a><ul>
 <li><a class="reference internal" href="#commands">Commands</a><ul>
-<li><a class="reference internal" href="#general-functions">General functions</a></li>
-<li><a class="reference internal" href="#specific-functions">Specific functions</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
 <li><a class="reference internal" href="#properties">Properties</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#vna-mode">VNA mode</a><ul>
+<li><a class="reference internal" href="#example-of-operation">Example of operation</a></li>
+<li><a class="reference internal" href="#id1">Functions</a></li>
+<li><a class="reference internal" href="#id2">Properties</a></li>
 </ul>
 </li>
 </ul>
@@ -380,5 +417,6 @@ The manual of the instrument is available at <a class="reference external" href=
     <script src="../_static/scripts/furo.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     </body>
 </html>

@@ -3,7 +3,7 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="qinst package" href="qinst.html" /><link rel="prev" title="Keithley Model 6514 System Electrometer" href="../instruments/6514.html" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="qinst package" href="qinst.html" /><link rel="prev" title="Handheld Microwave Analyzer FieldFox N9916A" href="../instruments/N9916A.html" />
 
     <link rel="shortcut icon" href="../_static/favicon.ico"/><!-- Generated with Sphinx 6.2.1 and Furo 2023.09.10 -->
         <title>qinst - Qinst · 0.0.1</title>
@@ -171,6 +171,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../instruments/3494_64.html">Attenuator Kratos 3494-64</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../instruments/SIM928.html">Isolated voltage source Stanford Research Systems SIM928</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../instruments/6514.html">Keithley Model 6514 System Electrometer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../instruments/N9916A.html">Handheld Microwave Analyzer FieldFox N9916A</a></li>
 </ul>
 </li>
 </ul>
@@ -178,6 +179,7 @@
 <ul class="current">
 <li class="toctree-l1 current has-children current-page"><a class="current reference internal" href="#">qinst</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of qinst</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2 has-children"><a class="reference internal" href="qinst.html">qinst package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of qinst package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="qinst.network.html">qinst.network package</a></li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="qinst.serial.html">qinst.serial package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of qinst.serial package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l4"><a class="reference internal" href="qinst.serial.rf_attenuator_3494_64.html">qinst.serial.rf_attenuator_3494_64 package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="qinst.serial.rf_switch_R591722600.html">qinst.serial.rf_switch_R591722600 package</a></li>
@@ -226,6 +228,11 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="qinst.html">qinst package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="qinst.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="qinst.network.html">qinst.network package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#module-qinst.network.NA_N9916A">qinst.network.NA_N9916A module</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="qinst.serial.html">qinst.serial package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="qinst.serial.html#subpackages">Subpackages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="qinst.serial.html#submodules">Submodules</a></li>
@@ -240,10 +247,25 @@
 <li class="toctree-l3"><a class="reference internal" href="qinst.html#qinst.instrument.Instrument"><code class="docutils literal notranslate"><span class="pre">Instrument</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="qinst.html#qinst.instrument.Instrument.connect"><code class="docutils literal notranslate"><span class="pre">Instrument.connect()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="qinst.html#qinst.instrument.Instrument.disconnect"><code class="docutils literal notranslate"><span class="pre">Instrument.disconnect()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qinst.html#qinst.instrument.Instrument.get"><code class="docutils literal notranslate"><span class="pre">Instrument.get()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="qinst.html#qinst.instrument.Instrument.get_id"><code class="docutils literal notranslate"><span class="pre">Instrument.get_id()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="qinst.html#qinst.instrument.Instrument.query"><code class="docutils literal notranslate"><span class="pre">Instrument.query()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="qinst.html#qinst.instrument.Instrument.read"><code class="docutils literal notranslate"><span class="pre">Instrument.read()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qinst.html#qinst.instrument.Instrument.set"><code class="docutils literal notranslate"><span class="pre">Instrument.set()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="qinst.html#qinst.instrument.Instrument.write"><code class="docutils literal notranslate"><span class="pre">Instrument.write()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="qinst.html#module-qinst.network_inst">qinst.network_inst module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="qinst.html#qinst.network_inst.NetworkInst"><code class="docutils literal notranslate"><span class="pre">NetworkInst</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="qinst.html#qinst.network_inst.NetworkInst.connect"><code class="docutils literal notranslate"><span class="pre">NetworkInst.connect()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qinst.html#qinst.network_inst.NetworkInst.disconnect"><code class="docutils literal notranslate"><span class="pre">NetworkInst.disconnect()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qinst.html#qinst.network_inst.NetworkInst.no_delay"><code class="docutils literal notranslate"><span class="pre">NetworkInst.no_delay</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qinst.html#qinst.network_inst.NetworkInst.query"><code class="docutils literal notranslate"><span class="pre">NetworkInst.query()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qinst.html#qinst.network_inst.NetworkInst.read"><code class="docutils literal notranslate"><span class="pre">NetworkInst.read()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qinst.html#qinst.network_inst.NetworkInst.timeout"><code class="docutils literal notranslate"><span class="pre">NetworkInst.timeout</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qinst.html#qinst.network_inst.NetworkInst.write"><code class="docutils literal notranslate"><span class="pre">NetworkInst.write()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -279,14 +301,14 @@
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="../instruments/6514.html">
+          <a class="prev-page" href="../instruments/N9916A.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Keithley Model 6514 System Electrometer</div>
+                <div class="title">Handheld Microwave Analyzer FieldFox N9916A</div>
                 
               </div>
             </a>
