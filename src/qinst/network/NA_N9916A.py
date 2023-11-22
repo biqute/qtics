@@ -4,6 +4,8 @@ Controller of the N9916A Vector Analyzer by Keysight.
 module: NA_N9916A.py
 moduleauthor: Pietro Campana <campana.pietro@campus.unimib.it>
 """
+import time
+
 import numpy as np
 
 from qinst.network_inst import NetworkInst
@@ -65,7 +67,7 @@ class N9916A(NetworkInst):
 
     @f_min.setter
     def f_min(self, f: float):
-        self.write(f"FREQ:START {abs(f)}")
+        self.write(f"SENS:FREQ:START {abs(f)}")
 
     @property
     def f_max(self):
@@ -74,7 +76,7 @@ class N9916A(NetworkInst):
 
     @f_max.setter
     def f_max(self, f: float):
-        self.write(f"FREQ:STOP {abs(f)}")
+        self.write(f"SENS:FREQ:STOP {abs(f)}")
 
     @property
     def f_center(self):
@@ -88,12 +90,12 @@ class N9916A(NetworkInst):
     @property
     def f_span(self):
         """Frequency span."""
-        return float(self.query("FREQ:SPAN?"))
+        return float(self.query("SENS:FREQ:SPAN?"))
 
     @f_span.setter
     def f_span(self, f: float):
         """Frequency span."""
-        return self.write(f"FREQ:SPAN {abs(f)}")
+        return self.write(f"SENS:FREQ:SPAN {abs(f)}")
 
     @property
     def sweep_points(self):
@@ -104,6 +106,11 @@ class N9916A(NetworkInst):
     def sweep_points(self, npoints):
         npoints = min(abs(npoints), self._max_points)
         self.write(f"SWE:POIN {npoints}")
+
+    @property
+    def sweep_time(self):
+        """Time to complete a measurement sweep."""
+        return float(self.query("SWE:TIME?"))
 
     @property
     def continuous(self):
@@ -129,7 +136,7 @@ class N9916A(NetworkInst):
 
     @data_format.setter
     def data_format(self, form: str):
-        allowed = ("REAL,32", "REAL,64", "ASCII,0")
+        allowed = ("REAL,32", "REAL,64", "ASC,0")
         if form not in allowed:
             raise ValueError(f"Invalid format selected, choose between {allowed}.")
         self.write("FORM:DATA " + form)
@@ -278,7 +285,20 @@ class VNA9916A(N9916A):
 
     @average.setter
     def average(self, n_avg: int):
-        self.write(f"AVER:COUN {min(n_avg, 100)}")
+        self.write(f"SENSE:AVER:COUN {min(n_avg, 100)}")
+
+    @property
+    def average_mode(self):
+        """The average mode (sweeping or point by point)."""
+        return self.query("AVER:MODE?")
+
+    @average_mode.setter
+    def average_mode(self, mode: str):
+        allowed = ("SWE", "POINT")
+        if mode in allowed:
+            self.write(f"AVER:MODE {mode}")
+        else:
+            raise ValueError(f"Invalid mode selected, choose between {allowed}.")
 
     def clear_average(self):
         """Reset averaging."""
@@ -291,8 +311,7 @@ class VNA9916A(N9916A):
 
     @IFBW.setter
     def IFBW(self, bw: int):
-        allowed = (10, 30, 100, 300, 1000, 10000, 30000, 100000)
-        self.write(f"BWID {min(allowed, key=lambda x: abs(x - bw))}")
+        self.write(f"BWID {min(abs(bw), 100_000)}")
 
     @property
     def power(self):
@@ -308,9 +327,27 @@ class VNA9916A(N9916A):
         """Read frequencies."""
         return self.query_data("FREQ:DATA?", self.data_format)
 
+    def sweep(self):
+        """Perform a frequency sweep measurement considering averaging and sweep mode."""
+        if self.continuous:
+            meas_time = self.sweep_time * self.average * 1.02
+            self.clear_average()
+            time.sleep.wait(meas_time)
+            return
+        if self.average_mode == "SWE":
+            for _ in range(self.average):
+                self.write_and_hold("INIT:IMM")
+            return
+        if self.average_mode == "POINT":
+            self.write_and_hold("INIT:IMM")
+            return
+        raise RuntimeError(
+            f"Bad combination of average mode {self.average_mode} and number of averages {self.average}."
+        )
+
     def read_IQ(self) -> np.ndarray:
         """Read unformatted IQ data."""
-        self.single_sweep()
+        self.sweep()
         IQ = self.query_data("CALC:DATA:SDATA?")
         len_2 = int(len(IQ) / 2)
         z = np.empty(len_2, dtype=np.complex128)
@@ -320,31 +357,26 @@ class VNA9916A(N9916A):
 
     def read_formatted_data(self) -> np.ndarray:
         """Read formatted data."""
-        self.single_sweep()
+        self.sweep()
         return self.query_data("CALC:DATA:FDATA?")
 
     def snapshot(self, **kwargs):
         """Get frequency and IQ values for a single sweep."""
         self.set(**kwargs)
         self.clear_average()
-        f = self.read_freqs()
+        self.hold()
         z = self.read_IQ()
+        f = self.read_freqs()
+        self.hold()
         return f, z
 
-    def survey(
-        self, f_win_start, f_win_end, f_win_size, sweep_points=1600, IFBW=3000, **kwargs
-    ):
+    def survey(self, f_win_start, f_win_end, f_win_size, **kwargs):
         """Execute multiple scans with higher resolution."""
-        f = np.array([])
-        z = np.array([])
+        f = []
+        z = []
+        self.set(**kwargs)
         for f_min in np.arange(f_win_start, f_win_end, f_win_size):
-            f_temp, z_temp = self.snapshot(
-                f_min=f_min,
-                f_span=f_win_size,
-                sweep_points=sweep_points,
-                IFBW=IFBW,
-                **kwargs,
-            )
-            np.concatenate(f, f_temp)
-            np.concatenate(z, z_temp)
-        return f, z
+            f_temp, z_temp = self.snapshot(f_min=f_min, f_max=f_min + f_win_size)
+            f.append(f_temp[1:])
+            z.append(z_temp[1:])
+        return np.array(f).flatten(), np.array(z).flatten()
