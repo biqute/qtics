@@ -206,7 +206,7 @@ class N9916A(NetworkInst):
         return np.frombuffer(rawData, dtype=dtype).astype(float)
 
 
-class VNA9916A(N9916A):
+class VNAN9916A(N9916A):
     """VNA mode of the N9916A."""
 
     def __init__(
