@@ -4,9 +4,8 @@
 
 # qinst
 
-Collection of tools to handle instrumentation for the [BiQuTe Cryogenic Laboratory](https://biqute.unimib.it/research/cryogenic-lab)
-
-the biqute lab
+Collection of tools to handle instrumentation for the
+[BiQuTe Cryogenic Laboratory](https://biqute.unimib.it/research/cryogenic-lab)
 
 ## Documentation
 
