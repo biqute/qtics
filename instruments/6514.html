@@ -172,6 +172,7 @@
 <li class="toctree-l2"><a class="reference internal" href="SIM928.html">Isolated voltage source Stanford Research Systems SIM928</a></li>
 <li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Keithley Model 6514 System Electrometer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="N9916A.html">Handheld Microwave Analyzer FieldFox N9916A</a></li>
+<li class="toctree-l2"><a class="reference internal" href="triton.html">Triton controller</a></li>
 </ul>
 </li>
 </ul>
@@ -235,6 +236,7 @@
 <h1>Keithley Model 6514 System Electrometer<a class="headerlink" href="#keithley-model-6514-system-electrometer" title="Permalink to this heading">#</a></h1>
 <p>Keithley Model <cite>6514</cite> System Electrometer produced by Keithley Instruments.
 Manual of the instrument is available at <a class="reference external" href="https://download.tek.com/manual/6514-901-01(D-May2003)(Instruction).pdf">Tek</a>.</p>
+<p>Base class: <a class="reference internal" href="../api-reference/qinst.html#qinst.serial_inst.SerialInst" title="qinst.serial_inst.SerialInst"><code class="xref py py-class docutils literal notranslate"><span class="pre">qinst.serial_inst.SerialInst</span></code></a>.</p>
 <section id="example-of-operations">
 <h2>Example of operations<a class="headerlink" href="#example-of-operations" title="Permalink to this heading">#</a></h2>
 <p>To initialize a controller you can execute the following directives on any Python script or notebook:</p>
@@ -253,19 +255,8 @@ Manual of the instrument is available at <a class="reference external" href="htt
 </section>
 <section id="commands">
 <h2>Commands<a class="headerlink" href="#commands" title="Permalink to this heading">#</a></h2>
-<section id="general-functions">
-<h3>General functions<a class="headerlink" href="#general-functions" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>connect()</p></li>
-<li><p>disconnect()</p></li>
-<li><p>get_id</p></li>
-<li><p>write(cmd)</p></li>
-<li><p>read()</p></li>
-<li><p>query(cmd)</p></li>
-</ul>
-</section>
-<section id="specific-functions">
-<h3>Specific functions<a class="headerlink" href="#specific-functions" title="Permalink to this heading">#</a></h3>
+<section id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>reset()</p></li>
 <li><p>zcheck_on()</p></li>
@@ -344,8 +335,7 @@ Manual of the instrument is available at <a class="reference external" href="htt
 <li><a class="reference internal" href="#">Keithley Model 6514 System Electrometer</a><ul>
 <li><a class="reference internal" href="#example-of-operations">Example of operations</a></li>
 <li><a class="reference internal" href="#commands">Commands</a><ul>
-<li><a class="reference internal" href="#general-functions">General functions</a></li>
-<li><a class="reference internal" href="#specific-functions">Specific functions</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
 </ul>
 </li>
 </ul>

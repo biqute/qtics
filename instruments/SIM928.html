@@ -172,6 +172,7 @@
 <li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Isolated voltage source Stanford Research Systems SIM928</a></li>
 <li class="toctree-l2"><a class="reference internal" href="6514.html">Keithley Model 6514 System Electrometer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="N9916A.html">Handheld Microwave Analyzer FieldFox N9916A</a></li>
+<li class="toctree-l2"><a class="reference internal" href="triton.html">Triton controller</a></li>
 </ul>
 </li>
 </ul>
@@ -236,6 +237,7 @@
 <p>Isolated voltage source SIM928 produced by Stanford Research Systems.
 The manual of the instrument is available at <a class="reference external" href="https://www.thinksrs.com/products/sim928.html">SRS</a>.</p>
 <p>This instrument requires to use the corresponding <a class="reference external" href="https://www.thinksrs.com/products/sim900.html">SRS SIM900 mainframe</a>. The connection will be established first to the mainframe, which will then create a passthrough to the port where the SIM928 is installed.</p>
+<p>Base class: <a class="reference internal" href="../api-reference/qinst.html#qinst.serial_inst.SerialInst" title="qinst.serial_inst.SerialInst"><code class="xref py py-class docutils literal notranslate"><span class="pre">qinst.serial_inst.SerialInst</span></code></a>.</p>
 <section id="example-of-operations">
 <h2>Example of operations<a class="headerlink" href="#example-of-operations" title="Permalink to this heading">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qinst</span> <span class="kn">import</span> <span class="n">SRS_SIM928</span>
@@ -258,19 +260,8 @@ The manual of the instrument is available at <a class="reference external" href=
 </section>
 <section id="commands">
 <h2>Commands<a class="headerlink" href="#commands" title="Permalink to this heading">#</a></h2>
-<section id="general-functions">
-<h3>General functions<a class="headerlink" href="#general-functions" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>connect()</p></li>
-<li><p>disconnect()</p></li>
-<li><p>get_id</p></li>
-<li><p>write(cmd)</p></li>
-<li><p>read()</p></li>
-<li><p>query(cmd)</p></li>
-</ul>
-</section>
-<section id="specific-functions">
-<h3>Specific functions<a class="headerlink" href="#specific-functions" title="Permalink to this heading">#</a></h3>
+<section id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>connect_port(port)</p></li>
 <li><p>reset()</p></li>
@@ -358,8 +349,7 @@ The manual of the instrument is available at <a class="reference external" href=
 <li><a class="reference internal" href="#">Isolated voltage source Stanford Research Systems SIM928</a><ul>
 <li><a class="reference internal" href="#example-of-operations">Example of operations</a></li>
 <li><a class="reference internal" href="#commands">Commands</a><ul>
-<li><a class="reference internal" href="#general-functions">General functions</a></li>
-<li><a class="reference internal" href="#specific-functions">Specific functions</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
 <li><a class="reference internal" href="#properties">Properties</a></li>
 </ul>
 </li>

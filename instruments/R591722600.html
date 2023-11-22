@@ -172,6 +172,7 @@
 <li class="toctree-l2"><a class="reference internal" href="SIM928.html">Isolated voltage source Stanford Research Systems SIM928</a></li>
 <li class="toctree-l2"><a class="reference internal" href="6514.html">Keithley Model 6514 System Electrometer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="N9916A.html">Handheld Microwave Analyzer FieldFox N9916A</a></li>
+<li class="toctree-l2"><a class="reference internal" href="triton.html">Triton controller</a></li>
 </ul>
 </li>
 </ul>
@@ -237,6 +238,7 @@
 Manual of the instrument is available at <a class="reference external" href="https://eu.mouser.com/datasheet/2/516/R591_Generic_TDS_09_02_18-1595491.pdf">Mouser</a>.</p>
 <p>This instrument requires the correspondent Arduino firmware do be compiled and loaded.
 See related instruction at <a class="reference internal" href="../arduino.html#arduino-firmware"><span class="std std-ref">Compile Arduino Firmwares</span></a>.</p>
+<p>Base class: <a class="reference internal" href="../api-reference/qinst.html#qinst.serial_inst.SerialInst" title="qinst.serial_inst.SerialInst"><code class="xref py py-class docutils literal notranslate"><span class="pre">qinst.serial_inst.SerialInst</span></code></a>.</p>
 <section id="example-of-operations">
 <h2>Example of operations<a class="headerlink" href="#example-of-operations" title="Permalink to this heading">#</a></h2>
 <p>To initialize a controller you can execute the following directives on any Python script or notebook:</p>
@@ -257,19 +259,8 @@ See related instruction at <a class="reference internal" href="../arduino.html#a
 </section>
 <section id="commands">
 <h2>Commands<a class="headerlink" href="#commands" title="Permalink to this heading">#</a></h2>
-<section id="general-functions">
-<h3>General functions<a class="headerlink" href="#general-functions" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>connect()</p></li>
-<li><p>disconnect()</p></li>
-<li><p>get_id</p></li>
-<li><p>write(cmd)</p></li>
-<li><p>read()</p></li>
-<li><p>query(cmd)</p></li>
-</ul>
-</section>
-<section id="specific-functions">
-<h3>Specific functions<a class="headerlink" href="#specific-functions" title="Permalink to this heading">#</a></h3>
+<section id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>reset()</p></li>
 <li><p>open(pin)</p></li>
@@ -351,8 +342,7 @@ See related instruction at <a class="reference internal" href="../arduino.html#a
 <li><a class="reference internal" href="#">RF switch Radiall R591722600</a><ul>
 <li><a class="reference internal" href="#example-of-operations">Example of operations</a></li>
 <li><a class="reference internal" href="#commands">Commands</a><ul>
-<li><a class="reference internal" href="#general-functions">General functions</a></li>
-<li><a class="reference internal" href="#specific-functions">Specific functions</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
 <li><a class="reference internal" href="#properties">Properties</a></li>
 </ul>
 </li>

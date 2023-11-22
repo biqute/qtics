@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" />
 
     <link rel="shortcut icon" href="../../../_static/favicon.ico"/><!-- Generated with Sphinx 6.2.1 and Furo 2023.09.10 -->
-        <title>qinst.serial.keithley6514 - Qinst · 0.0.1</title>
+        <title>qinst.network.triton_ctrl - Qinst · 0.0.1</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?digest=369552022d0b975c8e74270ce6eabe0fb7978f24" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
@@ -222,97 +222,94 @@
           </label>
         </div>
         <article role="main">
-          <h1>Source code for qinst.serial.keithley6514</h1><div class="highlight"><pre>
+          <h1>Source code for qinst.network.triton_ctrl</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Controller of the Keithley6514 electrometer.</span>
+<span class="sd">Controller of the Triton cryostat.</span>
 
-<span class="sd">.. module:: keithley6514.py</span>
-<span class="sd">.. moduleauthor:: Marco Gobbo &lt;marco.gobbo@mib.infn.it&gt;</span>
+<span class="sd">module: triton_ctrl.py</span>
+<span class="sd">moduleauthor: Rodolfo Carobene &lt;rodolfo.carobene@mib.infn.it&gt;</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">serial</span>
 
-<span class="kn">from</span> <span class="nn">qinst.serial_inst</span> <span class="kn">import</span> <span class="n">SerialInst</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
+
+<span class="kn">from</span> <span class="nn">qinst.network_inst</span> <span class="kn">import</span> <span class="n">NetworkInst</span>
+
+<span class="n">ENABLE_SETTERS</span> <span class="o">=</span> <span class="kc">False</span>
 
 
-<div class="viewcode-block" id="Keithley6514"><a class="viewcode-back" href="../../../api-reference/qinst.serial.html#qinst.serial.keithley6514.Keithley6514">[docs]</a><span class="k">class</span> <span class="nc">Keithley6514</span><span class="p">(</span><span class="n">SerialInst</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Keithley 6514 Programmable Electrometer by Keithley Instruments.&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Triton"><a class="viewcode-back" href="../../../api-reference/qinst.network.html#qinst.network.triton_ctrl.Triton">[docs]</a><span class="k">class</span> <span class="nc">Triton</span><span class="p">(</span><span class="n">NetworkInst</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Controller of Triton dilution refrigerator by Oxford Instruments.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">address</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">baudrate</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">9600</span><span class="p">,</span>
-        <span class="n">bytesize</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">serial</span><span class="o">.</span><span class="n">EIGHTBITS</span><span class="p">,</span>
-        <span class="n">parity</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">serial</span><span class="o">.</span><span class="n">PARITY_NONE</span><span class="p">,</span>
-        <span class="n">stopbits</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">serial</span><span class="o">.</span><span class="n">STOPBITS_ONE</span><span class="p">,</span>
+        <span class="n">address</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;212.189.204.22&quot;</span><span class="p">,</span>
+        <span class="n">port</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">33576</span><span class="p">,</span>
         <span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
-        <span class="n">sleep</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span>
+        <span class="n">sleep</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
+        <span class="n">no_delay</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
-            <span class="n">name</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">baudrate</span><span class="p">,</span> <span class="n">bytesize</span><span class="p">,</span> <span class="n">parity</span><span class="p">,</span> <span class="n">stopbits</span><span class="p">,</span> <span class="n">timeout</span><span class="p">,</span> <span class="n">sleep</span>
-        <span class="p">)</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize.&quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">timeout</span><span class="p">,</span> <span class="n">sleep</span><span class="p">,</span> <span class="n">no_delay</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mixing_chamber_ch</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 
-<div class="viewcode-block" id="Keithley6514.connect"><a class="viewcode-back" href="../../../api-reference/qinst.serial.html#qinst.serial.keithley6514.Keithley6514.connect">[docs]</a>    <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Put Keithley 6514 Electrometer in remote.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">serial</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;SYST:REM&quot;</span><span class="p">)</span></div>
+<div class="viewcode-block" id="Triton.query"><a class="viewcode-back" href="../../../api-reference/qinst.network.html#qinst.network.triton_ctrl.Triton.query">[docs]</a>    <span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Send a message, then read from the serial port.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sleep</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">read</span><span class="p">()[</span><span class="nb">len</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:]</span></div>
 
-<div class="viewcode-block" id="Keithley6514.disconnect"><a class="viewcode-back" href="../../../api-reference/qinst.serial.html#qinst.serial.keithley6514.Keithley6514.disconnect">[docs]</a>    <span class="k">def</span> <span class="nf">disconnect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Take Keithley 6514 Electrometer out of remote.&quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">serial</span><span class="o">.</span><span class="n">is_open</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;SYST:LOC&quot;</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">serial</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">mixing_chamber_ch</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return mixing chamber channel.</span>
 
-    <span class="c1"># Basic commands</span>
-<div class="viewcode-block" id="Keithley6514.reset"><a class="viewcode-back" href="../../../api-reference/qinst.serial.html#qinst.serial.keithley6514.Keithley6514.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return Model 6514 to the RST default conditions.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;*RST&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="Keithley6514.zcheck_on"><a class="viewcode-back" href="../../../api-reference/qinst.serial.html#qinst.serial.keithley6514.Keithley6514.zcheck_on">[docs]</a>    <span class="k">def</span> <span class="nf">zcheck_on</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Enable zero check.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;SYST:ZCH ON&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="Keithley6514.zcheck_off"><a class="viewcode-back" href="../../../api-reference/qinst.serial.html#qinst.serial.keithley6514.Keithley6514.zcheck_off">[docs]</a>    <span class="k">def</span> <span class="nf">zcheck_off</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Disable zero check.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;SYST:ZCH OFF&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="Keithley6514.zcorrect"><a class="viewcode-back" href="../../../api-reference/qinst.serial.html#qinst.serial.keithley6514.Keithley6514.zcorrect">[docs]</a>    <span class="k">def</span> <span class="nf">zcorrect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Perform zero correction.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;SYST:ZCOR ON&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="Keithley6514.set_zero"><a class="viewcode-back" href="../../../api-reference/qinst.serial.html#qinst.serial.keithley6514.Keithley6514.set_zero">[docs]</a>    <span class="k">def</span> <span class="nf">set_zero</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Perform zero correction sequence.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">zcheck_on</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">zcorrect</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">zcheck_off</span><span class="p">()</span></div>
-
-<div class="viewcode-block" id="Keithley6514.set_measure"><a class="viewcode-back" href="../../../api-reference/qinst.serial.html#qinst.serial.keithley6514.Keithley6514.set_measure">[docs]</a>    <span class="k">def</span> <span class="nf">set_measure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameter</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Basic settings for measure a parameter.</span>
-
-<span class="sd">        Valid parameters to write:</span>
-<span class="sd">        - VOLT: Voltage measurement</span>
-<span class="sd">        - CURR: Current measurement</span>
-<span class="sd">        - RES: Resistance measurement</span>
-<span class="sd">        - CHAR: Charge measurement</span>
+<span class="sd">        If it is not already cached as an attribute, ask to the instrument.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">parameters</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;VOLT&quot;</span><span class="p">,</span> <span class="s2">&quot;CURR&quot;</span><span class="p">,</span> <span class="s2">&quot;RES&quot;</span><span class="p">,</span> <span class="s2">&quot;CHAR&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mixing_chamber_ch</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mixing_chamber_ch</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mixing_chamber_ch</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;READ:SYS:DR:CHAN:MC&quot;</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mixing_chamber_ch</span>
 
-        <span class="k">if</span> <span class="n">parameter</span> <span class="ow">in</span> <span class="n">parameters</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SENS:FUNC &#39;</span><span class="si">{</span><span class="n">parameter</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SENS:</span><span class="si">{</span><span class="n">parameter</span><span class="si">}</span><span class="s2">:RANG:AUTO ON&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">set_zero</span><span class="p">()</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;Invalid parameter </span><span class="si">{</span><span class="n">parameter</span><span class="si">}</span><span class="s2"> for the set_measure() method.&quot;</span>
-            <span class="p">)</span></div>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">heater_range</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return heater range.&quot;&quot;&quot;</span>
+        <span class="n">answer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;READ:DEV:T</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">mixing_chamber_ch</span><span class="si">}</span><span class="s2">:TEMP:LOOP:RANGE&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">answer</span> <span class="o">==</span> <span class="s2">&quot;NOT_FOUND&quot;</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Range not set.&quot;</span><span class="p">)</span>
+        <span class="n">conversions</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;uA&quot;</span><span class="p">:</span> <span class="mf">1e-3</span><span class="p">,</span> <span class="s2">&quot;mA&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">answer</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span> <span class="o">*</span> <span class="n">conversions</span><span class="p">[</span><span class="n">answer</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:]]</span>
 
-<div class="viewcode-block" id="Keithley6514.read_data"><a class="viewcode-back" href="../../../api-reference/qinst.serial.html#qinst.serial.keithley6514.Keithley6514.read_data">[docs]</a>    <span class="k">def</span> <span class="nf">read_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the value of the parameter under measurement.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;FORM:ELEM READ&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;ARM:COUNT 1&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;READ?&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">read</span><span class="p">()</span></div></div>
+    <span class="nd">@heater_range</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">heater_range</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hrange</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">ENABLE_SETTERS</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Setter not enabled!&quot;</span><span class="p">)</span>
+        <span class="n">ranges</span> <span class="o">=</span> <span class="p">(</span><span class="mf">31.6</span> <span class="o">/</span> <span class="mf">1e3</span><span class="p">,</span> <span class="mi">100</span> <span class="o">/</span> <span class="mf">1e3</span><span class="p">,</span> <span class="mi">316</span> <span class="o">/</span> <span class="mf">1e3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">3.16</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">31.6</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">hrange</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ranges</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Range </span><span class="si">{</span><span class="n">hrange</span><span class="si">}</span><span class="s2"> not allowed. Choose between </span><span class="si">{</span><span class="n">ranges</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SET:DEV:T</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">mixing_chamber_ch</span><span class="si">}</span><span class="s2">:TEMP:LOOP:RANGE:</span><span class="si">{</span><span class="n">hrange</span><span class="o">/</span><span class="mi">1000</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Triton.get_mixing_chamber_temp"><a class="viewcode-back" href="../../../api-reference/qinst.network.html#qinst.network.triton_ctrl.Triton.get_mixing_chamber_temp">[docs]</a>    <span class="k">def</span> <span class="nf">get_mixing_chamber_temp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return mixing chamber temperature in mK.&quot;&quot;&quot;</span>
+        <span class="n">answer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;READ:DEV:T</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">mixing_chamber_ch</span><span class="si">}</span><span class="s2">:TEMP:SIG:TEMP&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">answer</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="mi">1000</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">mixing_chamber_tset</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return mixing chamber set temperature in mK.&quot;&quot;&quot;</span>
+        <span class="n">answer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;READ:DEV:T</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">mixing_chamber_ch</span><span class="si">}</span><span class="s2">:TEMP:LOOP:TSET&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">answer</span> <span class="o">==</span> <span class="s2">&quot;NOT_FOUND&quot;</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Temperature mixing not set.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">answer</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="mi">1000</span>
+
+    <span class="nd">@mixing_chamber_tset</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">mixing_chamber_tset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">temp</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">ENABLE_SETTERS</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Setter not enabled!&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">temp</span> <span class="o">&gt;</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Temperature set too high! Was </span><span class="si">{</span><span class="n">temp</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SET:DEV:T</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">mixing_chamber_ch</span><span class="si">}</span><span class="s2">:TEMP:LOOP:TSET:</span><span class="si">{</span><span class="n">temp</span><span class="o">/</span><span class="mi">1000</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
 </pre></div>
         </article>
       </div>

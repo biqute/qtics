@@ -7,6 +7,8 @@ Manual of the instrument is available at `Mouser <https://eu.mouser.com/datashee
 This instrument requires the correspondent Arduino firmware do be compiled and loaded.
 See related instruction at :ref:`arduino_firmware`.
 
+Base class: :class:`qinst.serial_inst.SerialInst`.
+
 Example of operations
 """""""""""""""""""""
 
@@ -33,18 +35,8 @@ To execute commands:
 Commands
 """"""""
 
-General functions
------------------
-
-- connect()
-- disconnect()
-- get_id
-- write(cmd)
-- read()
-- query(cmd)
-
-Specific functions
-------------------
+Functions
+---------
 
 - reset()
 - open(pin)

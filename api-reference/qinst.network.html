@@ -172,6 +172,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../instruments/SIM928.html">Isolated voltage source Stanford Research Systems SIM928</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../instruments/6514.html">Keithley Model 6514 System Electrometer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../instruments/N9916A.html">Handheld Microwave Analyzer FieldFox N9916A</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../instruments/triton.html">Triton controller</a></li>
 </ul>
 </li>
 </ul>
@@ -445,6 +446,50 @@ type used by the instrument that sends the data.
 </dd></dl>
 
 </section>
+<section id="module-qinst.network.triton_ctrl">
+<span id="qinst-network-triton-ctrl-module"></span><h2>qinst.network.triton_ctrl module<a class="headerlink" href="#module-qinst.network.triton_ctrl" title="Permalink to this heading">#</a></h2>
+<p>Controller of the Triton cryostat.</p>
+<p>module: triton_ctrl.py
+moduleauthor: Rodolfo Carobene &lt;<a class="reference external" href="mailto:rodolfo&#46;carobene&#37;&#52;&#48;mib&#46;infn&#46;it">rodolfo<span>&#46;</span>carobene<span>&#64;</span>mib<span>&#46;</span>infn<span>&#46;</span>it</a>&gt;</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="qinst.network.triton_ctrl.Triton">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qinst.network.triton_ctrl.</span></span><span class="sig-name descname"><span class="pre">Triton</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'212.189.204.22'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">33576</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sleep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_delay</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/network/triton_ctrl.html#Triton"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.network.triton_ctrl.Triton" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="qinst.html#qinst.network_inst.NetworkInst" title="qinst.network_inst.NetworkInst"><code class="xref py py-class docutils literal notranslate"><span class="pre">NetworkInst</span></code></a></p>
+<p>Controller of Triton dilution refrigerator by Oxford Instruments.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="qinst.network.triton_ctrl.Triton.get_mixing_chamber_temp">
+<span class="sig-name descname"><span class="pre">get_mixing_chamber_temp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/network/triton_ctrl.html#Triton.get_mixing_chamber_temp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.network.triton_ctrl.Triton.get_mixing_chamber_temp" title="Permalink to this definition">#</a></dt>
+<dd><p>Return mixing chamber temperature in mK.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.network.triton_ctrl.Triton.heater_range">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">heater_range</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><a class="headerlink" href="#qinst.network.triton_ctrl.Triton.heater_range" title="Permalink to this definition">#</a></dt>
+<dd><p>Return heater range.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.network.triton_ctrl.Triton.mixing_chamber_ch">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mixing_chamber_ch</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#qinst.network.triton_ctrl.Triton.mixing_chamber_ch" title="Permalink to this definition">#</a></dt>
+<dd><p>Return mixing chamber channel.</p>
+<p>If it is not already cached as an attribute, ask to the instrument.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.network.triton_ctrl.Triton.mixing_chamber_tset">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mixing_chamber_tset</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><a class="headerlink" href="#qinst.network.triton_ctrl.Triton.mixing_chamber_tset" title="Permalink to this definition">#</a></dt>
+<dd><p>Return mixing chamber set temperature in mK.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qinst.network.triton_ctrl.Triton.query">
+<span class="sig-name descname"><span class="pre">query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cmd</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></span><a class="reference internal" href="../_modules/qinst/network/triton_ctrl.html#Triton.query"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.network.triton_ctrl.Triton.query" title="Permalink to this definition">#</a></dt>
+<dd><p>Send a message, then read from the serial port.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
 </section>
 
         </article>
@@ -547,6 +592,17 @@ type used by the instrument that sends the data.
 <li><a class="reference internal" href="#qinst.network.NA_N9916A.VNAN9916A.survey"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.survey()</span></code></a></li>
 <li><a class="reference internal" href="#qinst.network.NA_N9916A.VNAN9916A.sweep"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.sweep()</span></code></a></li>
 <li><a class="reference internal" href="#qinst.network.NA_N9916A.VNAN9916A.yformat"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.yformat</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-qinst.network.triton_ctrl">qinst.network.triton_ctrl module</a><ul>
+<li><a class="reference internal" href="#qinst.network.triton_ctrl.Triton"><code class="docutils literal notranslate"><span class="pre">Triton</span></code></a><ul>
+<li><a class="reference internal" href="#qinst.network.triton_ctrl.Triton.get_mixing_chamber_temp"><code class="docutils literal notranslate"><span class="pre">Triton.get_mixing_chamber_temp()</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.triton_ctrl.Triton.heater_range"><code class="docutils literal notranslate"><span class="pre">Triton.heater_range</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.triton_ctrl.Triton.mixing_chamber_ch"><code class="docutils literal notranslate"><span class="pre">Triton.mixing_chamber_ch</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.triton_ctrl.Triton.mixing_chamber_tset"><code class="docutils literal notranslate"><span class="pre">Triton.mixing_chamber_tset</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.triton_ctrl.Triton.query"><code class="docutils literal notranslate"><span class="pre">Triton.query()</span></code></a></li>
 </ul>
 </li>
 </ul>
