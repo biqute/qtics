@@ -54,7 +54,7 @@ class N9916A(NetworkInst):
             )
 
     @property
-    def _mode(self):
+    def _mode(self) -> str:
         return self.query("INST:SEL?")
 
     @_mode.setter
@@ -65,7 +65,7 @@ class N9916A(NetworkInst):
         raise ValueError(f"Invalid mode selected, choose between {allowed}.")
 
     @property
-    def f_min(self):
+    def f_min(self) -> float:
         """Minimum frequency."""
         return float(self.query("SENS:FREQ:START?"))
 
@@ -74,7 +74,7 @@ class N9916A(NetworkInst):
         self.write(f"SENS:FREQ:START {abs(f)}")
 
     @property
-    def f_max(self):
+    def f_max(self) -> float:
         """Maximum frequency."""
         return float(self.query("SENS:FREQ:STOP?"))
 
@@ -83,7 +83,7 @@ class N9916A(NetworkInst):
         self.write(f"SENS:FREQ:STOP {abs(f)}")
 
     @property
-    def f_center(self):
+    def f_center(self) -> float:
         """Central frequency."""
         return float(self.query("SENS:FREQ:CENT?"))
 
@@ -92,7 +92,7 @@ class N9916A(NetworkInst):
         self.write(f"SENS:FREQ:CENT {abs(f):5.6f}")
 
     @property
-    def f_span(self):
+    def f_span(self) -> float:
         """Frequency span."""
         return float(self.query("SENS:FREQ:SPAN?"))
 
@@ -102,7 +102,7 @@ class N9916A(NetworkInst):
         return self.write(f"SENS:FREQ:SPAN {abs(f)}")
 
     @property
-    def sweep_points(self):
+    def sweep_points(self) -> int:
         """Number of points in sweep."""
         return int(self.query("SENS:SWE:POIN?"))
 
@@ -112,12 +112,12 @@ class N9916A(NetworkInst):
         self.write(f"SWE:POIN {npoints}")
 
     @property
-    def sweep_time(self):
+    def sweep_time(self) -> float:
         """Time to complete a measurement sweep."""
         return float(self.query("SWE:TIME?"))
 
     @property
-    def continuous(self):
+    def continuous(self) -> bool:
         """Acquisition mode."""
         return self.query("INIT:CONT?") != "0"
 
@@ -135,7 +135,8 @@ class N9916A(NetworkInst):
             self.write_and_hold("INIT:IMM")
 
     @property
-    def data_format(self):
+    def data_format(self) -> str:
+        """Get data format."""
         return self.query("FORM:DATA?")
 
     @data_format.setter
@@ -232,7 +233,7 @@ class VNA9916A(N9916A):
         self.S_par = par
         self.activate_trace()
         self.hold()
-        self.set(format="MLOG", IFBW=1000, smoothing=0)
+        self.set(yformat="MLOG", IFBW=1000, smoothing=0)
         self.data_format = "REAL,64"
 
     def autoscale(self):
@@ -244,7 +245,7 @@ class VNA9916A(N9916A):
         self.write(f"CALC:PAR{self.__trace}:SEL")
 
     @property
-    def S_par(self):
+    def S_par(self) -> str:
         """The current scattering matrix parameter."""
         return self.query(f"CALC:PAR{self.__trace}:DEF?")
 
@@ -257,12 +258,12 @@ class VNA9916A(N9916A):
             raise ValueError(f"Invalid mode selected, choose between {allowed}.")
 
     @property
-    def format(self):
+    def yformat(self) -> str:
         """Scale and format of data."""
         return self.query("CALC:FORM?")
 
-    @format.setter
-    def format(self, data_format="MLOG"):
+    @yformat.setter
+    def yformat(self, data_format="MLOG"):
         allowed = ("MLOG", "MLIN", "REAL", "IMAG", "ZMAG")
         if data_format in allowed:
             self.write(f"CALC:FORM {data_format}")
@@ -270,7 +271,7 @@ class VNA9916A(N9916A):
             raise ValueError(f"Invalid mode selected, choose between {allowed}.")
 
     @property
-    def smoothing(self):
+    def smoothing(self) -> int:
         """Number of point in smoothing window."""
         status = int(self.query("CALC:SMO?"))
         if status:
@@ -287,7 +288,7 @@ class VNA9916A(N9916A):
             self.write("CALC:SMO 0")
 
     @property
-    def average(self):
+    def average(self) -> int:
         """The number of sweep averages."""
         return int(self.query("AVER:COUN?"))
 
@@ -296,7 +297,7 @@ class VNA9916A(N9916A):
         self.write(f"SENSE:AVER:COUN {min(n_avg, 100)}")
 
     @property
-    def average_mode(self):
+    def average_mode(self) -> str:
         """The average mode (sweeping or point by point)."""
         return self.query("AVER:MODE?")
 
@@ -313,7 +314,7 @@ class VNA9916A(N9916A):
         self.write("AVER:CLE")
 
     @property
-    def IFBW(self):
+    def IFBW(self) -> float:
         """IF bandwidth of the receiver."""
         return float(self.query("BWID?"))
 
@@ -322,7 +323,7 @@ class VNA9916A(N9916A):
         self.write(f"BWID {min(abs(bw), 100_000)}")
 
     @property
-    def power(self):
+    def power(self) -> float:
         """Output signal power."""
         return float(self.query("SOUR:POW?"))
 
@@ -331,7 +332,7 @@ class VNA9916A(N9916A):
         pwd = max(-45, min(pwd, 3))
         self.write(f"SOUR:POW {round(pwd, 1)}")
 
-    def read_freqs(self):
+    def read_freqs(self) -> np.ndarray:
         """Read frequencies."""
         return self.query_data("FREQ:DATA?", self.data_format)
 
@@ -368,7 +369,7 @@ class VNA9916A(N9916A):
         self.sweep()
         return self.query_data("CALC:DATA:FDATA?")
 
-    def snapshot(self, **kwargs):
+    def snapshot(self, **kwargs) -> tuple[np.ndarray, np.ndarray]:
         """Get frequency and IQ values for a single sweep."""
         self.set(**kwargs)
         self.clear_average()
@@ -379,7 +380,9 @@ class VNA9916A(N9916A):
         self.hold()
         return f, z
 
-    def survey(self, f_win_start, f_win_end, f_win_size, **kwargs):
+    def survey(
+        self, f_win_start, f_win_end, f_win_size, **kwargs
+    ) -> tuple[np.ndarray, np.ndarray]:
         """Execute multiple scans with higher resolution."""
         f = []
         z = []
