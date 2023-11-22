@@ -3,6 +3,7 @@ Triton controller
 
 Controller of the Triton Cryostat by Oxford Instruments.
 
+Base class: :class:`qinst.network_inst.NetworkInst`.
 
 Example of opertations
 """"""""""""""""""""""
@@ -21,21 +22,8 @@ Example of opertations
 Commands
 """"""""
 
-General functions
------------------
-
-- connect()
-- disconnect()
-- get_id
-- write(cmd)
-- read()
-- query(cmd)
-
-- no_delay
-- timeout
-
-Specific functions
-------------------
+Functions
+---------
 
 - get_mixing_chamber_temp()
 
