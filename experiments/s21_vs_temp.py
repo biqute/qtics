@@ -52,6 +52,9 @@ def main():
 
             save_data(date, temperature, frequencies, values)
             print(f"Acquisition done at {date} with {temperature} mK.")
+        except KeyboardInterrupt:
+            print("Interrupt signal received, exiting")
+            break
         except Exception as e:
             print(f"\n\nException occured: {e}")
         finally:
