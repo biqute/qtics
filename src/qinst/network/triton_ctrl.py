@@ -5,7 +5,7 @@ module: triton_ctrl.py
 moduleauthor: Rodolfo Carobene <rodolfo.carobene@mib.infn.it>
 """
 
-
+import time
 from typing import Optional
 
 from qinst.network_inst import NetworkInst
@@ -29,6 +29,12 @@ class Triton(NetworkInst):
         super().__init__(name, address, port, timeout, sleep, no_delay)
         self._mixing_chamber_ch: Optional[int] = None
 
+    def query(self, cmd: str) -> str:
+        """Send a message, then read from the serial port."""
+        self.write(cmd)
+        time.sleep(self.sleep)
+        return self.read()[len(cmd) + 1 :]
+
     @property
     def mixing_chamber_ch(self) -> int:
         """Return mixing chamber channel.
@@ -37,16 +43,15 @@ class Triton(NetworkInst):
         """
         if self._mixing_chamber_ch is not None:
             return self._mixing_chamber_ch
-        self._mixing_chamber_ch = int(
-            self.query("READ:SYS:DR:CHAN:MC")[len("STAT:SYS:DR:CHAN:MC:") + 1 :]
-        )
+        self._mixing_chamber_ch = int(self.query("READ:SYS:DR:CHAN:MC"))
         return self._mixing_chamber_ch
 
     @property
     def heater_range(self) -> float:
         """Return heater range."""
-        query = f"READ:DEV:T{self.mixing_chamber_ch}:TEMP:LOOP:RANGE"
-        answer = self.query(query)[len(query)]
+        answer = self.query(f"READ:DEV:T{self.mixing_chamber_ch}:TEMP:LOOP:RANGE")
+        if answer == "NOT_FOUND":
+            raise RuntimeError("Range not set.")
         conversions = {"uA": 1e-3, "mA": 1}
         return float(answer[:-2]) * conversions[answer[-2:]]
 
@@ -61,16 +66,16 @@ class Triton(NetworkInst):
 
     def get_mixing_chamber_temp(self):
         """Return mixing chamber temperature in mK."""
-        query = f"READ:DEV:T{self.mixing_chamber_ch}:TEMP:SIG:TEMP"
-        answer = self.query(query)
-        return float(answer[len(query) : -1]) * 1000
+        answer = self.query(f"READ:DEV:T{self.mixing_chamber_ch}:TEMP:SIG:TEMP")
+        return float(answer[:-1]) * 1000
 
     @property
     def mixing_chamber_tset(self) -> float:
         """Return mixing chamber set temperature in mK."""
-        query = f"READ:DEV:T{self.mixing_chamber_ch}:TEMP:LOOP:TSET"
-        answer = self.query(query)
-        return float(answer[len(query) : -1]) * 1000
+        answer = self.query(f"READ:DEV:T{self.mixing_chamber_ch}:TEMP:LOOP:TSET")
+        if answer == "NOT_FOUND":
+            raise RuntimeError("Temperature mixing not set.")
+        return float(answer[:-1]) * 1000
 
     @mixing_chamber_tset.setter
     def mixing_chamber_tset(self, temp: float):
