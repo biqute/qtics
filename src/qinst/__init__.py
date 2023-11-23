@@ -1,5 +1,6 @@
 """List of supported instruments."""
 
+from qinst.log import log
 from qinst.network.NA_N9916A import VNAN9916A
 from qinst.network.triton_ctrl import Triton
 from qinst.serial.keithley6514 import Keithley6514
