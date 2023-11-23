@@ -46,6 +46,7 @@ class NetworkInst(Instrument):
         """Connect to the device."""
         self.socket.connect((self.address, self.port))
         self.__is_connected = True
+        log.info(f"Instrument {self.name} connected succesfully.")
 
     def disconnect(self):
         """Disconnect from the device."""
@@ -53,6 +54,7 @@ class NetworkInst(Instrument):
             self.socket.shutdown(socket.SHUT_RDWR)
             self.socket.close()
             self.__is_connected = False
+            log.info(f"Instrument {self.name} disconnected.")
 
     def read(self) -> str:
         """Read the output buffer of the instrument."""
