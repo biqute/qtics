@@ -41,7 +41,6 @@ class HDF5File:
             plt.ylabel = "Magnitude S21 [au]"
         plt.xlabel = "Frequencies [Hz]"
 
-
     def plot_s21_vs_temp(self, min: float = 0.0, max: float = 1.0e10, db: bool = True):
         """Plot S21 Vs temperature. Data averaged in a range."""
         x = np.array(self.temps)
