@@ -1,3 +1,10 @@
+"""
+Base class for instruments communicating via network connection.
+
+..module:: network_inst.py
+..moduleauthor:: Pietro Campana <campana.pietro@campus.unimib.it>
+The code was partially taken from https://github.com/morgan-at-keysight/socketscpi
+"""
 import ipaddress
 import socket
 import time
@@ -17,6 +24,7 @@ class NetworkInst(Instrument):
         sleep: float = 0.1,
         no_delay=True,
     ):
+        """Initialize."""
         super().__init__(name, address)
 
         # Validate IP
@@ -28,6 +36,7 @@ class NetworkInst(Instrument):
         self.no_delay = no_delay
 
     def __del__(self):
+        """Delete the object."""
         self.disconnect()
 
     def connect(self):
@@ -64,12 +73,11 @@ class NetworkInst(Instrument):
 
     @property
     def no_delay(self):
-        """"""
+        """Send data immediately without concatenating multiple packets together."""
         return bool(self.socket.getsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY))
 
     @no_delay.setter
     def no_delay(self, opt: bool):
-        """Send data immediately without concatenating multiple packets together."""
         self.socket.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, int(opt))
 
     @property
@@ -80,3 +88,18 @@ class NetworkInst(Instrument):
     @timeout.setter
     def timeout(self, nsec: float):
         self.socket.settimeout(nsec)
+
+    def validate_opt(self, opt: str, allowed: tuple):
+        """Check if provided option is between allowed ones."""
+        if opt not in allowed:
+            raise RuntimeError(f"Invalid option provided, choose between {allowed}")
+
+    def validate_range(self, n, n_min, n_max):
+        """Check if provided number is in allowed range."""
+        if not n_min < n < n_max:
+            valid = max(n_min, min(n_max, n))
+            print(
+                f"Provided value {n} not in range ({n_min}, {n_max}), will be set to {valid}."
+            )
+            return valid
+        return n
