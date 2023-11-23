@@ -229,6 +229,7 @@
 
 <span class="sd">..module:: NA_N9916A.py</span>
 <span class="sd">..moduleauthor:: Pietro Campana &lt;campana.pietro@campus.unimib.it&gt;</span>
+
 <span class="sd">The code for query_data() was partially taken from https://github.com/morgan-at-keysight/socketscpi</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">time</span>
@@ -270,7 +271,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">write_and_hold</span><span class="p">(</span><span class="s2">&quot;*CLS&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="N9916A.reset"><a class="viewcode-back" href="../../../api-reference/qinst.network.html#qinst.network.NA_N9916A.N9916A.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reset the device and cancel any pending *OPC command or query.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reset the device and cancel any pending OPC command or query.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write_and_hold</span><span class="p">(</span><span class="s2">&quot;*RST&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="N9916A.hold"><a class="viewcode-back" href="../../../api-reference/qinst.network.html#qinst.network.NA_N9916A.N9916A.hold">[docs]</a>    <span class="k">def</span> <span class="nf">hold</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
