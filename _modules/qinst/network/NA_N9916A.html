@@ -170,6 +170,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../instruments/3494_64.html">Attenuator Kratos 3494-64</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../instruments/SIM928.html">Isolated voltage source Stanford Research Systems SIM928</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../instruments/6514.html">Keithley Model 6514 System Electrometer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../instruments/SMA100B.html">R&amp;S®SMA100B RF and microwave signal generator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../instruments/N9916A.html">Handheld Microwave Analyzer FieldFox N9916A</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../instruments/triton.html">Triton controller</a></li>
 </ul>
@@ -226,8 +227,8 @@
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Controller of the N9916A Vector Analyzer by Keysight.</span>
 
-<span class="sd">module: NA_N9916A.py</span>
-<span class="sd">moduleauthor: Pietro Campana &lt;campana.pietro@campus.unimib.it&gt;</span>
+<span class="sd">..module:: NA_N9916A.py</span>
+<span class="sd">..moduleauthor:: Pietro Campana &lt;campana.pietro@campus.unimib.it&gt;</span>
 <span class="sd">The code for query_data() was partially taken from https://github.com/morgan-at-keysight/socketscpi</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">time</span>
@@ -269,8 +270,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">write_and_hold</span><span class="p">(</span><span class="s2">&quot;*CLS&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="N9916A.reset"><a class="viewcode-back" href="../../../api-reference/qinst.network.html#qinst.network.NA_N9916A.N9916A.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reset the device and cancel any pending OPC command or query.&quot;&quot;&quot;</span>
-
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reset the device and cancel any pending *OPC command or query.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write_and_hold</span><span class="p">(</span><span class="s2">&quot;*RST&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="N9916A.hold"><a class="viewcode-back" href="../../../api-reference/qinst.network.html#qinst.network.NA_N9916A.N9916A.hold">[docs]</a>    <span class="k">def</span> <span class="nf">hold</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -287,10 +287,8 @@
 
     <span class="nd">@_mode</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-        <span class="n">allowed</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;SA&quot;</span><span class="p">,</span> <span class="s2">&quot;NA&quot;</span><span class="p">,</span> <span class="s2">&quot;CAT&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">mode</span> <span class="ow">in</span> <span class="n">allowed</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">write_and_hold</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;INST:SEL &quot;</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s1">&quot;&#39;</span><span class="p">)</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid mode selected, choose between </span><span class="si">{</span><span class="n">allowed</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">validate_opt</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;SA&quot;</span><span class="p">,</span> <span class="s2">&quot;NA&quot;</span><span class="p">,</span> <span class="s2">&quot;CAT&quot;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write_and_hold</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;INST:SEL &quot;</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s1">&quot;&#39;</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">f_min</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
@@ -317,7 +315,7 @@
 
     <span class="nd">@f_center</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">f_center</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SENS:FREQ:CENT </span><span class="si">{</span><span class="nb">abs</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SENS:FREQ:CENT </span><span class="si">{</span><span class="nb">abs</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="si">:</span><span class="s2">5.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">f_span</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
@@ -373,9 +371,7 @@
 
     <span class="nd">@data_format</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">data_format</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-        <span class="n">allowed</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;REAL,32&quot;</span><span class="p">,</span> <span class="s2">&quot;REAL,64&quot;</span><span class="p">,</span> <span class="s2">&quot;ASC,0&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">form</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">allowed</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid format selected, choose between </span><span class="si">{</span><span class="n">allowed</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">validate_opt</span><span class="p">(</span><span class="n">form</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;REAL,32&quot;</span><span class="p">,</span> <span class="s2">&quot;REAL,64&quot;</span><span class="p">,</span> <span class="s2">&quot;ASC,0&quot;</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;FORM:DATA &quot;</span> <span class="o">+</span> <span class="n">form</span><span class="p">)</span>
 
 <div class="viewcode-block" id="N9916A.query_data"><a class="viewcode-back" href="../../../api-reference/qinst.network.html#qinst.network.NA_N9916A.N9916A.query_data">[docs]</a>    <span class="k">def</span> <span class="nf">query_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">,</span> <span class="n">datatype</span><span class="o">=</span><span class="s2">&quot;REAL,64&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
@@ -480,11 +476,8 @@
 
     <span class="nd">@S_par</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">S_par</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">par</span><span class="o">=</span><span class="s2">&quot;S21&quot;</span><span class="p">):</span>
-        <span class="n">allowed</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;S11&quot;</span><span class="p">,</span> <span class="s2">&quot;S21&quot;</span><span class="p">,</span> <span class="s2">&quot;S12&quot;</span><span class="p">,</span> <span class="s2">&quot;S22&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">par</span> <span class="ow">in</span> <span class="n">allowed</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CALC:PAR</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">__trace</span><span class="si">}</span><span class="s2">:DEF </span><span class="si">{</span><span class="n">par</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid mode selected, choose between </span><span class="si">{</span><span class="n">allowed</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">validate_opt</span><span class="p">(</span><span class="n">par</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;S11&quot;</span><span class="p">,</span> <span class="s2">&quot;S21&quot;</span><span class="p">,</span> <span class="s2">&quot;S12&quot;</span><span class="p">,</span> <span class="s2">&quot;S22&quot;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CALC:PAR</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">__trace</span><span class="si">}</span><span class="s2">:DEF </span><span class="si">{</span><span class="n">par</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">yformat</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
@@ -493,11 +486,8 @@
 
     <span class="nd">@yformat</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">yformat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_format</span><span class="o">=</span><span class="s2">&quot;MLOG&quot;</span><span class="p">):</span>
-        <span class="n">allowed</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;MLOG&quot;</span><span class="p">,</span> <span class="s2">&quot;MLIN&quot;</span><span class="p">,</span> <span class="s2">&quot;REAL&quot;</span><span class="p">,</span> <span class="s2">&quot;IMAG&quot;</span><span class="p">,</span> <span class="s2">&quot;ZMAG&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">data_format</span> <span class="ow">in</span> <span class="n">allowed</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CALC:FORM </span><span class="si">{</span><span class="n">data_format</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid mode selected, choose between </span><span class="si">{</span><span class="n">allowed</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">validate_opt</span><span class="p">(</span><span class="n">data_format</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;MLOG&quot;</span><span class="p">,</span> <span class="s2">&quot;MLIN&quot;</span><span class="p">,</span> <span class="s2">&quot;REAL&quot;</span><span class="p">,</span> <span class="s2">&quot;IMAG&quot;</span><span class="p">,</span> <span class="s2">&quot;ZMAG&quot;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CALC:FORM </span><span class="si">{</span><span class="n">data_format</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">smoothing</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
@@ -532,11 +522,8 @@
 
     <span class="nd">@average_mode</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">average_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-        <span class="n">allowed</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;SWE&quot;</span><span class="p">,</span> <span class="s2">&quot;POINT&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">mode</span> <span class="ow">in</span> <span class="n">allowed</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;AVER:MODE </span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid mode selected, choose between </span><span class="si">{</span><span class="n">allowed</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">validate_opt</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;SWE&quot;</span><span class="p">,</span> <span class="s2">&quot;POINT&quot;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;AVER:MODE </span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="VNAN9916A.clear_average"><a class="viewcode-back" href="../../../api-reference/qinst.network.html#qinst.network.NA_N9916A.VNAN9916A.clear_average">[docs]</a>    <span class="k">def</span> <span class="nf">clear_average</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Reset averaging.&quot;&quot;&quot;</span>

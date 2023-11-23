@@ -171,6 +171,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../instruments/3494_64.html">Attenuator Kratos 3494-64</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../instruments/SIM928.html">Isolated voltage source Stanford Research Systems SIM928</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../instruments/6514.html">Keithley Model 6514 System Electrometer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../instruments/SMA100B.html">R&amp;S®SMA100B RF and microwave signal generator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../instruments/N9916A.html">Handheld Microwave Analyzer FieldFox N9916A</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../instruments/triton.html">Triton controller</a></li>
 </ul>
@@ -231,8 +232,8 @@
 <section id="module-qinst.network.NA_N9916A">
 <span id="qinst-network-na-n9916a-module"></span><h2>qinst.network.NA_N9916A module<a class="headerlink" href="#module-qinst.network.NA_N9916A" title="Permalink to this heading">#</a></h2>
 <p>Controller of the N9916A Vector Analyzer by Keysight.</p>
-<p>module: NA_N9916A.py
-moduleauthor: Pietro Campana &lt;<a class="reference external" href="mailto:campana&#46;pietro&#37;&#52;&#48;campus&#46;unimib&#46;it">campana<span>&#46;</span>pietro<span>&#64;</span>campus<span>&#46;</span>unimib<span>&#46;</span>it</a>&gt;
+<p>..module:: NA_N9916A.py
+..moduleauthor:: Pietro Campana &lt;<a class="reference external" href="mailto:campana&#46;pietro&#37;&#52;&#48;campus&#46;unimib&#46;it">campana<span>&#46;</span>pietro<span>&#64;</span>campus<span>&#46;</span>unimib<span>&#46;</span>it</a>&gt;
 The code for query_data() was partially taken from <a class="reference external" href="https://github.com/morgan-at-keysight/socketscpi">https://github.com/morgan-at-keysight/socketscpi</a></p>
 <dl class="py class">
 <dt class="sig sig-object py" id="qinst.network.NA_N9916A.N9916A">
@@ -306,7 +307,7 @@ type used by the instrument that sends the data.
 <dl class="py method">
 <dt class="sig sig-object py" id="qinst.network.NA_N9916A.N9916A.reset">
 <span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/network/NA_N9916A.html#N9916A.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.network.NA_N9916A.N9916A.reset" title="Permalink to this definition">#</a></dt>
-<dd><p>Reset the device and cancel any pending OPC command or query.</p>
+<dd><p>Reset the device and cancel any pending <a href="#id1"><span class="problematic" id="id2">*</span></a>OPC command or query.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -441,6 +442,218 @@ type used by the instrument that sends the data.
 <dt class="sig sig-object py" id="qinst.network.NA_N9916A.VNAN9916A.yformat">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">yformat</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></em><a class="headerlink" href="#qinst.network.NA_N9916A.VNAN9916A.yformat" title="Permalink to this definition">#</a></dt>
 <dd><p>Scale and format of data.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-qinst.network.RS_SMA100B">
+<span id="qinst-network-rs-sma100b-module"></span><h2>qinst.network.RS_SMA100B module<a class="headerlink" href="#module-qinst.network.RS_SMA100B" title="Permalink to this heading">#</a></h2>
+<p>Controller of the R&amp;S SMA100B RF and microwave signal generator.</p>
+<span class="target" id="module-RS_SMA100B.py"></span><dl class="py class">
+<dt class="sig sig-object py" id="qinst.network.RS_SMA100B.SMA100B">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qinst.network.RS_SMA100B.</span></span><span class="sig-name descname"><span class="pre">SMA100B</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5025</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sleep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_delay</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/network/RS_SMA100B.html#SMA100B"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.network.RS_SMA100B.SMA100B" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="qinst.html#qinst.network_inst.NetworkInst" title="qinst.network_inst.NetworkInst"><code class="xref py py-class docutils literal notranslate"><span class="pre">NetworkInst</span></code></a></p>
+<p>R&amp;S SMA100B RF and microwave signal generator by Rohde &amp; Schwarz.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="qinst.network.RS_SMA100B.SMA100B.cal">
+<span class="sig-name descname"><span class="pre">cal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">opt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></span><a class="reference internal" href="../_modules/qinst/network/RS_SMA100B.html#SMA100B.cal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.network.RS_SMA100B.SMA100B.cal" title="Permalink to this definition">#</a></dt>
+<dd><p>Query the device to perform internal adjustments.</p>
+<p>Valid options to query:
+- MEAS: Starts all internal adjustments that do not need external measuring equipment
+- DATE: Queries the date of the most recently executed full adjustment
+- INF: Queries the current state of the internal adjustment
+- TEMP: Queries the temperature deviation compared to the calibration temperature
+- TIME: Queries the time elapsed since the last full adjustment</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qinst.network.RS_SMA100B.SMA100B.clear">
+<span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/network/RS_SMA100B.html#SMA100B.clear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.network.RS_SMA100B.SMA100B.clear" title="Permalink to this definition">#</a></dt>
+<dd><p>Clear the output buffer.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qinst.network.RS_SMA100B.SMA100B.diag">
+<span class="sig-name descname"><span class="pre">diag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">opt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></span><a class="reference internal" href="../_modules/qinst/network/RS_SMA100B.html#SMA100B.diag"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.network.RS_SMA100B.SMA100B.diag" title="Permalink to this definition">#</a></dt>
+<dd><p>Query the device to perform diagnosis and servicing.</p>
+<p>Valid options to query:
+- OTIM: Queries the operating hours of the instrument so far
+- POC: Queris how often the instrument has been turned on so far</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.network.RS_SMA100B.SMA100B.f_center">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">f_center</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><a class="headerlink" href="#qinst.network.RS_SMA100B.SMA100B.f_center" title="Permalink to this definition">#</a></dt>
+<dd><p>Center frequency of the sweep.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.network.RS_SMA100B.SMA100B.f_dwell">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">f_dwell</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><a class="headerlink" href="#qinst.network.RS_SMA100B.SMA100B.f_dwell" title="Permalink to this definition">#</a></dt>
+<dd><p>Dwell time for a frequency sweep step.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.network.RS_SMA100B.SMA100B.f_fixed">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">f_fixed</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><a class="headerlink" href="#qinst.network.RS_SMA100B.SMA100B.f_fixed" title="Permalink to this definition">#</a></dt>
+<dd><p>Frequency of the RF output signal in the selected path.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.network.RS_SMA100B.SMA100B.f_max">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">f_max</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><a class="headerlink" href="#qinst.network.RS_SMA100B.SMA100B.f_max" title="Permalink to this definition">#</a></dt>
+<dd><p>Stop frequency for the RF sweep.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.network.RS_SMA100B.SMA100B.f_min">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">f_min</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><a class="headerlink" href="#qinst.network.RS_SMA100B.SMA100B.f_min" title="Permalink to this definition">#</a></dt>
+<dd><p>Start frequency for the RF sweep.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.network.RS_SMA100B.SMA100B.f_mode">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">f_mode</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></em><a class="headerlink" href="#qinst.network.RS_SMA100B.SMA100B.f_mode" title="Permalink to this definition">#</a></dt>
+<dd><p>Frequency mode for generating the RF output signal.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.network.RS_SMA100B.SMA100B.f_mult">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">f_mult</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><a class="headerlink" href="#qinst.network.RS_SMA100B.SMA100B.f_mult" title="Permalink to this definition">#</a></dt>
+<dd><p>Multiplication factor of a subsequent downstream instrument.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.network.RS_SMA100B.SMA100B.f_offset">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">f_offset</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><a class="headerlink" href="#qinst.network.RS_SMA100B.SMA100B.f_offset" title="Permalink to this definition">#</a></dt>
+<dd><p>Frequency offset of a downstream instrument.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.network.RS_SMA100B.SMA100B.f_span">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">f_span</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><a class="headerlink" href="#qinst.network.RS_SMA100B.SMA100B.f_span" title="Permalink to this definition">#</a></dt>
+<dd><p>Span of the frequency sweep range.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.network.RS_SMA100B.SMA100B.f_step">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">f_step</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><a class="headerlink" href="#qinst.network.RS_SMA100B.SMA100B.f_step" title="Permalink to this definition">#</a></dt>
+<dd><p>Step width for linear sweeps.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.network.RS_SMA100B.SMA100B.f_sweep_mode">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">f_sweep_mode</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></em><a class="headerlink" href="#qinst.network.RS_SMA100B.SMA100B.f_sweep_mode" title="Permalink to this definition">#</a></dt>
+<dd><p>Cycle mode for the frequency sweep.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.network.RS_SMA100B.SMA100B.is_completed">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_completed</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></em><a class="headerlink" href="#qinst.network.RS_SMA100B.SMA100B.is_completed" title="Permalink to this definition">#</a></dt>
+<dd><p>Return bool 0 (1) in the event status register (output buffer) when all preceding commands have been executed.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.network.RS_SMA100B.SMA100B.is_f_sweep_completed">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_f_sweep_completed</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></em><a class="headerlink" href="#qinst.network.RS_SMA100B.SMA100B.is_f_sweep_completed" title="Permalink to this definition">#</a></dt>
+<dd><p>Status of the frequency sweep that is running.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.network.RS_SMA100B.SMA100B.is_p_sweep_completed">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_p_sweep_completed</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></em><a class="headerlink" href="#qinst.network.RS_SMA100B.SMA100B.is_p_sweep_completed" title="Permalink to this definition">#</a></dt>
+<dd><p>Status of the RF level sweep that is running.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.network.RS_SMA100B.SMA100B.p_dwell">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">p_dwell</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><a class="headerlink" href="#qinst.network.RS_SMA100B.SMA100B.p_dwell" title="Permalink to this definition">#</a></dt>
+<dd><p>Dwell time for a level sweep step.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.network.RS_SMA100B.SMA100B.p_fixed">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">p_fixed</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><a class="headerlink" href="#qinst.network.RS_SMA100B.SMA100B.p_fixed" title="Permalink to this definition">#</a></dt>
+<dd><p>RF level applied to the DUT.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.network.RS_SMA100B.SMA100B.p_max">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">p_max</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><a class="headerlink" href="#qinst.network.RS_SMA100B.SMA100B.p_max" title="Permalink to this definition">#</a></dt>
+<dd><p>Stop RF level for the RF sweep.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.network.RS_SMA100B.SMA100B.p_min">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">p_min</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><a class="headerlink" href="#qinst.network.RS_SMA100B.SMA100B.p_min" title="Permalink to this definition">#</a></dt>
+<dd><p>Start RF level for the RF sweep.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.network.RS_SMA100B.SMA100B.p_mode">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">p_mode</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></em><a class="headerlink" href="#qinst.network.RS_SMA100B.SMA100B.p_mode" title="Permalink to this definition">#</a></dt>
+<dd><p>Operating mode of the instrument of the set output level.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.network.RS_SMA100B.SMA100B.p_step">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">p_step</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><a class="headerlink" href="#qinst.network.RS_SMA100B.SMA100B.p_step" title="Permalink to this definition">#</a></dt>
+<dd><p>Logarithmically determined step size for the RF level sweep.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.network.RS_SMA100B.SMA100B.p_sweep_mode">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">p_sweep_mode</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></em><a class="headerlink" href="#qinst.network.RS_SMA100B.SMA100B.p_sweep_mode" title="Permalink to this definition">#</a></dt>
+<dd><p>Mode of the power sweep.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.network.RS_SMA100B.SMA100B.p_unit">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">p_unit</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></em><a class="headerlink" href="#qinst.network.RS_SMA100B.SMA100B.p_unit" title="Permalink to this definition">#</a></dt>
+<dd><p>Default unit for all power parameters.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.network.RS_SMA100B.SMA100B.phase">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">phase</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><a class="headerlink" href="#qinst.network.RS_SMA100B.SMA100B.phase" title="Permalink to this definition">#</a></dt>
+<dd><p>Phase variation relative to the current phase.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qinst.network.RS_SMA100B.SMA100B.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/network/RS_SMA100B.html#SMA100B.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.network.RS_SMA100B.SMA100B.reset" title="Permalink to this definition">#</a></dt>
+<dd><p>Reset the instrument to a defined default status.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qinst.network.RS_SMA100B.SMA100B.screen_saver_mode">
+<span class="sig-name descname"><span class="pre">screen_saver_mode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'OFF'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/network/RS_SMA100B.html#SMA100B.screen_saver_mode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.network.RS_SMA100B.SMA100B.screen_saver_mode" title="Permalink to this definition">#</a></dt>
+<dd><p>Activate the screen saver mode of the display.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.network.RS_SMA100B.SMA100B.screen_saver_time">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">screen_saver_time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#qinst.network.RS_SMA100B.SMA100B.screen_saver_time" title="Permalink to this definition">#</a></dt>
+<dd><p>Wait time for the screen saver mode of the display.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qinst.network.RS_SMA100B.SMA100B.set_phase_ref">
+<span class="sig-name descname"><span class="pre">set_phase_ref</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/network/RS_SMA100B.html#SMA100B.set_phase_ref"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.network.RS_SMA100B.SMA100B.set_phase_ref" title="Permalink to this definition">#</a></dt>
+<dd><p>Assign the value set as the reference phase.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qinst.network.RS_SMA100B.SMA100B.sweep">
+<span class="sig-name descname"><span class="pre">sweep</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/network/RS_SMA100B.html#SMA100B.sweep"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.network.RS_SMA100B.SMA100B.sweep" title="Permalink to this definition">#</a></dt>
+<dd><p>Perform a one-off RF frequency/level sweep.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qinst.network.RS_SMA100B.SMA100B.wait">
+<span class="sig-name descname"><span class="pre">wait</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/network/RS_SMA100B.html#SMA100B.wait"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.network.RS_SMA100B.SMA100B.wait" title="Permalink to this definition">#</a></dt>
+<dd><p>Prevents servicing of the subsequent commands until all preceding commands have been executed and all signals have settled.</p>
 </dd></dl>
 
 </dd></dl>
@@ -592,6 +805,44 @@ moduleauthor: Rodolfo Carobene &lt;<a class="reference external" href="mailto:ro
 <li><a class="reference internal" href="#qinst.network.NA_N9916A.VNAN9916A.survey"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.survey()</span></code></a></li>
 <li><a class="reference internal" href="#qinst.network.NA_N9916A.VNAN9916A.sweep"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.sweep()</span></code></a></li>
 <li><a class="reference internal" href="#qinst.network.NA_N9916A.VNAN9916A.yformat"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.yformat</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-qinst.network.RS_SMA100B">qinst.network.RS_SMA100B module</a><ul>
+<li><a class="reference internal" href="#qinst.network.RS_SMA100B.SMA100B"><code class="docutils literal notranslate"><span class="pre">SMA100B</span></code></a><ul>
+<li><a class="reference internal" href="#qinst.network.RS_SMA100B.SMA100B.cal"><code class="docutils literal notranslate"><span class="pre">SMA100B.cal()</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.RS_SMA100B.SMA100B.clear"><code class="docutils literal notranslate"><span class="pre">SMA100B.clear()</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.RS_SMA100B.SMA100B.diag"><code class="docutils literal notranslate"><span class="pre">SMA100B.diag()</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.RS_SMA100B.SMA100B.f_center"><code class="docutils literal notranslate"><span class="pre">SMA100B.f_center</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.RS_SMA100B.SMA100B.f_dwell"><code class="docutils literal notranslate"><span class="pre">SMA100B.f_dwell</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.RS_SMA100B.SMA100B.f_fixed"><code class="docutils literal notranslate"><span class="pre">SMA100B.f_fixed</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.RS_SMA100B.SMA100B.f_max"><code class="docutils literal notranslate"><span class="pre">SMA100B.f_max</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.RS_SMA100B.SMA100B.f_min"><code class="docutils literal notranslate"><span class="pre">SMA100B.f_min</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.RS_SMA100B.SMA100B.f_mode"><code class="docutils literal notranslate"><span class="pre">SMA100B.f_mode</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.RS_SMA100B.SMA100B.f_mult"><code class="docutils literal notranslate"><span class="pre">SMA100B.f_mult</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.RS_SMA100B.SMA100B.f_offset"><code class="docutils literal notranslate"><span class="pre">SMA100B.f_offset</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.RS_SMA100B.SMA100B.f_span"><code class="docutils literal notranslate"><span class="pre">SMA100B.f_span</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.RS_SMA100B.SMA100B.f_step"><code class="docutils literal notranslate"><span class="pre">SMA100B.f_step</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.RS_SMA100B.SMA100B.f_sweep_mode"><code class="docutils literal notranslate"><span class="pre">SMA100B.f_sweep_mode</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.RS_SMA100B.SMA100B.is_completed"><code class="docutils literal notranslate"><span class="pre">SMA100B.is_completed</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.RS_SMA100B.SMA100B.is_f_sweep_completed"><code class="docutils literal notranslate"><span class="pre">SMA100B.is_f_sweep_completed</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.RS_SMA100B.SMA100B.is_p_sweep_completed"><code class="docutils literal notranslate"><span class="pre">SMA100B.is_p_sweep_completed</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.RS_SMA100B.SMA100B.p_dwell"><code class="docutils literal notranslate"><span class="pre">SMA100B.p_dwell</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.RS_SMA100B.SMA100B.p_fixed"><code class="docutils literal notranslate"><span class="pre">SMA100B.p_fixed</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.RS_SMA100B.SMA100B.p_max"><code class="docutils literal notranslate"><span class="pre">SMA100B.p_max</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.RS_SMA100B.SMA100B.p_min"><code class="docutils literal notranslate"><span class="pre">SMA100B.p_min</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.RS_SMA100B.SMA100B.p_mode"><code class="docutils literal notranslate"><span class="pre">SMA100B.p_mode</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.RS_SMA100B.SMA100B.p_step"><code class="docutils literal notranslate"><span class="pre">SMA100B.p_step</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.RS_SMA100B.SMA100B.p_sweep_mode"><code class="docutils literal notranslate"><span class="pre">SMA100B.p_sweep_mode</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.RS_SMA100B.SMA100B.p_unit"><code class="docutils literal notranslate"><span class="pre">SMA100B.p_unit</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.RS_SMA100B.SMA100B.phase"><code class="docutils literal notranslate"><span class="pre">SMA100B.phase</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.RS_SMA100B.SMA100B.reset"><code class="docutils literal notranslate"><span class="pre">SMA100B.reset()</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.RS_SMA100B.SMA100B.screen_saver_mode"><code class="docutils literal notranslate"><span class="pre">SMA100B.screen_saver_mode()</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.RS_SMA100B.SMA100B.screen_saver_time"><code class="docutils literal notranslate"><span class="pre">SMA100B.screen_saver_time</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.RS_SMA100B.SMA100B.set_phase_ref"><code class="docutils literal notranslate"><span class="pre">SMA100B.set_phase_ref()</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.RS_SMA100B.SMA100B.sweep"><code class="docutils literal notranslate"><span class="pre">SMA100B.sweep()</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.RS_SMA100B.SMA100B.wait"><code class="docutils literal notranslate"><span class="pre">SMA100B.wait()</span></code></a></li>
 </ul>
 </li>
 </ul>
