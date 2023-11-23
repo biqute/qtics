@@ -3,6 +3,7 @@ Base class for instruments communicating via network connection.
 
 .. module:: network_inst.py
 .. moduleauthor:: Pietro Campana <campana.pietro@campus.unimib.it>
+
 The code was partially taken from https://github.com/morgan-at-keysight/socketscpi
 """
 import ipaddress
