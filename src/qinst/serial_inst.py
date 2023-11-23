@@ -1,12 +1,16 @@
+"""Base instrument for serial connections."""
 import time
 from typing import Literal
 
 import serial
 
+from qinst import log
 from qinst.instrument import Instrument
 
 
 class SerialInst(Instrument):
+    """Base class for instrument controlled via serial connection."""
+
     def __init__(
         self,
         name: str,
@@ -18,6 +22,7 @@ class SerialInst(Instrument):
         timeout: int = 10,
         sleep: float = 0.1,
     ):
+        """Initialize."""
         super().__init__(name, address)
 
         self.serial = serial.Serial()
@@ -31,16 +36,19 @@ class SerialInst(Instrument):
         self.sleep = sleep
 
     def __del__(self):
+        """Disconnect and delete."""
         self.disconnect()
 
     def connect(self):
         """Connect to the device."""
         self.serial.open()
+        log.info(f"Instrument {self.name} connected succesfully.")
 
     def disconnect(self):
         """Disconnect from the device."""
         if self.serial.is_open:
             self.serial.close()
+            log.info(f"Instrument {self.name} disconnected.")
 
     def write(self, cmd, sleep=False):
         """Write a message to the serial port."""
