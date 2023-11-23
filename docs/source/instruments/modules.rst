@@ -8,3 +8,4 @@ Supported Instruments
    3494_64
    SIM928
    6514
+   SMA100B
