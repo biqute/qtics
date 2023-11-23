@@ -6,6 +6,8 @@ The manual of the instrument is available at `SRS <https://www.thinksrs.com/prod
 
 This instrument requires to use the corresponding `SRS SIM900 mainframe <https://www.thinksrs.com/products/sim900.html>`_. The connection will be established first to the mainframe, which will then create a passthrough to the port where the SIM928 is installed.
 
+Base class: :class:`qinst.serial_inst.SerialInst`.
+
 Example of operations
 """""""""""""""""""""
 
@@ -33,18 +35,8 @@ To execute commands:
 Commands
 """"""""
 
-General functions
------------------
-
-- connect()
-- disconnect()
-- get_id
-- write(cmd)
-- read()
-- query(cmd)
-
-Specific functions
-------------------
+Functions
+---------
 
 - connect_port(port)
 - reset()

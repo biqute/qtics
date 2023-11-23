@@ -1,8 +1,8 @@
 """
 Base class for instruments communicating via network connection.
 
-..module:: network_inst.py
-..moduleauthor:: Pietro Campana <campana.pietro@campus.unimib.it>
+.. module:: network_inst.py
+.. moduleauthor:: Pietro Campana <campana.pietro@campus.unimib.it>
 The code was partially taken from https://github.com/morgan-at-keysight/socketscpi
 """
 import ipaddress
@@ -34,6 +34,7 @@ class NetworkInst(Instrument):
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.timeout = timeout
         self.no_delay = no_delay
+        self.__is_connected = False
 
     def __del__(self):
         """Delete the object."""
@@ -42,12 +43,14 @@ class NetworkInst(Instrument):
     def connect(self):
         """Connect to the device."""
         self.socket.connect((self.address, self.port))
+        self.__is_connected = True
 
     def disconnect(self):
         """Disconnect from the device."""
-        if self.socket.getsockname() != ("0.0.0.0", 0):
+        if self.__is_connected:
             self.socket.shutdown(socket.SHUT_RDWR)
             self.socket.close()
+            self.__is_connected = False
 
     def read(self) -> str:
         """Read the output buffer of the instrument."""
@@ -73,7 +76,7 @@ class NetworkInst(Instrument):
 
     @property
     def no_delay(self):
-        """Send data immediately without concatenating multiple packets together."""
+        """If True, send data immediately without concatenating multiple packets together."""
         return bool(self.socket.getsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY))
 
     @no_delay.setter

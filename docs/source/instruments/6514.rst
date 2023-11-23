@@ -4,6 +4,8 @@ Keithley Model 6514 System Electrometer
 Keithley Model `6514` System Electrometer produced by Keithley Instruments.
 Manual of the instrument is available at `Tek <https://download.tek.com/manual/6514-901-01(D-May2003)(Instruction).pdf>`_.
 
+Base class: :class:`qinst.serial_inst.SerialInst`.
+
 Example of operations
 """""""""""""""""""""
 
@@ -28,18 +30,8 @@ To execute commands:
 Commands
 """"""""
 
-General functions
------------------
-
-- connect()
-- disconnect()
-- get_id
-- write(cmd)
-- read()
-- query(cmd)
-
-Specific functions
-------------------
+Functions
+---------
 
 - reset()
 - zcheck_on()
