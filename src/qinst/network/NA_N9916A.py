@@ -1,8 +1,8 @@
 """
 Controller of the N9916A Vector Analyzer by Keysight.
 
-module: NA_N9916A.py
-moduleauthor: Pietro Campana <campana.pietro@campus.unimib.it>
+..module:: NA_N9916A.py
+..moduleauthor:: Pietro Campana <campana.pietro@campus.unimib.it>
 The code for query_data() was partially taken from https://github.com/morgan-at-keysight/socketscpi
 """
 import time
@@ -44,8 +44,7 @@ class N9916A(NetworkInst):
         self.write_and_hold("*CLS")
 
     def reset(self):
-        """Reset the device and cancel any pending OPC command or query."""
-
+        """Reset the device and cancel any pending *OPC command or query."""
         self.write_and_hold("*RST")
 
     def hold(self):
@@ -62,10 +61,8 @@ class N9916A(NetworkInst):
 
     @_mode.setter
     def _mode(self, mode: str):
-        allowed = ("SA", "NA", "CAT")
-        if mode in allowed:
-            return self.write_and_hold(f'INST:SEL "{mode}"')
-        raise ValueError(f"Invalid mode selected, choose between {allowed}.")
+        self.validate_opt(mode, ("SA", "NA", "CAT"))
+        self.write_and_hold(f'INST:SEL "{mode}"')
 
     @property
     def f_min(self) -> float:
@@ -92,7 +89,7 @@ class N9916A(NetworkInst):
 
     @f_center.setter
     def f_center(self, f: float):
-        self.write(f"SENS:FREQ:CENT {abs(f)}")
+        self.write(f"SENS:FREQ:CENT {abs(f):5.6f}")
 
     @property
     def f_span(self) -> float:
@@ -148,9 +145,7 @@ class N9916A(NetworkInst):
 
     @data_format.setter
     def data_format(self, form: str):
-        allowed = ("REAL,32", "REAL,64", "ASC,0")
-        if form not in allowed:
-            raise ValueError(f"Invalid format selected, choose between {allowed}.")
+        self.validate_opt(form, ("REAL,32", "REAL,64", "ASC,0"))
         self.write("FORM:DATA " + form)
 
     def query_data(self, cmd, datatype="REAL,64") -> np.ndarray:
@@ -255,11 +250,8 @@ class VNAN9916A(N9916A):
 
     @S_par.setter
     def S_par(self, par="S21"):
-        allowed = ("S11", "S21", "S12", "S22")
-        if par in allowed:
-            self.write(f"CALC:PAR{self.__trace}:DEF {par}")
-        else:
-            raise ValueError(f"Invalid mode selected, choose between {allowed}.")
+        self.validate_opt(par, ("S11", "S21", "S12", "S22"))
+        self.write(f"CALC:PAR{self.__trace}:DEF {par}")
 
     @property
     def yformat(self) -> str:
@@ -268,11 +260,8 @@ class VNAN9916A(N9916A):
 
     @yformat.setter
     def yformat(self, data_format="MLOG"):
-        allowed = ("MLOG", "MLIN", "REAL", "IMAG", "ZMAG")
-        if data_format in allowed:
-            self.write(f"CALC:FORM {data_format}")
-        else:
-            raise ValueError(f"Invalid mode selected, choose between {allowed}.")
+        self.validate_opt(data_format, ("MLOG", "MLIN", "REAL", "IMAG", "ZMAG"))
+        self.write(f"CALC:FORM {data_format}")
 
     @property
     def smoothing(self) -> int:
@@ -307,11 +296,8 @@ class VNAN9916A(N9916A):
 
     @average_mode.setter
     def average_mode(self, mode: str):
-        allowed = ("SWE", "POINT")
-        if mode in allowed:
-            self.write(f"AVER:MODE {mode}")
-        else:
-            raise ValueError(f"Invalid mode selected, choose between {allowed}.")
+        self.validate_opt(mode, ("SWE", "POINT"))
+        self.write(f"AVER:MODE {mode}")
 
     def clear_average(self):
         """Reset averaging."""
