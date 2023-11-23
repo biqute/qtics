@@ -34,16 +34,15 @@ class HDF5File:
         y = np.array(dataset["values"])
 
         if db:
-            y = 20 * np.log10(y)
-
-        plt.plot(x, abs(y))
-        plt.xlabel = "Frequencies [Hz]"
-        if db:
+            plt.plot(x, 20 * np.log(abs(y)))
             plt.ylabel = "Magnitude S21 [dB]"
         else:
+            plt.plot(x, abs(y))
             plt.ylabel = "Magnitude S21 [au]"
+        plt.xlabel = "Frequencies [Hz]"
 
-    def plot_s21_vs_temp(self, min=0, max=1e10, db=True):
+
+    def plot_s21_vs_temp(self, min: float = 0.0, max: float = 1.0e10, db: bool = True):
         """Plot S21 Vs temperature. Data averaged in a range."""
         x = np.array(self.temps)
         y = []
@@ -54,11 +53,9 @@ class HDF5File:
         y = np.array(y)
 
         if db:
-            y = 20 * np.log10(y)
-
-        plt.plot(x, abs(y))
-        plt.xlabel = "Frequencies [Hz]"
-        if db:
+            plt.plot(x, 20 * np.log(abs(y)))
             plt.ylabel = "Magnitude S21 [dB]"
         else:
+            plt.plot(x, abs(y))
             plt.ylabel = "Magnitude S21 [au]"
+        plt.xlabel = "Frequencies [Hz]"
