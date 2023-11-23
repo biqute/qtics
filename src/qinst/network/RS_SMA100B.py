@@ -71,7 +71,7 @@ class SMA100B(NetworkInst):
         return self.query("SOUR:FREQ:MODE?")
 
     @f_mode.setter
-    def f_mode(self, mode):
+    def f_mode(self, mode: str):
         """Set the frequency mode for generating the RF output signal. The selected mode determines the parameters to be used for further frequency settings."""
         self.validate_opt(mode, ("CW", "SWEEP"))
         self.write(f"SOUR:FREQ:MODE {mode}")
@@ -82,7 +82,7 @@ class SMA100B(NetworkInst):
         return float(self.query("SOUR:FREQ:CW?"))
 
     @f_fixed.setter
-    def f_fixed(self, f):
+    def f_fixed(self, f: float):
         """Set the frequency of the RF output signal in the selected path."""
         f = self.validate_range(f, 8e3, 20e9)
         self.write(f"SOUR:FREQ:CW {f}")
@@ -104,7 +104,7 @@ class SMA100B(NetworkInst):
         return float(self.query("SOUR:FREQ:OFFS?"))
 
     @f_offset.setter
-    def f_offset(self, f):
+    def f_offset(self, f: float):
         """Set the frequency offset of a downstream instrument."""
         self.validate_range(f, 8e3, 20e9)
         self.write(f"SOUR:FREQ:OFFS {f}")
