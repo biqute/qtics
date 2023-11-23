@@ -3,6 +3,7 @@ Controller of the N9916A Vector Analyzer by Keysight.
 
 ..module:: NA_N9916A.py
 ..moduleauthor:: Pietro Campana <campana.pietro@campus.unimib.it>
+
 The code for query_data() was partially taken from https://github.com/morgan-at-keysight/socketscpi
 """
 import time
@@ -44,7 +45,7 @@ class N9916A(NetworkInst):
         self.write_and_hold("*CLS")
 
     def reset(self):
-        """Reset the device and cancel any pending *OPC command or query."""
+        """Reset the device and cancel any pending OPC command or query."""
         self.write_and_hold("*RST")
 
     def hold(self):

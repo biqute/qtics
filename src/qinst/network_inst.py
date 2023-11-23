@@ -3,12 +3,14 @@ Base class for instruments communicating via network connection.
 
 .. module:: network_inst.py
 .. moduleauthor:: Pietro Campana <campana.pietro@campus.unimib.it>
+
 The code was partially taken from https://github.com/morgan-at-keysight/socketscpi
 """
 import ipaddress
 import socket
 import time
 
+from qinst import log
 from qinst.instrument import Instrument
 
 
@@ -101,7 +103,7 @@ class NetworkInst(Instrument):
         """Check if provided number is in allowed range."""
         if not n_min < n < n_max:
             valid = max(n_min, min(n_max, n))
-            print(
+            log.warning(
                 f"Provided value {n} not in range ({n_min}, {n_max}), will be set to {valid}."
             )
             return valid
