@@ -79,3 +79,16 @@ class TestNetworklInst:
         assert inst.query("CMD?") == "test_read"
         with pytest.raises(ValueError):
             inst.query("CMD")
+
+    def test_validate_opt(self, network_inst):
+        """Test validate_opt function."""
+        inst = network_inst
+        with pytest.raises(RuntimeError):
+            inst.validate_opt("OPT3", ("OPT1", "OPT2"))
+
+    def test_validate_range(self, network_inst):
+        """Test validate_range function."""
+        inst = network_inst
+        assert inst.validate_range(19.3, 1, 100) == 19.3
+        assert inst.validate_range(-19.3, 1, 100) == 1
+        assert inst.validate_range(193, 1, 100) == 100
