@@ -34,7 +34,7 @@ class HDF5File:
         y = np.array(dataset["values"])
 
         if db:
-            plt.plot(x, 20 * np.log(abs(y)))
+            plt.plot(x, 20 * np.log10(abs(y)))
             plt.ylabel = "Magnitude S21 [dB]"
         else:
             plt.plot(x, abs(y))
@@ -52,7 +52,7 @@ class HDF5File:
         y = np.array(y)
 
         if db:
-            plt.plot(x, 20 * np.log(abs(y)))
+            plt.plot(x, 20 * np.log10(abs(y)))
             plt.ylabel = "Magnitude S21 [dB]"
         else:
             plt.plot(x, abs(y))
