@@ -8,7 +8,7 @@ import numpy as np
 
 from qinst import VNAN9916A, Triton, log
 
-FILE_PATH = "data.hdf5"
+FILE_NAME = "data"
 
 DELAY_BETWEEN_ACQ: float = 1  # minutes
 TOTAL_ACQUISITION_TIME: float = 60 * 10  # minutes
@@ -26,8 +26,9 @@ vna = VNAN9916A("vna", "192.168.40.10")
 def save_data(
     date: str, temperature: float, frequencies: np.ndarray, values: np.ndarray
 ):
+    path = f"{FILE_NAME}-{time.strftime('m%d_%H%M%S')}.hdf5"
     """Save data appending to hdf5 file."""
-    with h5py.File(FILE_PATH, "a") as file:
+    with h5py.File(path, "a") as file:
         # Create a unique group for each acquisition
         group_name = f"{date}_T{temperature}"
         group = file.create_group(group_name)
