@@ -62,7 +62,7 @@ class SMA100B(NetworkInst):
     @screen_saver_time.setter
     def screen_saver_time(self, time: int = 10):
         """Set the wait time for the screen saver mode of the display."""
-        if time in range(1, 61):
+        if 0 < time < 61:
             self.write(f":DISP:PSAV:HOLD {time}")
         else:
             raise ValueError(
@@ -99,7 +99,7 @@ class SMA100B(NetworkInst):
     @f_fixed.setter
     def f_fixed(self, f):
         """Set the frequency of the RF output signal in the selected path."""
-        if f in range(8e3, 20e9 + 1):
+        if 8e3 <= f <= 20e9:
             self.write(f"SOUR:FREQ:CW {f}")
         else:
             raise ValueError(
@@ -114,7 +114,7 @@ class SMA100B(NetworkInst):
     @f_mult.setter
     def f_mult(self, n: float = 1.0):
         """Set the multiplication factor of a subsequent downstream instrument."""
-        if n in range(-10000, 10000):
+        if -10000 <= n <= 10000:
             self.write(f"SOUR:FREQ:MULT {n}")
         else:
             raise ValueError(
@@ -129,7 +129,7 @@ class SMA100B(NetworkInst):
     @f_offset.setter
     def f_offset(self, f):
         """Set the frequency offset of a downstream instrument."""
-        if f in range(8e3, 20e9 + 1):
+        if 8e3 <= f <= 20e9:
             self.write(f"SOUR:FREQ:OFFS {f}")
         else:
             raise ValueError(
@@ -140,10 +140,6 @@ class SMA100B(NetworkInst):
     def f_sweep_mode(self) -> str:
         """Return the cycle mode for the frequency sweep."""
         return self.query("TRIG:FSW:SOUR?")
-
-    def f_sweep(self):
-        """Perform a one-off RF frequency sweep."""
-        self.write("*TRG")
 
     @property
     def is_f_sweep_completed(self) -> bool:
@@ -169,7 +165,7 @@ class SMA100B(NetworkInst):
     @f_min.setter
     def f_min(self, f: float):
         """Set the start frequency for the RF sweep."""
-        if f in range(8e3, 20e9 + 1):
+        if 8e3 <= f <= 20e9:
             self.write(f"SOUR:FREQ:STAR {f}")
         else:
             raise ValueError(
@@ -184,7 +180,7 @@ class SMA100B(NetworkInst):
     @f_max.setter
     def f_max(self, f: float):
         """Set the stop frequency for the RF sweep."""
-        if f in range(8e3, 20e9 + 1):
+        if 8e3 <= f <= 20e9:
             self.write(f"SOUR:FREQ:STOP {f}")
         else:
             raise ValueError(
@@ -199,7 +195,7 @@ class SMA100B(NetworkInst):
     @f_center.setter
     def f_center(self, f: float):
         """Set the center frequency of the sweep."""
-        if f in range(8e3, 20e9 + 1):
+        if 8e3 <= f <= 20e9:
             self.write(f"SOUR:FREQ:STOP {f}")
         else:
             raise ValueError(
@@ -214,7 +210,7 @@ class SMA100B(NetworkInst):
     @f_span.setter
     def f_span(self, f: float):
         """Set the span of the frequency sweep range."""
-        if f in range(8e3, 20e9 + 1):
+        if 8e3 <= f <= 20e9:
             self.write(f"SOUR:FREQ:SPAN {abs(f)}")
         else:
             raise ValueError(
@@ -227,9 +223,9 @@ class SMA100B(NetworkInst):
         return float(self.query("SOUR:SWE:FREQ:STEP:LIN?"))
 
     @f_step.setter
-    def f_step(self, value: float = 1):
+    def f_step(self, value: float = 0.01):
         """Set the step width for linear sweeps."""
-        if value in range(0.001, abs(self.f_max - self.f_min)):
+        if 0.001 <= value <= abs(self.f_max - self.f_min):
             self.write(f"SOUR:SWE:FREQ:STEP:LIN {value} Hz")
         else:
             raise ValueError(
@@ -244,7 +240,7 @@ class SMA100B(NetworkInst):
     @f_dwell.setter
     def f_dwell(self, value: float = 0.01):
         """Set the dwell time for a frequency sweep step."""
-        if value in range(0.001, 100):
+        if 0.001 <= value <= 100:
             self.write(f"SOUR:SWE:FREQ:DWEL {value}")
         else:
             raise ValueError(
@@ -259,7 +255,7 @@ class SMA100B(NetworkInst):
     @phase.setter
     def phase(self, deg: float):
         """Set the phase variation relative to the current phase."""
-        if deg in range(-36000, 36000):
+        if -36000 <= deg <= 36000:
             self.write(f"SOUR:PHAS {deg} DEG")
         else:
             raise ValueError(
@@ -324,15 +320,10 @@ class SMA100B(NetworkInst):
                 f"Invalid level sweep mode selected, choose between {allowed}."
             )
 
-    def p_sweep(self):
-        """Perform a one-off RF level sweep."""
-        self.write("*TRG")
-
     @property
     def is_p_sweep_completed(self) -> bool:
         """Return the status of the RF level sweep that is running."""
-        status = self.query("SOUR:SWE:POW:RUNN?")
-        return status == "0"
+        return self.query("SOUR:SWE:POW:RUNN?") == "0"
 
     @property
     def p_min(self) -> float:
@@ -362,7 +353,7 @@ class SMA100B(NetworkInst):
     @p_dwell.setter
     def p_dwell(self, value: float = 0.01):
         """Set the dwell time for a level sweep step."""
-        if value in range(0.001, 100):
+        if 0.001 <= value <= 100:
             self.write(f"SOUR:SWE:POW:DWEL {value}")
         else:
             raise ValueError(
@@ -375,11 +366,15 @@ class SMA100B(NetworkInst):
         return float(self.query("SOUR:SWE:POW:STEP:LOG?"))
 
     @p_step.setter
-    def p_step(self, value: float = 1):
+    def p_step(self, value: float = 1.0):
         """Set a logarithmically determined step size for the RF level sweep. The level is increased by a logarithmically calculated fraction of the current level."""
-        if value in range(0.01, 139):
+        if 0.01 <= value <= 139:
             self.write(f"SOUR:SWE:POW:STEP:LOG {value} DB")
         else:
             raise ValueError(
                 "The step size for the RF level sweep must be 0.01 to 139 dB."
             )
+
+    def sweep(self):
+        """Perform a one-off RF frequency/level sweep."""
+        self.write("*TRG")
