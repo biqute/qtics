@@ -43,7 +43,9 @@ class Triton(NetworkInst):
         """
         if self._mixing_chamber_ch is not None:
             return self._mixing_chamber_ch
-        self._mixing_chamber_ch = int(self.query("READ:SYS:DR:CHAN:MC"))
+        self._mixing_chamber_ch = int(
+            self.query("READ:SYS:DR:CHAN:MC")[1:]
+        )  # return is like "T5"
         return self._mixing_chamber_ch
 
     @property

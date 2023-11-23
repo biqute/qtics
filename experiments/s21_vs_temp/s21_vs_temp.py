@@ -6,19 +6,20 @@ from datetime import datetime
 import h5py
 import numpy as np
 
-from qinst import VNAN9916A, Triton
+from qinst import VNAN9916A, Triton, log
 
 FILE_PATH = "data.hdf5"
 
 DELAY_BETWEEN_ACQ: float = 1  # minutes
 TOTAL_ACQUISITION_TIME: float = 60 * 10  # minutes
 
-START = 1e9  # GHZ
-STOP = 4e9  # GHZ
-SIZE = 0.5e9  # GHZ
+START = 1e9  # Hz
+STOP = 4e9  # Hz
+SIZE = 0.5e9  # Hz
 
 
 triton = Triton("triton")
+triton.connect()
 vna = VNAN9916A("vna", "192.168.40.10")
 
 
@@ -45,20 +46,22 @@ def main():
     for _ in range(int(TOTAL_ACQUISITION_TIME / DELAY_BETWEEN_ACQ)):
         try:
             date = str(datetime.now())
+            log.info(f"Acquisition started at time {date}.")
             temperature = triton.get_mixing_chamber_temp()
             frequencies, values = vna.survey(
                 f_win_start=START, f_win_end=STOP, f_win_size=SIZE
             )
 
             save_data(date, temperature, frequencies, values)
-            print(f"Acquisition done at {date} with {temperature} mK.")
+            log.info(f"Single acquisition completed. T =  {temperature} mK.")
         except KeyboardInterrupt:
-            print("Interrupt signal received, exiting")
+            log.warning("Interrupt signal received, exiting")
             break
         except Exception as e:
-            print(f"\n\nException occured: {e}")
+            log.error(f"\n\nException occured: {e}")
         finally:
             time.sleep(DELAY_BETWEEN_ACQ * 60)
+        log.info("Acquisition completed. Closing.")
 
 
 if __name__ == "__main__":
