@@ -383,3 +383,123 @@ class VNAN9916A(N9916A):
             f.append(f_temp[1:])
             z.append(z_temp[1:])
         return np.array(f).flatten(), np.array(z).flatten()
+
+
+class SAN9916A(N9916A):
+    """Spectrum Analyzer mode of the N9916A."""
+
+    def __init__(
+        self,
+        name: str,
+        address: str,
+        port: int = 5025,
+        timeout: int = 1000,
+        sleep: float = 0.1,
+        no_delay=True,
+        max_points=10001,
+    ):
+        """Initialize super instrument and setup VNA mode."""
+        super().__init__(name, address, port, timeout, sleep, no_delay, max_points)
+        self.connect()
+        self.clear()
+        self.reset()
+        self._mode = "SA"
+        self.__trace = 1
+
+    def set_full_span(self):
+        """Set the frequency span to the entire span of the FieldFox."""
+        self.write("FREQ:SPAN:FULL")
+
+    def set_zero_span(self):
+        """Set the frequency span to 0 Hz."""
+        self.write("FREQ:SPAN:ZERO")
+
+    @property
+    def attenuation(self) -> float:
+        """RF attenuation value."""
+        return float(self.query("POW:ATT?"))
+
+    @attenuation.setter
+    def attenuation(self, att: float):
+        att = self.validate_range(att, 0, 100)
+        self.write(f"POW:ATT {att}")
+
+    @property
+    def auto_attenuation(self) -> bool:
+        """Automatic RF attenuation."""
+        return self.query("POW:ATT:AUTO?") == "ON"
+
+    @auto_attenuation.setter
+    def auto_attenuation(self, auto: bool):
+        self.write(f"POW:GAIN:STAT {int(auto)}")
+
+    @property
+    def gain(self) -> bool:
+        """Automatic gain selection."""
+        return self.query("POW:GAIN:STAT?") == "ON"
+
+    @gain.setter
+    def gain(self, auto: bool):
+        self.write(f"POW:GAIN:state {int(auto)}")
+
+    @property
+    def auto_gain(self) -> bool:
+        """Automatic gain selection."""
+        return self.query("POW:GAIN:AUTO?") == "ON"
+
+    @auto_gain.setter
+    def auto_gain(self, auto: bool):
+        self.write(f"POW:GAIN:AUTO {int(auto)}")
+
+    @property
+    def res_bandwidth(self) -> float:
+        """Resolution bandwidth value."""
+        return float(self.query("BAND:RES?"))
+
+    @res_bandwidth.setter
+    def res_bandwidth(self, res: float):
+        res = self.validate_range(res, 10, 2e6)
+        self.write(f"BAND:RES {res}")
+
+    @property
+    def auto_res_bandwidth(self) -> bool:
+        """Automatic resolution bandwidth."""
+        return self.query("BAND:RES:AUTO?") == "ON"
+
+    @auto_res_bandwidth.setter
+    def auto_res_bandwidth(self, auto: bool):
+        self.write(f"BAND:RES:AUTO {int(auto)}")
+
+    @property
+    def average_type(self) -> str:
+        """The average type (sweeping or point by point)."""
+        return self.query("AVER:TYPE?")
+
+    @average_type.setter
+    def average_type(self, mode: str):
+        self.validate_opt(mode, ("AUTO", "POW", "POWer", "LOG", "VOLT"))
+        self.write(f"AVER:TYPE {mode}")
+
+    @property
+    def yformat(self) -> str:
+        """Measurement unit of the data amplitude."""
+        return self.query("AMPL:UNIT?")
+
+    @yformat.setter
+    def yformat(self, data_format="MLOG"):
+        units = (
+            "W",  # watts
+            "DBM",  # dBm
+            "DBMV",  # dB milliVolts
+            "DBUV",  # dB microvolts
+            "DBMA",  # dB milliAmps
+            "DBUA",  # dB microAmps
+            "V",  # volts
+            "A",  # amps
+        )
+        self.validate_opt(data_format, units)
+        self.write(f"AMPL:UNIT {data_format}")
+
+    def read_data(self) -> np.ndarray:
+        """Read the current data trace values."""
+        return self.query_data(f"TRAC{self.__trace}:DATA?")
