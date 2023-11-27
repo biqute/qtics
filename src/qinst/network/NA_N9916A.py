@@ -237,7 +237,7 @@ class VNAN9916A(N9916A):
         self.data_format = "REAL,64"
 
     def autoscale(self):
-        """Autoscale all."""
+        """Autoscale selected trace."""
         self.write(f"DISP:WIND:TRAC{self.__trace}:Y:AUTO")
 
     def activate_trace(self):
@@ -411,7 +411,7 @@ class SAN9916A(N9916A):
         self.write("FREQ:SPAN:FULL")
 
     def set_zero_span(self):
-        """Set the frequency span to 0 Hz."""
+        """Set the frequency span to 0 Hz around the center frequency."""
         self.write("FREQ:SPAN:ZERO")
 
     @property
@@ -480,6 +480,10 @@ class SAN9916A(N9916A):
         self.validate_opt(mode, ("AUTO", "POW", "POWer", "LOG", "VOLT"))
         self.write(f"AVER:TYPE {mode}")
 
+    def clear_average(self):
+        """Restart averaging from 1."""
+        self.write_and_hold("INIT:REST")
+
     @property
     def yformat(self) -> str:
         """Measurement unit of the data amplitude."""
@@ -500,6 +504,34 @@ class SAN9916A(N9916A):
         self.validate_opt(data_format, units)
         self.write(f"AMPL:UNIT {data_format}")
 
+    @property
+    def yscale(self) -> str:
+        """Scale of the amplitude axis."""
+        return self.query("AMPL:SCAL?")
+
+    @yscale.setter
+    def yscale(self, scale: str):
+        self.validate_opt(scale, ("LOG", "LIN"))
+        self.write(f"AMPL:SCAL: {scale}")
+
+    def autoscale(self):
+        """Autoscale all traces."""
+        self.write(f"DISP:WIND:TRAC:Y:AUTO")
+
+    def read_freqs(self) -> np.ndarray:
+        """Compute the measured frequencies array."""
+        return np.linspace(self.f_min, self.f_max, self.sweep_points)
+
     def read_data(self) -> np.ndarray:
         """Read the current data trace values."""
         return self.query_data(f"TRAC{self.__trace}:DATA?")
+
+    def snapshot(self, **kwargs) -> Tuple[np.ndarray, np.ndarray]:
+        """Get observed frequencies and amplitudes."""
+        self.set(**kwargs)
+        self.autoscale()
+        f = self.read_freqs()
+        self.clear_average()
+        amp = self.read_data()
+        self.hold()
+        return f, amp
