@@ -35,26 +35,35 @@ class HDF5File:
 
         if db:
             plt.plot(x, 20 * np.log10(abs(y)))
-            plt.ylabel = "Magnitude S21 [dB]"
+            plt.ylabel("Magnitude S21 [dB]")
         else:
             plt.plot(x, abs(y))
-            plt.ylabel = "Magnitude S21 [au]"
-        plt.xlabel = "Frequencies [Hz]"
+            plt.ylabel("Magnitude S21 [au]")
+        plt.xlabel("Frequencies [Hz]")
 
-    def plot_s21_vs_temp(self, min: float = 0.0, max: float = 1.0e10, db: bool = True):
+    def plot_s21_vs_temp(
+        self, min_freq: float = 0.0, max_freq: float = 1.0e10, db: bool = True
+    ):
         """Plot S21 Vs temperature. Data averaged in a range."""
         x = np.array(self.temps)
         y = []
         for idx in range(len(self.names)):
             vals = np.array(self.get_dataset(idx=idx)["values"])
-            y.append(np.mean(vals[min < vals < max]))
+            freqs = np.array(self.get_dataset(idx=idx)["values"])
+
+            # this is not particularly nice
+            vals = vals[min_freq > freqs]
+            freqs = freqs[min_freq > freqs]
+            vals = vals[max_freq < freqs]
+
+            y.append(np.mean(np.abs(vals)))
 
         y = np.array(y)
 
         if db:
             plt.plot(x, 20 * np.log10(abs(y)))
-            plt.ylabel = "Magnitude S21 [dB]"
+            plt.ylabel("Magnitude S21 [dB]")
         else:
             plt.plot(x, abs(y))
-            plt.ylabel = "Magnitude S21 [au]"
-        plt.xlabel = "Frequencies [Hz]"
+            plt.ylabel("Magnitude S21 [au]")
+        plt.xlabel("Frequencies [Hz]")
