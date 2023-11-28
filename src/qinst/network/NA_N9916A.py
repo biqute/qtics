@@ -118,6 +118,21 @@ class N9916A(NetworkInst):
         return float(self.query("SWE:TIME?"))
 
     @property
+    def sweep_meas_time(self) -> float:
+        """Time to complete a measurement sweep."""
+        return float(self.query("SWE:MTIME?"))
+
+    @property
+    def average(self) -> int:
+        """The number of sweep averages."""
+        return int(self.query("AVER:COUN?"))
+
+    @average.setter
+    def average(self, n_avg: int):
+        n_avg = self.validate_range(n_avg, 0, 100)
+        self.write(f"SENSE:AVER:COUN {n_avg}")
+
+    @property
     def continuous(self) -> bool:
         """Acquisition mode."""
         return self.query("INIT:CONT?") != "0"
@@ -282,15 +297,6 @@ class VNAN9916A(N9916A):
             self.write("CALC:SMO 0")
 
     @property
-    def average(self) -> int:
-        """The number of sweep averages."""
-        return int(self.query("AVER:COUN?"))
-
-    @average.setter
-    def average(self, n_avg: int):
-        self.write(f"SENSE:AVER:COUN {min(n_avg, 100)}")
-
-    @property
     def average_mode(self) -> str:
         """The average mode (sweeping or point by point)."""
         return self.query("AVER:MODE?")
@@ -405,6 +411,8 @@ class SAN9916A(N9916A):
         self.reset()
         self._mode = "SA"
         self.__trace = 1
+        self.continuous = True
+        self.trace_type = "AVG"
 
     def set_full_span(self):
         """Set the frequency span to the entire span of the FieldFox."""
@@ -471,6 +479,16 @@ class SAN9916A(N9916A):
         self.write(f"BAND:RES:AUTO {int(auto)}")
 
     @property
+    def trace_type(self) -> str:
+        """Displayed trace mode."""
+        return self.query(f"TRAC{self.__trace}:TYPE?")
+
+    @trace_type.setter
+    def trace_type(self, opt: str):
+        self.validate_opt(opt, ("CLRW", "BLAN", "MAXH", "MINH", "AVG", "VIEW"))
+        self.write(f"TRAC{self.__trace}:TYPE " + opt)
+
+    @property
     def average_type(self) -> str:
         """The average type (sweeping or point by point)."""
         return self.query("AVER:TYPE?")
@@ -523,7 +541,14 @@ class SAN9916A(N9916A):
         return np.linspace(self.f_min, self.f_max, self.sweep_points)
 
     def read_data(self) -> np.ndarray:
-        """Read the current data trace values."""
+        """Read the current data trace values considering averaging."""
+        self.clear_average()
+        if self.continuous:
+            meas_time = self.sweep_meas_time * self.average * 1.02
+            time.sleep.wait(meas_time)
+        else:
+            for _ in range(self.average):
+                self.write_and_hold("INIT:IMM")
         return self.query_data(f"TRAC{self.__trace}:DATA?")
 
     def snapshot(self, **kwargs) -> Tuple[np.ndarray, np.ndarray]:
@@ -531,7 +556,6 @@ class SAN9916A(N9916A):
         self.set(**kwargs)
         self.autoscale()
         f = self.read_freqs()
-        self.clear_average()
         amp = self.read_data()
         self.hold()
         return f, amp
