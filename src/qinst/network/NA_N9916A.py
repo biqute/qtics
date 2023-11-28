@@ -6,7 +6,7 @@ Controller of the N9916A Vector Analyzer by Keysight.
 
 The code for query_data() was partially taken from https://github.com/morgan-at-keysight/socketscpi
 """
-import time
+from time import sleep
 from typing import Tuple
 
 import numpy as np
@@ -338,7 +338,7 @@ class VNAN9916A(N9916A):
         if self.continuous:
             meas_time = self.sweep_time * self.average * 1.02
             self.clear_average()
-            time.sleep.wait(meas_time)
+            sleep(meas_time)
             return
         if self.average_mode == "SWE":
             for _ in range(self.average):
@@ -411,7 +411,7 @@ class SAN9916A(N9916A):
         self.reset()
         self._mode = "SA"
         self.__trace = 1
-        self.continuous = True
+        self.continuous = False
         self.trace_type = "AVG"
 
     def set_full_span(self):
@@ -449,15 +449,6 @@ class SAN9916A(N9916A):
     @gain.setter
     def gain(self, auto: bool):
         self.write(f"POW:GAIN:state {int(auto)}")
-
-    @property
-    def auto_gain(self) -> bool:
-        """Automatic gain selection."""
-        return self.query("POW:GAIN:AUTO?") == "ON"
-
-    @auto_gain.setter
-    def auto_gain(self, auto: bool):
-        self.write(f"POW:GAIN:AUTO {int(auto)}")
 
     @property
     def res_bandwidth(self) -> float:
@@ -545,7 +536,7 @@ class SAN9916A(N9916A):
         self.clear_average()
         if self.continuous:
             meas_time = self.sweep_meas_time * self.average * 1.02
-            time.sleep.wait(meas_time)
+            sleep(meas_time)
         else:
             for _ in range(self.average):
                 self.write_and_hold("INIT:IMM")
