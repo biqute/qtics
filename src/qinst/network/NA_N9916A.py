@@ -8,14 +8,17 @@ The code for query_data() was partially taken from https://github.com/morgan-at-
 """
 import time
 from typing import Tuple
+from abc import ABC, abstractmethod
 
 import numpy as np
 
 from qinst import log
 from qinst.network_inst import NetworkInst
 
+MEAS_TIME_FACTOR = 1.02
 
-class N9916A(NetworkInst):
+
+class N9916A(NetworkInst, ABC):
     """N9916A FieldFox Handheld Microwave Analyzer by Keysight."""
 
     def __init__(
@@ -28,11 +31,6 @@ class N9916A(NetworkInst):
         no_delay: bool = True,
         max_points: int = 10001,
     ):
-        """Initialize."""
-        if isinstance(self, N9916A):
-            raise RuntimeError(
-                "You cannot instantiate directly N9916A: use a subclass."
-            )
         super().__init__(name, address, port, timeout, sleep, no_delay)
         self._max_points = max_points
 
@@ -191,7 +189,7 @@ class N9916A(NetworkInst):
         if self.socket.recv(1) != b"#":
             raise ValueError("Data in buffer is not in binblock format.")
 
-        # "Extract header length and number of bytes in binblock.
+        # Extract header length and number of bytes in binblock.
         header_length = int(self.socket.recv(1).decode("utf-8"), 16)
         n_bytes = int(self.socket.recv(header_length).decode("utf-8"))
 
@@ -214,21 +212,21 @@ class N9916A(NetworkInst):
 
         return np.frombuffer(raw_data, dtype=dtype).astype(float)
 
+    @abstractmethod
     def clear_average(self):
         """Reset averaging."""
-        raise NotImplementedError
 
+    @abstractmethod
     def autoscale(self):
         """Autoscale selected trace."""
-        raise NotImplementedError
 
+    @abstractmethod
     def read_trace_data(self, yformat=None):
         """Read trace data from the instrument."""
-        raise NotImplementedError
 
+    @abstractmethod
     def read_freqs(self):
         """Read trace frequencies from the instrument."""
-        raise NotImplementedError
 
     def snapshot(self, yformat=None, **kwargs) -> Tuple[np.ndarray, np.ndarray]:
         """Get frequency and trace values for a single sweep."""
@@ -371,7 +369,7 @@ class VNAN9916A(N9916A):
         self.clear_average()
         self.autoscale()
         if self.continuous:
-            meas_time = self.sweep_time * self.average * 1.02
+            meas_time = self.sweep_time * self.average * MEAS_TIME_FACTOR
             time.sleep(meas_time)
             return
         if self.average_mode == "SWE":
@@ -548,7 +546,7 @@ class SAN9916A(N9916A):
         self.clear_average()
         self.autoscale()
         if self.continuous:
-            meas_time = self.sweep_meas_time * self.average * 1.02
+            meas_time = self.sweep_meas_time * self.average * MEAS_TIME_FACTOR
             time.sleep(meas_time)
         else:
             for _ in range(self.average):
