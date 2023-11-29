@@ -21,12 +21,14 @@ SIZE = 0.5e9  # Hz
 triton = Triton("triton")
 triton.connect()
 vna = VNAN9916A("vna", "192.168.40.10")
+vna.set(sweep_points=1600, power=-30, average=1)
+
+path = f"{FILE_NAME}-{time.strftime('%m/%d_%H:%M:%S')}.hdf5"
 
 
 def save_data(
     date: str, temperature: float, frequencies: np.ndarray, values: np.ndarray
 ):
-    path = f"{FILE_NAME}-{time.strftime('m%d_%H%M%S')}.hdf5"
     """Save data appending to hdf5 file."""
     with h5py.File(path, "a") as file:
         # Create a unique group for each acquisition
@@ -47,14 +49,15 @@ def main():
     for _ in range(int(TOTAL_ACQUISITION_TIME / DELAY_BETWEEN_ACQ)):
         try:
             date = str(datetime.now())
-            log.info(f"Acquisition started at time {date}.")
+            log.info(f"Acquisition started.")
             temperature = triton.get_mixing_chamber_temp()
+            log.info(f"Temperature: {round(temperature, 2)} mK.")
             frequencies, values = vna.survey(
                 f_win_start=START, f_win_end=STOP, f_win_size=SIZE
             )
 
             save_data(date, temperature, frequencies, values)
-            log.info(f"Single acquisition completed. T =  {temperature} mK.")
+            log.info(f"Single acquisition completed.")
         except KeyboardInterrupt:
             log.warning("Interrupt signal received, exiting")
             break
