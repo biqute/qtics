@@ -224,7 +224,9 @@
         </div>
         <article role="main">
           <h1>Source code for qinst.serial.voltage_source_SIM928</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">time</span>
+<span></span><span class="sd">&quot;&quot;&quot;Keithely device 6514.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Literal</span>
 
 <span class="kn">import</span> <span class="nn">serial</span>
@@ -282,14 +284,10 @@
 <span class="sd">        Reset the mainframe before disconnecting to avoid problems when connecting again.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">serial</span><span class="o">.</span><span class="n">is_open</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;esc*RST&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;esc&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
             <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sleep</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">serial</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
-
-    <span class="c1"># Basic commands</span>
-<div class="viewcode-block" id="SIM928.reset"><a class="viewcode-back" href="../../../api-reference/qinst.serial.html#qinst.serial.voltage_source_SIM928.SIM928.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reset the SIM928 to default configuration: 0 V, output Off.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;*RST&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="SIM928.output_on"><a class="viewcode-back" href="../../../api-reference/qinst.serial.html#qinst.serial.voltage_source_SIM928.SIM928.output_on">[docs]</a>    <span class="k">def</span> <span class="nf">output_on</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Turn the output on.&quot;&quot;&quot;</span>
@@ -329,8 +327,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;BATS?&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="SIM928.battery_spec"><a class="viewcode-back" href="../../../api-reference/qinst.serial.html#qinst.serial.voltage_source_SIM928.SIM928.battery_spec">[docs]</a>    <span class="k">def</span> <span class="nf">battery_spec</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameter</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Query the battery specification for parameter i.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Query the battery specification for parameter i.</span>
 
 <span class="sd">        Valid parameters to query:</span>
 <span class="sd">        - PNUM (0): Battery pack part number</span>
@@ -339,7 +336,6 @@
 <span class="sd">        - CYCLES (3): # charge cycles used</span>
 <span class="sd">        - PDATE (4): Battery pack production date (YYYY-MM-DD)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-
         <span class="n">parameters</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;PNUM&quot;</span><span class="p">,</span> <span class="s2">&quot;SERIAL&quot;</span><span class="p">,</span> <span class="s2">&quot;MAXCY&quot;</span><span class="p">,</span> <span class="s2">&quot;CYCLES&quot;</span><span class="p">,</span> <span class="s2">&quot;PDATE&quot;</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">parameter</span> <span class="ow">in</span> <span class="n">parameters</span><span class="p">:</span>

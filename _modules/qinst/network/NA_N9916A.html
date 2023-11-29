@@ -270,10 +270,6 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Clear the error queue and all status registers.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write_and_hold</span><span class="p">(</span><span class="s2">&quot;*CLS&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="N9916A.reset"><a class="viewcode-back" href="../../../api-reference/qinst.network.html#qinst.network.NA_N9916A.N9916A.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reset the device and cancel any pending OPC command or query.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">write_and_hold</span><span class="p">(</span><span class="s2">&quot;*RST&quot;</span><span class="p">)</span></div>
-
 <div class="viewcode-block" id="N9916A.hold"><a class="viewcode-back" href="../../../api-reference/qinst.network.html#qinst.network.NA_N9916A.N9916A.hold">[docs]</a>    <span class="k">def</span> <span class="nf">hold</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Wait until all commands have been processed.&quot;&quot;&quot;</span>
         <span class="n">complete</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;*OPC?&quot;</span><span class="p">)</span>
