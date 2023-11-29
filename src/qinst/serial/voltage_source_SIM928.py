@@ -56,14 +56,10 @@ class SIM928(SerialInst):
         Reset the mainframe before disconnecting to avoid problems when connecting again.
         """
         if self.serial.is_open:
-            self.write("esc*RST")
+            self.write("esc")
+            self.reset()
             time.sleep(self.sleep)
             self.serial.close()
-
-    # Basic commands
-    def reset(self):
-        """Reset the SIM928 to default configuration: 0 V, output Off."""
-        self.write("*RST")
 
     def output_on(self):
         """Turn the output on."""

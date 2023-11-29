@@ -10,10 +10,6 @@ from qinst.network_inst import NetworkInst
 class SMA100B(NetworkInst):
     """R&S SMA100B RF and microwave signal generator by Rohde & Schwarz."""
 
-    def reset(self):
-        """Reset the instrument to a defined default status."""
-        self.write("*RST")
-
     def clear(self):
         """Clear the output buffer."""
         self.write("*CLS")

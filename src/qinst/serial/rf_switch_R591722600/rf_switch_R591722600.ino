@@ -14,6 +14,7 @@ int open_pins[6] = {0, 0, 0, 0, 0, 0};
 
 void setup() {
   my_instrument.RegisterCommand(F("*IDN?"), &Identify);
+  my_instrument.RegisterCommand(F("*RST"), &ResetSwitch);
   my_instrument.RegisterCommand(F("DIGital:PINs?"), &GetDigitalPins);
 
   my_instrument.SetCommandTreeBase(F("PULse"));
@@ -21,7 +22,6 @@ void setup() {
   my_instrument.RegisterCommand(F(":LENght?"), &GetPulseLenght);
 
   my_instrument.SetCommandTreeBase(F("SWItch"));
-  my_instrument.RegisterCommand(F(":RESet"), &ResetSwitch);
   my_instrument.RegisterCommand(F(":ON"), &SetOpen);
   my_instrument.RegisterCommand(F(":ON?"), &GetOpen);
 

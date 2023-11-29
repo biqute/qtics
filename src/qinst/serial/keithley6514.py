@@ -38,11 +38,6 @@ class Keithley6514(SerialInst):
             self.write("SYST:LOC")
             self.serial.close()
 
-    # Basic commands
-    def reset(self):
-        """Return Model 6514 to the RST default conditions."""
-        self.write("*RST", True)
-
     def zcheck_on(self):
         """Enable zero check."""
         self.write("SYST:ZCH ON", True)
