@@ -1,8 +1,8 @@
 """
 Controller of the N9916A Vector Analyzer by Keysight.
 
-..module:: NA_N9916A.py
-..moduleauthor:: Pietro Campana <campana.pietro@campus.unimib.it>
+.. module:: NA_N9916A.py
+.. moduleauthor:: Pietro Campana <campana.pietro@campus.unimib.it>
 
 The code for query_data() was partially taken from https://github.com/morgan-at-keysight/socketscpi
 """
