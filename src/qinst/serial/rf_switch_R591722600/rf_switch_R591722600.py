@@ -37,10 +37,6 @@ class Switch_R591(SerialInst):
         self._pulse_lenght = value
         self.write(f"PUL:LEN {value}")
 
-    def reset(self) -> None:
-        """Close all RF ports."""
-        self.write("SWI:RES")
-
     def open(self, pin: int) -> None:
         """Open port at specififed pin."""
         self.write(f"SWI:ON {pin}")
