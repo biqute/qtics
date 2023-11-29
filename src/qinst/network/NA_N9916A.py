@@ -6,11 +6,12 @@ Controller of the N9916A Vector Analyzer by Keysight.
 
 The code for query_data() was partially taken from https://github.com/morgan-at-keysight/socketscpi
 """
-from time import sleep
+import time
 from typing import Tuple
 
 import numpy as np
 
+from qinst import log
 from qinst.network_inst import NetworkInst
 
 
@@ -28,7 +29,7 @@ class N9916A(NetworkInst):
         max_points: int = 10001,
     ):
         """Initialize."""
-        if type(self) == N9916A:
+        if isinstance(self, N9916A):
             raise RuntimeError(
                 "You cannot instantiate directly N9916A: use a subclass."
             )
@@ -142,17 +143,11 @@ class N9916A(NetworkInst):
         self.write_and_hold(f"INIT:CONT {int(status)}")
 
     def single_sweep(self):
-        """
-        Perform a single sweep, then hold. Use this sweep mode for reading trace data.
-
-        Triggering single sweeps is only possible with continuous=False.
-        """
-        if self.continuous == True:
+        """Perform a single sweep, then hold. Use this sweep mode for reading trace data."""
+        if self.continuous:
+            log.warning("Setting continuous=False to perform single sweep triggering.")
             self.continuous = False
-            self.write_and_hold("INIT:IMM")
-            self.continuous = True
-        else:
-            self.write_and_hold("INIT:IMM")
+        self.write_and_hold("INIT:IMM")
 
     @property
     def data_format(self) -> str:
@@ -196,7 +191,7 @@ class N9916A(NetworkInst):
         if self.socket.recv(1) != b"#":
             raise ValueError("Data in buffer is not in binblock format.")
 
-        # Extract header length and number of bytes in binblock.
+        # "Extract header length and number of bytes in binblock.
         header_length = int(self.socket.recv(1).decode("utf-8"), 16)
         n_bytes = int(self.socket.recv(header_length).decode("utf-8"))
 
@@ -218,6 +213,36 @@ class N9916A(NetworkInst):
             raise ValueError("Data not terminated correctly.")
 
         return np.frombuffer(raw_data, dtype=dtype).astype(float)
+
+    def read_trace_data(self, yformat=None):
+        """Read trace data from the instrument."""
+        raise NotImplementedError
+
+    def read_freqs(self):
+        """Read trace frequencies from the instrument."""
+        raise NotImplementedError
+
+    def snapshot(self, yformat=None, **kwargs) -> Tuple[np.ndarray, np.ndarray]:
+        """Get frequency and trace values for a single sweep."""
+        self.set(**kwargs)
+        self.hold()
+        z = self.read_trace_data(yformat=yformat)
+        f = self.read_freqs()
+        self.hold()
+        return f, z
+
+    def survey(
+        self, f_win_start, f_win_end, f_win_size, **kwargs
+    ) -> Tuple[np.ndarray, np.ndarray]:
+        """Execute multiple scans with higher resolution."""
+        f = []
+        z = []
+        self.set(**kwargs)
+        for f_min in np.arange(f_win_start, f_win_end, f_win_size):
+            f_temp, z_temp = self.snapshot(f_min=f_min, f_max=f_min + f_win_size)
+            f.append(f_temp[1:])
+            z.append(z_temp[1:])
+        return np.array(f).flatten(), np.array(z).flatten()
 
 
 class VNAN9916A(N9916A):
@@ -335,10 +360,11 @@ class VNAN9916A(N9916A):
 
     def sweep(self):
         """Perform a frequency sweep measurement considering averaging and sweep mode."""
+        self.clear_average()
+        self.autoscale()
         if self.continuous:
             meas_time = self.sweep_time * self.average * 1.02
-            self.clear_average()
-            sleep(meas_time)
+            time.sleep(meas_time)
             return
         if self.average_mode == "SWE":
             for _ in range(self.average):
@@ -351,44 +377,19 @@ class VNAN9916A(N9916A):
             f"Bad combination of average mode {self.average_mode} and number {self.average}."
         )
 
-    def read_IQ(self) -> np.ndarray:
-        """Read unformatted IQ data."""
-        self.sweep()
-        IQ = self.query_data("CALC:DATA:SDATA?")
-        len_2 = int(len(IQ) / 2)
-        z = np.empty(len_2, dtype=np.complex128)
-        z.real = IQ[0::2]
-        z.imag = IQ[1::2]
-        return z
-
-    def read_formatted_data(self) -> np.ndarray:
-        """Read formatted data."""
+    def read_trace_data(self, yformat=None) -> np.ndarray:
+        """Read unformatted IQ data or formatted trace data."""
+        if yformat is None:
+            self.sweep()
+            IQ = self.query_data("CALC:DATA:SDATA?")
+            len_2 = int(len(IQ) / 2)
+            z = np.empty(len_2, dtype=np.complex128)
+            z.real = IQ[0::2]
+            z.imag = IQ[1::2]
+            return z
+        self.yformat = yformat
         self.sweep()
         return self.query_data("CALC:DATA:FDATA?")
-
-    def snapshot(self, **kwargs) -> Tuple[np.ndarray, np.ndarray]:
-        """Get frequency and IQ values for a single sweep."""
-        self.set(**kwargs)
-        self.clear_average()
-        self.hold()
-        self.autoscale()
-        z = self.read_IQ()
-        f = self.read_freqs()
-        self.hold()
-        return f, z
-
-    def survey(
-        self, f_win_start, f_win_end, f_win_size, **kwargs
-    ) -> Tuple[np.ndarray, np.ndarray]:
-        """Execute multiple scans with higher resolution."""
-        f = []
-        z = []
-        self.set(**kwargs)
-        for f_min in np.arange(f_win_start, f_win_end, f_win_size):
-            f_temp, z_temp = self.snapshot(f_min=f_min, f_max=f_min + f_win_size)
-            f.append(f_temp[1:])
-            z.append(z_temp[1:])
-        return np.array(f).flatten(), np.array(z).flatten()
 
 
 class SAN9916A(N9916A):
@@ -413,6 +414,7 @@ class SAN9916A(N9916A):
         self.__trace = 1
         self.continuous = False
         self.trace_type = "AVG"
+        self.data_format = "REAL,64"
 
     def set_full_span(self):
         """Set the frequency span to the entire span of the FieldFox."""
@@ -499,7 +501,7 @@ class SAN9916A(N9916A):
         return self.query("AMPL:UNIT?")
 
     @yformat.setter
-    def yformat(self, data_format="MLOG"):
+    def yformat(self, data_format="DBM"):
         units = (
             "W",  # watts
             "DBM",  # dBm
@@ -525,28 +527,22 @@ class SAN9916A(N9916A):
 
     def autoscale(self):
         """Autoscale all traces."""
-        self.write(f"DISP:WIND:TRAC:Y:AUTO")
+        self.write("DISP:WIND:TRAC:Y:AUTO")
 
     def read_freqs(self) -> np.ndarray:
         """Compute the measured frequencies array."""
         return np.linspace(self.f_min, self.f_max, self.sweep_points)
 
-    def read_data(self) -> np.ndarray:
+    def read_trace_data(self, yformat=None) -> np.ndarray:
         """Read the current data trace values considering averaging."""
+        if yformat is not None:
+            self.yformat = yformat
         self.clear_average()
+        self.autoscale()
         if self.continuous:
             meas_time = self.sweep_meas_time * self.average * 1.02
-            sleep(meas_time)
+            time.sleep(meas_time)
         else:
             for _ in range(self.average):
-                self.write_and_hold("INIT:IMM")
+                self.single_sweep()
         return self.query_data(f"TRAC{self.__trace}:DATA?")
-
-    def snapshot(self, **kwargs) -> Tuple[np.ndarray, np.ndarray]:
-        """Get observed frequencies and amplitudes."""
-        self.set(**kwargs)
-        self.autoscale()
-        f = self.read_freqs()
-        amp = self.read_data()
-        self.hold()
-        return f, amp
