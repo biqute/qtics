@@ -214,6 +214,14 @@ class N9916A(NetworkInst):
 
         return np.frombuffer(raw_data, dtype=dtype).astype(float)
 
+    def clear_average(self):
+        """Reset averaging."""
+        raise NotImplementedError
+
+    def autoscale(self):
+        """Autoscale selected trace."""
+        raise NotImplementedError
+
     def read_trace_data(self, yformat=None):
         """Read trace data from the instrument."""
         raise NotImplementedError

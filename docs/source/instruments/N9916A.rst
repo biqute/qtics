@@ -15,10 +15,12 @@ Other than featuring all the methods of :class:`qinst.network_inst.NetworkInst`,
 
 Functions
 ------------
-- write_and_hold()
 - clear()
 - reset()
 - hold()
+- write_and_hold()
+- autoscale()
+- clear_average()
 - single_sweep()
 - query_data()
 - read_trace_data()
@@ -37,6 +39,7 @@ Properties
 - average
 - continuous
 - data_format
+- yformat
 
 VNA mode
 """"""""
@@ -72,12 +75,8 @@ Since the instrument allows a maximum number of 10001 points in a single sweep, 
 Functions
 ------------
 - setup()
-- autoscale()
 - activate_trace()
-- clear_average()
-- read_freqs()
 - sweep()
-- read_data()
 
 Properties
 ------------
@@ -122,16 +121,12 @@ Functions
 ------------
 - set_full_span()
 - set_zero_span()
-- clear_average()
-- autoscale()
-- read_freqs()
-- read_data()
 
 Properties
 ------------
+- gain
 - attenuation
 - auto_attenuation
-- gain
 - res_bandwidth
 - auto_res_bandwidth
 - trace_type
