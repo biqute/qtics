@@ -4,28 +4,12 @@ Controller of the Keithley6514 electrometer.
 .. module:: keithley6514.py
 .. moduleauthor:: Marco Gobbo <marco.gobbo@mib.infn.it>
 """
-import serial
 
 from qinst.serial_inst import SerialInst
 
 
 class Keithley6514(SerialInst):
     """Keithley 6514 Programmable Electrometer by Keithley Instruments."""
-
-    def __init__(
-        self,
-        name: str,
-        address: str,
-        baudrate: int = 9600,
-        bytesize: int = serial.EIGHTBITS,
-        parity: int = serial.PARITY_NONE,
-        stopbits: int = serial.STOPBITS_ONE,
-        timeout: int = 10,
-        sleep: float = 0.2,
-    ):
-        super().__init__(
-            name, address, baudrate, bytesize, parity, stopbits, timeout, sleep
-        )
 
     def connect(self):
         """Put Keithley 6514 Electrometer in remote."""
@@ -57,8 +41,7 @@ class Keithley6514(SerialInst):
         self.zcheck_off()
 
     def set_measure(self, parameter: str):
-        """
-        Basic settings for measure a parameter.
+        """Set basic settings for measure a parameter.
 
         Valid parameters to write:
         - VOLT: Voltage measurement
@@ -82,4 +65,4 @@ class Keithley6514(SerialInst):
         self.write("FORM:ELEM READ", True)
         self.write("ARM:COUNT 1", True)
         self.write("READ?", True)
-        return self.read()
+        return float(self.read())

@@ -1,3 +1,5 @@
+"""Keithely device 6514."""
+
 import time
 from typing import Literal
 
@@ -99,8 +101,7 @@ class SIM928(SerialInst):
         return self.query("BATS?")
 
     def battery_spec(self, parameter: str) -> str:
-        """
-        Query the battery specification for parameter i.
+        """Query the battery specification for parameter i.
 
         Valid parameters to query:
         - PNUM (0): Battery pack part number
@@ -109,7 +110,6 @@ class SIM928(SerialInst):
         - CYCLES (3): # charge cycles used
         - PDATE (4): Battery pack production date (YYYY-MM-DD)
         """
-
         parameters = ("PNUM", "SERIAL", "MAXCY", "CYCLES", "PDATE")
 
         if parameter in parameters:
