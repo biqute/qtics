@@ -44,10 +44,6 @@ class N9916A(NetworkInst):
         """Clear the error queue and all status registers."""
         self.write_and_hold("*CLS")
 
-    def reset(self):
-        """Reset the device and cancel any pending OPC command or query."""
-        self.write_and_hold("*RST")
-
     def hold(self):
         """Wait until all commands have been processed."""
         complete = self.query("*OPC?")

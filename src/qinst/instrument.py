@@ -1,7 +1,9 @@
 """Base Instrument."""
 
+from abc import ABC, abstractmethod
 
-class Instrument:
+
+class Instrument(ABC):
     """Base instrument class."""
 
     def __init__(self, name: str, address: str):
@@ -9,29 +11,33 @@ class Instrument:
         self.name = name
         self.address = address
 
+    @abstractmethod
     def connect(self):
         """Connect to the instrument."""
-        raise NotImplementedError
 
+    @abstractmethod
     def disconnect(self):
         """Disonnect from the instrument."""
-        raise NotImplementedError
 
+    @abstractmethod
     def write(self):
         """Send a command to the instrument."""
-        raise NotImplementedError
 
+    @abstractmethod
     def read(self):
         """Read from the instrument."""
-        raise NotImplementedError
 
+    @abstractmethod
     def query(self, _=None):
         """Send a command and read from the instrument."""
-        raise NotImplementedError
 
     def get_id(self):
         """Return name of the device from SCPI standard query."""
         return self.query("*IDN?")
+
+    def reset(self):
+        """Reset device with SCPI standard command."""
+        return self.query("*RST")
 
     def set(self, **kwargs):
         """Set multiple attributes and/or properties."""
