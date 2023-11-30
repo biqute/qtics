@@ -1,20 +1,24 @@
 """
 Controller of the N9916A Vector Analyzer by Keysight.
 
-..module:: NA_N9916A.py
-..moduleauthor:: Pietro Campana <campana.pietro@campus.unimib.it>
+.. module:: NA_N9916A.py
+.. moduleauthor:: Pietro Campana <campana.pietro@campus.unimib.it>
 
 The code for query_data() was partially taken from https://github.com/morgan-at-keysight/socketscpi
 """
 import time
+from abc import ABC, abstractmethod
 from typing import Tuple
 
 import numpy as np
 
+from qinst import log
 from qinst.network_inst import NetworkInst
 
+MEAS_TIME_FACTOR = 1.02
 
-class N9916A(NetworkInst):
+
+class N9916A(NetworkInst, ABC):
     """N9916A FieldFox Handheld Microwave Analyzer by Keysight."""
 
     def __init__(
@@ -27,11 +31,6 @@ class N9916A(NetworkInst):
         no_delay: bool = True,
         max_points: int = 10001,
     ):
-        """Initialize."""
-        if type(self) == N9916A:
-            raise RuntimeError(
-                "You cannot instantiate directly N9916A: use a subclass."
-            )
         super().__init__(name, address, port, timeout, sleep, no_delay)
         self._max_points = max_points
 
@@ -114,6 +113,21 @@ class N9916A(NetworkInst):
         return float(self.query("SWE:TIME?"))
 
     @property
+    def sweep_meas_time(self) -> float:
+        """Time to complete a measurement sweep."""
+        return float(self.query("SWE:MTIME?"))
+
+    @property
+    def average(self) -> int:
+        """The number of sweep averages."""
+        return int(self.query("AVER:COUN?"))
+
+    @average.setter
+    def average(self, n_avg: int):
+        n_avg = self.validate_range(n_avg, 0, 100)
+        self.write(f"SENSE:AVER:COUN {n_avg}")
+
+    @property
     def continuous(self) -> bool:
         """Acquisition mode."""
         return self.query("INIT:CONT?") != "0"
@@ -123,17 +137,11 @@ class N9916A(NetworkInst):
         self.write_and_hold(f"INIT:CONT {int(status)}")
 
     def single_sweep(self):
-        """
-        Perform a single sweep, then hold. Use this sweep mode for reading trace data.
-
-        Triggering single sweeps is only possible with continuous=False.
-        """
-        if self.continuous == True:
+        """Perform a single sweep, then hold. Use this sweep mode for reading trace data."""
+        if self.continuous:
+            log.warning("Setting continuous=False to perform single sweep triggering.")
             self.continuous = False
-            self.write_and_hold("INIT:IMM")
-            self.continuous = True
-        else:
-            self.write_and_hold("INIT:IMM")
+        self.write_and_hold("INIT:IMM")
 
     @property
     def data_format(self) -> str:
@@ -200,6 +208,44 @@ class N9916A(NetworkInst):
 
         return np.frombuffer(raw_data, dtype=dtype).astype(float)
 
+    @abstractmethod
+    def clear_average(self):
+        """Reset averaging."""
+
+    @abstractmethod
+    def autoscale(self):
+        """Autoscale selected trace."""
+
+    @abstractmethod
+    def read_trace_data(self, yformat=None):
+        """Read trace data from the instrument."""
+
+    @abstractmethod
+    def read_freqs(self):
+        """Read trace frequencies from the instrument."""
+
+    def snapshot(self, yformat=None, **kwargs) -> Tuple[np.ndarray, np.ndarray]:
+        """Get frequency and trace values for a single sweep."""
+        self.set(**kwargs)
+        self.hold()
+        z = self.read_trace_data(yformat=yformat)
+        f = self.read_freqs()
+        self.hold()
+        return f, z
+
+    def survey(
+        self, f_win_start, f_win_end, f_win_size, **kwargs
+    ) -> Tuple[np.ndarray, np.ndarray]:
+        """Execute multiple scans with higher resolution."""
+        f = []
+        z = []
+        self.set(**kwargs)
+        for f_min in np.arange(f_win_start, f_win_end, f_win_size):
+            f_temp, z_temp = self.snapshot(f_min=f_min, f_max=f_min + f_win_size)
+            f.append(f_temp[1:])
+            z.append(z_temp[1:])
+        return np.array(f).flatten(), np.array(z).flatten()
+
 
 class VNAN9916A(N9916A):
     """VNA mode of the N9916A."""
@@ -233,7 +279,7 @@ class VNAN9916A(N9916A):
         self.data_format = "REAL,64"
 
     def autoscale(self):
-        """Autoscale all."""
+        """Autoscale selected trace."""
         self.write(f"DISP:WIND:TRAC{self.__trace}:Y:AUTO")
 
     def activate_trace(self):
@@ -278,15 +324,6 @@ class VNAN9916A(N9916A):
             self.write("CALC:SMO 0")
 
     @property
-    def average(self) -> int:
-        """The number of sweep averages."""
-        return int(self.query("AVER:COUN?"))
-
-    @average.setter
-    def average(self, n_avg: int):
-        self.write(f"SENSE:AVER:COUN {min(n_avg, 100)}")
-
-    @property
     def average_mode(self) -> str:
         """The average mode (sweeping or point by point)."""
         return self.query("AVER:MODE?")
@@ -325,10 +362,11 @@ class VNAN9916A(N9916A):
 
     def sweep(self):
         """Perform a frequency sweep measurement considering averaging and sweep mode."""
+        self.clear_average()
+        self.autoscale()
         if self.continuous:
-            meas_time = self.sweep_time * self.average * 1.02
-            self.clear_average()
-            time.sleep.wait(meas_time)
+            meas_time = self.sweep_time * self.average * MEAS_TIME_FACTOR
+            time.sleep(meas_time)
             return
         if self.average_mode == "SWE":
             for _ in range(self.average):
@@ -341,41 +379,172 @@ class VNAN9916A(N9916A):
             f"Bad combination of average mode {self.average_mode} and number {self.average}."
         )
 
-    def read_IQ(self) -> np.ndarray:
-        """Read unformatted IQ data."""
-        self.sweep()
-        IQ = self.query_data("CALC:DATA:SDATA?")
-        len_2 = int(len(IQ) / 2)
-        z = np.empty(len_2, dtype=np.complex128)
-        z.real = IQ[0::2]
-        z.imag = IQ[1::2]
-        return z
-
-    def read_formatted_data(self) -> np.ndarray:
-        """Read formatted data."""
+    def read_trace_data(self, yformat=None) -> np.ndarray:
+        """Read unformatted IQ data or formatted trace data."""
+        if yformat is None:
+            self.sweep()
+            IQ = self.query_data("CALC:DATA:SDATA?")
+            len_2 = int(len(IQ) / 2)
+            z = np.empty(len_2, dtype=np.complex128)
+            z.real = IQ[0::2]
+            z.imag = IQ[1::2]
+            return z
+        self.yformat = yformat
         self.sweep()
         return self.query_data("CALC:DATA:FDATA?")
 
-    def snapshot(self, **kwargs) -> Tuple[np.ndarray, np.ndarray]:
-        """Get frequency and IQ values for a single sweep."""
-        self.set(**kwargs)
-        self.clear_average()
-        self.hold()
-        self.autoscale()
-        z = self.read_IQ()
-        f = self.read_freqs()
-        self.hold()
-        return f, z
 
-    def survey(
-        self, f_win_start, f_win_end, f_win_size, **kwargs
-    ) -> Tuple[np.ndarray, np.ndarray]:
-        """Execute multiple scans with higher resolution."""
-        f = []
-        z = []
-        self.set(**kwargs)
-        for f_min in np.arange(f_win_start, f_win_end, f_win_size):
-            f_temp, z_temp = self.snapshot(f_min=f_min, f_max=f_min + f_win_size)
-            f.append(f_temp[1:])
-            z.append(z_temp[1:])
-        return np.array(f).flatten(), np.array(z).flatten()
+class SAN9916A(N9916A):
+    """Spectrum Analyzer mode of the N9916A."""
+
+    def __init__(
+        self,
+        name: str,
+        address: str,
+        port: int = 5025,
+        timeout: int = 1000,
+        sleep: float = 0.1,
+        no_delay=True,
+        max_points=10001,
+    ):
+        """Initialize super instrument and setup VNA mode."""
+        super().__init__(name, address, port, timeout, sleep, no_delay, max_points)
+        self.connect()
+        self.clear()
+        self.reset()
+        self._mode = "SA"
+        self.__trace = 1
+        self.continuous = False
+        self.trace_type = "AVG"
+        self.data_format = "REAL,64"
+
+    def set_full_span(self):
+        """Set the frequency span to the entire span of the FieldFox."""
+        self.write("FREQ:SPAN:FULL")
+
+    def set_zero_span(self):
+        """Set the frequency span to 0 Hz around the center frequency."""
+        self.write("FREQ:SPAN:ZERO")
+
+    @property
+    def attenuation(self) -> float:
+        """RF attenuation value."""
+        return float(self.query("POW:ATT?"))
+
+    @attenuation.setter
+    def attenuation(self, att: float):
+        att = self.validate_range(att, 0, 100)
+        self.write(f"POW:ATT {att}")
+
+    @property
+    def auto_attenuation(self) -> bool:
+        """Automatic RF attenuation."""
+        return self.query("POW:ATT:AUTO?") == "ON"
+
+    @auto_attenuation.setter
+    def auto_attenuation(self, auto: bool):
+        self.write(f"POW:GAIN:STAT {int(auto)}")
+
+    @property
+    def gain(self) -> bool:
+        """Automatic gain selection."""
+        return self.query("POW:GAIN:STAT?") == "ON"
+
+    @gain.setter
+    def gain(self, auto: bool):
+        self.write(f"POW:GAIN:state {int(auto)}")
+
+    @property
+    def res_bandwidth(self) -> float:
+        """Resolution bandwidth value."""
+        return float(self.query("BAND:RES?"))
+
+    @res_bandwidth.setter
+    def res_bandwidth(self, res: float):
+        res = self.validate_range(res, 10, 2e6)
+        self.write(f"BAND:RES {res}")
+
+    @property
+    def auto_res_bandwidth(self) -> bool:
+        """Automatic resolution bandwidth."""
+        return self.query("BAND:RES:AUTO?") == "ON"
+
+    @auto_res_bandwidth.setter
+    def auto_res_bandwidth(self, auto: bool):
+        self.write(f"BAND:RES:AUTO {int(auto)}")
+
+    @property
+    def trace_type(self) -> str:
+        """Displayed trace mode."""
+        return self.query(f"TRAC{self.__trace}:TYPE?")
+
+    @trace_type.setter
+    def trace_type(self, opt: str):
+        self.validate_opt(opt, ("CLRW", "BLAN", "MAXH", "MINH", "AVG", "VIEW"))
+        self.write(f"TRAC{self.__trace}:TYPE " + opt)
+
+    @property
+    def average_type(self) -> str:
+        """The average type (sweeping or point by point)."""
+        return self.query("AVER:TYPE?")
+
+    @average_type.setter
+    def average_type(self, mode: str):
+        self.validate_opt(mode, ("AUTO", "POW", "POWer", "LOG", "VOLT"))
+        self.write(f"AVER:TYPE {mode}")
+
+    def clear_average(self):
+        """Restart averaging from 1."""
+        self.write_and_hold("INIT:REST")
+
+    @property
+    def yformat(self) -> str:
+        """Measurement unit of the data amplitude."""
+        return self.query("AMPL:UNIT?")
+
+    @yformat.setter
+    def yformat(self, data_format="DBM"):
+        units = (
+            "W",  # watts
+            "DBM",  # dBm
+            "DBMV",  # dB milliVolts
+            "DBUV",  # dB microvolts
+            "DBMA",  # dB milliAmps
+            "DBUA",  # dB microAmps
+            "V",  # volts
+            "A",  # amps
+        )
+        self.validate_opt(data_format, units)
+        self.write(f"AMPL:UNIT {data_format}")
+
+    @property
+    def yscale(self) -> str:
+        """Scale of the amplitude axis."""
+        return self.query("AMPL:SCAL?")
+
+    @yscale.setter
+    def yscale(self, scale: str):
+        self.validate_opt(scale, ("LOG", "LIN"))
+        self.write(f"AMPL:SCAL: {scale}")
+
+    def autoscale(self):
+        """Autoscale all traces."""
+        self.write("DISP:WIND:TRAC:Y:AUTO")
+
+    def read_freqs(self) -> np.ndarray:
+        """Compute the measured frequencies array."""
+        return np.linspace(self.f_min, self.f_max, self.sweep_points)
+
+    def read_trace_data(self, yformat=None) -> np.ndarray:
+        """Read the current data trace values considering averaging."""
+        if yformat is not None:
+            self.yformat = yformat
+        self.clear_average()
+        self.autoscale()
+        if self.continuous:
+            meas_time = self.sweep_meas_time * self.average * MEAS_TIME_FACTOR
+            time.sleep(meas_time)
+        else:
+            for _ in range(self.average):
+                self.single_sweep()
+        return self.query_data(f"TRAC{self.__trace}:DATA?")

@@ -1,7 +1,7 @@
 """List of supported instruments."""
 
 from qinst.log import log
-from qinst.network.NA_N9916A import VNAN9916A
+from qinst.network.NA_N9916A import SAN9916A, VNAN9916A
 from qinst.network.RS_SMA100B import SMA100B
 from qinst.network.triton_ctrl import Triton
 from qinst.serial.keithley6514 import Keithley6514
