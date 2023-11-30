@@ -227,20 +227,24 @@
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Controller of the N9916A Vector Analyzer by Keysight.</span>
 
-<span class="sd">..module:: NA_N9916A.py</span>
-<span class="sd">..moduleauthor:: Pietro Campana &lt;campana.pietro@campus.unimib.it&gt;</span>
+<span class="sd">.. module:: NA_N9916A.py</span>
+<span class="sd">.. moduleauthor:: Pietro Campana &lt;campana.pietro@campus.unimib.it&gt;</span>
 
 <span class="sd">The code for query_data() was partially taken from https://github.com/morgan-at-keysight/socketscpi</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
+<span class="kn">from</span> <span class="nn">qinst</span> <span class="kn">import</span> <span class="n">log</span>
 <span class="kn">from</span> <span class="nn">qinst.network_inst</span> <span class="kn">import</span> <span class="n">NetworkInst</span>
 
+<span class="n">MEAS_TIME_FACTOR</span> <span class="o">=</span> <span class="mf">1.02</span>
 
-<div class="viewcode-block" id="N9916A"><a class="viewcode-back" href="../../../api-reference/qinst.network.html#qinst.network.NA_N9916A.N9916A">[docs]</a><span class="k">class</span> <span class="nc">N9916A</span><span class="p">(</span><span class="n">NetworkInst</span><span class="p">):</span>
+
+<div class="viewcode-block" id="N9916A"><a class="viewcode-back" href="../../../api-reference/qinst.network.html#qinst.network.NA_N9916A.N9916A">[docs]</a><span class="k">class</span> <span class="nc">N9916A</span><span class="p">(</span><span class="n">NetworkInst</span><span class="p">,</span> <span class="n">ABC</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;N9916A FieldFox Handheld Microwave Analyzer by Keysight.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
@@ -253,11 +257,6 @@
         <span class="n">no_delay</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">max_points</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10001</span><span class="p">,</span>
     <span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize.&quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="n">N9916A</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
-                <span class="s2">&quot;You cannot instantiate directly N9916A: use a subclass.&quot;</span>
-            <span class="p">)</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">timeout</span><span class="p">,</span> <span class="n">sleep</span><span class="p">,</span> <span class="n">no_delay</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_max_points</span> <span class="o">=</span> <span class="n">max_points</span>
 
@@ -340,6 +339,21 @@
         <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;SWE:TIME?&quot;</span><span class="p">))</span>
 
     <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">sweep_meas_time</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Time to complete a measurement sweep.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;SWE:MTIME?&quot;</span><span class="p">))</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">average</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The number of sweep averages.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;AVER:COUN?&quot;</span><span class="p">))</span>
+
+    <span class="nd">@average</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">average</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_avg</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="n">n_avg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">validate_range</span><span class="p">(</span><span class="n">n_avg</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SENSE:AVER:COUN </span><span class="si">{</span><span class="n">n_avg</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">continuous</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Acquisition mode.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;INIT:CONT?&quot;</span><span class="p">)</span> <span class="o">!=</span> <span class="s2">&quot;0&quot;</span>
@@ -349,17 +363,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">write_and_hold</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;INIT:CONT </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">status</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="N9916A.single_sweep"><a class="viewcode-back" href="../../../api-reference/qinst.network.html#qinst.network.NA_N9916A.N9916A.single_sweep">[docs]</a>    <span class="k">def</span> <span class="nf">single_sweep</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Perform a single sweep, then hold. Use this sweep mode for reading trace data.</span>
-
-<span class="sd">        Triggering single sweeps is only possible with continuous=False.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">continuous</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Perform a single sweep, then hold. Use this sweep mode for reading trace data.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">continuous</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Setting continuous=False to perform single sweep triggering.&quot;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">continuous</span> <span class="o">=</span> <span class="kc">False</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">write_and_hold</span><span class="p">(</span><span class="s2">&quot;INIT:IMM&quot;</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">continuous</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">write_and_hold</span><span class="p">(</span><span class="s2">&quot;INIT:IMM&quot;</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write_and_hold</span><span class="p">(</span><span class="s2">&quot;INIT:IMM&quot;</span><span class="p">)</span></div>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">data_format</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
@@ -424,7 +432,45 @@
         <span class="k">if</span> <span class="n">term</span> <span class="o">!=</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Data not terminated correctly.&quot;</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">frombuffer</span><span class="p">(</span><span class="n">raw_data</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span></div></div>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">frombuffer</span><span class="p">(</span><span class="n">raw_data</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="N9916A.clear_average"><a class="viewcode-back" href="../../../api-reference/qinst.network.html#qinst.network.NA_N9916A.N9916A.clear_average">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">clear_average</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reset averaging.&quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="N9916A.autoscale"><a class="viewcode-back" href="../../../api-reference/qinst.network.html#qinst.network.NA_N9916A.N9916A.autoscale">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">autoscale</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Autoscale selected trace.&quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="N9916A.read_trace_data"><a class="viewcode-back" href="../../../api-reference/qinst.network.html#qinst.network.NA_N9916A.N9916A.read_trace_data">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">read_trace_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">yformat</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Read trace data from the instrument.&quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="N9916A.read_freqs"><a class="viewcode-back" href="../../../api-reference/qinst.network.html#qinst.network.NA_N9916A.N9916A.read_freqs">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">read_freqs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Read trace frequencies from the instrument.&quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="N9916A.snapshot"><a class="viewcode-back" href="../../../api-reference/qinst.network.html#qinst.network.NA_N9916A.N9916A.snapshot">[docs]</a>    <span class="k">def</span> <span class="nf">snapshot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">yformat</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get frequency and trace values for a single sweep.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hold</span><span class="p">()</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_trace_data</span><span class="p">(</span><span class="n">yformat</span><span class="o">=</span><span class="n">yformat</span><span class="p">)</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_freqs</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hold</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">f</span><span class="p">,</span> <span class="n">z</span></div>
+
+<div class="viewcode-block" id="N9916A.survey"><a class="viewcode-back" href="../../../api-reference/qinst.network.html#qinst.network.NA_N9916A.N9916A.survey">[docs]</a>    <span class="k">def</span> <span class="nf">survey</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">f_win_start</span><span class="p">,</span> <span class="n">f_win_end</span><span class="p">,</span> <span class="n">f_win_size</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Execute multiple scans with higher resolution.&quot;&quot;&quot;</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">f_min</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">f_win_start</span><span class="p">,</span> <span class="n">f_win_end</span><span class="p">,</span> <span class="n">f_win_size</span><span class="p">):</span>
+            <span class="n">f_temp</span><span class="p">,</span> <span class="n">z_temp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">snapshot</span><span class="p">(</span><span class="n">f_min</span><span class="o">=</span><span class="n">f_min</span><span class="p">,</span> <span class="n">f_max</span><span class="o">=</span><span class="n">f_min</span> <span class="o">+</span> <span class="n">f_win_size</span><span class="p">)</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f_temp</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+            <span class="n">z</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">z_temp</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">z</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span></div></div>
 
 
 <div class="viewcode-block" id="VNAN9916A"><a class="viewcode-back" href="../../../api-reference/qinst.network.html#qinst.network.NA_N9916A.VNAN9916A">[docs]</a><span class="k">class</span> <span class="nc">VNAN9916A</span><span class="p">(</span><span class="n">N9916A</span><span class="p">):</span>
@@ -459,7 +505,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">data_format</span> <span class="o">=</span> <span class="s2">&quot;REAL,64&quot;</span></div>
 
 <div class="viewcode-block" id="VNAN9916A.autoscale"><a class="viewcode-back" href="../../../api-reference/qinst.network.html#qinst.network.NA_N9916A.VNAN9916A.autoscale">[docs]</a>    <span class="k">def</span> <span class="nf">autoscale</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Autoscale all.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Autoscale selected trace.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DISP:WIND:TRAC</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">__trace</span><span class="si">}</span><span class="s2">:Y:AUTO&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="VNAN9916A.activate_trace"><a class="viewcode-back" href="../../../api-reference/qinst.network.html#qinst.network.NA_N9916A.VNAN9916A.activate_trace">[docs]</a>    <span class="k">def</span> <span class="nf">activate_trace</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -504,15 +550,6 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;CALC:SMO 0&quot;</span><span class="p">)</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">average</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;The number of sweep averages.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;AVER:COUN?&quot;</span><span class="p">))</span>
-
-    <span class="nd">@average</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">average</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_avg</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SENSE:AVER:COUN </span><span class="si">{</span><span class="nb">min</span><span class="p">(</span><span class="n">n_avg</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-    <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">average_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The average mode (sweeping or point by point).&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;AVER:MODE?&quot;</span><span class="p">)</span>
@@ -551,10 +588,11 @@
 
 <div class="viewcode-block" id="VNAN9916A.sweep"><a class="viewcode-back" href="../../../api-reference/qinst.network.html#qinst.network.NA_N9916A.VNAN9916A.sweep">[docs]</a>    <span class="k">def</span> <span class="nf">sweep</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Perform a frequency sweep measurement considering averaging and sweep mode.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clear_average</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">autoscale</span><span class="p">()</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">continuous</span><span class="p">:</span>
-            <span class="n">meas_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sweep_time</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">average</span> <span class="o">*</span> <span class="mf">1.02</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">clear_average</span><span class="p">()</span>
-            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="n">meas_time</span><span class="p">)</span>
+            <span class="n">meas_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sweep_time</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">average</span> <span class="o">*</span> <span class="n">MEAS_TIME_FACTOR</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">meas_time</span><span class="p">)</span>
             <span class="k">return</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">average_mode</span> <span class="o">==</span> <span class="s2">&quot;SWE&quot;</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">average</span><span class="p">):</span>
@@ -567,44 +605,175 @@
             <span class="sa">f</span><span class="s2">&quot;Bad combination of average mode </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">average_mode</span><span class="si">}</span><span class="s2"> and number </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">average</span><span class="si">}</span><span class="s2">.&quot;</span>
         <span class="p">)</span></div>
 
-<div class="viewcode-block" id="VNAN9916A.read_IQ"><a class="viewcode-back" href="../../../api-reference/qinst.network.html#qinst.network.NA_N9916A.VNAN9916A.read_IQ">[docs]</a>    <span class="k">def</span> <span class="nf">read_IQ</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Read unformatted IQ data.&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="VNAN9916A.read_trace_data"><a class="viewcode-back" href="../../../api-reference/qinst.network.html#qinst.network.NA_N9916A.VNAN9916A.read_trace_data">[docs]</a>    <span class="k">def</span> <span class="nf">read_trace_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">yformat</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Read unformatted IQ data or formatted trace data.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">yformat</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sweep</span><span class="p">()</span>
+            <span class="n">IQ</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">query_data</span><span class="p">(</span><span class="s2">&quot;CALC:DATA:SDATA?&quot;</span><span class="p">)</span>
+            <span class="n">len_2</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">IQ</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">len_2</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">complex128</span><span class="p">)</span>
+            <span class="n">z</span><span class="o">.</span><span class="n">real</span> <span class="o">=</span> <span class="n">IQ</span><span class="p">[</span><span class="mi">0</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span>
+            <span class="n">z</span><span class="o">.</span><span class="n">imag</span> <span class="o">=</span> <span class="n">IQ</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">z</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">yformat</span> <span class="o">=</span> <span class="n">yformat</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sweep</span><span class="p">()</span>
-        <span class="n">IQ</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">query_data</span><span class="p">(</span><span class="s2">&quot;CALC:DATA:SDATA?&quot;</span><span class="p">)</span>
-        <span class="n">len_2</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">IQ</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
-        <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">len_2</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">complex128</span><span class="p">)</span>
-        <span class="n">z</span><span class="o">.</span><span class="n">real</span> <span class="o">=</span> <span class="n">IQ</span><span class="p">[</span><span class="mi">0</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span>
-        <span class="n">z</span><span class="o">.</span><span class="n">imag</span> <span class="o">=</span> <span class="n">IQ</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span>
-        <span class="k">return</span> <span class="n">z</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">query_data</span><span class="p">(</span><span class="s2">&quot;CALC:DATA:FDATA?&quot;</span><span class="p">)</span></div></div>
 
-<div class="viewcode-block" id="VNAN9916A.read_formatted_data"><a class="viewcode-back" href="../../../api-reference/qinst.network.html#qinst.network.NA_N9916A.VNAN9916A.read_formatted_data">[docs]</a>    <span class="k">def</span> <span class="nf">read_formatted_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Read formatted data.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sweep</span><span class="p">()</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">query_data</span><span class="p">(</span><span class="s2">&quot;CALC:DATA:FDATA?&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="VNAN9916A.snapshot"><a class="viewcode-back" href="../../../api-reference/qinst.network.html#qinst.network.NA_N9916A.VNAN9916A.snapshot">[docs]</a>    <span class="k">def</span> <span class="nf">snapshot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get frequency and IQ values for a single sweep.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<div class="viewcode-block" id="SAN9916A"><a class="viewcode-back" href="../../../api-reference/qinst.network.html#qinst.network.NA_N9916A.SAN9916A">[docs]</a><span class="k">class</span> <span class="nc">SAN9916A</span><span class="p">(</span><span class="n">N9916A</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Spectrum Analyzer mode of the N9916A.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">address</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">port</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5025</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">,</span>
+        <span class="n">sleep</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
+        <span class="n">no_delay</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">max_points</span><span class="o">=</span><span class="mi">10001</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize super instrument and setup VNA mode.&quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">timeout</span><span class="p">,</span> <span class="n">sleep</span><span class="p">,</span> <span class="n">no_delay</span><span class="p">,</span> <span class="n">max_points</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mode</span> <span class="o">=</span> <span class="s2">&quot;SA&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__trace</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">continuous</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trace_type</span> <span class="o">=</span> <span class="s2">&quot;AVG&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_format</span> <span class="o">=</span> <span class="s2">&quot;REAL,64&quot;</span>
+
+<div class="viewcode-block" id="SAN9916A.set_full_span"><a class="viewcode-back" href="../../../api-reference/qinst.network.html#qinst.network.NA_N9916A.SAN9916A.set_full_span">[docs]</a>    <span class="k">def</span> <span class="nf">set_full_span</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set the frequency span to the entire span of the FieldFox.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;FREQ:SPAN:FULL&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SAN9916A.set_zero_span"><a class="viewcode-back" href="../../../api-reference/qinst.network.html#qinst.network.NA_N9916A.SAN9916A.set_zero_span">[docs]</a>    <span class="k">def</span> <span class="nf">set_zero_span</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set the frequency span to 0 Hz around the center frequency.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;FREQ:SPAN:ZERO&quot;</span><span class="p">)</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">attenuation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;RF attenuation value.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;POW:ATT?&quot;</span><span class="p">))</span>
+
+    <span class="nd">@attenuation</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">attenuation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">att</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+        <span class="n">att</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">validate_range</span><span class="p">(</span><span class="n">att</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;POW:ATT </span><span class="si">{</span><span class="n">att</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">auto_attenuation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Automatic RF attenuation.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;POW:ATT:AUTO?&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;ON&quot;</span>
+
+    <span class="nd">@auto_attenuation</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">auto_attenuation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">auto</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;POW:GAIN:STAT </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">auto</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">gain</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Automatic gain selection.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;POW:GAIN:STAT?&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;ON&quot;</span>
+
+    <span class="nd">@gain</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">gain</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">auto</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;POW:GAIN:state </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">auto</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">res_bandwidth</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Resolution bandwidth value.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;BAND:RES?&quot;</span><span class="p">))</span>
+
+    <span class="nd">@res_bandwidth</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">res_bandwidth</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">res</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">validate_range</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">2e6</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;BAND:RES </span><span class="si">{</span><span class="n">res</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">auto_res_bandwidth</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Automatic resolution bandwidth.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;BAND:RES:AUTO?&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;ON&quot;</span>
+
+    <span class="nd">@auto_res_bandwidth</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">auto_res_bandwidth</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">auto</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;BAND:RES:AUTO </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">auto</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">trace_type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Displayed trace mode.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;TRAC</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">__trace</span><span class="si">}</span><span class="s2">:TYPE?&quot;</span><span class="p">)</span>
+
+    <span class="nd">@trace_type</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">trace_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">opt</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">validate_opt</span><span class="p">(</span><span class="n">opt</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;CLRW&quot;</span><span class="p">,</span> <span class="s2">&quot;BLAN&quot;</span><span class="p">,</span> <span class="s2">&quot;MAXH&quot;</span><span class="p">,</span> <span class="s2">&quot;MINH&quot;</span><span class="p">,</span> <span class="s2">&quot;AVG&quot;</span><span class="p">,</span> <span class="s2">&quot;VIEW&quot;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;TRAC</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">__trace</span><span class="si">}</span><span class="s2">:TYPE &quot;</span> <span class="o">+</span> <span class="n">opt</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">average_type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The average type (sweeping or point by point).&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;AVER:TYPE?&quot;</span><span class="p">)</span>
+
+    <span class="nd">@average_type</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">average_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">validate_opt</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;AUTO&quot;</span><span class="p">,</span> <span class="s2">&quot;POW&quot;</span><span class="p">,</span> <span class="s2">&quot;POWer&quot;</span><span class="p">,</span> <span class="s2">&quot;LOG&quot;</span><span class="p">,</span> <span class="s2">&quot;VOLT&quot;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;AVER:TYPE </span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="SAN9916A.clear_average"><a class="viewcode-back" href="../../../api-reference/qinst.network.html#qinst.network.NA_N9916A.SAN9916A.clear_average">[docs]</a>    <span class="k">def</span> <span class="nf">clear_average</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Restart averaging from 1.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write_and_hold</span><span class="p">(</span><span class="s2">&quot;INIT:REST&quot;</span><span class="p">)</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">yformat</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Measurement unit of the data amplitude.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;AMPL:UNIT?&quot;</span><span class="p">)</span>
+
+    <span class="nd">@yformat</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">yformat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_format</span><span class="o">=</span><span class="s2">&quot;DBM&quot;</span><span class="p">):</span>
+        <span class="n">units</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s2">&quot;W&quot;</span><span class="p">,</span>  <span class="c1"># watts</span>
+            <span class="s2">&quot;DBM&quot;</span><span class="p">,</span>  <span class="c1"># dBm</span>
+            <span class="s2">&quot;DBMV&quot;</span><span class="p">,</span>  <span class="c1"># dB milliVolts</span>
+            <span class="s2">&quot;DBUV&quot;</span><span class="p">,</span>  <span class="c1"># dB microvolts</span>
+            <span class="s2">&quot;DBMA&quot;</span><span class="p">,</span>  <span class="c1"># dB milliAmps</span>
+            <span class="s2">&quot;DBUA&quot;</span><span class="p">,</span>  <span class="c1"># dB microAmps</span>
+            <span class="s2">&quot;V&quot;</span><span class="p">,</span>  <span class="c1"># volts</span>
+            <span class="s2">&quot;A&quot;</span><span class="p">,</span>  <span class="c1"># amps</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">validate_opt</span><span class="p">(</span><span class="n">data_format</span><span class="p">,</span> <span class="n">units</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;AMPL:UNIT </span><span class="si">{</span><span class="n">data_format</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">yscale</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Scale of the amplitude axis.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;AMPL:SCAL?&quot;</span><span class="p">)</span>
+
+    <span class="nd">@yscale</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">yscale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scale</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">validate_opt</span><span class="p">(</span><span class="n">scale</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;LOG&quot;</span><span class="p">,</span> <span class="s2">&quot;LIN&quot;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;AMPL:SCAL: </span><span class="si">{</span><span class="n">scale</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="SAN9916A.autoscale"><a class="viewcode-back" href="../../../api-reference/qinst.network.html#qinst.network.NA_N9916A.SAN9916A.autoscale">[docs]</a>    <span class="k">def</span> <span class="nf">autoscale</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Autoscale all traces.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;DISP:WIND:TRAC:Y:AUTO&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SAN9916A.read_freqs"><a class="viewcode-back" href="../../../api-reference/qinst.network.html#qinst.network.NA_N9916A.SAN9916A.read_freqs">[docs]</a>    <span class="k">def</span> <span class="nf">read_freqs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Compute the measured frequencies array.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">f_min</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">f_max</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sweep_points</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SAN9916A.read_trace_data"><a class="viewcode-back" href="../../../api-reference/qinst.network.html#qinst.network.NA_N9916A.SAN9916A.read_trace_data">[docs]</a>    <span class="k">def</span> <span class="nf">read_trace_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">yformat</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Read the current data trace values considering averaging.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">yformat</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">yformat</span> <span class="o">=</span> <span class="n">yformat</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">clear_average</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">hold</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">autoscale</span><span class="p">()</span>
-        <span class="n">z</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_IQ</span><span class="p">()</span>
-        <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_freqs</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">hold</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">f</span><span class="p">,</span> <span class="n">z</span></div>
-
-<div class="viewcode-block" id="VNAN9916A.survey"><a class="viewcode-back" href="../../../api-reference/qinst.network.html#qinst.network.NA_N9916A.VNAN9916A.survey">[docs]</a>    <span class="k">def</span> <span class="nf">survey</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">f_win_start</span><span class="p">,</span> <span class="n">f_win_end</span><span class="p">,</span> <span class="n">f_win_size</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Execute multiple scans with higher resolution.&quot;&quot;&quot;</span>
-        <span class="n">f</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">z</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">f_min</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">f_win_start</span><span class="p">,</span> <span class="n">f_win_end</span><span class="p">,</span> <span class="n">f_win_size</span><span class="p">):</span>
-            <span class="n">f_temp</span><span class="p">,</span> <span class="n">z_temp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">snapshot</span><span class="p">(</span><span class="n">f_min</span><span class="o">=</span><span class="n">f_min</span><span class="p">,</span> <span class="n">f_max</span><span class="o">=</span><span class="n">f_min</span> <span class="o">+</span> <span class="n">f_win_size</span><span class="p">)</span>
-            <span class="n">f</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f_temp</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
-            <span class="n">z</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">z_temp</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">z</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span></div></div>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">continuous</span><span class="p">:</span>
+            <span class="n">meas_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sweep_meas_time</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">average</span> <span class="o">*</span> <span class="n">MEAS_TIME_FACTOR</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">meas_time</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">average</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">single_sweep</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">query_data</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;TRAC</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">__trace</span><span class="si">}</span><span class="s2">:DATA?&quot;</span><span class="p">)</span></div></div>
 </pre></div>
         </article>
       </div>

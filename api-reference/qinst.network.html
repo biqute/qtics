@@ -232,18 +232,34 @@
 <section id="module-qinst.network.NA_N9916A">
 <span id="qinst-network-na-n9916a-module"></span><h2>qinst.network.NA_N9916A module<a class="headerlink" href="#module-qinst.network.NA_N9916A" title="Permalink to this heading">#</a></h2>
 <p>Controller of the N9916A Vector Analyzer by Keysight.</p>
-<p>..module:: NA_N9916A.py
-..moduleauthor:: Pietro Campana &lt;<a class="reference external" href="mailto:campana&#46;pietro&#37;&#52;&#48;campus&#46;unimib&#46;it">campana<span>&#46;</span>pietro<span>&#64;</span>campus<span>&#46;</span>unimib<span>&#46;</span>it</a>&gt;</p>
-<p>The code for query_data() was partially taken from <a class="reference external" href="https://github.com/morgan-at-keysight/socketscpi">https://github.com/morgan-at-keysight/socketscpi</a></p>
+<span class="target" id="module-NA_N9916A.py"></span><p>The code for query_data() was partially taken from <a class="reference external" href="https://github.com/morgan-at-keysight/socketscpi">https://github.com/morgan-at-keysight/socketscpi</a></p>
 <dl class="py class">
 <dt class="sig sig-object py" id="qinst.network.NA_N9916A.N9916A">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qinst.network.NA_N9916A.</span></span><span class="sig-name descname"><span class="pre">N9916A</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5025</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">8000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sleep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_delay</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10001</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/network/NA_N9916A.html#N9916A"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.network.NA_N9916A.N9916A" title="Permalink to this definition">#</a></dt>
-<dd><p>Bases: <a class="reference internal" href="qinst.html#qinst.network_inst.NetworkInst" title="qinst.network_inst.NetworkInst"><code class="xref py py-class docutils literal notranslate"><span class="pre">NetworkInst</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="qinst.html#qinst.network_inst.NetworkInst" title="qinst.network_inst.NetworkInst"><code class="xref py py-class docutils literal notranslate"><span class="pre">NetworkInst</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></a></p>
 <p>N9916A FieldFox Handheld Microwave Analyzer by Keysight.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="qinst.network.NA_N9916A.N9916A.autoscale">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">autoscale</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/network/NA_N9916A.html#N9916A.autoscale"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.network.NA_N9916A.N9916A.autoscale" title="Permalink to this definition">#</a></dt>
+<dd><p>Autoscale selected trace.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.network.NA_N9916A.N9916A.average">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">average</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#qinst.network.NA_N9916A.N9916A.average" title="Permalink to this definition">#</a></dt>
+<dd><p>The number of sweep averages.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="qinst.network.NA_N9916A.N9916A.clear">
 <span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/network/NA_N9916A.html#N9916A.clear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.network.NA_N9916A.N9916A.clear" title="Permalink to this definition">#</a></dt>
 <dd><p>Clear the error queue and all status registers.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qinst.network.NA_N9916A.N9916A.clear_average">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">clear_average</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/network/NA_N9916A.html#N9916A.clear_average"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.network.NA_N9916A.N9916A.clear_average" title="Permalink to this definition">#</a></dt>
+<dd><p>Reset averaging.</p>
 </dd></dl>
 
 <dl class="py property">
@@ -305,10 +321,39 @@ type used by the instrument that sends the data.
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="qinst.network.NA_N9916A.N9916A.read_freqs">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read_freqs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/network/NA_N9916A.html#N9916A.read_freqs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.network.NA_N9916A.N9916A.read_freqs" title="Permalink to this definition">#</a></dt>
+<dd><p>Read trace frequencies from the instrument.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qinst.network.NA_N9916A.N9916A.read_trace_data">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read_trace_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yformat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/network/NA_N9916A.html#N9916A.read_trace_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.network.NA_N9916A.N9916A.read_trace_data" title="Permalink to this definition">#</a></dt>
+<dd><p>Read trace data from the instrument.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="qinst.network.NA_N9916A.N9916A.single_sweep">
 <span class="sig-name descname"><span class="pre">single_sweep</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/network/NA_N9916A.html#N9916A.single_sweep"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.network.NA_N9916A.N9916A.single_sweep" title="Permalink to this definition">#</a></dt>
 <dd><p>Perform a single sweep, then hold. Use this sweep mode for reading trace data.</p>
-<p>Triggering single sweeps is only possible with continuous=False.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qinst.network.NA_N9916A.N9916A.snapshot">
+<span class="sig-name descname"><span class="pre">snapshot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yformat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.12)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/qinst/network/NA_N9916A.html#N9916A.snapshot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.network.NA_N9916A.N9916A.snapshot" title="Permalink to this definition">#</a></dt>
+<dd><p>Get frequency and trace values for a single sweep.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qinst.network.NA_N9916A.N9916A.survey">
+<span class="sig-name descname"><span class="pre">survey</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f_win_start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f_win_end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f_win_size</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.12)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/qinst/network/NA_N9916A.html#N9916A.survey"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.network.NA_N9916A.N9916A.survey" title="Permalink to this definition">#</a></dt>
+<dd><p>Execute multiple scans with higher resolution.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.network.NA_N9916A.N9916A.sweep_meas_time">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sweep_meas_time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><a class="headerlink" href="#qinst.network.NA_N9916A.N9916A.sweep_meas_time" title="Permalink to this definition">#</a></dt>
+<dd><p>Time to complete a measurement sweep.</p>
 </dd></dl>
 
 <dl class="py property">
@@ -327,6 +372,103 @@ type used by the instrument that sends the data.
 <dt class="sig sig-object py" id="qinst.network.NA_N9916A.N9916A.write_and_hold">
 <span class="sig-name descname"><span class="pre">write_and_hold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cmd</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/network/NA_N9916A.html#N9916A.write_and_hold"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.network.NA_N9916A.N9916A.write_and_hold" title="Permalink to this definition">#</a></dt>
 <dd><p>Write command and wait until it has been processed.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="qinst.network.NA_N9916A.SAN9916A">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qinst.network.NA_N9916A.</span></span><span class="sig-name descname"><span class="pre">SAN9916A</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5025</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sleep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_delay</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10001</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/network/NA_N9916A.html#SAN9916A"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.network.NA_N9916A.SAN9916A" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#qinst.network.NA_N9916A.N9916A" title="qinst.network.NA_N9916A.N9916A"><code class="xref py py-class docutils literal notranslate"><span class="pre">N9916A</span></code></a></p>
+<p>Spectrum Analyzer mode of the N9916A.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.network.NA_N9916A.SAN9916A.attenuation">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">attenuation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><a class="headerlink" href="#qinst.network.NA_N9916A.SAN9916A.attenuation" title="Permalink to this definition">#</a></dt>
+<dd><p>RF attenuation value.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.network.NA_N9916A.SAN9916A.auto_attenuation">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">auto_attenuation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></em><a class="headerlink" href="#qinst.network.NA_N9916A.SAN9916A.auto_attenuation" title="Permalink to this definition">#</a></dt>
+<dd><p>Automatic RF attenuation.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.network.NA_N9916A.SAN9916A.auto_res_bandwidth">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">auto_res_bandwidth</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></em><a class="headerlink" href="#qinst.network.NA_N9916A.SAN9916A.auto_res_bandwidth" title="Permalink to this definition">#</a></dt>
+<dd><p>Automatic resolution bandwidth.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qinst.network.NA_N9916A.SAN9916A.autoscale">
+<span class="sig-name descname"><span class="pre">autoscale</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/network/NA_N9916A.html#SAN9916A.autoscale"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.network.NA_N9916A.SAN9916A.autoscale" title="Permalink to this definition">#</a></dt>
+<dd><p>Autoscale all traces.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.network.NA_N9916A.SAN9916A.average_type">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">average_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></em><a class="headerlink" href="#qinst.network.NA_N9916A.SAN9916A.average_type" title="Permalink to this definition">#</a></dt>
+<dd><p>The average type (sweeping or point by point).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qinst.network.NA_N9916A.SAN9916A.clear_average">
+<span class="sig-name descname"><span class="pre">clear_average</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/network/NA_N9916A.html#SAN9916A.clear_average"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.network.NA_N9916A.SAN9916A.clear_average" title="Permalink to this definition">#</a></dt>
+<dd><p>Restart averaging from 1.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.network.NA_N9916A.SAN9916A.gain">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">gain</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></em><a class="headerlink" href="#qinst.network.NA_N9916A.SAN9916A.gain" title="Permalink to this definition">#</a></dt>
+<dd><p>Automatic gain selection.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qinst.network.NA_N9916A.SAN9916A.read_freqs">
+<span class="sig-name descname"><span class="pre">read_freqs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="../_modules/qinst/network/NA_N9916A.html#SAN9916A.read_freqs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.network.NA_N9916A.SAN9916A.read_freqs" title="Permalink to this definition">#</a></dt>
+<dd><p>Compute the measured frequencies array.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qinst.network.NA_N9916A.SAN9916A.read_trace_data">
+<span class="sig-name descname"><span class="pre">read_trace_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yformat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="../_modules/qinst/network/NA_N9916A.html#SAN9916A.read_trace_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.network.NA_N9916A.SAN9916A.read_trace_data" title="Permalink to this definition">#</a></dt>
+<dd><p>Read the current data trace values considering averaging.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.network.NA_N9916A.SAN9916A.res_bandwidth">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">res_bandwidth</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><a class="headerlink" href="#qinst.network.NA_N9916A.SAN9916A.res_bandwidth" title="Permalink to this definition">#</a></dt>
+<dd><p>Resolution bandwidth value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qinst.network.NA_N9916A.SAN9916A.set_full_span">
+<span class="sig-name descname"><span class="pre">set_full_span</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/network/NA_N9916A.html#SAN9916A.set_full_span"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.network.NA_N9916A.SAN9916A.set_full_span" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the frequency span to the entire span of the FieldFox.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qinst.network.NA_N9916A.SAN9916A.set_zero_span">
+<span class="sig-name descname"><span class="pre">set_zero_span</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/network/NA_N9916A.html#SAN9916A.set_zero_span"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.network.NA_N9916A.SAN9916A.set_zero_span" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the frequency span to 0 Hz around the center frequency.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.network.NA_N9916A.SAN9916A.trace_type">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">trace_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></em><a class="headerlink" href="#qinst.network.NA_N9916A.SAN9916A.trace_type" title="Permalink to this definition">#</a></dt>
+<dd><p>Displayed trace mode.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.network.NA_N9916A.SAN9916A.yformat">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">yformat</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></em><a class="headerlink" href="#qinst.network.NA_N9916A.SAN9916A.yformat" title="Permalink to this definition">#</a></dt>
+<dd><p>Measurement unit of the data amplitude.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.network.NA_N9916A.SAN9916A.yscale">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">yscale</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></em><a class="headerlink" href="#qinst.network.NA_N9916A.SAN9916A.yscale" title="Permalink to this definition">#</a></dt>
+<dd><p>Scale of the amplitude axis.</p>
 </dd></dl>
 
 </dd></dl>
@@ -357,13 +499,7 @@ type used by the instrument that sends the data.
 <dl class="py method">
 <dt class="sig sig-object py" id="qinst.network.NA_N9916A.VNAN9916A.autoscale">
 <span class="sig-name descname"><span class="pre">autoscale</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/network/NA_N9916A.html#VNAN9916A.autoscale"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.network.NA_N9916A.VNAN9916A.autoscale" title="Permalink to this definition">#</a></dt>
-<dd><p>Autoscale all.</p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="qinst.network.NA_N9916A.VNAN9916A.average">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">average</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#qinst.network.NA_N9916A.VNAN9916A.average" title="Permalink to this definition">#</a></dt>
-<dd><p>The number of sweep averages.</p>
+<dd><p>Autoscale selected trace.</p>
 </dd></dl>
 
 <dl class="py property">
@@ -385,21 +521,15 @@ type used by the instrument that sends the data.
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="qinst.network.NA_N9916A.VNAN9916A.read_IQ">
-<span class="sig-name descname"><span class="pre">read_IQ</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="../_modules/qinst/network/NA_N9916A.html#VNAN9916A.read_IQ"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.network.NA_N9916A.VNAN9916A.read_IQ" title="Permalink to this definition">#</a></dt>
-<dd><p>Read unformatted IQ data.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="qinst.network.NA_N9916A.VNAN9916A.read_formatted_data">
-<span class="sig-name descname"><span class="pre">read_formatted_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="../_modules/qinst/network/NA_N9916A.html#VNAN9916A.read_formatted_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.network.NA_N9916A.VNAN9916A.read_formatted_data" title="Permalink to this definition">#</a></dt>
-<dd><p>Read formatted data.</p>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="qinst.network.NA_N9916A.VNAN9916A.read_freqs">
 <span class="sig-name descname"><span class="pre">read_freqs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="../_modules/qinst/network/NA_N9916A.html#VNAN9916A.read_freqs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.network.NA_N9916A.VNAN9916A.read_freqs" title="Permalink to this definition">#</a></dt>
 <dd><p>Read frequencies.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qinst.network.NA_N9916A.VNAN9916A.read_trace_data">
+<span class="sig-name descname"><span class="pre">read_trace_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yformat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="../_modules/qinst/network/NA_N9916A.html#VNAN9916A.read_trace_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.network.NA_N9916A.VNAN9916A.read_trace_data" title="Permalink to this definition">#</a></dt>
+<dd><p>Read unformatted IQ data or formatted trace data.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -412,18 +542,6 @@ type used by the instrument that sends the data.
 <dt class="sig sig-object py" id="qinst.network.NA_N9916A.VNAN9916A.smoothing">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">smoothing</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#qinst.network.NA_N9916A.VNAN9916A.smoothing" title="Permalink to this definition">#</a></dt>
 <dd><p>Number of point in smoothing window.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="qinst.network.NA_N9916A.VNAN9916A.snapshot">
-<span class="sig-name descname"><span class="pre">snapshot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.12)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/qinst/network/NA_N9916A.html#VNAN9916A.snapshot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.network.NA_N9916A.VNAN9916A.snapshot" title="Permalink to this definition">#</a></dt>
-<dd><p>Get frequency and IQ values for a single sweep.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="qinst.network.NA_N9916A.VNAN9916A.survey">
-<span class="sig-name descname"><span class="pre">survey</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f_win_start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f_win_end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f_win_size</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.12)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/qinst/network/NA_N9916A.html#VNAN9916A.survey"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.network.NA_N9916A.VNAN9916A.survey" title="Permalink to this definition">#</a></dt>
-<dd><p>Execute multiple scans with higher resolution.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -759,7 +877,10 @@ moduleauthor: Rodolfo Carobene &lt;<a class="reference external" href="mailto:ro
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#module-qinst.network.NA_N9916A">qinst.network.NA_N9916A module</a><ul>
 <li><a class="reference internal" href="#qinst.network.NA_N9916A.N9916A"><code class="docutils literal notranslate"><span class="pre">N9916A</span></code></a><ul>
+<li><a class="reference internal" href="#qinst.network.NA_N9916A.N9916A.autoscale"><code class="docutils literal notranslate"><span class="pre">N9916A.autoscale()</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.NA_N9916A.N9916A.average"><code class="docutils literal notranslate"><span class="pre">N9916A.average</span></code></a></li>
 <li><a class="reference internal" href="#qinst.network.NA_N9916A.N9916A.clear"><code class="docutils literal notranslate"><span class="pre">N9916A.clear()</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.NA_N9916A.N9916A.clear_average"><code class="docutils literal notranslate"><span class="pre">N9916A.clear_average()</span></code></a></li>
 <li><a class="reference internal" href="#qinst.network.NA_N9916A.N9916A.continuous"><code class="docutils literal notranslate"><span class="pre">N9916A.continuous</span></code></a></li>
 <li><a class="reference internal" href="#qinst.network.NA_N9916A.N9916A.data_format"><code class="docutils literal notranslate"><span class="pre">N9916A.data_format</span></code></a></li>
 <li><a class="reference internal" href="#qinst.network.NA_N9916A.N9916A.f_center"><code class="docutils literal notranslate"><span class="pre">N9916A.f_center</span></code></a></li>
@@ -768,10 +889,33 @@ moduleauthor: Rodolfo Carobene &lt;<a class="reference external" href="mailto:ro
 <li><a class="reference internal" href="#qinst.network.NA_N9916A.N9916A.f_span"><code class="docutils literal notranslate"><span class="pre">N9916A.f_span</span></code></a></li>
 <li><a class="reference internal" href="#qinst.network.NA_N9916A.N9916A.hold"><code class="docutils literal notranslate"><span class="pre">N9916A.hold()</span></code></a></li>
 <li><a class="reference internal" href="#qinst.network.NA_N9916A.N9916A.query_data"><code class="docutils literal notranslate"><span class="pre">N9916A.query_data()</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.NA_N9916A.N9916A.read_freqs"><code class="docutils literal notranslate"><span class="pre">N9916A.read_freqs()</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.NA_N9916A.N9916A.read_trace_data"><code class="docutils literal notranslate"><span class="pre">N9916A.read_trace_data()</span></code></a></li>
 <li><a class="reference internal" href="#qinst.network.NA_N9916A.N9916A.single_sweep"><code class="docutils literal notranslate"><span class="pre">N9916A.single_sweep()</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.NA_N9916A.N9916A.snapshot"><code class="docutils literal notranslate"><span class="pre">N9916A.snapshot()</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.NA_N9916A.N9916A.survey"><code class="docutils literal notranslate"><span class="pre">N9916A.survey()</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.NA_N9916A.N9916A.sweep_meas_time"><code class="docutils literal notranslate"><span class="pre">N9916A.sweep_meas_time</span></code></a></li>
 <li><a class="reference internal" href="#qinst.network.NA_N9916A.N9916A.sweep_points"><code class="docutils literal notranslate"><span class="pre">N9916A.sweep_points</span></code></a></li>
 <li><a class="reference internal" href="#qinst.network.NA_N9916A.N9916A.sweep_time"><code class="docutils literal notranslate"><span class="pre">N9916A.sweep_time</span></code></a></li>
 <li><a class="reference internal" href="#qinst.network.NA_N9916A.N9916A.write_and_hold"><code class="docutils literal notranslate"><span class="pre">N9916A.write_and_hold()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#qinst.network.NA_N9916A.SAN9916A"><code class="docutils literal notranslate"><span class="pre">SAN9916A</span></code></a><ul>
+<li><a class="reference internal" href="#qinst.network.NA_N9916A.SAN9916A.attenuation"><code class="docutils literal notranslate"><span class="pre">SAN9916A.attenuation</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.NA_N9916A.SAN9916A.auto_attenuation"><code class="docutils literal notranslate"><span class="pre">SAN9916A.auto_attenuation</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.NA_N9916A.SAN9916A.auto_res_bandwidth"><code class="docutils literal notranslate"><span class="pre">SAN9916A.auto_res_bandwidth</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.NA_N9916A.SAN9916A.autoscale"><code class="docutils literal notranslate"><span class="pre">SAN9916A.autoscale()</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.NA_N9916A.SAN9916A.average_type"><code class="docutils literal notranslate"><span class="pre">SAN9916A.average_type</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.NA_N9916A.SAN9916A.clear_average"><code class="docutils literal notranslate"><span class="pre">SAN9916A.clear_average()</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.NA_N9916A.SAN9916A.gain"><code class="docutils literal notranslate"><span class="pre">SAN9916A.gain</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.NA_N9916A.SAN9916A.read_freqs"><code class="docutils literal notranslate"><span class="pre">SAN9916A.read_freqs()</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.NA_N9916A.SAN9916A.read_trace_data"><code class="docutils literal notranslate"><span class="pre">SAN9916A.read_trace_data()</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.NA_N9916A.SAN9916A.res_bandwidth"><code class="docutils literal notranslate"><span class="pre">SAN9916A.res_bandwidth</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.NA_N9916A.SAN9916A.set_full_span"><code class="docutils literal notranslate"><span class="pre">SAN9916A.set_full_span()</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.NA_N9916A.SAN9916A.set_zero_span"><code class="docutils literal notranslate"><span class="pre">SAN9916A.set_zero_span()</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.NA_N9916A.SAN9916A.trace_type"><code class="docutils literal notranslate"><span class="pre">SAN9916A.trace_type</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.NA_N9916A.SAN9916A.yformat"><code class="docutils literal notranslate"><span class="pre">SAN9916A.yformat</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.NA_N9916A.SAN9916A.yscale"><code class="docutils literal notranslate"><span class="pre">SAN9916A.yscale</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#qinst.network.NA_N9916A.VNAN9916A"><code class="docutils literal notranslate"><span class="pre">VNAN9916A</span></code></a><ul>
@@ -779,17 +923,13 @@ moduleauthor: Rodolfo Carobene &lt;<a class="reference external" href="mailto:ro
 <li><a class="reference internal" href="#qinst.network.NA_N9916A.VNAN9916A.S_par"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.S_par</span></code></a></li>
 <li><a class="reference internal" href="#qinst.network.NA_N9916A.VNAN9916A.activate_trace"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.activate_trace()</span></code></a></li>
 <li><a class="reference internal" href="#qinst.network.NA_N9916A.VNAN9916A.autoscale"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.autoscale()</span></code></a></li>
-<li><a class="reference internal" href="#qinst.network.NA_N9916A.VNAN9916A.average"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.average</span></code></a></li>
 <li><a class="reference internal" href="#qinst.network.NA_N9916A.VNAN9916A.average_mode"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.average_mode</span></code></a></li>
 <li><a class="reference internal" href="#qinst.network.NA_N9916A.VNAN9916A.clear_average"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.clear_average()</span></code></a></li>
 <li><a class="reference internal" href="#qinst.network.NA_N9916A.VNAN9916A.power"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.power</span></code></a></li>
-<li><a class="reference internal" href="#qinst.network.NA_N9916A.VNAN9916A.read_IQ"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.read_IQ()</span></code></a></li>
-<li><a class="reference internal" href="#qinst.network.NA_N9916A.VNAN9916A.read_formatted_data"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.read_formatted_data()</span></code></a></li>
 <li><a class="reference internal" href="#qinst.network.NA_N9916A.VNAN9916A.read_freqs"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.read_freqs()</span></code></a></li>
+<li><a class="reference internal" href="#qinst.network.NA_N9916A.VNAN9916A.read_trace_data"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.read_trace_data()</span></code></a></li>
 <li><a class="reference internal" href="#qinst.network.NA_N9916A.VNAN9916A.setup"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.setup()</span></code></a></li>
 <li><a class="reference internal" href="#qinst.network.NA_N9916A.VNAN9916A.smoothing"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.smoothing</span></code></a></li>
-<li><a class="reference internal" href="#qinst.network.NA_N9916A.VNAN9916A.snapshot"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.snapshot()</span></code></a></li>
-<li><a class="reference internal" href="#qinst.network.NA_N9916A.VNAN9916A.survey"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.survey()</span></code></a></li>
 <li><a class="reference internal" href="#qinst.network.NA_N9916A.VNAN9916A.sweep"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.sweep()</span></code></a></li>
 <li><a class="reference internal" href="#qinst.network.NA_N9916A.VNAN9916A.yformat"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.yformat</span></code></a></li>
 </ul>

@@ -242,25 +242,22 @@ The SCPI commands and functions can be found in the <a class="reference external
 <p>This instrument features different operational modes (VNA, SA, CAT…), with mostly different commands. Each mode is controlled by its respective class. When instantiated, these classes will automatically try to connect to the instrument and initialize a basic measurement setup.</p>
 <section id="commands">
 <h2>Commands<a class="headerlink" href="#commands" title="Permalink to this heading">#</a></h2>
-<p>Other than featuring all the methods of <a class="reference internal" href="../api-reference/qinst.html#qinst.network_inst.NetworkInst" title="qinst.network_inst.NetworkInst"><code class="xref py py-class docutils literal notranslate"><span class="pre">qinst.network_inst.NetworkInst</span></code></a>, the base <code class="xref py py-class docutils literal notranslate"><span class="pre">N9916A</span></code> class contains the following methods and properties common to all the operational modes of the instrument.</p>
+<p>Other than featuring all the methods of <a class="reference internal" href="../api-reference/qinst.html#qinst.network_inst.NetworkInst" title="qinst.network_inst.NetworkInst"><code class="xref py py-class docutils literal notranslate"><span class="pre">qinst.network_inst.NetworkInst</span></code></a>, the base <a class="reference internal" href="../api-reference/qinst.network.html#qinst.network.NA_N9916A.N9916A" title="qinst.network.NA_N9916A.N9916A"><code class="xref py py-class docutils literal notranslate"><span class="pre">qinst.network.NA_N9916A.N9916A</span></code></a> class contains the following methods and properties common to all the operational modes of the instrument.</p>
 <section id="functions">
 <h3>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>clear()</p></li>
-<li><p>connect_port(port)</p></li>
 <li><p>reset()</p></li>
 <li><p>hold()</p></li>
 <li><p>write_and_hold()</p></li>
-<li><p>f_min()</p></li>
-<li><p>f_max()</p></li>
-<li><p>f_center()</p></li>
-<li><p>f_span()</p></li>
-<li><p>sweep_points()</p></li>
-<li><p>sweep_time()</p></li>
-<li><p>continuous()</p></li>
+<li><p>autoscale()</p></li>
+<li><p>clear_average()</p></li>
 <li><p>single_sweep()</p></li>
-<li><p>data_format()</p></li>
 <li><p>query_data()</p></li>
+<li><p>read_trace_data()</p></li>
+<li><p>read_freqs()</p></li>
+<li><p>snapshot()</p></li>
+<li><p>survey()</p></li>
 </ul>
 </section>
 <section id="properties">
@@ -272,14 +269,16 @@ The SCPI commands and functions can be found in the <a class="reference external
 <li><p>f_span</p></li>
 <li><p>sweep_points</p></li>
 <li><p>sweep_time</p></li>
+<li><p>average</p></li>
 <li><p>continuous</p></li>
 <li><p>data_format</p></li>
+<li><p>yformat</p></li>
 </ul>
 </section>
 </section>
 <section id="vna-mode">
 <h2>VNA mode<a class="headerlink" href="#vna-mode" title="Permalink to this heading">#</a></h2>
-<p>Measure the scattering value parameter of a connected RF network by sweeping a probe signal over a range of frequencies. This mode is implemented by the <code class="xref py py-class docutils literal notranslate"><span class="pre">VNAN9916A</span></code> class.</p>
+<p>Measure the scattering value parameter of a connected RF network by sweeping a probe signal over a range of frequencies. This mode is implemented by the <a class="reference internal" href="../api-reference/qinst.network.html#qinst.network.NA_N9916A.VNAN9916A" title="qinst.network.NA_N9916A.VNAN9916A"><code class="xref py py-class docutils literal notranslate"><span class="pre">qinst.network.NA_N9916A.VNAN9916A</span></code></a> class.</p>
 <section id="example-of-operation">
 <h3>Example of operation<a class="headerlink" href="#example-of-operation" title="Permalink to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qinst</span> <span class="kn">import</span> <span class="n">VNAN9916A</span>
@@ -304,15 +303,8 @@ The SCPI commands and functions can be found in the <a class="reference external
 <h3>Functions<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>setup()</p></li>
-<li><p>autoscale()</p></li>
 <li><p>activate_trace()</p></li>
-<li><p>clear_average()</p></li>
-<li><p>read_freqs()</p></li>
 <li><p>sweep()</p></li>
-<li><p>read_IQ()</p></li>
-<li><p>read_formatted_data()</p></li>
-<li><p>snapshot()</p></li>
-<li><p>survey()</p></li>
 </ul>
 </section>
 <section id="id2">
@@ -321,10 +313,54 @@ The SCPI commands and functions can be found in the <a class="reference external
 <li><p>S_par</p></li>
 <li><p>yformat</p></li>
 <li><p>smoothing</p></li>
-<li><p>average</p></li>
 <li><p>average_mode</p></li>
 <li><p>IFBW</p></li>
 <li><p>power</p></li>
+</ul>
+</section>
+</section>
+<section id="sa-mode">
+<h2>SA mode<a class="headerlink" href="#sa-mode" title="Permalink to this heading">#</a></h2>
+<p>Measure the magnitude of an RF signal as a function of frequency. This mode is implemented by the <a class="reference internal" href="../api-reference/qinst.network.html#qinst.network.NA_N9916A.SAN9916A" title="qinst.network.NA_N9916A.SAN9916A"><code class="xref py py-class docutils literal notranslate"><span class="pre">qinst.network.NA_N9916A.SAN9916A</span></code></a> class.</p>
+<section id="id3">
+<h3>Example of operation<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qinst</span> <span class="kn">import</span> <span class="n">SAN9916A</span>
+
+<span class="n">SA</span> <span class="o">=</span> <span class="n">SAN9916A</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;mySA&quot;</span><span class="p">,</span> <span class="n">address</span> <span class="o">=</span> <span class="s2">&quot;192.168.40.10&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Measure the amplitude of the signal in dB over the 4-8 GHz frequency range, averaging 5 sweeps of the SA and using a logarithmic scale for the amplitude. The result consists of the frequency array and the amplitude array of real numbers with the correct measurement unit and scale:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">SA</span><span class="o">.</span><span class="n">average</span> <span class="o">=</span> <span class="mi">5</span> <span class="c1"># number of averages of the recorded trace</span>
+<span class="n">SA</span><span class="o">.</span><span class="n">yscale</span> <span class="o">=</span> <span class="s2">&quot;LOG&quot;</span> <span class="c1"># amplitude scale</span>
+<span class="n">SA</span><span class="o">.</span><span class="n">yformat</span> <span class="o">=</span> <span class="s2">&quot;DBM&quot;</span> <span class="c1"># amplitude measurement unit</span>
+<span class="n">f</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">SA</span><span class="o">.</span><span class="n">snapshot</span><span class="p">(</span><span class="n">f_min</span><span class="o">=</span><span class="mf">4e9</span><span class="p">,</span> <span class="n">f_max</span><span class="o">=</span><span class="mf">8e9</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Since the instrument allows a maximum number of 10001 points in a single sweep, the <code class="docutils literal notranslate"><span class="pre">survey()</span></code> function allows to perform more precise measurements over a large frequency range by patching togheter multiple snapshots over smaller ranges.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">SA</span><span class="o">.</span><span class="n">sweep_points</span> <span class="o">=</span> <span class="mi">10001</span>
+<span class="n">f</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">SA</span><span class="o">.</span><span class="n">survey</span><span class="p">(</span><span class="mf">4e9</span><span class="p">,</span> <span class="mf">8e9</span><span class="p">,</span> <span class="mf">0.5e9</span><span class="p">)</span> <span class="c1"># patch multiple snapshots, each with 10001 points and a 500 MHz span</span>
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h3>Functions<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>set_full_span()</p></li>
+<li><p>set_zero_span()</p></li>
+</ul>
+</section>
+<section id="id5">
+<h3>Properties<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>gain</p></li>
+<li><p>attenuation</p></li>
+<li><p>auto_attenuation</p></li>
+<li><p>res_bandwidth</p></li>
+<li><p>auto_res_bandwidth</p></li>
+<li><p>trace_type</p></li>
+<li><p>average_type</p></li>
+<li><p>yformat</p></li>
+<li><p>yscale</p></li>
 </ul>
 </section>
 </section>
@@ -402,6 +438,12 @@ The SCPI commands and functions can be found in the <a class="reference external
 <li><a class="reference internal" href="#example-of-operation">Example of operation</a></li>
 <li><a class="reference internal" href="#id1">Functions</a></li>
 <li><a class="reference internal" href="#id2">Properties</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sa-mode">SA mode</a><ul>
+<li><a class="reference internal" href="#id3">Example of operation</a></li>
+<li><a class="reference internal" href="#id4">Functions</a></li>
+<li><a class="reference internal" href="#id5">Properties</a></li>
 </ul>
 </li>
 </ul>
