@@ -10,6 +10,8 @@ import serial
 
 from qinst.serial_inst import SerialInst
 
+DEFAULT_FREQ_SCALE = 1e-3  # Convert mHz to Hz
+
 
 class FSL0010(SerialInst):
     """FSL0010 QuickSyn microwave synthesizer by National Instruments."""
@@ -29,17 +31,16 @@ class FSL0010(SerialInst):
         super().__init__(
             name, address, baudrate, bytesize, parity, stopbits, timeout, sleep
         )
-        self.__default_freq_scale = 1e-3
 
     @property
     def freq(self) -> float:
         """Output signal frequency in Hz."""
-        return float(self.query("FREQ?")) * self.__default_freq_scale
+        return float(self.query("FREQ?")) * DEFAULT_FREQ_SCALE
 
     @freq.setter
     def freq(self, freq: float):
         freq = self.validate_range(freq, 0.65e9, 10e9)
-        self.write(f"FREQ {freq/self.__default_freq_scale}mlHz")
+        self.write(f"FREQ {freq/DEFAULT_FREQ_SCALE}mlHz")
 
     @property
     def output_on(self) -> bool:
