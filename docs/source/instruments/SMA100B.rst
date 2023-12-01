@@ -5,7 +5,7 @@ R&S®SMA100B RF and microwave signal generator by Rohde & Schwarz
 The manuals of this instrument and similar models are available at `Rohde & Schwarz <https://www.rohde-schwarz.com/products/test-and-measurement/analog-signal-generators/rs-sma100b-rf-and-microwave-signal-generator_63493-427776.html>`_.
 The SCPI commands and functions can be found in the `programming guide <https://scdn.rohde-schwarz.com/ur/pws/dl_downloads/pdm/cl_manuals/user_manual/1178_3834_01/SMA100B_UserManual_en_10.pdf>`_.
 
-Base class: :class:`qinst.network_inst.NetworkInst`.
+Base class: :class:`qinst.instruments.network_inst.NetworkInst`.
 
 Example of operations
 ---------------------
