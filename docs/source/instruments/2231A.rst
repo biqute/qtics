@@ -1,0 +1,52 @@
+Keithley Model 2231A-30-3 Triple Channel DC Power Supply.
+=======================================================
+
+Keithley Model `2231A-30-3` Triple Channel DC Power Supply produced by Keithley Instruments.
+Manual of the instrument is available at `Tek <https://download.tek.com/manual/077100401_Reference%20manual.pdf>`_.
+
+Base class: :class:`qinst.serial_inst.SerialInst`.
+
+Example of operations
+"""""""""""""""""""""
+
+To initialize a controller you can execute the following directives on any Python script or notebook:
+
+.. code-block:: python
+
+  from qinst import Keithley2231A
+
+  power_supply = Keithley2231A(name = "my_power_supply", address = "/dev/ttyACM0")
+  power_supply.connect()
+
+
+To execute commands:
+
+.. code-block:: python
+
+   power_supply.reset() # reset the device to default conditions
+   power_supply.voltage_limit('1', '3.0') # select channel 1 and set a limit to 3.0 V
+   power_supply.voltage('1', '1.0') # select channel 1 and set 1.0 V
+
+Commands
+""""""""
+
+Functions
+------------
+- clear()
+- save(memory)
+- load(memory)
+- wait()
+- ch_select(ch)
+- voltage(ch, value)
+- current(ch, value)
+- voltage_limit(ch, value)
+- current_limit(ch, value)
+
+Properties
+------------
+- is_completed
+- ch_selected
+- voltage
+- current
+- voltage_limit
+- current_limit

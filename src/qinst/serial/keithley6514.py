@@ -1,5 +1,5 @@
 """
-Controller of the Keithley6514 electrometer.
+Controller of the Keithley6514 Electrometer.
 
 .. module:: keithley6514.py
 .. moduleauthor:: Marco Gobbo <marco.gobbo@mib.infn.it>
