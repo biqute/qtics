@@ -40,7 +40,7 @@ class FSL0010(SerialInst):
     @freq.setter
     def freq(self, freq: float):
         freq = self.validate_range(freq, 0.65e9, 10e9)
-        self.write(f"FREQ {freq/DEFAULT_FREQ_SCALE}mlHz")
+        self.write(f"FREQ {freq / DEFAULT_FREQ_SCALE}mlHz")
 
     @property
     def output_on(self) -> bool:
