@@ -2,6 +2,8 @@
 
 from abc import ABC, abstractmethod
 
+from qinst import log
+
 
 class Instrument(ABC):
     """Base instrument class."""
@@ -56,3 +58,18 @@ class Instrument(ABC):
             else:
                 raise RuntimeError(f"The instrument does not have the {key} parameter.")
         return values
+
+    def validate_opt(self, opt: str, allowed: tuple):
+        """Check if provided option is between allowed ones."""
+        if opt not in allowed:
+            raise RuntimeError(f"Invalid option provided, choose between {allowed}")
+
+    def validate_range(self, n, n_min, n_max):
+        """Check if provided number is in allowed range."""
+        if not n_min < n < n_max:
+            valid = max(n_min, min(n_max, n))
+            log.warning(
+                f"Provided value {n} not in range ({n_min}, {n_max}), will be set to {valid}."
+            )
+            return valid
+        return n
