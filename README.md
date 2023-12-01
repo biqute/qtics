@@ -8,8 +8,6 @@
 
 Qinst is a collection of tools designed to facilitate the instrumentation of the
 [BiQuTe Cryogenic Laboratory](https://biqute.unimib.it/research/cryogenic-lab).
-The package provides utilities for handling various aspects of instrumentation
-within the lab environment.
 
 In the experiments folder, some experiments are provided as examples, along with
 various helpers.
