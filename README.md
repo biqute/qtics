@@ -41,11 +41,13 @@ then to install it in normal mode:
 pip install .
 ```
 
-Use poetry to install the latest version in developer mode, remember to also install the pre-commits!
+Use poetry to install the latest version in developer mode, remember to also
+install the pre-commits!
 
 ```bash
 poetry install --with docs,analysis,tests,experiments
 pre-commit install
+```
 
 ## License
 
