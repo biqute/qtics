@@ -414,6 +414,16 @@ files = [
 numpy = ">=1.17.3"
 
 [[package]]
+name = "hightime"
+version = "0.2.1"
+description = "Hightime Python API"
+optional = false
+python-versions = "*"
+files = [
+    {file = "hightime-0.2.1-py3-none-any.whl", hash = "sha256:a300434692de16273ce46f9c1f2de01e90091b151ccfb4e0973a6a6e1d51f032"},
+]
+
+[[package]]
 name = "idna"
 version = "3.4"
 description = "Internationalized Domain Names in Applications (IDNA)"
@@ -831,6 +841,38 @@ nbconvert = "!=5.4"
 nbformat = "*"
 sphinx = ">=1.8"
 traitlets = ">=5"
+
+[[package]]
+name = "niscope"
+version = "1.4.6"
+description = "NI-SCOPE Python API"
+optional = false
+python-versions = "*"
+files = [
+    {file = "niscope-1.4.6-py3-none-any.whl", hash = "sha256:b993cf0f1b36605398c5cc879c875eabd95ca44b2738a0265453431a6bdc9901"},
+    {file = "niscope-1.4.6.tar.gz", hash = "sha256:cadb120820c4e531e8dda4751e6bfe6e81838130559a1be94ad18e0361b64246"},
+]
+
+[package.dependencies]
+hightime = ">=0.2.0"
+nitclk = "*"
+
+[package.extras]
+grpc = ["grpcio (>=1.49.1,<2.0)", "protobuf (>=4.21,<5.0)"]
+
+[[package]]
+name = "nitclk"
+version = "1.4.6"
+description = "NI-TClk Python API"
+optional = false
+python-versions = "*"
+files = [
+    {file = "nitclk-1.4.6-py3-none-any.whl", hash = "sha256:68d5e1761d534c7474d7c55382a624090fac1cfa95e101e58b8a98e30cf659b1"},
+    {file = "nitclk-1.4.6.tar.gz", hash = "sha256:6aac6e8646b28411058040df8b7ce825c2895d5a05b1026319b7c34c7a2e3781"},
+]
+
+[package.dependencies]
+hightime = ">=0.2.0"
 
 [[package]]
 name = "numpy"
@@ -1826,4 +1868,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.8, <3.12"
-content-hash = "55f1b7afa5dfdbea156f6b43067f31291b766fec4590119b78ce9e738fbb65a2"
+content-hash = "5bf88beeb99185fccbcb9ae8d7cb0e5af0a129a729a3c708e75228eda268000c"

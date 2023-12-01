@@ -16,6 +16,7 @@ classifiers = [
 python = ">=3.8, <3.12"
 pyserial = "^3.5"
 numpy = "^1.24"
+niscope = "^1.4.6"
 
 [build-system]
 requires = ["poetry-core"]
