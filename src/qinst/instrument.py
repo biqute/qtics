@@ -66,7 +66,7 @@ class Instrument(ABC):
 
     def validate_range(self, n, n_min, n_max):
         """Check if provided number is in allowed range."""
-        if not n_min < n < n_max:
+        if not n_min <= n <= n_max:
             valid = max(n_min, min(n_max, n))
             log.warning(
                 f"Provided value {n} not in range ({n_min}, {n_max}), will be set to {valid}."

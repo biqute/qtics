@@ -54,19 +54,19 @@ class FSW0010(SerialInst):
     @property
     def output_on(self) -> bool:
         """Turn on RF output."""
-        return int(self.query("OUTP:STAT?")) == 1
+        return self.query("OUTP:STAT?") == "ON"
 
     @output_on.setter
     def output_on(self, on: bool):
         if on:
-            self.write("OUTP:STAT OFF")
+            self.write("OUTP:STAT ON")
         else:
             self.write("OUTP:STAT OFF")
 
     @property
     def ext_ref_source(self) -> bool:
         """Use external reference source."""
-        return int(self.query("ROSC:SOUR?")) == 1
+        return self.query("ROSC:SOUR?") == "EXT"
 
     @ext_ref_source.setter
     def ext_ref_source(self, ext: bool):
