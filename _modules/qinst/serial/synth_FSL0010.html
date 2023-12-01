@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" />
 
     <link rel="shortcut icon" href="../../../_static/favicon.ico"/><!-- Generated with Sphinx 6.2.1 and Furo 2023.09.10 -->
-        <title>qinst.serial.keithley6514 - Qinst · 0.0.1</title>
+        <title>qinst.serial.synth_FSL0010 - Qinst · 0.0.1</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?digest=369552022d0b975c8e74270ce6eabe0fb7978f24" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
@@ -224,75 +224,79 @@
           </label>
         </div>
         <article role="main">
-          <h1>Source code for qinst.serial.keithley6514</h1><div class="highlight"><pre>
+          <h1>Source code for qinst.serial.synth_FSL0010</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Controller of the Keithley6514 electrometer.</span>
+<span class="sd">FSL0010 QuickSyn microwave synthesizer by National Instruments.</span>
 
-<span class="sd">.. module:: keithley6514.py</span>
-<span class="sd">.. moduleauthor:: Marco Gobbo &lt;marco.gobbo@mib.infn.it&gt;</span>
+<span class="sd">.. module:: synth_FSL0010.py</span>
+<span class="sd">.. moduleauthor:: Pietro Campana &lt;campana.pietro@campus.unimib.it&gt;</span>
 <span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Literal</span>
+
+<span class="kn">import</span> <span class="nn">serial</span>
 
 <span class="kn">from</span> <span class="nn">qinst.serial_inst</span> <span class="kn">import</span> <span class="n">SerialInst</span>
 
+<span class="n">DEFAULT_FREQ_SCALE</span> <span class="o">=</span> <span class="mf">1e-3</span>  <span class="c1"># Convert mHz to Hz</span>
 
-<div class="viewcode-block" id="Keithley6514"><a class="viewcode-back" href="../../../api-reference/qinst.serial.html#qinst.serial.keithley6514.Keithley6514">[docs]</a><span class="k">class</span> <span class="nc">Keithley6514</span><span class="p">(</span><span class="n">SerialInst</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Keithley 6514 Programmable Electrometer by Keithley Instruments.&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Keithley6514.connect"><a class="viewcode-back" href="../../../api-reference/qinst.serial.html#qinst.serial.keithley6514.Keithley6514.connect">[docs]</a>    <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Put Keithley 6514 Electrometer in remote.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">serial</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;SYST:REM&quot;</span><span class="p">)</span></div>
+<div class="viewcode-block" id="FSL0010"><a class="viewcode-back" href="../../../api-reference/qinst.serial.html#qinst.serial.synth_FSL0010.FSL0010">[docs]</a><span class="k">class</span> <span class="nc">FSL0010</span><span class="p">(</span><span class="n">SerialInst</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;FSL0010 QuickSyn microwave synthesizer by National Instruments.&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Keithley6514.disconnect"><a class="viewcode-back" href="../../../api-reference/qinst.serial.html#qinst.serial.keithley6514.Keithley6514.disconnect">[docs]</a>    <span class="k">def</span> <span class="nf">disconnect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Take Keithley 6514 Electrometer out of remote.&quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">serial</span><span class="o">.</span><span class="n">is_open</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;SYST:LOC&quot;</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">serial</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">address</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">baudrate</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">115200</span><span class="p">,</span>
+        <span class="n">bytesize</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">serial</span><span class="o">.</span><span class="n">EIGHTBITS</span><span class="p">,</span>
+        <span class="n">parity</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;N&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">serial</span><span class="o">.</span><span class="n">PARITY_NONE</span><span class="p">,</span>
+        <span class="n">stopbits</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">serial</span><span class="o">.</span><span class="n">STOPBITS_ONE</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="n">sleep</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize.&quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">name</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">baudrate</span><span class="p">,</span> <span class="n">bytesize</span><span class="p">,</span> <span class="n">parity</span><span class="p">,</span> <span class="n">stopbits</span><span class="p">,</span> <span class="n">timeout</span><span class="p">,</span> <span class="n">sleep</span>
+        <span class="p">)</span>
 
-<div class="viewcode-block" id="Keithley6514.zcheck_on"><a class="viewcode-back" href="../../../api-reference/qinst.serial.html#qinst.serial.keithley6514.Keithley6514.zcheck_on">[docs]</a>    <span class="k">def</span> <span class="nf">zcheck_on</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Enable zero check.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;SYST:ZCH ON&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span></div>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">freq</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Output signal frequency in Hz.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;FREQ?&quot;</span><span class="p">))</span> <span class="o">*</span> <span class="n">DEFAULT_FREQ_SCALE</span>
 
-<div class="viewcode-block" id="Keithley6514.zcheck_off"><a class="viewcode-back" href="../../../api-reference/qinst.serial.html#qinst.serial.keithley6514.Keithley6514.zcheck_off">[docs]</a>    <span class="k">def</span> <span class="nf">zcheck_off</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Disable zero check.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;SYST:ZCH OFF&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span></div>
+    <span class="nd">@freq</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">freq</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">freq</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+        <span class="n">freq</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">validate_range</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span> <span class="mf">0.65e9</span><span class="p">,</span> <span class="mf">10e9</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;FREQ </span><span class="si">{</span><span class="n">freq</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">DEFAULT_FREQ_SCALE</span><span class="si">}</span><span class="s2">mlHz&quot;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Keithley6514.zcorrect"><a class="viewcode-back" href="../../../api-reference/qinst.serial.html#qinst.serial.keithley6514.Keithley6514.zcorrect">[docs]</a>    <span class="k">def</span> <span class="nf">zcorrect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Perform zero correction.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;SYST:ZCOR ON&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span></div>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">output_on</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Turn on RF output.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;OUTP:STAT?&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;ON&quot;</span>
 
-<div class="viewcode-block" id="Keithley6514.set_zero"><a class="viewcode-back" href="../../../api-reference/qinst.serial.html#qinst.serial.keithley6514.Keithley6514.set_zero">[docs]</a>    <span class="k">def</span> <span class="nf">set_zero</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Perform zero correction sequence.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">zcheck_on</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">zcorrect</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">zcheck_off</span><span class="p">()</span></div>
-
-<div class="viewcode-block" id="Keithley6514.set_measure"><a class="viewcode-back" href="../../../api-reference/qinst.serial.html#qinst.serial.keithley6514.Keithley6514.set_measure">[docs]</a>    <span class="k">def</span> <span class="nf">set_measure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameter</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set basic settings for measure a parameter.</span>
-
-<span class="sd">        Valid parameters to write:</span>
-<span class="sd">        - VOLT: Voltage measurement</span>
-<span class="sd">        - CURR: Current measurement</span>
-<span class="sd">        - RES: Resistance measurement</span>
-<span class="sd">        - CHAR: Charge measurement</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">parameters</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;VOLT&quot;</span><span class="p">,</span> <span class="s2">&quot;CURR&quot;</span><span class="p">,</span> <span class="s2">&quot;RES&quot;</span><span class="p">,</span> <span class="s2">&quot;CHAR&quot;</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="n">parameter</span> <span class="ow">in</span> <span class="n">parameters</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SENS:FUNC &#39;</span><span class="si">{</span><span class="n">parameter</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SENS:</span><span class="si">{</span><span class="n">parameter</span><span class="si">}</span><span class="s2">:RANG:AUTO ON&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">set_zero</span><span class="p">()</span>
+    <span class="nd">@output_on</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">output_on</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">on</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">on</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;OUTP:STAT ON&quot;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;Invalid parameter </span><span class="si">{</span><span class="n">parameter</span><span class="si">}</span><span class="s2"> for the set_measure() method.&quot;</span>
-            <span class="p">)</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;OUTP:STAT OFF&quot;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Keithley6514.read_data"><a class="viewcode-back" href="../../../api-reference/qinst.serial.html#qinst.serial.keithley6514.Keithley6514.read_data">[docs]</a>    <span class="k">def</span> <span class="nf">read_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the value of the parameter under measurement.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;FORM:ELEM READ&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;ARM:COUNT 1&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;READ?&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
-        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">read</span><span class="p">())</span></div></div>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">ext_ref_source</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Use external reference source.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;ROSC:SOUR?&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;EXT&quot;</span>
+
+    <span class="nd">@ext_ref_source</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">ext_ref_source</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ext</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">ext</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;ROSC:SOUR EXT&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;ROSC:SOUR INT&quot;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">temperature</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Temperature in degrees Celsius.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;DIAG:MEAS? 21&quot;</span><span class="p">))</span></div>
 </pre></div>
         </article>
       </div>

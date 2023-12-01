@@ -170,6 +170,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../instruments/R591722600.html">RF switch Radiall R591722600</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../instruments/3494_64.html">Attenuator Kratos 3494-64</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../instruments/SIM928.html">Isolated voltage source Stanford Research Systems SIM928</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../instruments/FSL0010.html">Microwave synthesizer FSL0010</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../instruments/6514.html">Keithley Model 6514 System Electrometer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../instruments/SMA100B.html">R&amp;S®SMA100B RF and microwave signal generator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../instruments/N9916A.html">Handheld Microwave Analyzer FieldFox N9916A</a></li>
@@ -321,6 +322,41 @@
 <dt class="sig sig-object py" id="qinst.serial.keithley6514.Keithley6514.zcorrect">
 <span class="sig-name descname"><span class="pre">zcorrect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/serial/keithley6514.html#Keithley6514.zcorrect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.serial.keithley6514.Keithley6514.zcorrect" title="Permalink to this definition">#</a></dt>
 <dd><p>Perform zero correction.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-qinst.serial.synth_FSL0010">
+<span id="qinst-serial-synth-fsl0010-module"></span><h2>qinst.serial.synth_FSL0010 module<a class="headerlink" href="#module-qinst.serial.synth_FSL0010" title="Permalink to this heading">#</a></h2>
+<p>FSL0010 QuickSyn microwave synthesizer by National Instruments.</p>
+<span class="target" id="module-synth_FSL0010.py"></span><dl class="py class">
+<dt class="sig sig-object py" id="qinst.serial.synth_FSL0010.FSL0010">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qinst.serial.synth_FSL0010.</span></span><span class="sig-name descname"><span class="pre">FSL0010</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">baudrate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">115200</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bytesize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.12)"><span class="pre">Literal</span></a><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'N'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'N'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stopbits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sleep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/serial/synth_FSL0010.html#FSL0010"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.serial.synth_FSL0010.FSL0010" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="qinst.html#qinst.serial_inst.SerialInst" title="qinst.serial_inst.SerialInst"><code class="xref py py-class docutils literal notranslate"><span class="pre">SerialInst</span></code></a></p>
+<p>FSL0010 QuickSyn microwave synthesizer by National Instruments.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.serial.synth_FSL0010.FSL0010.ext_ref_source">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ext_ref_source</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></em><a class="headerlink" href="#qinst.serial.synth_FSL0010.FSL0010.ext_ref_source" title="Permalink to this definition">#</a></dt>
+<dd><p>Use external reference source.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.serial.synth_FSL0010.FSL0010.freq">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">freq</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><a class="headerlink" href="#qinst.serial.synth_FSL0010.FSL0010.freq" title="Permalink to this definition">#</a></dt>
+<dd><p>Output signal frequency in Hz.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.serial.synth_FSL0010.FSL0010.output_on">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">output_on</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></em><a class="headerlink" href="#qinst.serial.synth_FSL0010.FSL0010.output_on" title="Permalink to this definition">#</a></dt>
+<dd><p>Turn on RF output.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.serial.synth_FSL0010.FSL0010.temperature">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">temperature</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><a class="headerlink" href="#qinst.serial.synth_FSL0010.FSL0010.temperature" title="Permalink to this definition">#</a></dt>
+<dd><p>Temperature in degrees Celsius.</p>
 </dd></dl>
 
 </dd></dl>
@@ -506,6 +542,16 @@ the service batteries indicator is lit.</p>
 <li><a class="reference internal" href="#qinst.serial.keithley6514.Keithley6514.zcheck_off"><code class="docutils literal notranslate"><span class="pre">Keithley6514.zcheck_off()</span></code></a></li>
 <li><a class="reference internal" href="#qinst.serial.keithley6514.Keithley6514.zcheck_on"><code class="docutils literal notranslate"><span class="pre">Keithley6514.zcheck_on()</span></code></a></li>
 <li><a class="reference internal" href="#qinst.serial.keithley6514.Keithley6514.zcorrect"><code class="docutils literal notranslate"><span class="pre">Keithley6514.zcorrect()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-qinst.serial.synth_FSL0010">qinst.serial.synth_FSL0010 module</a><ul>
+<li><a class="reference internal" href="#qinst.serial.synth_FSL0010.FSL0010"><code class="docutils literal notranslate"><span class="pre">FSL0010</span></code></a><ul>
+<li><a class="reference internal" href="#qinst.serial.synth_FSL0010.FSL0010.ext_ref_source"><code class="docutils literal notranslate"><span class="pre">FSL0010.ext_ref_source</span></code></a></li>
+<li><a class="reference internal" href="#qinst.serial.synth_FSL0010.FSL0010.freq"><code class="docutils literal notranslate"><span class="pre">FSL0010.freq</span></code></a></li>
+<li><a class="reference internal" href="#qinst.serial.synth_FSL0010.FSL0010.output_on"><code class="docutils literal notranslate"><span class="pre">FSL0010.output_on</span></code></a></li>
+<li><a class="reference internal" href="#qinst.serial.synth_FSL0010.FSL0010.temperature"><code class="docutils literal notranslate"><span class="pre">FSL0010.temperature</span></code></a></li>
 </ul>
 </li>
 </ul>

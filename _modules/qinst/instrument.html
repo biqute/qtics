@@ -169,6 +169,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../instruments/R591722600.html">RF switch Radiall R591722600</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../instruments/3494_64.html">Attenuator Kratos 3494-64</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../instruments/SIM928.html">Isolated voltage source Stanford Research Systems SIM928</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../instruments/FSL0010.html">Microwave synthesizer FSL0010</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../instruments/6514.html">Keithley Model 6514 System Electrometer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../instruments/SMA100B.html">R&amp;S®SMA100B RF and microwave signal generator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../instruments/N9916A.html">Handheld Microwave Analyzer FieldFox N9916A</a></li>
@@ -228,6 +229,8 @@
 
 <span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
 
+<span class="kn">from</span> <span class="nn">qinst</span> <span class="kn">import</span> <span class="n">log</span>
+
 
 <div class="viewcode-block" id="Instrument"><a class="viewcode-back" href="../../api-reference/qinst.html#qinst.instrument.Instrument">[docs]</a><span class="k">class</span> <span class="nc">Instrument</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Base instrument class.&quot;&quot;&quot;</span>
@@ -281,7 +284,24 @@
                 <span class="n">values</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The instrument does not have the </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2"> parameter.&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">values</span></div></div>
+        <span class="k">return</span> <span class="n">values</span></div>
+
+<div class="viewcode-block" id="Instrument.validate_opt"><a class="viewcode-back" href="../../api-reference/qinst.html#qinst.instrument.Instrument.validate_opt">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">validate_opt</span><span class="p">(</span><span class="n">opt</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">allowed</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Check if provided option is between allowed ones.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">opt</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">allowed</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid option provided, choose between </span><span class="si">{</span><span class="n">allowed</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Instrument.validate_range"><a class="viewcode-back" href="../../api-reference/qinst.html#qinst.instrument.Instrument.validate_range">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">validate_range</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n_min</span><span class="p">,</span> <span class="n">n_max</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Check if provided number is in allowed range.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">n_min</span> <span class="o">&lt;=</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="n">n_max</span><span class="p">:</span>
+            <span class="n">valid</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">n_min</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">n_max</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Provided value </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> not in range (</span><span class="si">{</span><span class="n">n_min</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">n_max</span><span class="si">}</span><span class="s2">), will be set to </span><span class="si">{</span><span class="n">valid</span><span class="si">}</span><span class="s2">.&quot;</span>
+            <span class="p">)</span>
+            <span class="k">return</span> <span class="n">valid</span>
+        <span class="k">return</span> <span class="n">n</span></div></div>
 </pre></div>
         </article>
       </div>

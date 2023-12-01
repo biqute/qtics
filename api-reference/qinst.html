@@ -170,6 +170,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../instruments/R591722600.html">RF switch Radiall R591722600</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../instruments/3494_64.html">Attenuator Kratos 3494-64</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../instruments/SIM928.html">Isolated voltage source Stanford Research Systems SIM928</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../instruments/FSL0010.html">Microwave synthesizer FSL0010</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../instruments/6514.html">Keithley Model 6514 System Electrometer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../instruments/SMA100B.html">R&amp;S®SMA100B RF and microwave signal generator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../instruments/N9916A.html">Handheld Microwave Analyzer FieldFox N9916A</a></li>
@@ -373,6 +374,16 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="qinst.serial.html#module-qinst.serial.synth_FSL0010">qinst.serial.synth_FSL0010 module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="qinst.serial.html#qinst.serial.synth_FSL0010.FSL0010"><code class="docutils literal notranslate"><span class="pre">FSL0010</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="qinst.serial.html#qinst.serial.synth_FSL0010.FSL0010.ext_ref_source"><code class="docutils literal notranslate"><span class="pre">FSL0010.ext_ref_source</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qinst.serial.html#qinst.serial.synth_FSL0010.FSL0010.freq"><code class="docutils literal notranslate"><span class="pre">FSL0010.freq</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qinst.serial.html#qinst.serial.synth_FSL0010.FSL0010.output_on"><code class="docutils literal notranslate"><span class="pre">FSL0010.output_on</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qinst.serial.html#qinst.serial.synth_FSL0010.FSL0010.temperature"><code class="docutils literal notranslate"><span class="pre">FSL0010.temperature</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="qinst.serial.html#module-qinst.serial.voltage_source_SIM928">qinst.serial.voltage_source_SIM928 module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="qinst.serial.html#qinst.serial.voltage_source_SIM928.SIM928"><code class="docutils literal notranslate"><span class="pre">SIM928</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="qinst.serial.html#qinst.serial.voltage_source_SIM928.SIM928.battery_charger_override"><code class="docutils literal notranslate"><span class="pre">SIM928.battery_charger_override()</span></code></a></li>
@@ -456,6 +467,18 @@
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="qinst.instrument.Instrument.validate_opt">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">validate_opt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">opt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">allowed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)"><span class="pre">tuple</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/instrument.html#Instrument.validate_opt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.instrument.Instrument.validate_opt" title="Permalink to this definition">#</a></dt>
+<dd><p>Check if provided option is between allowed ones.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qinst.instrument.Instrument.validate_range">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">validate_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_min</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_max</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/instrument.html#Instrument.validate_range"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.instrument.Instrument.validate_range" title="Permalink to this definition">#</a></dt>
+<dd><p>Check if provided number is in allowed range.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="qinst.instrument.Instrument.write">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/instrument.html#Instrument.write"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.instrument.Instrument.write" title="Permalink to this definition">#</a></dt>
 <dd><p>Send a command to the instrument.</p>
@@ -524,18 +547,6 @@
 <dt class="sig sig-object py" id="qinst.network_inst.NetworkInst.timeout">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">timeout</span></span><a class="headerlink" href="#qinst.network_inst.NetworkInst.timeout" title="Permalink to this definition">#</a></dt>
 <dd><p>Maximum waiting time for connection and communication.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="qinst.network_inst.NetworkInst.validate_opt">
-<span class="sig-name descname"><span class="pre">validate_opt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">opt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">allowed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)"><span class="pre">tuple</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/network_inst.html#NetworkInst.validate_opt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.network_inst.NetworkInst.validate_opt" title="Permalink to this definition">#</a></dt>
-<dd><p>Check if provided option is between allowed ones.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="qinst.network_inst.NetworkInst.validate_range">
-<span class="sig-name descname"><span class="pre">validate_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_min</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_max</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/network_inst.html#NetworkInst.validate_range"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.network_inst.NetworkInst.validate_range" title="Permalink to this definition">#</a></dt>
-<dd><p>Check if provided number is in allowed range.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -665,6 +676,8 @@
 <li><a class="reference internal" href="#qinst.instrument.Instrument.read"><code class="docutils literal notranslate"><span class="pre">Instrument.read()</span></code></a></li>
 <li><a class="reference internal" href="#qinst.instrument.Instrument.reset"><code class="docutils literal notranslate"><span class="pre">Instrument.reset()</span></code></a></li>
 <li><a class="reference internal" href="#qinst.instrument.Instrument.set"><code class="docutils literal notranslate"><span class="pre">Instrument.set()</span></code></a></li>
+<li><a class="reference internal" href="#qinst.instrument.Instrument.validate_opt"><code class="docutils literal notranslate"><span class="pre">Instrument.validate_opt()</span></code></a></li>
+<li><a class="reference internal" href="#qinst.instrument.Instrument.validate_range"><code class="docutils literal notranslate"><span class="pre">Instrument.validate_range()</span></code></a></li>
 <li><a class="reference internal" href="#qinst.instrument.Instrument.write"><code class="docutils literal notranslate"><span class="pre">Instrument.write()</span></code></a></li>
 </ul>
 </li>
@@ -685,8 +698,6 @@
 <li><a class="reference internal" href="#qinst.network_inst.NetworkInst.query"><code class="docutils literal notranslate"><span class="pre">NetworkInst.query()</span></code></a></li>
 <li><a class="reference internal" href="#qinst.network_inst.NetworkInst.read"><code class="docutils literal notranslate"><span class="pre">NetworkInst.read()</span></code></a></li>
 <li><a class="reference internal" href="#qinst.network_inst.NetworkInst.timeout"><code class="docutils literal notranslate"><span class="pre">NetworkInst.timeout</span></code></a></li>
-<li><a class="reference internal" href="#qinst.network_inst.NetworkInst.validate_opt"><code class="docutils literal notranslate"><span class="pre">NetworkInst.validate_opt()</span></code></a></li>
-<li><a class="reference internal" href="#qinst.network_inst.NetworkInst.validate_range"><code class="docutils literal notranslate"><span class="pre">NetworkInst.validate_range()</span></code></a></li>
 <li><a class="reference internal" href="#qinst.network_inst.NetworkInst.write"><code class="docutils literal notranslate"><span class="pre">NetworkInst.write()</span></code></a></li>
 </ul>
 </li>
