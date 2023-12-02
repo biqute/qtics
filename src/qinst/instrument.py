@@ -22,7 +22,7 @@ class Instrument(ABC):
         """Disonnect from the instrument."""
 
     @abstractmethod
-    def write(self):
+    def write(self, cmd, sleep=False):
         """Send a command to the instrument."""
 
     @abstractmethod
@@ -30,7 +30,7 @@ class Instrument(ABC):
         """Read from the instrument."""
 
     @abstractmethod
-    def query(self, _=None):
+    def query(self, cmd) -> str:
         """Send a command and read from the instrument."""
 
     def get_id(self):
