@@ -1,3 +1,5 @@
+"""HDF5 file helper for the S21 experiment."""
+
 from datetime import datetime
 
 import h5py
@@ -8,6 +10,8 @@ DATE_FORMAT = "%Y-%m-%d %H:%M:%S.%f"
 
 
 class HDF5File:
+    """HDF5 helper."""
+
     def __init__(self, path: str):
         """Read file, save indexes and temperatures."""
         self.f = h5py.File(path, "r")
