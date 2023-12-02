@@ -66,16 +66,17 @@ class NetworkInst(Instrument):
             raise TimeoutError("Reached timeout limit.")
         return response.decode("utf-8").strip("\n")
 
-    def write(self, cmd: str):
+    def write(self, cmd: str, sleep=False):
         """Write a message to the serial port."""
         self.socket.sendall((cmd + "\n").encode())
+        if sleep:
+            time.sleep(self.sleep)
 
     def query(self, cmd: str) -> str:
         """Send a message, then read from the serial port."""
         if "?" not in cmd:
             raise ValueError('Query must include "?"')
-        self.write(cmd)
-        time.sleep(self.sleep)
+        self.write(cmd, True)
         return self.read()
 
     @property
