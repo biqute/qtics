@@ -31,14 +31,16 @@ jobs:
       run: poetry install --no-interaction --no-root --with analysis
       if: steps.cache.outputs.cache-hit != 'true'
     - name: Install project
-      run: poetry install --no-interaction ${{ inputs.poetry-extras }}
+      run: |
+        poetry install --no-interaction ${{ inputs.poetry-extras }}
+        source $VENV
 
     - name: Analysing the code with pylint
-      run: |
-        source $VENV
-        pylint src/ || pylint-exit $?
+      run: pylint src/ || pylint-exit $?
 
     - name: Run tests
-      run: |
-        source $VENV
-        pytest tests/
+      run: pytest tests/
+
+    - uses: python/mypy@master
+      with:
+        paths: "src/"

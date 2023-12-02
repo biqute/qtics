@@ -173,8 +173,8 @@ class N9916A(NetworkInst, ABC):
 
         if datatype == "ASC,0":
             return np.array(self.query(cmd).split(",")).astype(float)
-        types = {"REAL,32": np.float32, "REAL,64": np.float64}
-        if datatype not in types:
+        map_types = {"REAL,32": np.float32, "REAL,64": np.float64}
+        if datatype not in map_types:
             raise ValueError("Invalid data type selected.")
 
         self.write(cmd)
@@ -204,7 +204,7 @@ class N9916A(NetworkInst, ABC):
         if term != b"\n":
             raise ValueError("Data not terminated correctly.")
 
-        return np.frombuffer(raw_data, dtype=types[datatype]).astype(float)
+        return np.frombuffer(raw_data, dtype=map_types[datatype]).astype(float)
 
     @abstractmethod
     def clear_average(self):
