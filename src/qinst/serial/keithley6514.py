@@ -5,6 +5,7 @@ Controller of the Keithley6514 Electrometer.
 .. moduleauthor:: Marco Gobbo <marco.gobbo@mib.infn.it>
 """
 
+from qinst import log
 from qinst.serial_inst import SerialInst
 
 
@@ -15,12 +16,14 @@ class Keithley6514(SerialInst):
         """Put Keithley 6514 Electrometer in remote."""
         self.serial.open()
         self.write("SYST:REM")
+        log.info(f"Instrument {self.name} connected succesfully.")
 
     def disconnect(self):
         """Take Keithley 6514 Electrometer out of remote."""
         if self.serial.is_open:
             self.write("SYST:LOC")
             self.serial.close()
+            log.info(f"Instrument {self.name} disconnected.")
 
     def zcheck_on(self):
         """Enable zero check."""
