@@ -1,3 +1,5 @@
+"""Python driver for a rf-switch arduino-controlled."""
+
 from typing import Literal
 
 import serial
@@ -20,6 +22,7 @@ class Switch_R591(SerialInst):
         sleep: float = 0.1,
         pulse_lenght: int = 5,  # milliseconds
     ):
+        """Initialize super and set pulse length."""
         super().__init__(
             name, address, baudrate, bytesize, parity, stopbits, timeout, sleep
         )
