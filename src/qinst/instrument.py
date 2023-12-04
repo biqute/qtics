@@ -1,6 +1,7 @@
 """Base Instrument."""
 
 from abc import ABC, abstractmethod
+from typing import Union
 
 from qinst import log
 
@@ -60,7 +61,7 @@ class Instrument(ABC):
         return values
 
     @staticmethod
-    def validate_opt(opt: str, allowed: tuple):
+    def validate_opt(opt: Union[str, int], allowed: tuple):
         """Check if provided option is between allowed ones."""
         if opt not in allowed:
             raise RuntimeError(f"Invalid option provided, choose between {allowed}")
