@@ -66,16 +66,17 @@ class NetworkInst(Instrument):
             raise TimeoutError("Reached timeout limit.")
         return response.decode("utf-8").strip("\n")
 
-    def write(self, cmd: str):
+    def write(self, cmd: str, sleep=False):
         """Write a message to the serial port."""
         self.socket.sendall((cmd + "\n").encode())
+        if sleep:
+            time.sleep(self.sleep)
 
     def query(self, cmd: str) -> str:
         """Send a message, then read from the serial port."""
         if "?" not in cmd:
             raise ValueError('Query must include "?"')
-        self.write(cmd)
-        time.sleep(self.sleep)
+        self.write(cmd, True)
         return self.read()
 
     @property
@@ -95,18 +96,3 @@ class NetworkInst(Instrument):
     @timeout.setter
     def timeout(self, nsec: float):
         self.socket.settimeout(nsec)
-
-    def validate_opt(self, opt: str, allowed: tuple):
-        """Check if provided option is between allowed ones."""
-        if opt not in allowed:
-            raise RuntimeError(f"Invalid option provided, choose between {allowed}")
-
-    def validate_range(self, n, n_min, n_max):
-        """Check if provided number is in allowed range."""
-        if not n_min < n < n_max:
-            valid = max(n_min, min(n_max, n))
-            log.warning(
-                f"Provided value {n} not in range ({n_min}, {n_max}), will be set to {valid}."
-            )
-            return valid
-        return n

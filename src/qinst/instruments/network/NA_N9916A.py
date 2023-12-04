@@ -31,6 +31,7 @@ class N9916A(NetworkInst, ABC):
         no_delay: bool = True,
         max_points: int = 10001,
     ):
+        """Initialize instrument."""
         super().__init__(name, address, port, timeout, sleep, no_delay)
         self._max_points = max_points
 
@@ -172,11 +173,8 @@ class N9916A(NetworkInst, ABC):
 
         if datatype == "ASC,0":
             return np.array(self.query(cmd).split(",")).astype(float)
-        if datatype == "REAL,32":
-            dtype = np.float32
-        elif datatype == "REAL,64":
-            dtype = np.float64
-        else:
+        map_types = {"REAL,32": np.float32, "REAL,64": np.float64}
+        if datatype not in map_types:
             raise ValueError("Invalid data type selected.")
 
         self.write(cmd)
@@ -206,7 +204,7 @@ class N9916A(NetworkInst, ABC):
         if term != b"\n":
             raise ValueError("Data not terminated correctly.")
 
-        return np.frombuffer(raw_data, dtype=dtype).astype(float)
+        return np.frombuffer(raw_data, dtype=map_types[datatype]).astype(float)
 
     @abstractmethod
     def clear_average(self):
