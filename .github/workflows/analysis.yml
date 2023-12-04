@@ -1,4 +1,4 @@
-name: Tests
+name: Lint-Test-Mypy
 
 on: [push]
 
@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.8", "3.9", "3.10", "3.11"]
+        python-version: ["3.9", "3.10", "3.11"]
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python ${{ matrix.python-version }}
@@ -28,12 +28,22 @@ jobs:
         path: ~/.cache
         key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
     - name: Install dependencies
-      run: poetry install --no-interaction --no-root --with tests
+      run: poetry install --no-interaction --no-root --with analysis
       if: steps.cache.outputs.cache-hit != 'true'
     - name: Install project
       run: poetry install --no-interaction ${{ inputs.poetry-extras }}
 
-    - name: Run tests
+    - name: Analysing the code with pylint
+      run: |
+        source $VENV
+        pylint src/ || pylint-exit $?
+
+    - name: Running tests
       run: |
         source $VENV
         pytest tests/
+
+    - name: Running Mypy analysis
+      uses: python/mypy@master
+      with:
+        paths: "src/"
