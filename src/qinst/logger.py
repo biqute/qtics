@@ -35,6 +35,6 @@ class CustomHandler(logging.StreamHandler):
         return logging.Formatter(log_fmt, datefmt="%Y-%m-%d %H:%M:%S").format(record)
 
 
-log = logging.getLogger(__name__)
-log.setLevel(LOG_LEVEL)
-log.addHandler(CustomHandler())
+qinst_log = logging.getLogger(__name__)
+qinst_log.setLevel(LOG_LEVEL)
+qinst_log.addHandler(CustomHandler())

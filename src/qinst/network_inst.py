@@ -10,8 +10,8 @@ import ipaddress
 import socket
 import time
 
+from qinst import log
 from qinst.instrument import Instrument
-from qinst.log import log
 
 
 class NetworkInst(Instrument):
