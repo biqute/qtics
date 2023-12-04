@@ -97,7 +97,7 @@ class Pxie570R(Instrument):
         super().__init__(name, address)
         self.voltage_range = 1
         self.coupling = "DC"
-        self.sample_rate = 250e9  # Samples per second
+        self.sample_rate = int(250e9)  # Samples per second
         self.trigger = DigitalTrigger("ch1")  # TODO check this is reasonable
 
     def connect(self):
