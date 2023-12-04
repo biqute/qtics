@@ -227,9 +227,92 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">#</a></h2>
 </section>
+<section id="module-qinst.serial.keithley2231a">
+<span id="qinst-serial-keithley2231a-module"></span><h2>qinst.serial.keithley2231a module<a class="headerlink" href="#module-qinst.serial.keithley2231a" title="Permalink to this heading">#</a></h2>
+<p>Controller of the Keithley2231A DC Power Supply.</p>
+<span class="target" id="module-keithley2231a.py"></span><dl class="py class">
+<dt class="sig sig-object py" id="qinst.serial.keithley2231a.Keithley2231A">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qinst.serial.keithley2231a.</span></span><span class="sig-name descname"><span class="pre">Keithley2231A</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">baudrate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">9600</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bytesize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.12)"><span class="pre">Literal</span></a><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'N'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'N'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stopbits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sleep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/serial/keithley2231a.html#Keithley2231A"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.serial.keithley2231a.Keithley2231A" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="qinst.html#qinst.serial_inst.SerialInst" title="qinst.serial_inst.SerialInst"><code class="xref py py-class docutils literal notranslate"><span class="pre">SerialInst</span></code></a></p>
+<p>Keithley Model 2231A-30-3 Triple Channel DC Power Supply by Keithley Instruments.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.serial.keithley2231a.Keithley2231A.channel">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">channel</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#qinst.serial.keithley2231a.Keithley2231A.channel" title="Permalink to this definition">#</a></dt>
+<dd><p>Select the channel to use.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qinst.serial.keithley2231a.Keithley2231A.clear">
+<span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/serial/keithley2231a.html#Keithley2231A.clear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.serial.keithley2231a.Keithley2231A.clear" title="Permalink to this definition">#</a></dt>
+<dd><p>Clear the event registers and error queues.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qinst.serial.keithley2231a.Keithley2231A.connect">
+<span class="sig-name descname"><span class="pre">connect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/serial/keithley2231a.html#Keithley2231A.connect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.serial.keithley2231a.Keithley2231A.connect" title="Permalink to this definition">#</a></dt>
+<dd><p>Put Keithley 2231A DC Power Supply in remote.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.serial.keithley2231a.Keithley2231A.current">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">current</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><a class="headerlink" href="#qinst.serial.keithley2231a.Keithley2231A.current" title="Permalink to this definition">#</a></dt>
+<dd><p>Current of the selected the channel.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.serial.keithley2231a.Keithley2231A.current_limit">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">current_limit</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><a class="headerlink" href="#qinst.serial.keithley2231a.Keithley2231A.current_limit" title="Permalink to this definition">#</a></dt>
+<dd><p>Current limit of the selected the channel.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qinst.serial.keithley2231a.Keithley2231A.disconnect">
+<span class="sig-name descname"><span class="pre">disconnect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/serial/keithley2231a.html#Keithley2231A.disconnect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.serial.keithley2231a.Keithley2231A.disconnect" title="Permalink to this definition">#</a></dt>
+<dd><p>Take Keithley 2231A DC Power Supply out of remote.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.serial.keithley2231a.Keithley2231A.is_completed">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_completed</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></em><a class="headerlink" href="#qinst.serial.keithley2231a.Keithley2231A.is_completed" title="Permalink to this definition">#</a></dt>
+<dd><p>Return the OPC bit in the standard event register to 1 when all commands are complete.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qinst.serial.keithley2231a.Keithley2231A.load">
+<span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">memory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/serial/keithley2231a.html#Keithley2231A.load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.serial.keithley2231a.Keithley2231A.load" title="Permalink to this definition">#</a></dt>
+<dd><p>Load the setups saved in the specified memory location.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qinst.serial.keithley2231a.Keithley2231A.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">memory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/serial/keithley2231a.html#Keithley2231A.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.serial.keithley2231a.Keithley2231A.save" title="Permalink to this definition">#</a></dt>
+<dd><p>Save the current setups of the power supply into specified memory.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.serial.keithley2231a.Keithley2231A.voltage">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">voltage</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><a class="headerlink" href="#qinst.serial.keithley2231a.Keithley2231A.voltage" title="Permalink to this definition">#</a></dt>
+<dd><p>Voltage of the selected the channel.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.serial.keithley2231a.Keithley2231A.voltage_limit">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">voltage_limit</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><a class="headerlink" href="#qinst.serial.keithley2231a.Keithley2231A.voltage_limit" title="Permalink to this definition">#</a></dt>
+<dd><p>Voltage limit of the selected the channel.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qinst.serial.keithley2231a.Keithley2231A.wait">
+<span class="sig-name descname"><span class="pre">wait</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/serial/keithley2231a.html#Keithley2231A.wait"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.serial.keithley2231a.Keithley2231A.wait" title="Permalink to this definition">#</a></dt>
+<dd><p>Prevent the instrument from executing commands until all commands are completed.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
 <section id="module-qinst.serial.keithley6514">
 <span id="qinst-serial-keithley6514-module"></span><h2>qinst.serial.keithley6514 module<a class="headerlink" href="#module-qinst.serial.keithley6514" title="Permalink to this heading">#</a></h2>
-<p>Controller of the Keithley6514 electrometer.</p>
+<p>Controller of the Keithley6514 Electrometer.</p>
 <span class="target" id="module-keithley6514.py"></span><dl class="py class">
 <dt class="sig sig-object py" id="qinst.serial.keithley6514.Keithley6514">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qinst.serial.keithley6514.</span></span><span class="sig-name descname"><span class="pre">Keithley6514</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">baudrate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">9600</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bytesize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.12)"><span class="pre">Literal</span></a><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'N'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'N'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stopbits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sleep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/serial/keithley6514.html#Keithley6514"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.serial.keithley6514.Keithley6514" title="Permalink to this definition">#</a></dt>
@@ -487,6 +570,24 @@ the service batteries indicator is lit.</p>
             <ul>
 <li><a class="reference internal" href="#">qinst.serial package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-qinst.serial.keithley2231a">qinst.serial.keithley2231a module</a><ul>
+<li><a class="reference internal" href="#qinst.serial.keithley2231a.Keithley2231A"><code class="docutils literal notranslate"><span class="pre">Keithley2231A</span></code></a><ul>
+<li><a class="reference internal" href="#qinst.serial.keithley2231a.Keithley2231A.channel"><code class="docutils literal notranslate"><span class="pre">Keithley2231A.channel</span></code></a></li>
+<li><a class="reference internal" href="#qinst.serial.keithley2231a.Keithley2231A.clear"><code class="docutils literal notranslate"><span class="pre">Keithley2231A.clear()</span></code></a></li>
+<li><a class="reference internal" href="#qinst.serial.keithley2231a.Keithley2231A.connect"><code class="docutils literal notranslate"><span class="pre">Keithley2231A.connect()</span></code></a></li>
+<li><a class="reference internal" href="#qinst.serial.keithley2231a.Keithley2231A.current"><code class="docutils literal notranslate"><span class="pre">Keithley2231A.current</span></code></a></li>
+<li><a class="reference internal" href="#qinst.serial.keithley2231a.Keithley2231A.current_limit"><code class="docutils literal notranslate"><span class="pre">Keithley2231A.current_limit</span></code></a></li>
+<li><a class="reference internal" href="#qinst.serial.keithley2231a.Keithley2231A.disconnect"><code class="docutils literal notranslate"><span class="pre">Keithley2231A.disconnect()</span></code></a></li>
+<li><a class="reference internal" href="#qinst.serial.keithley2231a.Keithley2231A.is_completed"><code class="docutils literal notranslate"><span class="pre">Keithley2231A.is_completed</span></code></a></li>
+<li><a class="reference internal" href="#qinst.serial.keithley2231a.Keithley2231A.load"><code class="docutils literal notranslate"><span class="pre">Keithley2231A.load()</span></code></a></li>
+<li><a class="reference internal" href="#qinst.serial.keithley2231a.Keithley2231A.save"><code class="docutils literal notranslate"><span class="pre">Keithley2231A.save()</span></code></a></li>
+<li><a class="reference internal" href="#qinst.serial.keithley2231a.Keithley2231A.voltage"><code class="docutils literal notranslate"><span class="pre">Keithley2231A.voltage</span></code></a></li>
+<li><a class="reference internal" href="#qinst.serial.keithley2231a.Keithley2231A.voltage_limit"><code class="docutils literal notranslate"><span class="pre">Keithley2231A.voltage_limit</span></code></a></li>
+<li><a class="reference internal" href="#qinst.serial.keithley2231a.Keithley2231A.wait"><code class="docutils literal notranslate"><span class="pre">Keithley2231A.wait()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a class="reference internal" href="#module-qinst.serial.keithley6514">qinst.serial.keithley6514 module</a><ul>
 <li><a class="reference internal" href="#qinst.serial.keithley6514.Keithley6514"><code class="docutils literal notranslate"><span class="pre">Keithley6514</span></code></a><ul>
 <li><a class="reference internal" href="#qinst.serial.keithley6514.Keithley6514.connect"><code class="docutils literal notranslate"><span class="pre">Keithley6514.connect()</span></code></a></li>
