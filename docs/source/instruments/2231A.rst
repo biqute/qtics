@@ -37,11 +37,6 @@ Functions
 - save(memory)
 - load(memory)
 - wait()
-- channel(ch)
-- voltage(value)
-- current(value)
-- voltage_limit(value)
-- current_limit(value)
 
 Properties
 ------------
