@@ -1,4 +1,4 @@
-"""Python driver for a rf-switch arduino-controlled."""
+"""Python driver for an arduino-controlled RF switch."""
 
 from typing import Literal
 
