@@ -1,6 +1,5 @@
 Checklist before review:
-- [ ] Task A
-- [ ] Task B
+- [ ] Test on hardware.
 
 Checklist before merge:
 - [ ] Reviewers confirm new code works as expected.
