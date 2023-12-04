@@ -12,6 +12,7 @@ from qinst.instruments.serial.rf_switch_R591722600.rf_switch_R591722600 import (
 )
 from qinst.instruments.serial.synth_FSL0010 import FSL0010
 from qinst.instruments.serial.voltage_source_SIM928 import SIM928
+from qinst.logger import qinst_log as log
 
 Radiall_R591722600 = Switch_R591
 Kratos_349464 = Attenuator_3494_64

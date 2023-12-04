@@ -4,8 +4,8 @@ from typing import Literal
 
 import serial
 
+from qinst import log
 from qinst.instrument import Instrument
-from qinst.log import log
 
 
 class SerialInst(Instrument):
