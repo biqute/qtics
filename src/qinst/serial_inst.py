@@ -60,7 +60,8 @@ class SerialInst(Instrument):
     def read(self) -> str:
         """Read a message from the serial port."""
         if self.serial.is_open:
-            return self.serial.read(self.serial.in_waiting).decode("utf-8")
+            raw = self.serial.read(self.serial.in_waiting)
+            return raw.decode("utf-8").strip("\n")
         return ""
 
     def query(self, cmd) -> str:
