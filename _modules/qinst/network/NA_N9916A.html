@@ -182,11 +182,7 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../api-reference/modules.html">qinst</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of qinst</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../../api-reference/qinst.html">qinst package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of qinst package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../api-reference/qinst.network.html">qinst.network package</a></li>
-<li class="toctree-l3 has-children"><a class="reference internal" href="../../../api-reference/qinst.serial.html">qinst.serial package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of qinst.serial package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../api-reference/qinst.serial.rf_attenuator_3494_64.html">qinst.serial.rf_attenuator_3494_64 package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../api-reference/qinst.serial.rf_switch_R591722600.html">qinst.serial.rf_switch_R591722600 package</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api-reference/qinst.serial.html">qinst.serial package</a></li>
 </ul>
 </li>
 </ul>
@@ -258,6 +254,7 @@
         <span class="n">no_delay</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">max_points</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10001</span><span class="p">,</span>
     <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize instrument.&quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">timeout</span><span class="p">,</span> <span class="n">sleep</span><span class="p">,</span> <span class="n">no_delay</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_max_points</span> <span class="o">=</span> <span class="n">max_points</span>
 
@@ -399,11 +396,8 @@
 
         <span class="k">if</span> <span class="n">datatype</span> <span class="o">==</span> <span class="s2">&quot;ASC,0&quot;</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">datatype</span> <span class="o">==</span> <span class="s2">&quot;REAL,32&quot;</span><span class="p">:</span>
-            <span class="n">dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span>
-        <span class="k">elif</span> <span class="n">datatype</span> <span class="o">==</span> <span class="s2">&quot;REAL,64&quot;</span><span class="p">:</span>
-            <span class="n">dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span>
-        <span class="k">else</span><span class="p">:</span>
+        <span class="n">map_types</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;REAL,32&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="s2">&quot;REAL,64&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">}</span>
+        <span class="k">if</span> <span class="n">datatype</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">map_types</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid data type selected.&quot;</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
@@ -433,7 +427,7 @@
         <span class="k">if</span> <span class="n">term</span> <span class="o">!=</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Data not terminated correctly.&quot;</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">frombuffer</span><span class="p">(</span><span class="n">raw_data</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">frombuffer</span><span class="p">(</span><span class="n">raw_data</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">map_types</span><span class="p">[</span><span class="n">datatype</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="N9916A.clear_average"><a class="viewcode-back" href="../../../api-reference/qinst.network.html#qinst.network.NA_N9916A.N9916A.clear_average">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">clear_average</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
