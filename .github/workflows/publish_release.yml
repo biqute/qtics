@@ -33,11 +33,7 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
       - name: Install project
         run: poetry install --no-interaction --with docs,analysis,experiments
-      - name: Package the distribution
-        run: |
-          # package the pure python wheel
-          poetry build
-      - name: Publish distribution to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          password: ${{ secrets.PYPI_TOKEN }}
+      - name: Add credentials
+        run: poetry config pypi-token.pypi "${{ secrets.PYPI_TOKEN }}"
+      - name: Publish package
+        run: poetry publish --build
