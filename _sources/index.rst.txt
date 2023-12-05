@@ -5,6 +5,7 @@ Welcome to Qinst's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   installation
    arduino
    instruments/modules
 
