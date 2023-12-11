@@ -40,7 +40,7 @@ class Instrument(ABC):
 
     def reset(self):
         """Reset device with SCPI standard command."""
-        return self.query("*RST")
+        return self.write("*RST")
 
     def set(self, **kwargs):
         """Set multiple attributes and/or properties."""
