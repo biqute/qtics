@@ -1,5 +1,5 @@
 R&S®SMA100B RF and microwave signal generator
-===========================================
+=============================================
 
 R&S®SMA100B RF and microwave signal generator by Rohde & Schwarz
 The manuals of this instrument and similar models are available at `Rohde & Schwarz <https://www.rohde-schwarz.com/products/test-and-measurement/analog-signal-generators/rs-sma100b-rf-and-microwave-signal-generator_63493-427776.html>`_.

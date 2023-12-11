@@ -13,9 +13,10 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.9, <3.12"
+python = ">=3.8, <3.12"
 pyserial = "^3.5"
-numpy = "^1.26.2"
+numpy = "^1.24"
+niscope = "^1.4.6"
 
 [build-system]
 requires = ["poetry-core"]
@@ -47,8 +48,8 @@ sphinx-last-updated-by-git = "^0.3.5"
 
 [tool.poetry.group.experiments.dependencies]
 h5py = "^3.10.0"
-matplotlib = "^3.8.2"
+matplotlib = ">=3.7"
 
 [[tool.mypy.overrides]]
-module="serial"
+module=["serial", "niscope"]
 ignore_missing_imports = true
