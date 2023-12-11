@@ -20,11 +20,13 @@ Set the frequency and the RF level applied to the DUT at 1 GHz and 1 V respectiv
 
 .. code-block:: python
 
+  sg.rf_status = "OFF"
   sg.f_mode = "CW"
   sg.f_fixed = 1e9
   sg.p_mode = "CW"
   sg.p_unit = "V"
   sg.p_fixed = 1
+  sg.rf_status = "ON"
 
 Perform a one-off RF frequency sweep in a range of 1 GHz to 10 GHz with a frequency step of 100 kHz and a dwell time of 1 second.
 
@@ -48,35 +50,15 @@ Functions
 - wait()
 - cal(opt)
 - diag(opt)
-- screen_saver_time(time)
 - screen_saver_mode(state)
-- f_mode(mode)
-- f_fixed(f)
-- f_mult(n)
-- f_offset(f)
-- f_sweep_mode(mode)
-- f_min(f)
-- f_max(f)
-- f_center(f)
-- f_span(f)
-- f_step(f)
-- f_dwell(value)
-- phase(deg)
 - set_phase_ref()
-- p_unit(unit)
-- p_mode(mode)
-- p_fixed(p)
-- p_sweep_mode(mode)
-- p_min(p)
-- p_max(p)
-- p_dwell(value)
-- p_step(p)
 - sweep()
 
 Properties
 ------------
 - is_completed
 - screen_saver_time
+- rf_status
 - f_mode
 - f_fixed
 - f_mult
