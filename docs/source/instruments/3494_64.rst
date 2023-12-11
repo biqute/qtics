@@ -7,7 +7,7 @@ Manual of the instrument is available at `Kratosmed <https://www.kratosmed.com/g
 This instrument requires the correspondent Arduino firmware to be compiled and loaded.
 See related instruction at :ref:`arduino_firmware`.
 
-Base class: :class:`qinst.instruments.serial_inst.SerialInst`.
+Base class: :class:`qinst.serial_inst.SerialInst`.
 
 
 Example of operations
