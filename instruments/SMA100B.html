@@ -246,11 +246,13 @@ The SCPI commands and functions can be found in the <a class="reference external
 </pre></div>
 </div>
 <p>Set the frequency and the RF level applied to the DUT at 1 GHz and 1 V respectively.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sg</span><span class="o">.</span><span class="n">f_mode</span> <span class="o">=</span> <span class="s2">&quot;CW&quot;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sg</span><span class="o">.</span><span class="n">rf_status</span> <span class="o">=</span> <span class="s2">&quot;OFF&quot;</span>
+<span class="n">sg</span><span class="o">.</span><span class="n">f_mode</span> <span class="o">=</span> <span class="s2">&quot;CW&quot;</span>
 <span class="n">sg</span><span class="o">.</span><span class="n">f_fixed</span> <span class="o">=</span> <span class="mf">1e9</span>
 <span class="n">sg</span><span class="o">.</span><span class="n">p_mode</span> <span class="o">=</span> <span class="s2">&quot;CW&quot;</span>
 <span class="n">sg</span><span class="o">.</span><span class="n">p_unit</span> <span class="o">=</span> <span class="s2">&quot;V&quot;</span>
 <span class="n">sg</span><span class="o">.</span><span class="n">p_fixed</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">sg</span><span class="o">.</span><span class="n">rf_status</span> <span class="o">=</span> <span class="s2">&quot;ON&quot;</span>
 </pre></div>
 </div>
 <p>Perform a one-off RF frequency sweep in a range of 1 GHz to 10 GHz with a frequency step of 100 kHz and a dwell time of 1 second.</p>
@@ -275,29 +277,8 @@ The SCPI commands and functions can be found in the <a class="reference external
 <li><p>wait()</p></li>
 <li><p>cal(opt)</p></li>
 <li><p>diag(opt)</p></li>
-<li><p>screen_saver_time(time)</p></li>
 <li><p>screen_saver_mode(state)</p></li>
-<li><p>f_mode(mode)</p></li>
-<li><p>f_fixed(f)</p></li>
-<li><p>f_mult(n)</p></li>
-<li><p>f_offset(f)</p></li>
-<li><p>f_sweep_mode(mode)</p></li>
-<li><p>f_min(f)</p></li>
-<li><p>f_max(f)</p></li>
-<li><p>f_center(f)</p></li>
-<li><p>f_span(f)</p></li>
-<li><p>f_step(f)</p></li>
-<li><p>f_dwell(value)</p></li>
-<li><p>phase(deg)</p></li>
 <li><p>set_phase_ref()</p></li>
-<li><p>p_unit(unit)</p></li>
-<li><p>p_mode(mode)</p></li>
-<li><p>p_fixed(p)</p></li>
-<li><p>p_sweep_mode(mode)</p></li>
-<li><p>p_min(p)</p></li>
-<li><p>p_max(p)</p></li>
-<li><p>p_dwell(value)</p></li>
-<li><p>p_step(p)</p></li>
 <li><p>sweep()</p></li>
 </ul>
 </section>
@@ -306,6 +287,7 @@ The SCPI commands and functions can be found in the <a class="reference external
 <ul class="simple">
 <li><p>is_completed</p></li>
 <li><p>screen_saver_time</p></li>
+<li><p>rf_status</p></li>
 <li><p>f_mode</p></li>
 <li><p>f_fixed</p></li>
 <li><p>f_mult</p></li>
