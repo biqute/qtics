@@ -171,6 +171,7 @@
 <li class="toctree-l2"><a class="reference internal" href="instruments/SIM928.html">Isolated voltage source Stanford Research Systems SIM928</a></li>
 <li class="toctree-l2"><a class="reference internal" href="instruments/FSL0010.html">Microwave synthesizer FSL0010</a></li>
 <li class="toctree-l2"><a class="reference internal" href="instruments/6514.html">Keithley Model 6514 System Electrometer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="instruments/2231A.html">Keithley Model 2231A-30-3 Triple Channel DC Power Supply.</a></li>
 <li class="toctree-l2"><a class="reference internal" href="instruments/SMA100B.html">R&amp;S®SMA100B RF and microwave signal generator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="instruments/N9916A.html">Handheld Microwave Analyzer FieldFox N9916A</a></li>
 <li class="toctree-l2"><a class="reference internal" href="instruments/triton.html">Triton controller</a></li>
@@ -181,8 +182,12 @@
 <ul>
 <li class="toctree-l1 has-children"><a class="reference internal" href="api-reference/modules.html">qinst</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of qinst</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2 has-children"><a class="reference internal" href="api-reference/qinst.html">qinst package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of qinst package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="api-reference/qinst.network.html">qinst.network package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api-reference/qinst.serial.html">qinst.serial package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="api-reference/qinst.instruments.html">qinst.instruments package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of qinst.instruments package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="api-reference/qinst.instruments.network.html">qinst.instruments.network package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api-reference/qinst.instruments.niscope.html">qinst.instruments.niscope package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api-reference/qinst.instruments.serial.html">qinst.instruments.serial package</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -229,29 +234,33 @@
   <h2>A</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.VNAN9916A.activate_trace">activate_trace() (qinst.network.NA_N9916A.VNAN9916A method)</a>
+        <li><a href="api-reference/qinst.instruments.niscope.html#qinst.instruments.niscope.pxie_5170r.Pxie570R.acquire">acquire() (qinst.instruments.niscope.pxie_5170r.Pxie570R method)</a>
 </li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.SAN9916A.attenuation">attenuation (qinst.network.NA_N9916A.SAN9916A property)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.VNAN9916A.activate_trace">activate_trace() (qinst.instruments.network.NA_N9916A.VNAN9916A method)</a>
 </li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.SAN9916A.auto_attenuation">auto_attenuation (qinst.network.NA_N9916A.SAN9916A property)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.SAN9916A.attenuation">attenuation (qinst.instruments.network.NA_N9916A.SAN9916A property)</a>
 </li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.SAN9916A.auto_res_bandwidth">auto_res_bandwidth (qinst.network.NA_N9916A.SAN9916A property)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.SAN9916A.auto_attenuation">auto_attenuation (qinst.instruments.network.NA_N9916A.SAN9916A property)</a>
 </li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.N9916A.autoscale">autoscale() (qinst.network.NA_N9916A.N9916A method)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.SAN9916A.auto_res_bandwidth">auto_res_bandwidth (qinst.instruments.network.NA_N9916A.SAN9916A property)</a>
+</li>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.N9916A.autoscale">autoscale() (qinst.instruments.network.NA_N9916A.N9916A method)</a>
 
         <ul>
-          <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.SAN9916A.autoscale">(qinst.network.NA_N9916A.SAN9916A method)</a>
+          <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.SAN9916A.autoscale">(qinst.instruments.network.NA_N9916A.SAN9916A method)</a>
 </li>
-          <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.VNAN9916A.autoscale">(qinst.network.NA_N9916A.VNAN9916A method)</a>
+          <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.VNAN9916A.autoscale">(qinst.instruments.network.NA_N9916A.VNAN9916A method)</a>
 </li>
         </ul></li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.N9916A.average">average (qinst.network.NA_N9916A.N9916A property)</a>
+        <li><a href="api-reference/qinst.instruments.niscope.html#qinst.instruments.niscope.pxie_5170r.Pxie570R.available">available (qinst.instruments.niscope.pxie_5170r.Pxie570R property)</a>
 </li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.VNAN9916A.average_mode">average_mode (qinst.network.NA_N9916A.VNAN9916A property)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.N9916A.average">average (qinst.instruments.network.NA_N9916A.N9916A property)</a>
 </li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.SAN9916A.average_type">average_type (qinst.network.NA_N9916A.SAN9916A property)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.VNAN9916A.average_mode">average_mode (qinst.instruments.network.NA_N9916A.VNAN9916A property)</a>
+</li>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.SAN9916A.average_type">average_type (qinst.instruments.network.NA_N9916A.SAN9916A property)</a>
 </li>
     </ul></td>
   </tr></table>
@@ -261,15 +270,15 @@
   <h2>B</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api-reference/qinst.serial.html#qinst.serial.voltage_source_SIM928.SIM928.battery_charger_override">battery_charger_override() (qinst.serial.voltage_source_SIM928.SIM928 method)</a>
+        <li><a href="api-reference/qinst.instruments.serial.html#qinst.instruments.serial.voltage_source_SIM928.SIM928.battery_charger_override">battery_charger_override() (qinst.instruments.serial.voltage_source_SIM928.SIM928 method)</a>
 </li>
-        <li><a href="api-reference/qinst.serial.html#qinst.serial.voltage_source_SIM928.SIM928.battery_full_spec">battery_full_spec() (qinst.serial.voltage_source_SIM928.SIM928 method)</a>
+        <li><a href="api-reference/qinst.instruments.serial.html#qinst.instruments.serial.voltage_source_SIM928.SIM928.battery_full_spec">battery_full_spec() (qinst.instruments.serial.voltage_source_SIM928.SIM928 method)</a>
 </li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api-reference/qinst.serial.html#qinst.serial.voltage_source_SIM928.SIM928.battery_spec">battery_spec() (qinst.serial.voltage_source_SIM928.SIM928 method)</a>
+        <li><a href="api-reference/qinst.instruments.serial.html#qinst.instruments.serial.voltage_source_SIM928.SIM928.battery_spec">battery_spec() (qinst.instruments.serial.voltage_source_SIM928.SIM928 method)</a>
 </li>
-        <li><a href="api-reference/qinst.serial.html#qinst.serial.voltage_source_SIM928.SIM928.battery_state">battery_state() (qinst.serial.voltage_source_SIM928.SIM928 method)</a>
+        <li><a href="api-reference/qinst.instruments.serial.html#qinst.instruments.serial.voltage_source_SIM928.SIM928.battery_state">battery_state() (qinst.instruments.serial.voltage_source_SIM928.SIM928 method)</a>
 </li>
     </ul></td>
   </tr></table>
@@ -279,51 +288,65 @@
   <h2>C</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api-reference/qinst.network.html#qinst.network.RS_SMA100B.SMA100B.cal">cal() (qinst.network.RS_SMA100B.SMA100B method)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.RS_SMA100B.SMA100B.cal">cal() (qinst.instruments.network.RS_SMA100B.SMA100B method)</a>
 </li>
-        <li><a href="api-reference/qinst.serial.html#qinst.serial.keithley2231a.Keithley2231A.channel">channel (qinst.serial.keithley2231a.Keithley2231A property)</a>
+        <li><a href="api-reference/qinst.instruments.serial.html#qinst.instruments.serial.keithley2231a.Keithley2231A.channel">channel (qinst.instruments.serial.keithley2231a.Keithley2231A property)</a>
 </li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.N9916A.clear">clear() (qinst.network.NA_N9916A.N9916A method)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.N9916A.clear">clear() (qinst.instruments.network.NA_N9916A.N9916A method)</a>
 
         <ul>
-          <li><a href="api-reference/qinst.network.html#qinst.network.RS_SMA100B.SMA100B.clear">(qinst.network.RS_SMA100B.SMA100B method)</a>
+          <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.RS_SMA100B.SMA100B.clear">(qinst.instruments.network.RS_SMA100B.SMA100B method)</a>
 </li>
-          <li><a href="api-reference/qinst.serial.html#qinst.serial.keithley2231a.Keithley2231A.clear">(qinst.serial.keithley2231a.Keithley2231A method)</a>
+          <li><a href="api-reference/qinst.instruments.serial.html#qinst.instruments.serial.keithley2231a.Keithley2231A.clear">(qinst.instruments.serial.keithley2231a.Keithley2231A method)</a>
 </li>
         </ul></li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.N9916A.clear_average">clear_average() (qinst.network.NA_N9916A.N9916A method)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.N9916A.clear_average">clear_average() (qinst.instruments.network.NA_N9916A.N9916A method)</a>
 
         <ul>
-          <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.SAN9916A.clear_average">(qinst.network.NA_N9916A.SAN9916A method)</a>
+          <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.SAN9916A.clear_average">(qinst.instruments.network.NA_N9916A.SAN9916A method)</a>
 </li>
-          <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.VNAN9916A.clear_average">(qinst.network.NA_N9916A.VNAN9916A method)</a>
+          <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.VNAN9916A.clear_average">(qinst.instruments.network.NA_N9916A.VNAN9916A method)</a>
 </li>
         </ul></li>
-        <li><a href="api-reference/qinst.html#qinst.instrument.Instrument.connect">connect() (qinst.instrument.Instrument method)</a>
+        <li><a href="api-reference/qinst.instruments.niscope.html#qinst.instruments.niscope.pxie_5170r.DigitalTrigger.configure">configure() (qinst.instruments.niscope.pxie_5170r.DigitalTrigger method)</a>
 
         <ul>
-          <li><a href="api-reference/qinst.html#qinst.network_inst.NetworkInst.connect">(qinst.network_inst.NetworkInst method)</a>
+          <li><a href="api-reference/qinst.instruments.niscope.html#qinst.instruments.niscope.pxie_5170r.EdgeTrigger.configure">(qinst.instruments.niscope.pxie_5170r.EdgeTrigger method)</a>
 </li>
-          <li><a href="api-reference/qinst.serial.html#qinst.serial.keithley2231a.Keithley2231A.connect">(qinst.serial.keithley2231a.Keithley2231A method)</a>
+          <li><a href="api-reference/qinst.instruments.niscope.html#qinst.instruments.niscope.pxie_5170r.SoftwareTrigger.configure">(qinst.instruments.niscope.pxie_5170r.SoftwareTrigger method)</a>
 </li>
-          <li><a href="api-reference/qinst.serial.html#qinst.serial.keithley6514.Keithley6514.connect">(qinst.serial.keithley6514.Keithley6514 method)</a>
-</li>
-          <li><a href="api-reference/qinst.serial.html#qinst.serial.voltage_source_SIM928.SIM928.connect">(qinst.serial.voltage_source_SIM928.SIM928 method)</a>
-</li>
-          <li><a href="api-reference/qinst.html#qinst.serial_inst.SerialInst.connect">(qinst.serial_inst.SerialInst method)</a>
+          <li><a href="api-reference/qinst.instruments.niscope.html#qinst.instruments.niscope.pxie_5170r.Trigger.configure">(qinst.instruments.niscope.pxie_5170r.Trigger method)</a>
 </li>
         </ul></li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api-reference/qinst.serial.html#qinst.serial.voltage_source_SIM928.SIM928.connect_port">connect_port() (qinst.serial.voltage_source_SIM928.SIM928 method)</a>
+        <li><a href="api-reference/qinst.html#qinst.instrument.Instrument.connect">connect() (qinst.instrument.Instrument method)</a>
+
+        <ul>
+          <li><a href="api-reference/qinst.instruments.niscope.html#qinst.instruments.niscope.pxie_5170r.Pxie570R.connect">(qinst.instruments.niscope.pxie_5170r.Pxie570R method)</a>
 </li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.N9916A.continuous">continuous (qinst.network.NA_N9916A.N9916A property)</a>
+          <li><a href="api-reference/qinst.instruments.serial.html#qinst.instruments.serial.keithley2231a.Keithley2231A.connect">(qinst.instruments.serial.keithley2231a.Keithley2231A method)</a>
 </li>
-        <li><a href="api-reference/qinst.serial.html#qinst.serial.keithley2231a.Keithley2231A.current">current (qinst.serial.keithley2231a.Keithley2231A property)</a>
+          <li><a href="api-reference/qinst.instruments.serial.html#qinst.instruments.serial.keithley6514.Keithley6514.connect">(qinst.instruments.serial.keithley6514.Keithley6514 method)</a>
 </li>
-        <li><a href="api-reference/qinst.serial.html#qinst.serial.keithley2231a.Keithley2231A.current_limit">current_limit (qinst.serial.keithley2231a.Keithley2231A property)</a>
+          <li><a href="api-reference/qinst.instruments.serial.html#qinst.instruments.serial.voltage_source_SIM928.SIM928.connect">(qinst.instruments.serial.voltage_source_SIM928.SIM928 method)</a>
 </li>
-        <li><a href="api-reference/qinst.html#qinst.log.CustomHandler">CustomHandler (class in qinst.log)</a>
+          <li><a href="api-reference/qinst.html#qinst.network_inst.NetworkInst.connect">(qinst.network_inst.NetworkInst method)</a>
+</li>
+          <li><a href="api-reference/qinst.html#qinst.serial_inst.SerialInst.connect">(qinst.serial_inst.SerialInst method)</a>
+</li>
+        </ul></li>
+        <li><a href="api-reference/qinst.instruments.serial.html#qinst.instruments.serial.voltage_source_SIM928.SIM928.connect_port">connect_port() (qinst.instruments.serial.voltage_source_SIM928.SIM928 method)</a>
+</li>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.N9916A.continuous">continuous (qinst.instruments.network.NA_N9916A.N9916A property)</a>
+</li>
+        <li><a href="api-reference/qinst.instruments.niscope.html#qinst.instruments.niscope.pxie_5170r.Pxie570R.coupling">coupling (qinst.instruments.niscope.pxie_5170r.Pxie570R property)</a>
+</li>
+        <li><a href="api-reference/qinst.instruments.serial.html#qinst.instruments.serial.keithley2231a.Keithley2231A.current">current (qinst.instruments.serial.keithley2231a.Keithley2231A property)</a>
+</li>
+        <li><a href="api-reference/qinst.instruments.serial.html#qinst.instruments.serial.keithley2231a.Keithley2231A.current_limit">current_limit (qinst.instruments.serial.keithley2231a.Keithley2231A property)</a>
+</li>
+        <li><a href="api-reference/qinst.html#qinst.logger.CustomHandler">CustomHandler (class in qinst.logger)</a>
 </li>
     </ul></td>
   </tr></table>
@@ -333,22 +356,36 @@
   <h2>D</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.N9916A.data_format">data_format (qinst.network.NA_N9916A.N9916A property)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.N9916A.data_format">data_format (qinst.instruments.network.NA_N9916A.N9916A property)</a>
 </li>
-        <li><a href="api-reference/qinst.serial.html#qinst.serial.voltage_source_SIM928.SIM928.dev_error">dev_error() (qinst.serial.voltage_source_SIM928.SIM928 method)</a>
+        <li><a href="api-reference/qinst.instruments.niscope.html#qinst.instruments.niscope.pxie_5170r.DigitalTrigger.delay">delay (qinst.instruments.niscope.pxie_5170r.DigitalTrigger attribute)</a>
+
+        <ul>
+          <li><a href="api-reference/qinst.instruments.niscope.html#qinst.instruments.niscope.pxie_5170r.EdgeTrigger.delay">(qinst.instruments.niscope.pxie_5170r.EdgeTrigger attribute)</a>
 </li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.RS_SMA100B.SMA100B.diag">diag() (qinst.network.RS_SMA100B.SMA100B method)</a>
+          <li><a href="api-reference/qinst.instruments.niscope.html#qinst.instruments.niscope.pxie_5170r.SoftwareTrigger.delay">(qinst.instruments.niscope.pxie_5170r.SoftwareTrigger attribute)</a>
 </li>
+        </ul></li>
+        <li><a href="api-reference/qinst.instruments.serial.html#qinst.instruments.serial.voltage_source_SIM928.SIM928.dev_error">dev_error() (qinst.instruments.serial.voltage_source_SIM928.SIM928 method)</a>
+</li>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.RS_SMA100B.SMA100B.diag">diag() (qinst.instruments.network.RS_SMA100B.SMA100B method)</a>
+</li>
+        <li><a href="api-reference/qinst.instruments.niscope.html#qinst.instruments.niscope.pxie_5170r.DigitalTrigger">DigitalTrigger (class in qinst.instruments.niscope.pxie_5170r)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="api-reference/qinst.html#qinst.instrument.Instrument.disconnect">disconnect() (qinst.instrument.Instrument method)</a>
 
         <ul>
+          <li><a href="api-reference/qinst.instruments.niscope.html#qinst.instruments.niscope.pxie_5170r.Pxie570R.disconnect">(qinst.instruments.niscope.pxie_5170r.Pxie570R method)</a>
+</li>
+          <li><a href="api-reference/qinst.instruments.serial.html#qinst.instruments.serial.keithley2231a.Keithley2231A.disconnect">(qinst.instruments.serial.keithley2231a.Keithley2231A method)</a>
+</li>
+          <li><a href="api-reference/qinst.instruments.serial.html#qinst.instruments.serial.keithley6514.Keithley6514.disconnect">(qinst.instruments.serial.keithley6514.Keithley6514 method)</a>
+</li>
+          <li><a href="api-reference/qinst.instruments.serial.html#qinst.instruments.serial.voltage_source_SIM928.SIM928.disconnect">(qinst.instruments.serial.voltage_source_SIM928.SIM928 method)</a>
+</li>
           <li><a href="api-reference/qinst.html#qinst.network_inst.NetworkInst.disconnect">(qinst.network_inst.NetworkInst method)</a>
-</li>
-          <li><a href="api-reference/qinst.serial.html#qinst.serial.keithley2231a.Keithley2231A.disconnect">(qinst.serial.keithley2231a.Keithley2231A method)</a>
-</li>
-          <li><a href="api-reference/qinst.serial.html#qinst.serial.keithley6514.Keithley6514.disconnect">(qinst.serial.keithley6514.Keithley6514 method)</a>
-</li>
-          <li><a href="api-reference/qinst.serial.html#qinst.serial.voltage_source_SIM928.SIM928.disconnect">(qinst.serial.voltage_source_SIM928.SIM928 method)</a>
 </li>
           <li><a href="api-reference/qinst.html#qinst.serial_inst.SerialInst.disconnect">(qinst.serial_inst.SerialInst method)</a>
 </li>
@@ -361,11 +398,13 @@
   <h2>E</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api-reference/qinst.serial.html#qinst.serial.voltage_source_SIM928.SIM928.exe_error">exe_error() (qinst.serial.voltage_source_SIM928.SIM928 method)</a>
+        <li><a href="api-reference/qinst.instruments.niscope.html#qinst.instruments.niscope.pxie_5170r.EdgeTrigger">EdgeTrigger (class in qinst.instruments.niscope.pxie_5170r)</a>
 </li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api-reference/qinst.serial.html#qinst.serial.synth_FSL0010.FSL0010.ext_ref_source">ext_ref_source (qinst.serial.synth_FSL0010.FSL0010 property)</a>
+        <li><a href="api-reference/qinst.instruments.serial.html#qinst.instruments.serial.voltage_source_SIM928.SIM928.exe_error">exe_error() (qinst.instruments.serial.voltage_source_SIM928.SIM928 method)</a>
+</li>
+        <li><a href="api-reference/qinst.instruments.serial.html#qinst.instruments.serial.synth_FSL0010.FSL0010.ext_ref_source">ext_ref_source (qinst.instruments.serial.synth_FSL0010.FSL0010 property)</a>
 </li>
     </ul></td>
   </tr></table>
@@ -375,51 +414,51 @@
   <h2>F</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.N9916A.f_center">f_center (qinst.network.NA_N9916A.N9916A property)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.N9916A.f_center">f_center (qinst.instruments.network.NA_N9916A.N9916A property)</a>
 
         <ul>
-          <li><a href="api-reference/qinst.network.html#qinst.network.RS_SMA100B.SMA100B.f_center">(qinst.network.RS_SMA100B.SMA100B property)</a>
+          <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.RS_SMA100B.SMA100B.f_center">(qinst.instruments.network.RS_SMA100B.SMA100B property)</a>
 </li>
         </ul></li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.RS_SMA100B.SMA100B.f_dwell">f_dwell (qinst.network.RS_SMA100B.SMA100B property)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.RS_SMA100B.SMA100B.f_dwell">f_dwell (qinst.instruments.network.RS_SMA100B.SMA100B property)</a>
 </li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.RS_SMA100B.SMA100B.f_fixed">f_fixed (qinst.network.RS_SMA100B.SMA100B property)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.RS_SMA100B.SMA100B.f_fixed">f_fixed (qinst.instruments.network.RS_SMA100B.SMA100B property)</a>
 </li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.N9916A.f_max">f_max (qinst.network.NA_N9916A.N9916A property)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.N9916A.f_max">f_max (qinst.instruments.network.NA_N9916A.N9916A property)</a>
 
         <ul>
-          <li><a href="api-reference/qinst.network.html#qinst.network.RS_SMA100B.SMA100B.f_max">(qinst.network.RS_SMA100B.SMA100B property)</a>
+          <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.RS_SMA100B.SMA100B.f_max">(qinst.instruments.network.RS_SMA100B.SMA100B property)</a>
 </li>
         </ul></li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.N9916A.f_min">f_min (qinst.network.NA_N9916A.N9916A property)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.N9916A.f_min">f_min (qinst.instruments.network.NA_N9916A.N9916A property)</a>
 
         <ul>
-          <li><a href="api-reference/qinst.network.html#qinst.network.RS_SMA100B.SMA100B.f_min">(qinst.network.RS_SMA100B.SMA100B property)</a>
+          <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.RS_SMA100B.SMA100B.f_min">(qinst.instruments.network.RS_SMA100B.SMA100B property)</a>
 </li>
         </ul></li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.RS_SMA100B.SMA100B.f_mode">f_mode (qinst.network.RS_SMA100B.SMA100B property)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.RS_SMA100B.SMA100B.f_mode">f_mode (qinst.instruments.network.RS_SMA100B.SMA100B property)</a>
 </li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api-reference/qinst.network.html#qinst.network.RS_SMA100B.SMA100B.f_mult">f_mult (qinst.network.RS_SMA100B.SMA100B property)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.RS_SMA100B.SMA100B.f_mult">f_mult (qinst.instruments.network.RS_SMA100B.SMA100B property)</a>
 </li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.RS_SMA100B.SMA100B.f_offset">f_offset (qinst.network.RS_SMA100B.SMA100B property)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.RS_SMA100B.SMA100B.f_offset">f_offset (qinst.instruments.network.RS_SMA100B.SMA100B property)</a>
 </li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.N9916A.f_span">f_span (qinst.network.NA_N9916A.N9916A property)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.N9916A.f_span">f_span (qinst.instruments.network.NA_N9916A.N9916A property)</a>
 
         <ul>
-          <li><a href="api-reference/qinst.network.html#qinst.network.RS_SMA100B.SMA100B.f_span">(qinst.network.RS_SMA100B.SMA100B property)</a>
+          <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.RS_SMA100B.SMA100B.f_span">(qinst.instruments.network.RS_SMA100B.SMA100B property)</a>
 </li>
         </ul></li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.RS_SMA100B.SMA100B.f_step">f_step (qinst.network.RS_SMA100B.SMA100B property)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.RS_SMA100B.SMA100B.f_step">f_step (qinst.instruments.network.RS_SMA100B.SMA100B property)</a>
 </li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.RS_SMA100B.SMA100B.f_sweep_mode">f_sweep_mode (qinst.network.RS_SMA100B.SMA100B property)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.RS_SMA100B.SMA100B.f_sweep_mode">f_sweep_mode (qinst.instruments.network.RS_SMA100B.SMA100B property)</a>
 </li>
-        <li><a href="api-reference/qinst.html#qinst.log.CustomHandler.format">format() (qinst.log.CustomHandler method)</a>
+        <li><a href="api-reference/qinst.html#qinst.logger.CustomHandler.format">format() (qinst.logger.CustomHandler method)</a>
 </li>
-        <li><a href="api-reference/qinst.serial.html#qinst.serial.synth_FSL0010.FSL0010.freq">freq (qinst.serial.synth_FSL0010.FSL0010 property)</a>
+        <li><a href="api-reference/qinst.instruments.serial.html#qinst.instruments.serial.synth_FSL0010.FSL0010.freq">freq (qinst.instruments.serial.synth_FSL0010.FSL0010 property)</a>
 </li>
-        <li><a href="api-reference/qinst.serial.html#qinst.serial.synth_FSL0010.FSL0010">FSL0010 (class in qinst.serial.synth_FSL0010)</a>
+        <li><a href="api-reference/qinst.instruments.serial.html#qinst.instruments.serial.synth_FSL0010.FSL0010">FSL0010 (class in qinst.instruments.serial.synth_FSL0010)</a>
 </li>
     </ul></td>
   </tr></table>
@@ -429,7 +468,7 @@
   <h2>G</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.SAN9916A.gain">gain (qinst.network.NA_N9916A.SAN9916A property)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.SAN9916A.gain">gain (qinst.instruments.network.NA_N9916A.SAN9916A property)</a>
 </li>
         <li><a href="api-reference/qinst.html#qinst.instrument.Instrument.get">get() (qinst.instrument.Instrument method)</a>
 </li>
@@ -437,7 +476,7 @@
     <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="api-reference/qinst.html#qinst.instrument.Instrument.get_id">get_id() (qinst.instrument.Instrument method)</a>
 </li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.triton_ctrl.Triton.get_mixing_chamber_temp">get_mixing_chamber_temp() (qinst.network.triton_ctrl.Triton method)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.triton_ctrl.Triton.get_mixing_chamber_temp">get_mixing_chamber_temp() (qinst.instruments.network.triton_ctrl.Triton method)</a>
 </li>
     </ul></td>
   </tr></table>
@@ -447,12 +486,20 @@
   <h2>H</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api-reference/qinst.network.html#qinst.network.triton_ctrl.Triton.heater_range">heater_range (qinst.network.triton_ctrl.Triton property)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.triton_ctrl.Triton.heater_range">heater_range (qinst.instruments.network.triton_ctrl.Triton property)</a>
+</li>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.N9916A.hold">hold() (qinst.instruments.network.NA_N9916A.N9916A method)</a>
 </li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.N9916A.hold">hold() (qinst.network.NA_N9916A.N9916A method)</a>
+        <li><a href="api-reference/qinst.instruments.niscope.html#qinst.instruments.niscope.pxie_5170r.DigitalTrigger.holdoff">holdoff (qinst.instruments.niscope.pxie_5170r.DigitalTrigger attribute)</a>
+
+        <ul>
+          <li><a href="api-reference/qinst.instruments.niscope.html#qinst.instruments.niscope.pxie_5170r.EdgeTrigger.holdoff">(qinst.instruments.niscope.pxie_5170r.EdgeTrigger attribute)</a>
 </li>
+          <li><a href="api-reference/qinst.instruments.niscope.html#qinst.instruments.niscope.pxie_5170r.SoftwareTrigger.holdoff">(qinst.instruments.niscope.pxie_5170r.SoftwareTrigger attribute)</a>
+</li>
+        </ul></li>
     </ul></td>
   </tr></table>
 </section>
@@ -461,21 +508,21 @@
   <h2>I</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.VNAN9916A.IFBW">IFBW (qinst.network.NA_N9916A.VNAN9916A property)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.VNAN9916A.IFBW">IFBW (qinst.instruments.network.NA_N9916A.VNAN9916A property)</a>
 </li>
         <li><a href="api-reference/qinst.html#qinst.instrument.Instrument">Instrument (class in qinst.instrument)</a>
 </li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.RS_SMA100B.SMA100B.is_completed">is_completed (qinst.network.RS_SMA100B.SMA100B property)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.RS_SMA100B.SMA100B.is_completed">is_completed (qinst.instruments.network.RS_SMA100B.SMA100B property)</a>
 
         <ul>
-          <li><a href="api-reference/qinst.serial.html#qinst.serial.keithley2231a.Keithley2231A.is_completed">(qinst.serial.keithley2231a.Keithley2231A property)</a>
+          <li><a href="api-reference/qinst.instruments.serial.html#qinst.instruments.serial.keithley2231a.Keithley2231A.is_completed">(qinst.instruments.serial.keithley2231a.Keithley2231A property)</a>
 </li>
         </ul></li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api-reference/qinst.network.html#qinst.network.RS_SMA100B.SMA100B.is_f_sweep_completed">is_f_sweep_completed (qinst.network.RS_SMA100B.SMA100B property)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.RS_SMA100B.SMA100B.is_f_sweep_completed">is_f_sweep_completed (qinst.instruments.network.RS_SMA100B.SMA100B property)</a>
 </li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.RS_SMA100B.SMA100B.is_p_sweep_completed">is_p_sweep_completed (qinst.network.RS_SMA100B.SMA100B property)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.RS_SMA100B.SMA100B.is_p_sweep_completed">is_p_sweep_completed (qinst.instruments.network.RS_SMA100B.SMA100B property)</a>
 </li>
     </ul></td>
   </tr></table>
@@ -485,24 +532,24 @@
   <h2>K</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api-reference/qinst.serial.html#qinst.serial.keithley2231a.Keithley2231A">Keithley2231A (class in qinst.serial.keithley2231a)</a>
+        <li><a href="api-reference/qinst.instruments.serial.html#qinst.instruments.serial.keithley2231a.Keithley2231A">Keithley2231A (class in qinst.instruments.serial.keithley2231a)</a>
 </li>
         <li>
     keithley2231a.py
 
         <ul>
-          <li><a href="api-reference/qinst.serial.html#module-keithley2231a.py">module</a>
+          <li><a href="api-reference/qinst.instruments.serial.html#module-keithley2231a.py">module</a>
 </li>
         </ul></li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api-reference/qinst.serial.html#qinst.serial.keithley6514.Keithley6514">Keithley6514 (class in qinst.serial.keithley6514)</a>
+        <li><a href="api-reference/qinst.instruments.serial.html#qinst.instruments.serial.keithley6514.Keithley6514">Keithley6514 (class in qinst.instruments.serial.keithley6514)</a>
 </li>
         <li>
     keithley6514.py
 
         <ul>
-          <li><a href="api-reference/qinst.serial.html#module-keithley6514.py">module</a>
+          <li><a href="api-reference/qinst.instruments.serial.html#module-keithley6514.py">module</a>
 </li>
         </ul></li>
     </ul></td>
@@ -513,7 +560,11 @@
   <h2>L</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api-reference/qinst.serial.html#qinst.serial.keithley2231a.Keithley2231A.load">load() (qinst.serial.keithley2231a.Keithley2231A method)</a>
+        <li><a href="api-reference/qinst.instruments.niscope.html#qinst.instruments.niscope.pxie_5170r.EdgeTrigger.level">level (qinst.instruments.niscope.pxie_5170r.EdgeTrigger attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api-reference/qinst.instruments.serial.html#qinst.instruments.serial.keithley2231a.Keithley2231A.load">load() (qinst.instruments.serial.keithley2231a.Keithley2231A method)</a>
 </li>
     </ul></td>
   </tr></table>
@@ -523,19 +574,19 @@
   <h2>M</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api-reference/qinst.network.html#qinst.network.triton_ctrl.Triton.mixing_chamber_ch">mixing_chamber_ch (qinst.network.triton_ctrl.Triton property)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.triton_ctrl.Triton.mixing_chamber_ch">mixing_chamber_ch (qinst.instruments.network.triton_ctrl.Triton property)</a>
 </li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.triton_ctrl.Triton.mixing_chamber_tset">mixing_chamber_tset (qinst.network.triton_ctrl.Triton property)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.triton_ctrl.Triton.mixing_chamber_tset">mixing_chamber_tset (qinst.instruments.network.triton_ctrl.Triton property)</a>
 </li>
         <li>
     module
 
         <ul>
-          <li><a href="api-reference/qinst.serial.html#module-keithley2231a.py">keithley2231a.py</a>
+          <li><a href="api-reference/qinst.instruments.serial.html#module-keithley2231a.py">keithley2231a.py</a>
 </li>
-          <li><a href="api-reference/qinst.serial.html#module-keithley6514.py">keithley6514.py</a>
+          <li><a href="api-reference/qinst.instruments.serial.html#module-keithley6514.py">keithley6514.py</a>
 </li>
-          <li><a href="api-reference/qinst.network.html#module-NA_N9916A.py">NA_N9916A.py</a>
+          <li><a href="api-reference/qinst.instruments.network.html#module-NA_N9916A.py">NA_N9916A.py</a>
 </li>
           <li><a href="api-reference/qinst.html#module-network_inst.py">network_inst.py</a>
 </li>
@@ -543,33 +594,39 @@
 </li>
           <li><a href="api-reference/qinst.html#module-qinst.instrument">qinst.instrument</a>
 </li>
-          <li><a href="api-reference/qinst.html#module-qinst.log">qinst.log</a>
+          <li><a href="api-reference/qinst.instruments.html#module-qinst.instruments">qinst.instruments</a>
 </li>
-          <li><a href="api-reference/qinst.network.html#module-qinst.network">qinst.network</a>
+          <li><a href="api-reference/qinst.instruments.network.html#module-qinst.instruments.network">qinst.instruments.network</a>
 </li>
-          <li><a href="api-reference/qinst.network.html#module-qinst.network.NA_N9916A">qinst.network.NA_N9916A</a>
+          <li><a href="api-reference/qinst.instruments.network.html#module-qinst.instruments.network.NA_N9916A">qinst.instruments.network.NA_N9916A</a>
 </li>
-          <li><a href="api-reference/qinst.network.html#module-qinst.network.RS_SMA100B">qinst.network.RS_SMA100B</a>
+          <li><a href="api-reference/qinst.instruments.network.html#module-qinst.instruments.network.RS_SMA100B">qinst.instruments.network.RS_SMA100B</a>
 </li>
-          <li><a href="api-reference/qinst.network.html#module-qinst.network.triton_ctrl">qinst.network.triton_ctrl</a>
+          <li><a href="api-reference/qinst.instruments.network.html#module-qinst.instruments.network.triton_ctrl">qinst.instruments.network.triton_ctrl</a>
+</li>
+          <li><a href="api-reference/qinst.instruments.niscope.html#module-qinst.instruments.niscope">qinst.instruments.niscope</a>
+</li>
+          <li><a href="api-reference/qinst.instruments.niscope.html#module-qinst.instruments.niscope.pxie_5170r">qinst.instruments.niscope.pxie_5170r</a>
+</li>
+          <li><a href="api-reference/qinst.instruments.serial.html#module-qinst.instruments.serial">qinst.instruments.serial</a>
+</li>
+          <li><a href="api-reference/qinst.instruments.serial.html#module-qinst.instruments.serial.keithley2231a">qinst.instruments.serial.keithley2231a</a>
+</li>
+          <li><a href="api-reference/qinst.instruments.serial.html#module-qinst.instruments.serial.keithley6514">qinst.instruments.serial.keithley6514</a>
+</li>
+          <li><a href="api-reference/qinst.instruments.serial.html#module-qinst.instruments.serial.synth_FSL0010">qinst.instruments.serial.synth_FSL0010</a>
+</li>
+          <li><a href="api-reference/qinst.instruments.serial.html#module-qinst.instruments.serial.voltage_source_SIM928">qinst.instruments.serial.voltage_source_SIM928</a>
+</li>
+          <li><a href="api-reference/qinst.html#module-qinst.logger">qinst.logger</a>
 </li>
           <li><a href="api-reference/qinst.html#module-qinst.network_inst">qinst.network_inst</a>
 </li>
-          <li><a href="api-reference/qinst.serial.html#module-qinst.serial">qinst.serial</a>
-</li>
-          <li><a href="api-reference/qinst.serial.html#module-qinst.serial.keithley2231a">qinst.serial.keithley2231a</a>
-</li>
-          <li><a href="api-reference/qinst.serial.html#module-qinst.serial.keithley6514">qinst.serial.keithley6514</a>
-</li>
-          <li><a href="api-reference/qinst.serial.html#module-qinst.serial.synth_FSL0010">qinst.serial.synth_FSL0010</a>
-</li>
-          <li><a href="api-reference/qinst.serial.html#module-qinst.serial.voltage_source_SIM928">qinst.serial.voltage_source_SIM928</a>
-</li>
           <li><a href="api-reference/qinst.html#module-qinst.serial_inst">qinst.serial_inst</a>
 </li>
-          <li><a href="api-reference/qinst.network.html#module-RS_SMA100B.py">RS_SMA100B.py</a>
+          <li><a href="api-reference/qinst.instruments.network.html#module-RS_SMA100B.py">RS_SMA100B.py</a>
 </li>
-          <li><a href="api-reference/qinst.serial.html#module-synth_FSL0010.py">synth_FSL0010.py</a>
+          <li><a href="api-reference/qinst.instruments.serial.html#module-synth_FSL0010.py">synth_FSL0010.py</a>
 </li>
         </ul></li>
     </ul></td>
@@ -580,13 +637,13 @@
   <h2>N</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.N9916A">N9916A (class in qinst.network.NA_N9916A)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.N9916A">N9916A (class in qinst.instruments.network.NA_N9916A)</a>
 </li>
         <li>
     NA_N9916A.py
 
         <ul>
-          <li><a href="api-reference/qinst.network.html#module-NA_N9916A.py">module</a>
+          <li><a href="api-reference/qinst.instruments.network.html#module-NA_N9916A.py">module</a>
 </li>
         </ul></li>
     </ul></td>
@@ -610,13 +667,13 @@
   <h2>O</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api-reference/qinst.serial.html#qinst.serial.voltage_source_SIM928.SIM928.output_off">output_off() (qinst.serial.voltage_source_SIM928.SIM928 method)</a>
+        <li><a href="api-reference/qinst.instruments.serial.html#qinst.instruments.serial.voltage_source_SIM928.SIM928.output_off">output_off() (qinst.instruments.serial.voltage_source_SIM928.SIM928 method)</a>
 </li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api-reference/qinst.serial.html#qinst.serial.synth_FSL0010.FSL0010.output_on">output_on (qinst.serial.synth_FSL0010.FSL0010 property)</a>
+        <li><a href="api-reference/qinst.instruments.serial.html#qinst.instruments.serial.synth_FSL0010.FSL0010.output_on">output_on (qinst.instruments.serial.synth_FSL0010.FSL0010 property)</a>
 </li>
-        <li><a href="api-reference/qinst.serial.html#qinst.serial.voltage_source_SIM928.SIM928.output_on">output_on() (qinst.serial.voltage_source_SIM928.SIM928 method)</a>
+        <li><a href="api-reference/qinst.instruments.serial.html#qinst.instruments.serial.voltage_source_SIM928.SIM928.output_on">output_on() (qinst.instruments.serial.voltage_source_SIM928.SIM928 method)</a>
 </li>
     </ul></td>
   </tr></table>
@@ -626,27 +683,29 @@
   <h2>P</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api-reference/qinst.network.html#qinst.network.RS_SMA100B.SMA100B.p_dwell">p_dwell (qinst.network.RS_SMA100B.SMA100B property)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.RS_SMA100B.SMA100B.p_dwell">p_dwell (qinst.instruments.network.RS_SMA100B.SMA100B property)</a>
 </li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.RS_SMA100B.SMA100B.p_fixed">p_fixed (qinst.network.RS_SMA100B.SMA100B property)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.RS_SMA100B.SMA100B.p_fixed">p_fixed (qinst.instruments.network.RS_SMA100B.SMA100B property)</a>
 </li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.RS_SMA100B.SMA100B.p_max">p_max (qinst.network.RS_SMA100B.SMA100B property)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.RS_SMA100B.SMA100B.p_max">p_max (qinst.instruments.network.RS_SMA100B.SMA100B property)</a>
 </li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.RS_SMA100B.SMA100B.p_min">p_min (qinst.network.RS_SMA100B.SMA100B property)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.RS_SMA100B.SMA100B.p_min">p_min (qinst.instruments.network.RS_SMA100B.SMA100B property)</a>
 </li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.RS_SMA100B.SMA100B.p_mode">p_mode (qinst.network.RS_SMA100B.SMA100B property)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.RS_SMA100B.SMA100B.p_mode">p_mode (qinst.instruments.network.RS_SMA100B.SMA100B property)</a>
 </li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api-reference/qinst.network.html#qinst.network.RS_SMA100B.SMA100B.p_step">p_step (qinst.network.RS_SMA100B.SMA100B property)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.RS_SMA100B.SMA100B.p_step">p_step (qinst.instruments.network.RS_SMA100B.SMA100B property)</a>
 </li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.RS_SMA100B.SMA100B.p_sweep_mode">p_sweep_mode (qinst.network.RS_SMA100B.SMA100B property)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.RS_SMA100B.SMA100B.p_sweep_mode">p_sweep_mode (qinst.instruments.network.RS_SMA100B.SMA100B property)</a>
 </li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.RS_SMA100B.SMA100B.p_unit">p_unit (qinst.network.RS_SMA100B.SMA100B property)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.RS_SMA100B.SMA100B.p_unit">p_unit (qinst.instruments.network.RS_SMA100B.SMA100B property)</a>
 </li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.RS_SMA100B.SMA100B.phase">phase (qinst.network.RS_SMA100B.SMA100B property)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.RS_SMA100B.SMA100B.phase">phase (qinst.instruments.network.RS_SMA100B.SMA100B property)</a>
 </li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.VNAN9916A.power">power (qinst.network.NA_N9916A.VNAN9916A property)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.VNAN9916A.power">power (qinst.instruments.network.NA_N9916A.VNAN9916A property)</a>
+</li>
+        <li><a href="api-reference/qinst.instruments.niscope.html#qinst.instruments.niscope.pxie_5170r.Pxie570R">Pxie570R (class in qinst.instruments.niscope.pxie_5170r)</a>
 </li>
     </ul></td>
   </tr></table>
@@ -671,38 +730,96 @@
 </li>
         </ul></li>
         <li>
-    qinst.log
+    qinst.instruments
 
         <ul>
-          <li><a href="api-reference/qinst.html#module-qinst.log">module</a>
+          <li><a href="api-reference/qinst.instruments.html#module-qinst.instruments">module</a>
 </li>
         </ul></li>
         <li>
-    qinst.network
+    qinst.instruments.network
 
         <ul>
-          <li><a href="api-reference/qinst.network.html#module-qinst.network">module</a>
+          <li><a href="api-reference/qinst.instruments.network.html#module-qinst.instruments.network">module</a>
 </li>
         </ul></li>
         <li>
-    qinst.network.NA_N9916A
+    qinst.instruments.network.NA_N9916A
 
         <ul>
-          <li><a href="api-reference/qinst.network.html#module-qinst.network.NA_N9916A">module</a>
+          <li><a href="api-reference/qinst.instruments.network.html#module-qinst.instruments.network.NA_N9916A">module</a>
 </li>
         </ul></li>
         <li>
-    qinst.network.RS_SMA100B
+    qinst.instruments.network.RS_SMA100B
 
         <ul>
-          <li><a href="api-reference/qinst.network.html#module-qinst.network.RS_SMA100B">module</a>
+          <li><a href="api-reference/qinst.instruments.network.html#module-qinst.instruments.network.RS_SMA100B">module</a>
 </li>
         </ul></li>
         <li>
-    qinst.network.triton_ctrl
+    qinst.instruments.network.triton_ctrl
 
         <ul>
-          <li><a href="api-reference/qinst.network.html#module-qinst.network.triton_ctrl">module</a>
+          <li><a href="api-reference/qinst.instruments.network.html#module-qinst.instruments.network.triton_ctrl">module</a>
+</li>
+        </ul></li>
+        <li>
+    qinst.instruments.niscope
+
+        <ul>
+          <li><a href="api-reference/qinst.instruments.niscope.html#module-qinst.instruments.niscope">module</a>
+</li>
+        </ul></li>
+        <li>
+    qinst.instruments.niscope.pxie_5170r
+
+        <ul>
+          <li><a href="api-reference/qinst.instruments.niscope.html#module-qinst.instruments.niscope.pxie_5170r">module</a>
+</li>
+        </ul></li>
+        <li>
+    qinst.instruments.serial
+
+        <ul>
+          <li><a href="api-reference/qinst.instruments.serial.html#module-qinst.instruments.serial">module</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li>
+    qinst.instruments.serial.keithley2231a
+
+        <ul>
+          <li><a href="api-reference/qinst.instruments.serial.html#module-qinst.instruments.serial.keithley2231a">module</a>
+</li>
+        </ul></li>
+        <li>
+    qinst.instruments.serial.keithley6514
+
+        <ul>
+          <li><a href="api-reference/qinst.instruments.serial.html#module-qinst.instruments.serial.keithley6514">module</a>
+</li>
+        </ul></li>
+        <li>
+    qinst.instruments.serial.synth_FSL0010
+
+        <ul>
+          <li><a href="api-reference/qinst.instruments.serial.html#module-qinst.instruments.serial.synth_FSL0010">module</a>
+</li>
+        </ul></li>
+        <li>
+    qinst.instruments.serial.voltage_source_SIM928
+
+        <ul>
+          <li><a href="api-reference/qinst.instruments.serial.html#module-qinst.instruments.serial.voltage_source_SIM928">module</a>
+</li>
+        </ul></li>
+        <li>
+    qinst.logger
+
+        <ul>
+          <li><a href="api-reference/qinst.html#module-qinst.logger">module</a>
 </li>
         </ul></li>
         <li>
@@ -710,43 +827,6 @@
 
         <ul>
           <li><a href="api-reference/qinst.html#module-qinst.network_inst">module</a>
-</li>
-        </ul></li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li>
-    qinst.serial
-
-        <ul>
-          <li><a href="api-reference/qinst.serial.html#module-qinst.serial">module</a>
-</li>
-        </ul></li>
-        <li>
-    qinst.serial.keithley2231a
-
-        <ul>
-          <li><a href="api-reference/qinst.serial.html#module-qinst.serial.keithley2231a">module</a>
-</li>
-        </ul></li>
-        <li>
-    qinst.serial.keithley6514
-
-        <ul>
-          <li><a href="api-reference/qinst.serial.html#module-qinst.serial.keithley6514">module</a>
-</li>
-        </ul></li>
-        <li>
-    qinst.serial.synth_FSL0010
-
-        <ul>
-          <li><a href="api-reference/qinst.serial.html#module-qinst.serial.synth_FSL0010">module</a>
-</li>
-        </ul></li>
-        <li>
-    qinst.serial.voltage_source_SIM928
-
-        <ul>
-          <li><a href="api-reference/qinst.serial.html#module-qinst.serial.voltage_source_SIM928">module</a>
 </li>
         </ul></li>
         <li>
@@ -759,14 +839,16 @@
         <li><a href="api-reference/qinst.html#qinst.instrument.Instrument.query">query() (qinst.instrument.Instrument method)</a>
 
         <ul>
-          <li><a href="api-reference/qinst.network.html#qinst.network.triton_ctrl.Triton.query">(qinst.network.triton_ctrl.Triton method)</a>
+          <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.triton_ctrl.Triton.query">(qinst.instruments.network.triton_ctrl.Triton method)</a>
+</li>
+          <li><a href="api-reference/qinst.instruments.niscope.html#qinst.instruments.niscope.pxie_5170r.Pxie570R.query">(qinst.instruments.niscope.pxie_5170r.Pxie570R method)</a>
 </li>
           <li><a href="api-reference/qinst.html#qinst.network_inst.NetworkInst.query">(qinst.network_inst.NetworkInst method)</a>
 </li>
           <li><a href="api-reference/qinst.html#qinst.serial_inst.SerialInst.query">(qinst.serial_inst.SerialInst method)</a>
 </li>
         </ul></li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.N9916A.query_data">query_data() (qinst.network.NA_N9916A.N9916A method)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.N9916A.query_data">query_data() (qinst.instruments.network.NA_N9916A.N9916A method)</a>
 </li>
     </ul></td>
   </tr></table>
@@ -779,42 +861,44 @@
         <li><a href="api-reference/qinst.html#qinst.instrument.Instrument.read">read() (qinst.instrument.Instrument method)</a>
 
         <ul>
+          <li><a href="api-reference/qinst.instruments.niscope.html#qinst.instruments.niscope.pxie_5170r.Pxie570R.read">(qinst.instruments.niscope.pxie_5170r.Pxie570R method)</a>
+</li>
           <li><a href="api-reference/qinst.html#qinst.network_inst.NetworkInst.read">(qinst.network_inst.NetworkInst method)</a>
 </li>
           <li><a href="api-reference/qinst.html#qinst.serial_inst.SerialInst.read">(qinst.serial_inst.SerialInst method)</a>
 </li>
         </ul></li>
-        <li><a href="api-reference/qinst.serial.html#qinst.serial.keithley6514.Keithley6514.read_data">read_data() (qinst.serial.keithley6514.Keithley6514 method)</a>
+        <li><a href="api-reference/qinst.instruments.serial.html#qinst.instruments.serial.keithley6514.Keithley6514.read_data">read_data() (qinst.instruments.serial.keithley6514.Keithley6514 method)</a>
 </li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.N9916A.read_freqs">read_freqs() (qinst.network.NA_N9916A.N9916A method)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.N9916A.read_freqs">read_freqs() (qinst.instruments.network.NA_N9916A.N9916A method)</a>
 
         <ul>
-          <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.SAN9916A.read_freqs">(qinst.network.NA_N9916A.SAN9916A method)</a>
+          <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.SAN9916A.read_freqs">(qinst.instruments.network.NA_N9916A.SAN9916A method)</a>
 </li>
-          <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.VNAN9916A.read_freqs">(qinst.network.NA_N9916A.VNAN9916A method)</a>
+          <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.VNAN9916A.read_freqs">(qinst.instruments.network.NA_N9916A.VNAN9916A method)</a>
 </li>
         </ul></li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.N9916A.read_trace_data">read_trace_data() (qinst.network.NA_N9916A.N9916A method)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.N9916A.read_trace_data">read_trace_data() (qinst.instruments.network.NA_N9916A.N9916A method)</a>
 
         <ul>
-          <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.SAN9916A.read_trace_data">(qinst.network.NA_N9916A.SAN9916A method)</a>
+          <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.SAN9916A.read_trace_data">(qinst.instruments.network.NA_N9916A.SAN9916A method)</a>
 </li>
-          <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.VNAN9916A.read_trace_data">(qinst.network.NA_N9916A.VNAN9916A method)</a>
+          <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.VNAN9916A.read_trace_data">(qinst.instruments.network.NA_N9916A.VNAN9916A method)</a>
 </li>
         </ul></li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.SAN9916A.res_bandwidth">res_bandwidth (qinst.network.NA_N9916A.SAN9916A property)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.SAN9916A.res_bandwidth">res_bandwidth (qinst.instruments.network.NA_N9916A.SAN9916A property)</a>
 </li>
         <li><a href="api-reference/qinst.html#qinst.instrument.Instrument.reset">reset() (qinst.instrument.Instrument method)</a>
 </li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.RS_SMA100B.SMA100B.rf_status">rf_status (qinst.network.RS_SMA100B.SMA100B property)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.RS_SMA100B.SMA100B.rf_status">rf_status (qinst.instruments.network.RS_SMA100B.SMA100B property)</a>
 </li>
         <li>
     RS_SMA100B.py
 
         <ul>
-          <li><a href="api-reference/qinst.network.html#module-RS_SMA100B.py">module</a>
+          <li><a href="api-reference/qinst.instruments.network.html#module-RS_SMA100B.py">module</a>
 </li>
         </ul></li>
     </ul></td>
@@ -825,63 +909,79 @@
   <h2>S</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.VNAN9916A.S_par">S_par (qinst.network.NA_N9916A.VNAN9916A property)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.VNAN9916A.S_par">S_par (qinst.instruments.network.NA_N9916A.VNAN9916A property)</a>
 </li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.SAN9916A">SAN9916A (class in qinst.network.NA_N9916A)</a>
+        <li><a href="api-reference/qinst.instruments.niscope.html#qinst.instruments.niscope.pxie_5170r.Pxie570R.sample_rate">sample_rate (qinst.instruments.niscope.pxie_5170r.Pxie570R property)</a>
 </li>
-        <li><a href="api-reference/qinst.serial.html#qinst.serial.keithley2231a.Keithley2231A.save">save() (qinst.serial.keithley2231a.Keithley2231A method)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.SAN9916A">SAN9916A (class in qinst.instruments.network.NA_N9916A)</a>
 </li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.RS_SMA100B.SMA100B.screen_saver_mode">screen_saver_mode() (qinst.network.RS_SMA100B.SMA100B method)</a>
+        <li><a href="api-reference/qinst.instruments.serial.html#qinst.instruments.serial.keithley2231a.Keithley2231A.save">save() (qinst.instruments.serial.keithley2231a.Keithley2231A method)</a>
 </li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.RS_SMA100B.SMA100B.screen_saver_time">screen_saver_time (qinst.network.RS_SMA100B.SMA100B property)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.RS_SMA100B.SMA100B.screen_saver_mode">screen_saver_mode() (qinst.instruments.network.RS_SMA100B.SMA100B method)</a>
+</li>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.RS_SMA100B.SMA100B.screen_saver_time">screen_saver_time (qinst.instruments.network.RS_SMA100B.SMA100B property)</a>
 </li>
         <li><a href="api-reference/qinst.html#qinst.serial_inst.SerialInst">SerialInst (class in qinst.serial_inst)</a>
 </li>
         <li><a href="api-reference/qinst.html#qinst.instrument.Instrument.set">set() (qinst.instrument.Instrument method)</a>
 </li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.SAN9916A.set_full_span">set_full_span() (qinst.network.NA_N9916A.SAN9916A method)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.SAN9916A.set_full_span">set_full_span() (qinst.instruments.network.NA_N9916A.SAN9916A method)</a>
 </li>
-        <li><a href="api-reference/qinst.serial.html#qinst.serial.keithley6514.Keithley6514.set_measure">set_measure() (qinst.serial.keithley6514.Keithley6514 method)</a>
+        <li><a href="api-reference/qinst.instruments.serial.html#qinst.instruments.serial.keithley6514.Keithley6514.set_measure">set_measure() (qinst.instruments.serial.keithley6514.Keithley6514 method)</a>
 </li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.RS_SMA100B.SMA100B.set_phase_ref">set_phase_ref() (qinst.network.RS_SMA100B.SMA100B method)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.RS_SMA100B.SMA100B.set_phase_ref">set_phase_ref() (qinst.instruments.network.RS_SMA100B.SMA100B method)</a>
 </li>
-        <li><a href="api-reference/qinst.serial.html#qinst.serial.keithley6514.Keithley6514.set_zero">set_zero() (qinst.serial.keithley6514.Keithley6514 method)</a>
+        <li><a href="api-reference/qinst.instruments.serial.html#qinst.instruments.serial.keithley6514.Keithley6514.set_zero">set_zero() (qinst.instruments.serial.keithley6514.Keithley6514 method)</a>
 </li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.SAN9916A.set_zero_span">set_zero_span() (qinst.network.NA_N9916A.SAN9916A method)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.SAN9916A.set_zero_span">set_zero_span() (qinst.instruments.network.NA_N9916A.SAN9916A method)</a>
 </li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.VNAN9916A.setup">setup() (qinst.network.NA_N9916A.VNAN9916A method)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.VNAN9916A.setup">setup() (qinst.instruments.network.NA_N9916A.VNAN9916A method)</a>
+</li>
+        <li><a href="api-reference/qinst.instruments.serial.html#qinst.instruments.serial.voltage_source_SIM928.SIM928">SIM928 (class in qinst.instruments.serial.voltage_source_SIM928)</a>
+</li>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.N9916A.single_sweep">single_sweep() (qinst.instruments.network.NA_N9916A.N9916A method)</a>
 </li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api-reference/qinst.serial.html#qinst.serial.voltage_source_SIM928.SIM928">SIM928 (class in qinst.serial.voltage_source_SIM928)</a>
-</li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.N9916A.single_sweep">single_sweep() (qinst.network.NA_N9916A.N9916A method)</a>
-</li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.RS_SMA100B.SMA100B">SMA100B (class in qinst.network.RS_SMA100B)</a>
-</li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.VNAN9916A.smoothing">smoothing (qinst.network.NA_N9916A.VNAN9916A property)</a>
-</li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.N9916A.snapshot">snapshot() (qinst.network.NA_N9916A.N9916A method)</a>
-</li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.N9916A.survey">survey() (qinst.network.NA_N9916A.N9916A method)</a>
-</li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.VNAN9916A.sweep">sweep() (qinst.network.NA_N9916A.VNAN9916A method)</a>
+        <li><a href="api-reference/qinst.instruments.niscope.html#qinst.instruments.niscope.pxie_5170r.DigitalTrigger.slope">slope (qinst.instruments.niscope.pxie_5170r.DigitalTrigger attribute)</a>
 
         <ul>
-          <li><a href="api-reference/qinst.network.html#qinst.network.RS_SMA100B.SMA100B.sweep">(qinst.network.RS_SMA100B.SMA100B method)</a>
+          <li><a href="api-reference/qinst.instruments.niscope.html#qinst.instruments.niscope.pxie_5170r.EdgeTrigger.slope">(qinst.instruments.niscope.pxie_5170r.EdgeTrigger attribute)</a>
 </li>
         </ul></li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.N9916A.sweep_meas_time">sweep_meas_time (qinst.network.NA_N9916A.N9916A property)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.RS_SMA100B.SMA100B">SMA100B (class in qinst.instruments.network.RS_SMA100B)</a>
 </li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.N9916A.sweep_points">sweep_points (qinst.network.NA_N9916A.N9916A property)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.VNAN9916A.smoothing">smoothing (qinst.instruments.network.NA_N9916A.VNAN9916A property)</a>
 </li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.N9916A.sweep_time">sweep_time (qinst.network.NA_N9916A.N9916A property)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.N9916A.snapshot">snapshot() (qinst.instruments.network.NA_N9916A.N9916A method)</a>
+</li>
+        <li><a href="api-reference/qinst.instruments.niscope.html#qinst.instruments.niscope.pxie_5170r.SoftwareTrigger">SoftwareTrigger (class in qinst.instruments.niscope.pxie_5170r)</a>
+</li>
+        <li><a href="api-reference/qinst.instruments.niscope.html#qinst.instruments.niscope.pxie_5170r.SoftwareTrigger.source">source (qinst.instruments.niscope.pxie_5170r.SoftwareTrigger attribute)</a>
+
+        <ul>
+          <li><a href="api-reference/qinst.instruments.niscope.html#qinst.instruments.niscope.pxie_5170r.Trigger.source">(qinst.instruments.niscope.pxie_5170r.Trigger attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.N9916A.survey">survey() (qinst.instruments.network.NA_N9916A.N9916A method)</a>
+</li>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.VNAN9916A.sweep">sweep() (qinst.instruments.network.NA_N9916A.VNAN9916A method)</a>
+
+        <ul>
+          <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.RS_SMA100B.SMA100B.sweep">(qinst.instruments.network.RS_SMA100B.SMA100B method)</a>
+</li>
+        </ul></li>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.N9916A.sweep_meas_time">sweep_meas_time (qinst.instruments.network.NA_N9916A.N9916A property)</a>
+</li>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.N9916A.sweep_points">sweep_points (qinst.instruments.network.NA_N9916A.N9916A property)</a>
+</li>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.N9916A.sweep_time">sweep_time (qinst.instruments.network.NA_N9916A.N9916A property)</a>
 </li>
         <li>
     synth_FSL0010.py
 
         <ul>
-          <li><a href="api-reference/qinst.serial.html#module-synth_FSL0010.py">module</a>
+          <li><a href="api-reference/qinst.instruments.serial.html#module-synth_FSL0010.py">module</a>
 </li>
         </ul></li>
     </ul></td>
@@ -892,15 +992,21 @@
   <h2>T</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api-reference/qinst.serial.html#qinst.serial.synth_FSL0010.FSL0010.temperature">temperature (qinst.serial.synth_FSL0010.FSL0010 property)</a>
+        <li><a href="api-reference/qinst.instruments.serial.html#qinst.instruments.serial.synth_FSL0010.FSL0010.temperature">temperature (qinst.instruments.serial.synth_FSL0010.FSL0010 property)</a>
 </li>
         <li><a href="api-reference/qinst.html#qinst.network_inst.NetworkInst.timeout">timeout (qinst.network_inst.NetworkInst property)</a>
 </li>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.SAN9916A.trace_type">trace_type (qinst.instruments.network.NA_N9916A.SAN9916A property)</a>
+</li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.SAN9916A.trace_type">trace_type (qinst.network.NA_N9916A.SAN9916A property)</a>
+        <li><a href="api-reference/qinst.instruments.niscope.html#qinst.instruments.niscope.pxie_5170r.Trigger">Trigger (class in qinst.instruments.niscope.pxie_5170r)</a>
 </li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.triton_ctrl.Triton">Triton (class in qinst.network.triton_ctrl)</a>
+        <li><a href="api-reference/qinst.instruments.niscope.html#qinst.instruments.niscope.pxie_5170r.Pxie570R.trigger">trigger (qinst.instruments.niscope.pxie_5170r.Pxie570R property)</a>
+</li>
+        <li><a href="api-reference/qinst.instruments.niscope.html#qinst.instruments.niscope.pxie_5170r.EdgeTrigger.trigger_coupling">trigger_coupling (qinst.instruments.niscope.pxie_5170r.EdgeTrigger attribute)</a>
+</li>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.triton_ctrl.Triton">Triton (class in qinst.instruments.network.triton_ctrl)</a>
 </li>
     </ul></td>
   </tr></table>
@@ -914,17 +1020,19 @@
 </li>
         <li><a href="api-reference/qinst.html#qinst.instrument.Instrument.validate_range">validate_range() (qinst.instrument.Instrument static method)</a>
 </li>
-        <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.VNAN9916A">VNAN9916A (class in qinst.network.NA_N9916A)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.VNAN9916A">VNAN9916A (class in qinst.instruments.network.NA_N9916A)</a>
 </li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api-reference/qinst.serial.html#qinst.serial.keithley2231a.Keithley2231A.voltage">voltage (qinst.serial.keithley2231a.Keithley2231A property)</a>
+        <li><a href="api-reference/qinst.instruments.serial.html#qinst.instruments.serial.keithley2231a.Keithley2231A.voltage">voltage (qinst.instruments.serial.keithley2231a.Keithley2231A property)</a>
 
         <ul>
-          <li><a href="api-reference/qinst.serial.html#qinst.serial.voltage_source_SIM928.SIM928.voltage">(qinst.serial.voltage_source_SIM928.SIM928 property)</a>
+          <li><a href="api-reference/qinst.instruments.serial.html#qinst.instruments.serial.voltage_source_SIM928.SIM928.voltage">(qinst.instruments.serial.voltage_source_SIM928.SIM928 property)</a>
 </li>
         </ul></li>
-        <li><a href="api-reference/qinst.serial.html#qinst.serial.keithley2231a.Keithley2231A.voltage_limit">voltage_limit (qinst.serial.keithley2231a.Keithley2231A property)</a>
+        <li><a href="api-reference/qinst.instruments.serial.html#qinst.instruments.serial.keithley2231a.Keithley2231A.voltage_limit">voltage_limit (qinst.instruments.serial.keithley2231a.Keithley2231A property)</a>
+</li>
+        <li><a href="api-reference/qinst.instruments.niscope.html#qinst.instruments.niscope.pxie_5170r.Pxie570R.voltage_range">voltage_range (qinst.instruments.niscope.pxie_5170r.Pxie570R property)</a>
 </li>
     </ul></td>
   </tr></table>
@@ -934,15 +1042,17 @@
   <h2>W</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api-reference/qinst.network.html#qinst.network.RS_SMA100B.SMA100B.wait">wait() (qinst.network.RS_SMA100B.SMA100B method)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.RS_SMA100B.SMA100B.wait">wait() (qinst.instruments.network.RS_SMA100B.SMA100B method)</a>
 
         <ul>
-          <li><a href="api-reference/qinst.serial.html#qinst.serial.keithley2231a.Keithley2231A.wait">(qinst.serial.keithley2231a.Keithley2231A method)</a>
+          <li><a href="api-reference/qinst.instruments.serial.html#qinst.instruments.serial.keithley2231a.Keithley2231A.wait">(qinst.instruments.serial.keithley2231a.Keithley2231A method)</a>
 </li>
         </ul></li>
         <li><a href="api-reference/qinst.html#qinst.instrument.Instrument.write">write() (qinst.instrument.Instrument method)</a>
 
         <ul>
+          <li><a href="api-reference/qinst.instruments.niscope.html#qinst.instruments.niscope.pxie_5170r.Pxie570R.write">(qinst.instruments.niscope.pxie_5170r.Pxie570R method)</a>
+</li>
           <li><a href="api-reference/qinst.html#qinst.network_inst.NetworkInst.write">(qinst.network_inst.NetworkInst method)</a>
 </li>
           <li><a href="api-reference/qinst.html#qinst.serial_inst.SerialInst.write">(qinst.serial_inst.SerialInst method)</a>
@@ -950,7 +1060,7 @@
         </ul></li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.N9916A.write_and_hold">write_and_hold() (qinst.network.NA_N9916A.N9916A method)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.N9916A.write_and_hold">write_and_hold() (qinst.instruments.network.NA_N9916A.N9916A method)</a>
 </li>
     </ul></td>
   </tr></table>
@@ -960,15 +1070,15 @@
   <h2>Y</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.SAN9916A.yformat">yformat (qinst.network.NA_N9916A.SAN9916A property)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.SAN9916A.yformat">yformat (qinst.instruments.network.NA_N9916A.SAN9916A property)</a>
 
         <ul>
-          <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.VNAN9916A.yformat">(qinst.network.NA_N9916A.VNAN9916A property)</a>
+          <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.VNAN9916A.yformat">(qinst.instruments.network.NA_N9916A.VNAN9916A property)</a>
 </li>
         </ul></li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api-reference/qinst.network.html#qinst.network.NA_N9916A.SAN9916A.yscale">yscale (qinst.network.NA_N9916A.SAN9916A property)</a>
+        <li><a href="api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.SAN9916A.yscale">yscale (qinst.instruments.network.NA_N9916A.SAN9916A property)</a>
 </li>
     </ul></td>
   </tr></table>
@@ -978,13 +1088,13 @@
   <h2>Z</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api-reference/qinst.serial.html#qinst.serial.keithley6514.Keithley6514.zcheck_off">zcheck_off() (qinst.serial.keithley6514.Keithley6514 method)</a>
+        <li><a href="api-reference/qinst.instruments.serial.html#qinst.instruments.serial.keithley6514.Keithley6514.zcheck_off">zcheck_off() (qinst.instruments.serial.keithley6514.Keithley6514 method)</a>
 </li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api-reference/qinst.serial.html#qinst.serial.keithley6514.Keithley6514.zcheck_on">zcheck_on() (qinst.serial.keithley6514.Keithley6514 method)</a>
+        <li><a href="api-reference/qinst.instruments.serial.html#qinst.instruments.serial.keithley6514.Keithley6514.zcheck_on">zcheck_on() (qinst.instruments.serial.keithley6514.Keithley6514 method)</a>
 </li>
-        <li><a href="api-reference/qinst.serial.html#qinst.serial.keithley6514.Keithley6514.zcorrect">zcorrect() (qinst.serial.keithley6514.Keithley6514 method)</a>
+        <li><a href="api-reference/qinst.instruments.serial.html#qinst.instruments.serial.keithley6514.Keithley6514.zcorrect">zcorrect() (qinst.instruments.serial.keithley6514.Keithley6514 method)</a>
 </li>
     </ul></td>
   </tr></table>

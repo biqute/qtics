@@ -3,7 +3,7 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="qinst.network package" href="qinst.network.html" /><link rel="prev" title="qinst" href="modules.html" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="qinst.instruments package" href="qinst.instruments.html" /><link rel="prev" title="qinst" href="modules.html" />
 
     <link rel="shortcut icon" href="../_static/favicon.ico"/><!-- Generated with Sphinx 6.2.1 and Furo 2023.09.10 -->
         <title>qinst package - Qinst · 0.0.1</title>
@@ -173,6 +173,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../instruments/SIM928.html">Isolated voltage source Stanford Research Systems SIM928</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../instruments/FSL0010.html">Microwave synthesizer FSL0010</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../instruments/6514.html">Keithley Model 6514 System Electrometer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../instruments/2231A.html">Keithley Model 2231A-30-3 Triple Channel DC Power Supply.</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../instruments/SMA100B.html">R&amp;S®SMA100B RF and microwave signal generator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../instruments/N9916A.html">Handheld Microwave Analyzer FieldFox N9916A</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../instruments/triton.html">Triton controller</a></li>
@@ -183,8 +184,12 @@
 <ul class="current">
 <li class="toctree-l1 current has-children"><a class="reference internal" href="modules.html">qinst</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of qinst</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l2 current has-children current-page"><a class="current reference internal" href="#">qinst package</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of qinst package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="qinst.network.html">qinst.network package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="qinst.serial.html">qinst.serial package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="qinst.instruments.html">qinst.instruments package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of qinst.instruments package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="qinst.instruments.network.html">qinst.instruments.network package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qinst.instruments.niscope.html">qinst.instruments.niscope package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qinst.instruments.serial.html">qinst.instruments.serial package</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -229,178 +234,26 @@
 <h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this heading">#</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="qinst.network.html">qinst.network package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="qinst.network.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="qinst.network.html#module-qinst.network.NA_N9916A">qinst.network.NA_N9916A module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.N9916A"><code class="docutils literal notranslate"><span class="pre">N9916A</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.N9916A.autoscale"><code class="docutils literal notranslate"><span class="pre">N9916A.autoscale()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.N9916A.average"><code class="docutils literal notranslate"><span class="pre">N9916A.average</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.N9916A.clear"><code class="docutils literal notranslate"><span class="pre">N9916A.clear()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.N9916A.clear_average"><code class="docutils literal notranslate"><span class="pre">N9916A.clear_average()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.N9916A.continuous"><code class="docutils literal notranslate"><span class="pre">N9916A.continuous</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.N9916A.data_format"><code class="docutils literal notranslate"><span class="pre">N9916A.data_format</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.N9916A.f_center"><code class="docutils literal notranslate"><span class="pre">N9916A.f_center</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.N9916A.f_max"><code class="docutils literal notranslate"><span class="pre">N9916A.f_max</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.N9916A.f_min"><code class="docutils literal notranslate"><span class="pre">N9916A.f_min</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.N9916A.f_span"><code class="docutils literal notranslate"><span class="pre">N9916A.f_span</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.N9916A.hold"><code class="docutils literal notranslate"><span class="pre">N9916A.hold()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.N9916A.query_data"><code class="docutils literal notranslate"><span class="pre">N9916A.query_data()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.N9916A.read_freqs"><code class="docutils literal notranslate"><span class="pre">N9916A.read_freqs()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.N9916A.read_trace_data"><code class="docutils literal notranslate"><span class="pre">N9916A.read_trace_data()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.N9916A.single_sweep"><code class="docutils literal notranslate"><span class="pre">N9916A.single_sweep()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.N9916A.snapshot"><code class="docutils literal notranslate"><span class="pre">N9916A.snapshot()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.N9916A.survey"><code class="docutils literal notranslate"><span class="pre">N9916A.survey()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.N9916A.sweep_meas_time"><code class="docutils literal notranslate"><span class="pre">N9916A.sweep_meas_time</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.N9916A.sweep_points"><code class="docutils literal notranslate"><span class="pre">N9916A.sweep_points</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.N9916A.sweep_time"><code class="docutils literal notranslate"><span class="pre">N9916A.sweep_time</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.N9916A.write_and_hold"><code class="docutils literal notranslate"><span class="pre">N9916A.write_and_hold()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="qinst.instruments.html">qinst.instruments package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="qinst.instruments.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="qinst.instruments.network.html">qinst.instruments.network package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="qinst.instruments.network.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qinst.instruments.network.html#module-qinst.instruments.network.NA_N9916A">qinst.instruments.network.NA_N9916A module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qinst.instruments.network.html#module-qinst.instruments.network.RS_SMA100B">qinst.instruments.network.RS_SMA100B module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qinst.instruments.network.html#module-qinst.instruments.network.triton_ctrl">qinst.instruments.network.triton_ctrl module</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.SAN9916A"><code class="docutils literal notranslate"><span class="pre">SAN9916A</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.SAN9916A.attenuation"><code class="docutils literal notranslate"><span class="pre">SAN9916A.attenuation</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.SAN9916A.auto_attenuation"><code class="docutils literal notranslate"><span class="pre">SAN9916A.auto_attenuation</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.SAN9916A.auto_res_bandwidth"><code class="docutils literal notranslate"><span class="pre">SAN9916A.auto_res_bandwidth</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.SAN9916A.autoscale"><code class="docutils literal notranslate"><span class="pre">SAN9916A.autoscale()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.SAN9916A.average_type"><code class="docutils literal notranslate"><span class="pre">SAN9916A.average_type</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.SAN9916A.clear_average"><code class="docutils literal notranslate"><span class="pre">SAN9916A.clear_average()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.SAN9916A.gain"><code class="docutils literal notranslate"><span class="pre">SAN9916A.gain</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.SAN9916A.read_freqs"><code class="docutils literal notranslate"><span class="pre">SAN9916A.read_freqs()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.SAN9916A.read_trace_data"><code class="docutils literal notranslate"><span class="pre">SAN9916A.read_trace_data()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.SAN9916A.res_bandwidth"><code class="docutils literal notranslate"><span class="pre">SAN9916A.res_bandwidth</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.SAN9916A.set_full_span"><code class="docutils literal notranslate"><span class="pre">SAN9916A.set_full_span()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.SAN9916A.set_zero_span"><code class="docutils literal notranslate"><span class="pre">SAN9916A.set_zero_span()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.SAN9916A.trace_type"><code class="docutils literal notranslate"><span class="pre">SAN9916A.trace_type</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.SAN9916A.yformat"><code class="docutils literal notranslate"><span class="pre">SAN9916A.yformat</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.SAN9916A.yscale"><code class="docutils literal notranslate"><span class="pre">SAN9916A.yscale</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="qinst.instruments.niscope.html">qinst.instruments.niscope package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="qinst.instruments.niscope.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qinst.instruments.niscope.html#module-qinst.instruments.niscope.pxie_5170r">qinst.instruments.niscope.pxie_5170r module</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.VNAN9916A"><code class="docutils literal notranslate"><span class="pre">VNAN9916A</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.VNAN9916A.IFBW"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.IFBW</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.VNAN9916A.S_par"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.S_par</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.VNAN9916A.activate_trace"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.activate_trace()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.VNAN9916A.autoscale"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.autoscale()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.VNAN9916A.average_mode"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.average_mode</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.VNAN9916A.clear_average"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.clear_average()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.VNAN9916A.power"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.power</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.VNAN9916A.read_freqs"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.read_freqs()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.VNAN9916A.read_trace_data"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.read_trace_data()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.VNAN9916A.setup"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.setup()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.VNAN9916A.smoothing"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.smoothing</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.VNAN9916A.sweep"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.sweep()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.NA_N9916A.VNAN9916A.yformat"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.yformat</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="qinst.network.html#module-qinst.network.RS_SMA100B">qinst.network.RS_SMA100B module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="qinst.network.html#qinst.network.RS_SMA100B.SMA100B"><code class="docutils literal notranslate"><span class="pre">SMA100B</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.RS_SMA100B.SMA100B.cal"><code class="docutils literal notranslate"><span class="pre">SMA100B.cal()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.RS_SMA100B.SMA100B.clear"><code class="docutils literal notranslate"><span class="pre">SMA100B.clear()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.RS_SMA100B.SMA100B.diag"><code class="docutils literal notranslate"><span class="pre">SMA100B.diag()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.RS_SMA100B.SMA100B.f_center"><code class="docutils literal notranslate"><span class="pre">SMA100B.f_center</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.RS_SMA100B.SMA100B.f_dwell"><code class="docutils literal notranslate"><span class="pre">SMA100B.f_dwell</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.RS_SMA100B.SMA100B.f_fixed"><code class="docutils literal notranslate"><span class="pre">SMA100B.f_fixed</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.RS_SMA100B.SMA100B.f_max"><code class="docutils literal notranslate"><span class="pre">SMA100B.f_max</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.RS_SMA100B.SMA100B.f_min"><code class="docutils literal notranslate"><span class="pre">SMA100B.f_min</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.RS_SMA100B.SMA100B.f_mode"><code class="docutils literal notranslate"><span class="pre">SMA100B.f_mode</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.RS_SMA100B.SMA100B.f_mult"><code class="docutils literal notranslate"><span class="pre">SMA100B.f_mult</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.RS_SMA100B.SMA100B.f_offset"><code class="docutils literal notranslate"><span class="pre">SMA100B.f_offset</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.RS_SMA100B.SMA100B.f_span"><code class="docutils literal notranslate"><span class="pre">SMA100B.f_span</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.RS_SMA100B.SMA100B.f_step"><code class="docutils literal notranslate"><span class="pre">SMA100B.f_step</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.RS_SMA100B.SMA100B.f_sweep_mode"><code class="docutils literal notranslate"><span class="pre">SMA100B.f_sweep_mode</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.RS_SMA100B.SMA100B.is_completed"><code class="docutils literal notranslate"><span class="pre">SMA100B.is_completed</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.RS_SMA100B.SMA100B.is_f_sweep_completed"><code class="docutils literal notranslate"><span class="pre">SMA100B.is_f_sweep_completed</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.RS_SMA100B.SMA100B.is_p_sweep_completed"><code class="docutils literal notranslate"><span class="pre">SMA100B.is_p_sweep_completed</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.RS_SMA100B.SMA100B.p_dwell"><code class="docutils literal notranslate"><span class="pre">SMA100B.p_dwell</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.RS_SMA100B.SMA100B.p_fixed"><code class="docutils literal notranslate"><span class="pre">SMA100B.p_fixed</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.RS_SMA100B.SMA100B.p_max"><code class="docutils literal notranslate"><span class="pre">SMA100B.p_max</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.RS_SMA100B.SMA100B.p_min"><code class="docutils literal notranslate"><span class="pre">SMA100B.p_min</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.RS_SMA100B.SMA100B.p_mode"><code class="docutils literal notranslate"><span class="pre">SMA100B.p_mode</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.RS_SMA100B.SMA100B.p_step"><code class="docutils literal notranslate"><span class="pre">SMA100B.p_step</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.RS_SMA100B.SMA100B.p_sweep_mode"><code class="docutils literal notranslate"><span class="pre">SMA100B.p_sweep_mode</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.RS_SMA100B.SMA100B.p_unit"><code class="docutils literal notranslate"><span class="pre">SMA100B.p_unit</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.RS_SMA100B.SMA100B.phase"><code class="docutils literal notranslate"><span class="pre">SMA100B.phase</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.RS_SMA100B.SMA100B.rf_status"><code class="docutils literal notranslate"><span class="pre">SMA100B.rf_status</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.RS_SMA100B.SMA100B.screen_saver_mode"><code class="docutils literal notranslate"><span class="pre">SMA100B.screen_saver_mode()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.RS_SMA100B.SMA100B.screen_saver_time"><code class="docutils literal notranslate"><span class="pre">SMA100B.screen_saver_time</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.RS_SMA100B.SMA100B.set_phase_ref"><code class="docutils literal notranslate"><span class="pre">SMA100B.set_phase_ref()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.RS_SMA100B.SMA100B.sweep"><code class="docutils literal notranslate"><span class="pre">SMA100B.sweep()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.RS_SMA100B.SMA100B.wait"><code class="docutils literal notranslate"><span class="pre">SMA100B.wait()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="qinst.network.html#module-qinst.network.triton_ctrl">qinst.network.triton_ctrl module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="qinst.network.html#qinst.network.triton_ctrl.Triton"><code class="docutils literal notranslate"><span class="pre">Triton</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.triton_ctrl.Triton.get_mixing_chamber_temp"><code class="docutils literal notranslate"><span class="pre">Triton.get_mixing_chamber_temp()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.triton_ctrl.Triton.heater_range"><code class="docutils literal notranslate"><span class="pre">Triton.heater_range</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.triton_ctrl.Triton.mixing_chamber_ch"><code class="docutils literal notranslate"><span class="pre">Triton.mixing_chamber_ch</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.triton_ctrl.Triton.mixing_chamber_tset"><code class="docutils literal notranslate"><span class="pre">Triton.mixing_chamber_tset</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.network.html#qinst.network.triton_ctrl.Triton.query"><code class="docutils literal notranslate"><span class="pre">Triton.query()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="qinst.serial.html">qinst.serial package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="qinst.serial.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="qinst.serial.html#module-qinst.serial.keithley2231a">qinst.serial.keithley2231a module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="qinst.serial.html#qinst.serial.keithley2231a.Keithley2231A"><code class="docutils literal notranslate"><span class="pre">Keithley2231A</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="qinst.serial.html#qinst.serial.keithley2231a.Keithley2231A.channel"><code class="docutils literal notranslate"><span class="pre">Keithley2231A.channel</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.serial.html#qinst.serial.keithley2231a.Keithley2231A.clear"><code class="docutils literal notranslate"><span class="pre">Keithley2231A.clear()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.serial.html#qinst.serial.keithley2231a.Keithley2231A.connect"><code class="docutils literal notranslate"><span class="pre">Keithley2231A.connect()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.serial.html#qinst.serial.keithley2231a.Keithley2231A.current"><code class="docutils literal notranslate"><span class="pre">Keithley2231A.current</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.serial.html#qinst.serial.keithley2231a.Keithley2231A.current_limit"><code class="docutils literal notranslate"><span class="pre">Keithley2231A.current_limit</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.serial.html#qinst.serial.keithley2231a.Keithley2231A.disconnect"><code class="docutils literal notranslate"><span class="pre">Keithley2231A.disconnect()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.serial.html#qinst.serial.keithley2231a.Keithley2231A.is_completed"><code class="docutils literal notranslate"><span class="pre">Keithley2231A.is_completed</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.serial.html#qinst.serial.keithley2231a.Keithley2231A.load"><code class="docutils literal notranslate"><span class="pre">Keithley2231A.load()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.serial.html#qinst.serial.keithley2231a.Keithley2231A.save"><code class="docutils literal notranslate"><span class="pre">Keithley2231A.save()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.serial.html#qinst.serial.keithley2231a.Keithley2231A.voltage"><code class="docutils literal notranslate"><span class="pre">Keithley2231A.voltage</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.serial.html#qinst.serial.keithley2231a.Keithley2231A.voltage_limit"><code class="docutils literal notranslate"><span class="pre">Keithley2231A.voltage_limit</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.serial.html#qinst.serial.keithley2231a.Keithley2231A.wait"><code class="docutils literal notranslate"><span class="pre">Keithley2231A.wait()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="qinst.serial.html#module-qinst.serial.keithley6514">qinst.serial.keithley6514 module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="qinst.serial.html#qinst.serial.keithley6514.Keithley6514"><code class="docutils literal notranslate"><span class="pre">Keithley6514</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="qinst.serial.html#qinst.serial.keithley6514.Keithley6514.connect"><code class="docutils literal notranslate"><span class="pre">Keithley6514.connect()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.serial.html#qinst.serial.keithley6514.Keithley6514.disconnect"><code class="docutils literal notranslate"><span class="pre">Keithley6514.disconnect()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.serial.html#qinst.serial.keithley6514.Keithley6514.read_data"><code class="docutils literal notranslate"><span class="pre">Keithley6514.read_data()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.serial.html#qinst.serial.keithley6514.Keithley6514.set_measure"><code class="docutils literal notranslate"><span class="pre">Keithley6514.set_measure()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.serial.html#qinst.serial.keithley6514.Keithley6514.set_zero"><code class="docutils literal notranslate"><span class="pre">Keithley6514.set_zero()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.serial.html#qinst.serial.keithley6514.Keithley6514.zcheck_off"><code class="docutils literal notranslate"><span class="pre">Keithley6514.zcheck_off()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.serial.html#qinst.serial.keithley6514.Keithley6514.zcheck_on"><code class="docutils literal notranslate"><span class="pre">Keithley6514.zcheck_on()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.serial.html#qinst.serial.keithley6514.Keithley6514.zcorrect"><code class="docutils literal notranslate"><span class="pre">Keithley6514.zcorrect()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="qinst.serial.html#module-qinst.serial.synth_FSL0010">qinst.serial.synth_FSL0010 module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="qinst.serial.html#qinst.serial.synth_FSL0010.FSL0010"><code class="docutils literal notranslate"><span class="pre">FSL0010</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="qinst.serial.html#qinst.serial.synth_FSL0010.FSL0010.ext_ref_source"><code class="docutils literal notranslate"><span class="pre">FSL0010.ext_ref_source</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.serial.html#qinst.serial.synth_FSL0010.FSL0010.freq"><code class="docutils literal notranslate"><span class="pre">FSL0010.freq</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.serial.html#qinst.serial.synth_FSL0010.FSL0010.output_on"><code class="docutils literal notranslate"><span class="pre">FSL0010.output_on</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.serial.html#qinst.serial.synth_FSL0010.FSL0010.temperature"><code class="docutils literal notranslate"><span class="pre">FSL0010.temperature</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="qinst.serial.html#module-qinst.serial.voltage_source_SIM928">qinst.serial.voltage_source_SIM928 module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="qinst.serial.html#qinst.serial.voltage_source_SIM928.SIM928"><code class="docutils literal notranslate"><span class="pre">SIM928</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="qinst.serial.html#qinst.serial.voltage_source_SIM928.SIM928.battery_charger_override"><code class="docutils literal notranslate"><span class="pre">SIM928.battery_charger_override()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.serial.html#qinst.serial.voltage_source_SIM928.SIM928.battery_full_spec"><code class="docutils literal notranslate"><span class="pre">SIM928.battery_full_spec()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.serial.html#qinst.serial.voltage_source_SIM928.SIM928.battery_spec"><code class="docutils literal notranslate"><span class="pre">SIM928.battery_spec()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.serial.html#qinst.serial.voltage_source_SIM928.SIM928.battery_state"><code class="docutils literal notranslate"><span class="pre">SIM928.battery_state()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.serial.html#qinst.serial.voltage_source_SIM928.SIM928.connect"><code class="docutils literal notranslate"><span class="pre">SIM928.connect()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.serial.html#qinst.serial.voltage_source_SIM928.SIM928.connect_port"><code class="docutils literal notranslate"><span class="pre">SIM928.connect_port()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.serial.html#qinst.serial.voltage_source_SIM928.SIM928.dev_error"><code class="docutils literal notranslate"><span class="pre">SIM928.dev_error()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.serial.html#qinst.serial.voltage_source_SIM928.SIM928.disconnect"><code class="docutils literal notranslate"><span class="pre">SIM928.disconnect()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.serial.html#qinst.serial.voltage_source_SIM928.SIM928.exe_error"><code class="docutils literal notranslate"><span class="pre">SIM928.exe_error()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.serial.html#qinst.serial.voltage_source_SIM928.SIM928.output_off"><code class="docutils literal notranslate"><span class="pre">SIM928.output_off()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.serial.html#qinst.serial.voltage_source_SIM928.SIM928.output_on"><code class="docutils literal notranslate"><span class="pre">SIM928.output_on()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qinst.serial.html#qinst.serial.voltage_source_SIM928.SIM928.voltage"><code class="docutils literal notranslate"><span class="pre">SIM928.voltage</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="qinst.instruments.serial.html">qinst.instruments.serial package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="qinst.instruments.serial.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qinst.instruments.serial.html#module-qinst.instruments.serial.keithley2231a">qinst.instruments.serial.keithley2231a module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qinst.instruments.serial.html#module-qinst.instruments.serial.keithley6514">qinst.instruments.serial.keithley6514 module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qinst.instruments.serial.html#module-qinst.instruments.serial.synth_FSL0010">qinst.instruments.serial.synth_FSL0010 module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qinst.instruments.serial.html#module-qinst.instruments.serial.voltage_source_SIM928">qinst.instruments.serial.voltage_source_SIM928 module</a></li>
 </ul>
 </li>
 </ul>
@@ -490,17 +343,17 @@
 </dd></dl>
 
 </section>
-<section id="module-qinst.log">
-<span id="qinst-log-module"></span><h2>qinst.log module<a class="headerlink" href="#module-qinst.log" title="Permalink to this heading">#</a></h2>
+<section id="module-qinst.logger">
+<span id="qinst-logger-module"></span><h2>qinst.logger module<a class="headerlink" href="#module-qinst.logger" title="Permalink to this heading">#</a></h2>
 <p>Loggers configuration.</p>
 <dl class="py class">
-<dt class="sig sig-object py" id="qinst.log.CustomHandler">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qinst.log.</span></span><span class="sig-name descname"><span class="pre">CustomHandler</span></span><a class="reference internal" href="../_modules/qinst/log.html#CustomHandler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.log.CustomHandler" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="qinst.logger.CustomHandler">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qinst.logger.</span></span><span class="sig-name descname"><span class="pre">CustomHandler</span></span><a class="reference internal" href="../_modules/qinst/logger.html#CustomHandler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.logger.CustomHandler" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/logging.handlers.html#logging.StreamHandler" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamHandler</span></code></a></p>
 <p>Custom handler for logging algorithm. Credits to Qibocal.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="qinst.log.CustomHandler.format">
-<span class="sig-name descname"><span class="pre">format</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/log.html#CustomHandler.format"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.log.CustomHandler.format" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="qinst.logger.CustomHandler.format">
+<span class="sig-name descname"><span class="pre">format</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/logger.html#CustomHandler.format"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.logger.CustomHandler.format" title="Permalink to this definition">#</a></dt>
 <dd><p>Format the record with specific format.</p>
 </dd></dl>
 
@@ -609,12 +462,12 @@
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="qinst.network.html">
+          <a class="next-page" href="qinst.instruments.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">qinst.network package</div>
+                <div class="title">qinst.instruments package</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
@@ -686,9 +539,9 @@
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#module-qinst.log">qinst.log module</a><ul>
-<li><a class="reference internal" href="#qinst.log.CustomHandler"><code class="docutils literal notranslate"><span class="pre">CustomHandler</span></code></a><ul>
-<li><a class="reference internal" href="#qinst.log.CustomHandler.format"><code class="docutils literal notranslate"><span class="pre">CustomHandler.format()</span></code></a></li>
+<li><a class="reference internal" href="#module-qinst.logger">qinst.logger module</a><ul>
+<li><a class="reference internal" href="#qinst.logger.CustomHandler"><code class="docutils literal notranslate"><span class="pre">CustomHandler</span></code></a><ul>
+<li><a class="reference internal" href="#qinst.logger.CustomHandler.format"><code class="docutils literal notranslate"><span class="pre">CustomHandler.format()</span></code></a></li>
 </ul>
 </li>
 </ul>

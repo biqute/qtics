@@ -173,6 +173,7 @@
 <li class="toctree-l2"><a class="reference internal" href="SIM928.html">Isolated voltage source Stanford Research Systems SIM928</a></li>
 <li class="toctree-l2"><a class="reference internal" href="FSL0010.html">Microwave synthesizer FSL0010</a></li>
 <li class="toctree-l2"><a class="reference internal" href="6514.html">Keithley Model 6514 System Electrometer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2231A.html">Keithley Model 2231A-30-3 Triple Channel DC Power Supply.</a></li>
 <li class="toctree-l2"><a class="reference internal" href="SMA100B.html">R&amp;S®SMA100B RF and microwave signal generator</a></li>
 <li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Handheld Microwave Analyzer FieldFox N9916A</a></li>
 <li class="toctree-l2"><a class="reference internal" href="triton.html">Triton controller</a></li>
@@ -183,8 +184,12 @@
 <ul>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../api-reference/modules.html">qinst</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of qinst</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../api-reference/qinst.html">qinst package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of qinst package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../api-reference/qinst.network.html">qinst.network package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api-reference/qinst.serial.html">qinst.serial package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api-reference/qinst.instruments.html">qinst.instruments package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of qinst.instruments package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api-reference/qinst.instruments.network.html">qinst.instruments.network package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api-reference/qinst.instruments.niscope.html">qinst.instruments.niscope package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api-reference/qinst.instruments.serial.html">qinst.instruments.serial package</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -240,7 +245,7 @@ The SCPI commands and functions can be found in the <a class="reference external
 <p>This instrument features different operational modes (VNA, SA, CAT…), with mostly different commands. Each mode is controlled by its respective class. When instantiated, these classes will automatically try to connect to the instrument and initialize a basic measurement setup.</p>
 <section id="commands">
 <h2>Commands<a class="headerlink" href="#commands" title="Permalink to this heading">#</a></h2>
-<p>Other than featuring all the methods of <a class="reference internal" href="../api-reference/qinst.html#qinst.network_inst.NetworkInst" title="qinst.network_inst.NetworkInst"><code class="xref py py-class docutils literal notranslate"><span class="pre">qinst.network_inst.NetworkInst</span></code></a>, the base <a class="reference internal" href="../api-reference/qinst.network.html#qinst.network.NA_N9916A.N9916A" title="qinst.network.NA_N9916A.N9916A"><code class="xref py py-class docutils literal notranslate"><span class="pre">qinst.network.NA_N9916A.N9916A</span></code></a> class contains the following methods and properties common to all the operational modes of the instrument.</p>
+<p>Other than featuring all the methods of <a class="reference internal" href="../api-reference/qinst.html#qinst.network_inst.NetworkInst" title="qinst.network_inst.NetworkInst"><code class="xref py py-class docutils literal notranslate"><span class="pre">qinst.network_inst.NetworkInst</span></code></a>, the base <a class="reference internal" href="../api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.N9916A" title="qinst.instruments.network.NA_N9916A.N9916A"><code class="xref py py-class docutils literal notranslate"><span class="pre">qinst.instruments.network.NA_N9916A.N9916A</span></code></a> class contains the following methods and properties common to all the operational modes of the instrument.</p>
 <section id="functions">
 <h3>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
@@ -276,7 +281,7 @@ The SCPI commands and functions can be found in the <a class="reference external
 </section>
 <section id="vna-mode">
 <h2>VNA mode<a class="headerlink" href="#vna-mode" title="Permalink to this heading">#</a></h2>
-<p>Measure the scattering value parameter of a connected RF network by sweeping a probe signal over a range of frequencies. This mode is implemented by the <a class="reference internal" href="../api-reference/qinst.network.html#qinst.network.NA_N9916A.VNAN9916A" title="qinst.network.NA_N9916A.VNAN9916A"><code class="xref py py-class docutils literal notranslate"><span class="pre">qinst.network.NA_N9916A.VNAN9916A</span></code></a> class.</p>
+<p>Measure the scattering value parameter of a connected RF network by sweeping a probe signal over a range of frequencies. This mode is implemented by the <a class="reference internal" href="../api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.VNAN9916A" title="qinst.instruments.network.NA_N9916A.VNAN9916A"><code class="xref py py-class docutils literal notranslate"><span class="pre">qinst.instruments.network.NA_N9916A.VNAN9916A</span></code></a> class.</p>
 <section id="example-of-operation">
 <h3>Example of operation<a class="headerlink" href="#example-of-operation" title="Permalink to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qinst</span> <span class="kn">import</span> <span class="n">VNAN9916A</span>
@@ -319,7 +324,7 @@ The SCPI commands and functions can be found in the <a class="reference external
 </section>
 <section id="sa-mode">
 <h2>SA mode<a class="headerlink" href="#sa-mode" title="Permalink to this heading">#</a></h2>
-<p>Measure the magnitude of an RF signal as a function of frequency. This mode is implemented by the <a class="reference internal" href="../api-reference/qinst.network.html#qinst.network.NA_N9916A.SAN9916A" title="qinst.network.NA_N9916A.SAN9916A"><code class="xref py py-class docutils literal notranslate"><span class="pre">qinst.network.NA_N9916A.SAN9916A</span></code></a> class.</p>
+<p>Measure the magnitude of an RF signal as a function of frequency. This mode is implemented by the <a class="reference internal" href="../api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.SAN9916A" title="qinst.instruments.network.NA_N9916A.SAN9916A"><code class="xref py py-class docutils literal notranslate"><span class="pre">qinst.instruments.network.NA_N9916A.SAN9916A</span></code></a> class.</p>
 <section id="id3">
 <h3>Example of operation<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qinst</span> <span class="kn">import</span> <span class="n">SAN9916A</span>

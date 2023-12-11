@@ -171,6 +171,7 @@
 <li class="toctree-l2"><a class="reference internal" href="instruments/SIM928.html">Isolated voltage source Stanford Research Systems SIM928</a></li>
 <li class="toctree-l2"><a class="reference internal" href="instruments/FSL0010.html">Microwave synthesizer FSL0010</a></li>
 <li class="toctree-l2"><a class="reference internal" href="instruments/6514.html">Keithley Model 6514 System Electrometer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="instruments/2231A.html">Keithley Model 2231A-30-3 Triple Channel DC Power Supply.</a></li>
 <li class="toctree-l2"><a class="reference internal" href="instruments/SMA100B.html">R&amp;S®SMA100B RF and microwave signal generator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="instruments/N9916A.html">Handheld Microwave Analyzer FieldFox N9916A</a></li>
 <li class="toctree-l2"><a class="reference internal" href="instruments/triton.html">Triton controller</a></li>
@@ -181,8 +182,12 @@
 <ul>
 <li class="toctree-l1 has-children"><a class="reference internal" href="api-reference/modules.html">qinst</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of qinst</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2 has-children"><a class="reference internal" href="api-reference/qinst.html">qinst package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of qinst package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="api-reference/qinst.network.html">qinst.network package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api-reference/qinst.serial.html">qinst.serial package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="api-reference/qinst.instruments.html">qinst.instruments package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of qinst.instruments package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="api-reference/qinst.instruments.network.html">qinst.instruments.network package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api-reference/qinst.instruments.niscope.html">qinst.instruments.niscope package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api-reference/qinst.instruments.serial.html">qinst.instruments.serial package</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -242,7 +247,7 @@
   <tr class="cg-1">
     <td></td>
     <td>&#160;&#160;&#160;
-        <a href="api-reference/qinst.serial.html#module-keithley2231a.py"><code class="xref">keithley2231a.py</code></a></td><td>
+        <a href="api-reference/qinst.instruments.serial.html#module-keithley2231a.py"><code class="xref">keithley2231a.py</code></a></td><td>
     <em></em></td>
   </tr>
   <tr>
@@ -255,7 +260,7 @@
   <tr class="cg-2">
     <td></td>
     <td>&#160;&#160;&#160;
-        <a href="api-reference/qinst.serial.html#module-keithley6514.py"><code class="xref">keithley6514.py</code></a></td><td>
+        <a href="api-reference/qinst.instruments.serial.html#module-keithley6514.py"><code class="xref">keithley6514.py</code></a></td><td>
     <em></em></td>
   </tr>
   <tr class="pcap">
@@ -274,7 +279,7 @@
   <tr class="cg-3">
     <td></td>
     <td>&#160;&#160;&#160;
-        <a href="api-reference/qinst.network.html#module-NA_N9916A.py"><code class="xref">NA_N9916A.py</code></a></td><td>
+        <a href="api-reference/qinst.instruments.network.html#module-NA_N9916A.py"><code class="xref">NA_N9916A.py</code></a></td><td>
     <em></em></td>
   </tr>
   <tr>
@@ -312,67 +317,85 @@
   <tr class="cg-5">
     <td></td>
     <td>&#160;&#160;&#160;
-        <a href="api-reference/qinst.html#module-qinst.log"><code class="xref">qinst.log</code></a></td><td>
+        <a href="api-reference/qinst.instruments.html#module-qinst.instruments"><code class="xref">qinst.instruments</code></a></td><td>
     <em></em></td>
   </tr>
   <tr class="cg-5">
     <td></td>
     <td>&#160;&#160;&#160;
-        <a href="api-reference/qinst.network.html#module-qinst.network"><code class="xref">qinst.network</code></a></td><td>
+        <a href="api-reference/qinst.instruments.network.html#module-qinst.instruments.network"><code class="xref">qinst.instruments.network</code></a></td><td>
     <em></em></td>
   </tr>
   <tr class="cg-5">
     <td></td>
     <td>&#160;&#160;&#160;
-        <a href="api-reference/qinst.network.html#module-qinst.network.NA_N9916A"><code class="xref">qinst.network.NA_N9916A</code></a></td><td>
+        <a href="api-reference/qinst.instruments.network.html#module-qinst.instruments.network.NA_N9916A"><code class="xref">qinst.instruments.network.NA_N9916A</code></a></td><td>
     <em></em></td>
   </tr>
   <tr class="cg-5">
     <td></td>
     <td>&#160;&#160;&#160;
-        <a href="api-reference/qinst.network.html#module-qinst.network.RS_SMA100B"><code class="xref">qinst.network.RS_SMA100B</code></a></td><td>
+        <a href="api-reference/qinst.instruments.network.html#module-qinst.instruments.network.RS_SMA100B"><code class="xref">qinst.instruments.network.RS_SMA100B</code></a></td><td>
     <em></em></td>
   </tr>
   <tr class="cg-5">
     <td></td>
     <td>&#160;&#160;&#160;
-        <a href="api-reference/qinst.network.html#module-qinst.network.triton_ctrl"><code class="xref">qinst.network.triton_ctrl</code></a></td><td>
+        <a href="api-reference/qinst.instruments.network.html#module-qinst.instruments.network.triton_ctrl"><code class="xref">qinst.instruments.network.triton_ctrl</code></a></td><td>
+    <em></em></td>
+  </tr>
+  <tr class="cg-5">
+    <td></td>
+    <td>&#160;&#160;&#160;
+        <a href="api-reference/qinst.instruments.niscope.html#module-qinst.instruments.niscope"><code class="xref">qinst.instruments.niscope</code></a></td><td>
+    <em></em></td>
+  </tr>
+  <tr class="cg-5">
+    <td></td>
+    <td>&#160;&#160;&#160;
+        <a href="api-reference/qinst.instruments.niscope.html#module-qinst.instruments.niscope.pxie_5170r"><code class="xref">qinst.instruments.niscope.pxie_5170r</code></a></td><td>
+    <em></em></td>
+  </tr>
+  <tr class="cg-5">
+    <td></td>
+    <td>&#160;&#160;&#160;
+        <a href="api-reference/qinst.instruments.serial.html#module-qinst.instruments.serial"><code class="xref">qinst.instruments.serial</code></a></td><td>
+    <em></em></td>
+  </tr>
+  <tr class="cg-5">
+    <td></td>
+    <td>&#160;&#160;&#160;
+        <a href="api-reference/qinst.instruments.serial.html#module-qinst.instruments.serial.keithley2231a"><code class="xref">qinst.instruments.serial.keithley2231a</code></a></td><td>
+    <em></em></td>
+  </tr>
+  <tr class="cg-5">
+    <td></td>
+    <td>&#160;&#160;&#160;
+        <a href="api-reference/qinst.instruments.serial.html#module-qinst.instruments.serial.keithley6514"><code class="xref">qinst.instruments.serial.keithley6514</code></a></td><td>
+    <em></em></td>
+  </tr>
+  <tr class="cg-5">
+    <td></td>
+    <td>&#160;&#160;&#160;
+        <a href="api-reference/qinst.instruments.serial.html#module-qinst.instruments.serial.synth_FSL0010"><code class="xref">qinst.instruments.serial.synth_FSL0010</code></a></td><td>
+    <em></em></td>
+  </tr>
+  <tr class="cg-5">
+    <td></td>
+    <td>&#160;&#160;&#160;
+        <a href="api-reference/qinst.instruments.serial.html#module-qinst.instruments.serial.voltage_source_SIM928"><code class="xref">qinst.instruments.serial.voltage_source_SIM928</code></a></td><td>
+    <em></em></td>
+  </tr>
+  <tr class="cg-5">
+    <td></td>
+    <td>&#160;&#160;&#160;
+        <a href="api-reference/qinst.html#module-qinst.logger"><code class="xref">qinst.logger</code></a></td><td>
     <em></em></td>
   </tr>
   <tr class="cg-5">
     <td></td>
     <td>&#160;&#160;&#160;
         <a href="api-reference/qinst.html#module-qinst.network_inst"><code class="xref">qinst.network_inst</code></a></td><td>
-    <em></em></td>
-  </tr>
-  <tr class="cg-5">
-    <td></td>
-    <td>&#160;&#160;&#160;
-        <a href="api-reference/qinst.serial.html#module-qinst.serial"><code class="xref">qinst.serial</code></a></td><td>
-    <em></em></td>
-  </tr>
-  <tr class="cg-5">
-    <td></td>
-    <td>&#160;&#160;&#160;
-        <a href="api-reference/qinst.serial.html#module-qinst.serial.keithley2231a"><code class="xref">qinst.serial.keithley2231a</code></a></td><td>
-    <em></em></td>
-  </tr>
-  <tr class="cg-5">
-    <td></td>
-    <td>&#160;&#160;&#160;
-        <a href="api-reference/qinst.serial.html#module-qinst.serial.keithley6514"><code class="xref">qinst.serial.keithley6514</code></a></td><td>
-    <em></em></td>
-  </tr>
-  <tr class="cg-5">
-    <td></td>
-    <td>&#160;&#160;&#160;
-        <a href="api-reference/qinst.serial.html#module-qinst.serial.synth_FSL0010"><code class="xref">qinst.serial.synth_FSL0010</code></a></td><td>
-    <em></em></td>
-  </tr>
-  <tr class="cg-5">
-    <td></td>
-    <td>&#160;&#160;&#160;
-        <a href="api-reference/qinst.serial.html#module-qinst.serial.voltage_source_SIM928"><code class="xref">qinst.serial.voltage_source_SIM928</code></a></td><td>
     <em></em></td>
   </tr>
   <tr class="cg-5">
@@ -397,7 +420,7 @@
   <tr class="cg-6">
     <td></td>
     <td>&#160;&#160;&#160;
-        <a href="api-reference/qinst.network.html#module-RS_SMA100B.py"><code class="xref">RS_SMA100B.py</code></a></td><td>
+        <a href="api-reference/qinst.instruments.network.html#module-RS_SMA100B.py"><code class="xref">RS_SMA100B.py</code></a></td><td>
     <em></em></td>
   </tr>
   <tr class="pcap">
@@ -416,7 +439,7 @@
   <tr class="cg-7">
     <td></td>
     <td>&#160;&#160;&#160;
-        <a href="api-reference/qinst.serial.html#module-synth_FSL0010.py"><code class="xref">synth_FSL0010.py</code></a></td><td>
+        <a href="api-reference/qinst.instruments.serial.html#module-synth_FSL0010.py"><code class="xref">synth_FSL0010.py</code></a></td><td>
     <em></em></td>
   </tr>
 </table>
