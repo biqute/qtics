@@ -49,17 +49,27 @@ class SMA100B(NetworkInst):
     @property
     def screen_saver_time(self) -> int:
         """Wait time for the screen saver mode of the display."""
-        return int(self.query(f":DISP:PSAV:HOLD?"))
+        return int(self.query(f"DISP:PSAV:HOLD?"))
 
     @screen_saver_time.setter
     def screen_saver_time(self, time: int = 10):
         time = self.validate_range(time, 0, 61)
-        self.write(f":DISP:PSAV:HOLD {time}")
+        self.write(f"DISP:PSAV:HOLD {time}")
 
     def screen_saver_mode(self, state: str = "OFF"):
         """Activate the screen saver mode of the display."""
         self.validate_opt(state, ("ON", "OFF"))
         self.write(f"DISP:PSAV:STAT {state}")
+
+    @property
+    def rf_status(self) -> str:
+        """Activate the RF output signal."""
+        return self.write("OUTP:STAT?")
+
+    @rf_status.setter
+    def rf_status(self, state: str):
+        self.validate_opt(state, ("ON", "OFF"))
+        self.write(f"OUTP:STAT {state}")
 
     @property
     def f_mode(self) -> str:
