@@ -11,7 +11,7 @@ This instrument features different operational modes (VNA, SA, CAT...), with mos
 
 Commands
 """"""""
-Other than featuring all the methods of :class:`qinst.network_inst.NetworkInst`, the base :class:`qinst.network.NA_N9916A.N9916A` class contains the following methods and properties common to all the operational modes of the instrument.
+Other than featuring all the methods of :class:`qinst.network_inst.NetworkInst`, the base :class:`qinst.instruments.network.NA_N9916A.N9916A` class contains the following methods and properties common to all the operational modes of the instrument.
 
 Functions
 ------------
@@ -43,7 +43,7 @@ Properties
 
 VNA mode
 """"""""
-Measure the scattering value parameter of a connected RF network by sweeping a probe signal over a range of frequencies. This mode is implemented by the :class:`qinst.network.NA_N9916A.VNAN9916A` class.
+Measure the scattering value parameter of a connected RF network by sweeping a probe signal over a range of frequencies. This mode is implemented by the :class:`qinst.instruments.network.NA_N9916A.VNAN9916A` class.
 
 Example of operation
 ---------------------
@@ -89,7 +89,7 @@ Properties
 
 SA mode
 """"""""
-Measure the magnitude of an RF signal as a function of frequency. This mode is implemented by the :class:`qinst.network.NA_N9916A.SAN9916A` class.
+Measure the magnitude of an RF signal as a function of frequency. This mode is implemented by the :class:`qinst.instruments.network.NA_N9916A.SAN9916A` class.
 
 Example of operation
 ---------------------
