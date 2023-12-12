@@ -62,8 +62,8 @@ class NetworkInst(Instrument):
         try:
             while response[-1:] != b"\n":
                 response += self.socket.recv(1024)
-        except socket.timeout:
-            raise TimeoutError("Reached timeout limit.")
+        except TimeoutError as exc:
+            raise exc
         res = response.decode("utf-8").strip("\n")
         log.debug(f"READ: {res}")
         return res
