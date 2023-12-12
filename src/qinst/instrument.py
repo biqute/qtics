@@ -13,6 +13,7 @@ class Instrument(ABC):
         """Initialize."""
         self.name = name
         self.address = address
+        self.__safe_options: dict = {}
 
     @abstractmethod
     def connect(self):
@@ -59,6 +60,26 @@ class Instrument(ABC):
             else:
                 raise RuntimeError(f"The instrument does not have the {key} parameter.")
         return values
+
+    def set_safe_options(self, **kwargs):
+        """Set multiple fallback attributes/properties."""
+        self.__safe_options = {}
+        for key, value in kwargs.items():
+            if hasattr(self, key):
+                self.__safe_options[key] = value
+            else:
+                raise RuntimeError(f"The instrument does not have the {key} parameter.")
+
+    def get_safe_options(self) -> dict:
+        """Get fallback attributes/properties."""
+        return self.__safe_options
+
+    def safe_reset(self):
+        """Reset to standard or specified safe options."""
+        if not self.__safe_options:
+            self.reset()
+        else:
+            self.set(**self.__safe_options)
 
     @staticmethod
     def validate_opt(opt: Union[str, int], allowed: tuple):

@@ -1,8 +1,11 @@
 """Base Experiment classes."""
 
+import sys
 from abc import ABC, abstractmethod
 from concurrent.futures import FIRST_COMPLETED, ThreadPoolExecutor, wait
 from threading import Event
+
+import yaml
 
 from qinst import log
 from qinst.instrument import Instrument
@@ -14,42 +17,76 @@ class BaseExperiment(ABC):
     def __init__(self, name):
         """Initialize."""
         self.name = name
-        self.instruments = {}
-        self.safe_opts = {}
-
-    @abstractmethod
-    def run(self):
-        """Run the experiment."""
+        self.instruments = []
 
     @abstractmethod
     def main(self):
         """Execute main part of the experiment."""
 
-    def add_instrument(self, inst: Instrument, safe_opt=None):
+    def run(self):
+        """Run the experiment."""
+        self.main()
+
+    def add_instrument(self, inst: Instrument):
         """Add an instrument."""
         name = inst.name
-        if name not in self.instruments.keys():
-            self.instruments[name] = inst
-            if safe_opt is not None and isinstance(safe_opt, dict):
-                self.safe_opts[name] = safe_opt
+        if name not in self.instruments:
+            self.instruments.append(name)
+            setattr(self, name, inst)
         else:
             log.warning(f"Instrument name {name} already in use")
+
+    def from_yaml(self, filename: str):
+        """Initialize experiment from configuration file."""
+        config = self.dict_from_yaml(filename)
+        self.from_dict(config)
+
+    def dict_from_yaml(self, filename: str):
+        """Load yaml file as dictionary."""
+        with open(filename) as f:
+            config = yaml.safe_load(f)
+        return config
+
+    def from_dict(self, config: dict):
+        """Initialize experiment from configuration dictionary."""
+        self.instruments_from_dict(config["instruments"])
+        if "variables" in config.keys():
+            self.variables_from_dict(config)
+
+    def instruments_from_dict(self, config: dict):
+        """Initialize instruments from configuration dictionary."""
+        for inst_name, inst_conf in config.items():
+            inst_class = getattr(sys.modules["qinst"], inst_conf["class"])
+            inst = inst_class(inst_name, **inst_conf["init"])
+            if "set" in inst_conf.keys():
+                inst.connect()
+                inst.set(**inst_conf["set"])
+            if "safe" in inst_conf.keys():
+                inst.set_safe_options(**inst_conf["safe"])
+            self.add_instrument(inst)
+
+    def variables_from_dict(self, config: dict):
+        """Initialize bonus attributes from configuration dictionary."""
+        for key, value in config.items():
+            if hasattr(self, key):
+                raise RuntimeError(
+                    f"experiment already has attribute {key}, choose another name."
+                )
+            else:
+                setattr(self, key, value)
 
     def safe_reset(self):
         """Reset instruments to safe options."""
         log.info(f"Setting safe parameters for instruments in {self.name}.")
-        for name, inst in self.instruments.items():
-            if name not in self.safe_opts.keys():
-                inst.reset()
-            else:
-                inst.set(**self.safe_opts[name])
+        for name in self.instruments:
+            getattr(self, name).safe_reset()
 
 
-class MonitorExperiment(BaseExperiment, ABC):
+class MonitorExperiment(BaseExperiment):
     """Base monitoring experiment class."""
 
-    def run(self, event: Event):
-        """Run the experiment until event is set."""
+    def watch(self, event: Event):
+        """Run the experiment continuously until event is set."""
         while True:
             self.main()
             if event.is_set():
@@ -57,7 +94,7 @@ class MonitorExperiment(BaseExperiment, ABC):
                 return
 
 
-class Experiment(BaseExperiment, ABC):
+class Experiment(BaseExperiment):
     """Experiment with monitoring functions."""
 
     def __init__(self, name):
@@ -76,7 +113,7 @@ class Experiment(BaseExperiment, ABC):
             futures = []
             log.debug(f"Starting experiment {self.name} and monitors.")
             for m in self.monitors:
-                futures.append(executor.submit(m.run, self.event))
+                futures.append(executor.submit(m.watch, self.event))
             futures.append(executor.submit(self.main))
             done, _ = wait(futures, return_when=FIRST_COMPLETED)
             if len(done) > 0 and len(done) != len(futures):
@@ -99,3 +136,11 @@ class Experiment(BaseExperiment, ABC):
             self.safe_reset()
             return True
         return False
+
+    def from_dict(self, config: dict):
+        """Initialize experiment from configuration dictionary."""
+        super().from_dict(config)
+        if "monitors" in config.keys():
+            for name, class_name in config["monitors"].items():
+                monitor_class = getattr(sys.modules["qinst"], class_name)
+                self.add_monitor(monitor_class(name))
