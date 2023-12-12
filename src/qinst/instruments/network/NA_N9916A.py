@@ -270,7 +270,7 @@ class VNAN9916A(N9916A):
     def setup(self, par="S21"):
         """Configure standard measurement."""
         self.write("DISP:WIND:SPL D1")
-        self.S_par = par
+        self.s_par = par
         self.activate_trace()
         self.hold()
         self.set(yformat="MLOG", IFBW=1000, smoothing=0)
@@ -285,12 +285,12 @@ class VNAN9916A(N9916A):
         self.write(f"CALC:PAR{self.__trace}:SEL")
 
     @property
-    def S_par(self) -> str:
+    def s_par(self) -> str:
         """The current scattering matrix parameter."""
         return self.query(f"CALC:PAR{self.__trace}:DEF?")
 
-    @S_par.setter
-    def S_par(self, par="S21"):
+    @s_par.setter
+    def s_par(self, par="S21"):
         self.validate_opt(par, ("S11", "S21", "S12", "S22"))
         self.write(f"CALC:PAR{self.__trace}:DEF {par}")
 
