@@ -23,6 +23,11 @@ class Instrument(ABC):
     def disconnect(self):
         """Disonnect from the instrument."""
 
+    @property
+    @abstractmethod
+    def is_connected(self) -> bool:
+        """Get connection status."""
+
     @abstractmethod
     def write(self, cmd, sleep=False):
         """Send a command to the instrument."""
@@ -76,6 +81,7 @@ class Instrument(ABC):
 
     def safe_reset(self):
         """Reset to standard or specified safe options."""
+        log.debug(f"Setting safe parameters for instrument {self.name}.")
         if not self.__safe_options:
             self.reset()
         else:

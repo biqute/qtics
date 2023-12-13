@@ -25,7 +25,9 @@ class BaseExperiment(ABC):
 
     def run(self):
         """Run the experiment."""
+        self.connect()
         self.main()
+        self.disconnect()
 
     def add_instrument(self, inst: Instrument):
         """Add an instrument."""
@@ -75,11 +77,37 @@ class BaseExperiment(ABC):
             else:
                 setattr(self, key, value)
 
-    def safe_reset(self):
+    @staticmethod
+    def all_instruments(func):
+        """Apply function to all instruments."""
+
+        def wrapper(self, *args, **kwargs):
+            for name in self.instruments:
+                func(self, getattr(self, name), *args, **kwargs)
+
+        return wrapper
+
+    @all_instruments
+    def connect(self, inst):
+        """Connect instrument."""
+        if not inst.is_connected:
+            inst.connect()
+
+    @all_instruments
+    def disconnect(self, inst):
+        """Disonnect instrument."""
+        if inst.is_connected:
+            inst.disconnect()
+
+    @all_instruments
+    def reset(self, inst):
+        """Reset instrument."""
+        inst.reset()
+
+    @all_instruments
+    def safe_reset(self, inst):
         """Reset instruments to safe options."""
-        log.info(f"Setting safe parameters for instruments in {self.name}.")
-        for name in self.instruments:
-            getattr(self, name).safe_reset()
+        inst.safe_reset()
 
 
 class MonitorExperiment(BaseExperiment):

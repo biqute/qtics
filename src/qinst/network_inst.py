@@ -56,6 +56,11 @@ class NetworkInst(Instrument):
             self.__is_connected = False
             log.info(f"Instrument {self.name} disconnected.")
 
+    @property
+    def is_connected(self) -> bool:
+        """Get connection status."""
+        return self.__is_connected
+
     def read(self) -> str:
         """Read the output buffer of the instrument."""
         response = b""

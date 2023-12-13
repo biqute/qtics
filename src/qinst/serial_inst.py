@@ -50,6 +50,11 @@ class SerialInst(Instrument):
             self.serial.close()
             log.info(f"Instrument {self.name} disconnected.")
 
+    @property
+    def is_connected(self) -> bool:
+        """Get connection status."""
+        return self.serial.is_open
+
     def write(self, cmd, sleep=False):
         """Write a message to the serial port."""
         if self.serial.is_open:
