@@ -15,12 +15,20 @@ class SMA100B(NetworkInst):
         self.write("*CLS")
 
     def wait(self):
-        """Prevents servicing of the subsequent commands until all preceding commands have been executed and all signals have settled."""
+        """Wait for command to be finished.
+
+        Prevents servicing of the subsequent commands until all preceding
+        commands have been executed and all signals have settled.
+        """
         self.write("*WAI")
 
     @property
     def is_completed(self) -> bool:
-        """Return bool 0 (1) in the event status register (output buffer) when all preceding commands have been executed."""
+        """Check if last command is completed.
+
+        Return bool 0 (1) in the event status register (output buffer)
+        when all preceding commands have been executed.
+        """
         return self.query("*OPC?") == "1"
 
     def cal(self, opt: str) -> str:
@@ -49,7 +57,7 @@ class SMA100B(NetworkInst):
     @property
     def screen_saver_time(self) -> int:
         """Wait time for the screen saver mode of the display."""
-        return int(self.query(f"DISP:PSAV:HOLD?"))
+        return int(self.query("DISP:PSAV:HOLD?"))
 
     @screen_saver_time.setter
     def screen_saver_time(self, time: int = 10):

@@ -6,7 +6,6 @@ moduleauthor: Rodolfo Carobene <rodolfo.carobene@mib.infn.it>
 """
 
 import time
-from typing import Optional
 
 from qinst.network_inst import NetworkInst
 
@@ -27,7 +26,7 @@ class Triton(NetworkInst):
     ):
         """Initialize."""
         super().__init__(name, address, port, timeout, sleep, no_delay)
-        self._mixing_chamber_ch: Optional[int] = None
+        self._mixing_chamber_ch = 8
 
     def query(self, cmd: str) -> str:
         """Send a message, then read from the serial port."""
@@ -47,6 +46,10 @@ class Triton(NetworkInst):
             self.query("READ:SYS:DR:CHAN:MC")[1:]
         )  # return is like "T5"
         return self._mixing_chamber_ch
+
+    @mixing_chamber_ch.setter
+    def mixing_chamber_ch(self, channel: int):
+        self._mixing_chamber_ch = channel
 
     @property
     def heater_range(self) -> float:
