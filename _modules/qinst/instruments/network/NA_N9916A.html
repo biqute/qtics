@@ -499,7 +499,7 @@
 <div class="viewcode-block" id="VNAN9916A.setup"><a class="viewcode-back" href="../../../../api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.VNAN9916A.setup">[docs]</a>    <span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">par</span><span class="o">=</span><span class="s2">&quot;S21&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Configure standard measurement.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;DISP:WIND:SPL D1&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">S_par</span> <span class="o">=</span> <span class="n">par</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">s_par</span> <span class="o">=</span> <span class="n">par</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">activate_trace</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">hold</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">yformat</span><span class="o">=</span><span class="s2">&quot;MLOG&quot;</span><span class="p">,</span> <span class="n">IFBW</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">smoothing</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -514,12 +514,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CALC:PAR</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">__trace</span><span class="si">}</span><span class="s2">:SEL&quot;</span><span class="p">)</span></div>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">S_par</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">s_par</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The current scattering matrix parameter.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CALC:PAR</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">__trace</span><span class="si">}</span><span class="s2">:DEF?&quot;</span><span class="p">)</span>
 
-    <span class="nd">@S_par</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">S_par</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">par</span><span class="o">=</span><span class="s2">&quot;S21&quot;</span><span class="p">):</span>
+    <span class="nd">@s_par</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">s_par</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">par</span><span class="o">=</span><span class="s2">&quot;S21&quot;</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">validate_opt</span><span class="p">(</span><span class="n">par</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;S11&quot;</span><span class="p">,</span> <span class="s2">&quot;S21&quot;</span><span class="p">,</span> <span class="s2">&quot;S12&quot;</span><span class="p">,</span> <span class="s2">&quot;S22&quot;</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CALC:PAR</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">__trace</span><span class="si">}</span><span class="s2">:DEF </span><span class="si">{</span><span class="n">par</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 

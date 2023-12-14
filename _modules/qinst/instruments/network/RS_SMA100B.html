@@ -244,12 +244,20 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;*CLS&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="SMA100B.wait"><a class="viewcode-back" href="../../../../api-reference/qinst.instruments.network.html#qinst.instruments.network.RS_SMA100B.SMA100B.wait">[docs]</a>    <span class="k">def</span> <span class="nf">wait</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Prevents servicing of the subsequent commands until all preceding commands have been executed and all signals have settled.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Wait for command to be finished.</span>
+
+<span class="sd">        Prevents servicing of the subsequent commands until all preceding</span>
+<span class="sd">        commands have been executed and all signals have settled.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;*WAI&quot;</span><span class="p">)</span></div>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">is_completed</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return bool 0 (1) in the event status register (output buffer) when all preceding commands have been executed.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Check if last command is completed.</span>
+
+<span class="sd">        Return bool 0 (1) in the event status register (output buffer)</span>
+<span class="sd">        when all preceding commands have been executed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;*OPC?&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;1&quot;</span>
 
 <div class="viewcode-block" id="SMA100B.cal"><a class="viewcode-back" href="../../../../api-reference/qinst.instruments.network.html#qinst.instruments.network.RS_SMA100B.SMA100B.cal">[docs]</a>    <span class="k">def</span> <span class="nf">cal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">opt</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
@@ -278,7 +286,7 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">screen_saver_time</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Wait time for the screen saver mode of the display.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DISP:PSAV:HOLD?&quot;</span><span class="p">))</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;DISP:PSAV:HOLD?&quot;</span><span class="p">))</span>
 
     <span class="nd">@screen_saver_time</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">screen_saver_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">):</span>

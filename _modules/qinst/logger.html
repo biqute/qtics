@@ -231,7 +231,7 @@
 
 <span class="kn">import</span> <span class="nn">logging</span>
 
-<span class="n">LOG_LEVEL</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span>
+<span class="n">LOG_LEVEL</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span>
 
 
 <div class="viewcode-block" id="CustomHandler"><a class="viewcode-back" href="../../api-reference/qinst.html#qinst.logger.CustomHandler">[docs]</a><span class="k">class</span> <span class="nc">CustomHandler</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">):</span>
@@ -244,7 +244,7 @@
 
 <div class="viewcode-block" id="CustomHandler.format"><a class="viewcode-back" href="../../api-reference/qinst.html#qinst.logger.CustomHandler.format">[docs]</a>    <span class="k">def</span> <span class="nf">format</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Format the record with specific format.&quot;&quot;&quot;</span>
-        <span class="n">fmt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;[%(levelname)s|%(asctime)s]: %(message)s&quot;</span>
+        <span class="n">fmt</span> <span class="o">=</span> <span class="s2">&quot;[</span><span class="si">%(levelname)s</span><span class="s2">|</span><span class="si">%(asctime)s</span><span class="s2">]: </span><span class="si">%(message)s</span><span class="s2">&quot;</span>
 
         <span class="n">grey</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\x1b</span><span class="s2">[38;20m&quot;</span>
         <span class="n">green</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\x1b</span><span class="s2">[92m&quot;</span>

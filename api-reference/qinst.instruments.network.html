@@ -488,12 +488,6 @@ type used by the instrument that sends the data.
 <dd><p>IF bandwidth of the receiver.</p>
 </dd></dl>
 
-<dl class="py property">
-<dt class="sig sig-object py" id="qinst.instruments.network.NA_N9916A.VNAN9916A.S_par">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">S_par</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></em><a class="headerlink" href="#qinst.instruments.network.NA_N9916A.VNAN9916A.S_par" title="Permalink to this definition">#</a></dt>
-<dd><p>The current scattering matrix parameter.</p>
-</dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="qinst.instruments.network.NA_N9916A.VNAN9916A.activate_trace">
 <span class="sig-name descname"><span class="pre">activate_trace</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/instruments/network/NA_N9916A.html#VNAN9916A.activate_trace"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.instruments.network.NA_N9916A.VNAN9916A.activate_trace" title="Permalink to this definition">#</a></dt>
@@ -534,6 +528,12 @@ type used by the instrument that sends the data.
 <dt class="sig sig-object py" id="qinst.instruments.network.NA_N9916A.VNAN9916A.read_trace_data">
 <span class="sig-name descname"><span class="pre">read_trace_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yformat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="../_modules/qinst/instruments/network/NA_N9916A.html#VNAN9916A.read_trace_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.instruments.network.NA_N9916A.VNAN9916A.read_trace_data" title="Permalink to this definition">#</a></dt>
 <dd><p>Read unformatted IQ data or formatted trace data.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qinst.instruments.network.NA_N9916A.VNAN9916A.s_par">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">s_par</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></em><a class="headerlink" href="#qinst.instruments.network.NA_N9916A.VNAN9916A.s_par" title="Permalink to this definition">#</a></dt>
+<dd><p>The current scattering matrix parameter.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -667,7 +667,9 @@ type used by the instrument that sends the data.
 <dl class="py property">
 <dt class="sig sig-object py" id="qinst.instruments.network.RS_SMA100B.SMA100B.is_completed">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_completed</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></em><a class="headerlink" href="#qinst.instruments.network.RS_SMA100B.SMA100B.is_completed" title="Permalink to this definition">#</a></dt>
-<dd><p>Return bool 0 (1) in the event status register (output buffer) when all preceding commands have been executed.</p>
+<dd><p>Check if last command is completed.</p>
+<p>Return bool 0 (1) in the event status register (output buffer)
+when all preceding commands have been executed.</p>
 </dd></dl>
 
 <dl class="py property">
@@ -769,7 +771,9 @@ type used by the instrument that sends the data.
 <dl class="py method">
 <dt class="sig sig-object py" id="qinst.instruments.network.RS_SMA100B.SMA100B.wait">
 <span class="sig-name descname"><span class="pre">wait</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qinst/instruments/network/RS_SMA100B.html#SMA100B.wait"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qinst.instruments.network.RS_SMA100B.SMA100B.wait" title="Permalink to this definition">#</a></dt>
-<dd><p>Prevents servicing of the subsequent commands until all preceding commands have been executed and all signals have settled.</p>
+<dd><p>Wait for command to be finished.</p>
+<p>Prevents servicing of the subsequent commands until all preceding
+commands have been executed and all signals have settled.</p>
 </dd></dl>
 
 </dd></dl>
@@ -930,7 +934,6 @@ moduleauthor: Rodolfo Carobene &lt;<a class="reference external" href="mailto:ro
 </li>
 <li><a class="reference internal" href="#qinst.instruments.network.NA_N9916A.VNAN9916A"><code class="docutils literal notranslate"><span class="pre">VNAN9916A</span></code></a><ul>
 <li><a class="reference internal" href="#qinst.instruments.network.NA_N9916A.VNAN9916A.IFBW"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.IFBW</span></code></a></li>
-<li><a class="reference internal" href="#qinst.instruments.network.NA_N9916A.VNAN9916A.S_par"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.S_par</span></code></a></li>
 <li><a class="reference internal" href="#qinst.instruments.network.NA_N9916A.VNAN9916A.activate_trace"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.activate_trace()</span></code></a></li>
 <li><a class="reference internal" href="#qinst.instruments.network.NA_N9916A.VNAN9916A.autoscale"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.autoscale()</span></code></a></li>
 <li><a class="reference internal" href="#qinst.instruments.network.NA_N9916A.VNAN9916A.average_mode"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.average_mode</span></code></a></li>
@@ -938,6 +941,7 @@ moduleauthor: Rodolfo Carobene &lt;<a class="reference external" href="mailto:ro
 <li><a class="reference internal" href="#qinst.instruments.network.NA_N9916A.VNAN9916A.power"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.power</span></code></a></li>
 <li><a class="reference internal" href="#qinst.instruments.network.NA_N9916A.VNAN9916A.read_freqs"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.read_freqs()</span></code></a></li>
 <li><a class="reference internal" href="#qinst.instruments.network.NA_N9916A.VNAN9916A.read_trace_data"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.read_trace_data()</span></code></a></li>
+<li><a class="reference internal" href="#qinst.instruments.network.NA_N9916A.VNAN9916A.s_par"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.s_par</span></code></a></li>
 <li><a class="reference internal" href="#qinst.instruments.network.NA_N9916A.VNAN9916A.setup"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.setup()</span></code></a></li>
 <li><a class="reference internal" href="#qinst.instruments.network.NA_N9916A.VNAN9916A.smoothing"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.smoothing</span></code></a></li>
 <li><a class="reference internal" href="#qinst.instruments.network.NA_N9916A.VNAN9916A.sweep"><code class="docutils literal notranslate"><span class="pre">VNAN9916A.sweep()</span></code></a></li>
