@@ -1,11 +1,11 @@
 """Base Experiment classes."""
 
-import sys
+import time
 from abc import ABC, abstractmethod
 from concurrent.futures import FIRST_COMPLETED, ThreadPoolExecutor, wait
 from threading import Event
 
-import yaml
+import h5py
 
 from qinst import log
 from qinst.instrument import Instrument
@@ -14,10 +14,18 @@ from qinst.instrument import Instrument
 class BaseExperiment(ABC):
     """Base experiment class."""
 
-    def __init__(self, name):
+    def __init__(self, name, data_file=""):
         """Initialize."""
+        inst_names = []
+        if hasattr(self, "__annotations__"):
+            for attr_name, attr_type in self.__annotations__.items():
+                if Instrument in attr_type.__mro__:
+                    inst_names.append(attr_name)
+        self.inst_names = inst_names
         self.name = name
-        self.instruments = []
+        if not data_file.endswith(".hdf5"):
+            data_file = f"{name}_{time.strftime('%m/%d_%H:%M:%S')}.hdf5"
+        self.data_file = data_file
 
     @abstractmethod
     def main(self):
@@ -25,89 +33,46 @@ class BaseExperiment(ABC):
 
     def run(self):
         """Run the experiment."""
-        self.connect()
-        self.main()
-        self.disconnect()
+        log.info("Starting experiment %s.", self.name)
+        try:
+            self.main()
+        except KeyboardInterrupt:
+            log.warning("Interrupt signal received, exiting")
+        except Exception as e:
+            log.error("\n\nException occured: %s", e)
+            self.all_instruments("safe_reset")
+        finally:
+            log.info("Experiment run succesfully.")
 
     def add_instrument(self, inst: Instrument):
         """Add an instrument."""
         name = inst.name
-        if name not in self.instruments:
-            self.instruments.append(name)
-            setattr(self, name, inst)
+        if name not in self.inst_names:
+            log.warning(
+                "Instrument name %s not in allowed instruments %s.",
+                name,
+                self.inst_names,
+            )
         else:
-            log.warning(f"Instrument name {name} already in use")
+            setattr(self, name, inst)
+            log.info("Added instrument %s.", name)
 
-    def from_yaml(self, filename: str):
-        """Initialize experiment from configuration file."""
-        config = self.dict_from_yaml(filename)
-        self.from_dict(config)
-
-    def dict_from_yaml(self, filename: str):
-        """Load yaml file as dictionary."""
-        with open(filename) as f:
-            config = yaml.safe_load(f)
-        return config
-
-    def from_dict(self, config: dict):
-        """Initialize experiment from configuration dictionary."""
-        self.instruments_from_dict(config["instruments"])
-        if "variables" in config.keys():
-            self.variables_from_dict(config)
-
-    def instruments_from_dict(self, config: dict):
-        """Initialize instruments from configuration dictionary."""
-        for inst_name, inst_conf in config.items():
-            inst_class = getattr(sys.modules["qinst"], inst_conf["class"])
-            inst = inst_class(inst_name, **inst_conf["init"])
-            if "set" in inst_conf.keys():
-                inst.connect()
-                inst.set(**inst_conf["set"])
-            if "safe" in inst_conf.keys():
-                inst.set_safe_options(**inst_conf["safe"])
-            self.add_instrument(inst)
-
-    def variables_from_dict(self, config: dict):
-        """Initialize bonus attributes from configuration dictionary."""
-        for key, value in config.items():
-            if hasattr(self, key):
-                raise RuntimeError(
-                    f"experiment already has attribute {key}, choose another name."
-                )
-            else:
-                setattr(self, key, value)
-
-    @staticmethod
-    def all_instruments(func):
+    def all_instruments(self, func_name, *args, **kwargs):
         """Apply function to all instruments."""
+        for name in self.inst_names:
+            inst = getattr(self, name)
+            func = getattr(inst, func_name)
+            func(*args, **kwargs)
 
-        def wrapper(self, *args, **kwargs):
-            for name in self.instruments:
-                func(self, getattr(self, name), *args, **kwargs)
-
-        return wrapper
-
-    @all_instruments
-    def connect(self, inst):
-        """Connect instrument."""
-        if not inst.is_connected:
-            inst.connect()
-
-    @all_instruments
-    def disconnect(self, inst):
-        """Disonnect instrument."""
-        if inst.is_connected:
-            inst.disconnect()
-
-    @all_instruments
-    def reset(self, inst):
-        """Reset instrument."""
-        inst.reset()
-
-    @all_instruments
-    def safe_reset(self, inst):
-        """Reset instruments to safe options."""
-        inst.safe_reset()
+    def append_data_group(self, name: str, datasets: dict, **attributes):
+        """Save data appending to hdf5 file."""
+        with h5py.File(self.data_file, "a") as file:
+            group = file.create_group(name)
+            for data_name, data in datasets.items():
+                group.create_dataset(data_name, data=data)
+            if attributes is not None:
+                for attr_name, attr in attributes.items():
+                    group.attrs[attr_name] = attr
 
 
 class MonitorExperiment(BaseExperiment):
@@ -115,20 +80,23 @@ class MonitorExperiment(BaseExperiment):
 
     def watch(self, event: Event):
         """Run the experiment continuously until event is set."""
+        self.all_instruments("connect")
         while True:
             self.main()
             if event.is_set():
-                log.debug(f"Trigger event set, {self.name} shutting down.")
+                log.debug("Trigger event set, %s shutting down.", self.name)
+                self.all_instruments("safe_reset")
                 return
 
 
 class Experiment(BaseExperiment):
     """Experiment with monitoring functions."""
 
-    def __init__(self, name):
+    def __init__(self, name, data_file=""):
         """Initialize."""
-        super().__init__(name)
+        super().__init__(name, data_file=data_file)
         self.monitors = []
+        self.event = Event()
 
     def add_monitor(self, monitor: MonitorExperiment):
         """Add monitoring experiment."""
@@ -136,39 +104,34 @@ class Experiment(BaseExperiment):
 
     def run(self):
         """Run the experiment with parallel monitoring functions."""
-        self.event = Event()
-        with ThreadPoolExecutor(1 + len(self.monitors)) as executor:
-            futures = []
-            log.debug(f"Starting experiment {self.name} and monitors.")
-            for m in self.monitors:
-                futures.append(executor.submit(m.watch, self.event))
-            futures.append(executor.submit(self.main))
-            done, _ = wait(futures, return_when=FIRST_COMPLETED)
-            if len(done) > 0 and len(done) != len(futures):
-                future = done.pop()
-                if future.exception() != None:
-                    log.warning(
-                        f"One task failed with: {future.exception()}, shutting down."
-                    )
-                else:
-                    log.debug(
-                        "Main experiment finished succesfully, shutting down monitors."
-                    )
-                self.event.set()
-                for future in futures:
-                    future.cancel()
+        if len(self.monitors) == 0:
+            super().run()
+        else:
+            with ThreadPoolExecutor(1 + len(self.monitors)) as executor:
+                futures = []
+                log.debug("Starting experiment %s and monitors.", self.name)
+                for m in self.monitors:
+                    futures.append(executor.submit(m.watch, self.event))
+                futures.append(executor.submit(self.main))
+                done, _ = wait(futures, return_when=FIRST_COMPLETED)
+                if len(done) > 0 and len(done) != len(futures):
+                    future = done.pop()
+                    if future.exception() is not None:
+                        log.warning(
+                            "One task failed with: %s, shutting down.",
+                            future.exception(),
+                        )
+                    else:
+                        log.debug(
+                            "Main experiment finished successfully, shutting down monitors."
+                        )
+                    self.event.set()
+                    for future in futures:
+                        future.cancel()
 
     def monitor_failed(self) -> bool:
         """Check if monitoring condition has failed and restore safe values."""
         if self.event.is_set():
-            self.safe_reset()
+            self.all_instruments("safe_reset")
             return True
         return False
-
-    def from_dict(self, config: dict):
-        """Initialize experiment from configuration dictionary."""
-        super().from_dict(config)
-        if "monitors" in config.keys():
-            for name, class_name in config["monitors"].items():
-                monitor_class = getattr(sys.modules["qinst"], class_name)
-                self.add_monitor(monitor_class(name))

@@ -36,7 +36,7 @@ jobs:
     - name: Analysing the code with pylint
       run: |
         source $VENV
-        pylint src/ --signature-mutators all_instruments || pylint-exit $?
+        pylint src/ || pylint-exit $?
 
     - name: Running tests
       run: |
