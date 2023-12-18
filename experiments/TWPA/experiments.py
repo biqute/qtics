@@ -26,9 +26,9 @@ class GainVsFreq(TWPAExperiment):
 
     f_start = 1e9
     f_stop = 7e9
-    f_window = 1e9
-    vna_average = 5
-    sweep_points = 10000
+    f_window = 3e9
+    vna_average = 1
+    sweep_points = 1000
 
     def main(self):
         """Acquire with and without pump."""

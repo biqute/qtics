@@ -11,9 +11,9 @@ from qinst.experiment import Experiment
 class TWPAExperiment(Experiment):
     """Base class for TWPA characterization experiments."""
 
-    vna = VNAN9916A("vna", "192.168.40.10")
-    pump = SMA100B("pump", "192.168.40.10")
-    bias = SIM928("bias", "/dev/ttyUSB0")
+    vna: VNAN9916A
+    pump = SMA100B("pump", "192.168.40.15")
+    bias = SIM928("bias", "COM34")
     delay_between_acquisitions = 1
     resistance = 1997
     f_start = 1e9
@@ -29,6 +29,7 @@ class TWPAExperiment(Experiment):
     def __init__(self, name, data_file: str = ""):
         """Initialize."""
         super().__init__(name, data_file=data_file)
+        self.add_instrument(VNAN9916A("vna", "192.168.40.10"))
         self.vna.set(
             f_min=self.f_start,
             f_max=self.f_stop,
@@ -82,8 +83,9 @@ class TWPAExperiment(Experiment):
         """Run experiment."""
         super().run()
         config_attr = {
-            key: value
-            for key, value in self.__dict__.items()
-            if key not in self.inst_names and not key.startswith("_")
+            key: getattr(self, key)
+            for key in dir(self)
+            if isinstance(getattr(self, key), (int, float, str, bool)) and not key.startswith("_")
         }
+        print(config_attr)
         self.append_data_group("config", **config_attr)

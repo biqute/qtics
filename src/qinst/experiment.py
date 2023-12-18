@@ -23,8 +23,14 @@ class BaseExperiment(ABC):
                     self.inst_names.append(attr_name)
         self.name = name
         if not data_file.endswith(".hdf5"):
-            data_file = f"{name}_{time.strftime('%m/%d_%H:%M:%S')}.hdf5"
+            data_file = f"{name}_{time.strftime('%m_%d_%H_%M_%S')}.hdf5"
         self.data_file = data_file
+        
+    
+    def __del__(self):
+        """Disconnect all devices and delete."""
+        self.all_instruments("__del__")
+        
 
     @abstractmethod
     def main(self):
@@ -64,7 +70,7 @@ class BaseExperiment(ABC):
             func = getattr(inst, func_name)
             func(*args, **kwargs)
 
-    def append_data_group(self, name: str, parent_name="", datasets=None, **attributes):
+    def append_data_group(self, group_name: str, parent_name="", datasets=None, **attributes):
         """Save data appending to hdf5 file."""
         with h5py.File(self.data_file, "a") as file:
             if parent_name != "":
@@ -72,15 +78,14 @@ class BaseExperiment(ABC):
                     parent_group = getattr(file, parent_name)
                 else:
                     parent_group = file.create_group(parent_name)
-                group = parent_group.create_group(name)
+                group = parent_group.create_group(group_name)
             else:
-                group = file.create_group(name)
+                group = file.create_group(group_name)
             if datasets is not None:
                 for data_name, data in datasets.items():
                     group.create_dataset(data_name, data=data)
-            if attributes is not None:
-                for attr_name, attr in attributes.items():
-                    group.attrs[attr_name] = attr
+            if attributes:
+                group.attrs.update(attributes)
 
 
 class MonitorExperiment(BaseExperiment):
@@ -89,10 +94,11 @@ class MonitorExperiment(BaseExperiment):
     def watch(self, event: Event):
         """Run the experiment continuously until event is set."""
         self.all_instruments("connect")
+        log.info("Running monitor %s", self.name)
         while True:
             self.main()
             if event.is_set():
-                log.debug("Trigger event set, %s shutting down.", self.name)
+                log.info("Trigger event set, %s shutting down.", self.name)
                 return
 
 
@@ -116,7 +122,7 @@ class Experiment(BaseExperiment):
         else:
             with ThreadPoolExecutor(1 + len(self.monitors)) as executor:
                 futures = []
-                log.debug("Starting experiment %s and monitors.", self.name)
+                log.info("Starting experiment %s and monitors.", self.name)
                 for m in self.monitors:
                     futures.append(executor.submit(m.watch, self.event))
                 futures.append(executor.submit(self.main))
@@ -129,7 +135,7 @@ class Experiment(BaseExperiment):
                             future.exception(),
                         )
                     else:
-                        log.debug(
+                        log.info(
                             "Main experiment finished successfully, shutting down monitors."
                         )
                     self.event.set()

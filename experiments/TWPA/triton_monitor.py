@@ -31,6 +31,7 @@ class TritonMonitor(MonitorExperiment):
     def main(self):
         """Execute main part of the experiment."""
         temperature = self.cryo.get_mixing_chamber_temp()
+        log.info("Cryostat temperature %s mK", temperature)
         if temperature < self.min_temp or temperature > self.max_temp:
             raise Exception("Temperature %s mK out of allowed range.", temperature)
         sleep(self.sleep)
