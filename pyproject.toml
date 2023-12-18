@@ -53,3 +53,6 @@ matplotlib = ">=3.7"
 [[tool.mypy.overrides]]
 module=["serial", "niscope"]
 ignore_missing_imports = true
+
+[tool.pylint]
+disable = "W1203"

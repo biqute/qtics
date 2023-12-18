@@ -44,7 +44,7 @@ Use poetry to install the latest version in developer mode, remember to also
 install the pre-commits!
 
 ```bash
-poetry install --with docs,analysis,tests,experiments
+poetry install --with docs,analysis,experiments
 pre-commit install
 ```
 

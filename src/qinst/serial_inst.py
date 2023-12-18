@@ -58,6 +58,7 @@ class SerialInst(Instrument):
     def write(self, cmd, sleep=False):
         """Write a message to the serial port."""
         if self.serial.is_open:
+            log.debug(f"WRITE: {cmd}")
             self.serial.write((cmd + "\n").encode())
             if sleep:
                 time.sleep(self.sleep)
@@ -66,12 +67,12 @@ class SerialInst(Instrument):
         """Read a message from the serial port."""
         if self.serial.is_open:
             raw = self.serial.read(self.serial.in_waiting)
-            return raw.decode("utf-8").strip("\n")
+            res = raw.decode("utf-8").strip("\n")
+            log.debug(f"READ: {res}")
+            return res
         return ""
 
     def query(self, cmd) -> str:
         """Send a message, then read from the serial port."""
-        if self.serial.is_open:
-            self.write(cmd, sleep=True)
-            return self.read()
-        return ""
+        self.write(cmd, sleep=True)
+        return self.read()

@@ -2,7 +2,7 @@
 
 import logging
 
-LOG_LEVEL = logging.DEBUG
+LOG_LEVEL = logging.INFO
 
 
 class CustomHandler(logging.StreamHandler):
@@ -15,7 +15,7 @@ class CustomHandler(logging.StreamHandler):
 
     def format(self, record):
         """Format the record with specific format."""
-        fmt = f"[%(levelname)s|%(asctime)s]: %(message)s"
+        fmt = "[%(levelname)s|%(asctime)s]: %(message)s"
 
         grey = "\x1b[38;20m"
         green = "\x1b[92m"

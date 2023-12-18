@@ -67,12 +67,15 @@ class NetworkInst(Instrument):
         try:
             while response[-1:] != b"\n":
                 response += self.socket.recv(1024)
-        except socket.timeout:
-            raise TimeoutError("Reached timeout limit.")
-        return response.decode("utf-8").strip("\n")
+        except TimeoutError as exc:
+            raise exc
+        res = response.decode("utf-8").strip("\n")
+        log.debug(f"READ: {res}")
+        return res
 
     def write(self, cmd: str, sleep=False):
         """Write a message to the serial port."""
+        log.debug(f"WRITE: {cmd}")
         self.socket.sendall((cmd + "\n").encode())
         if sleep:
             time.sleep(self.sleep)
