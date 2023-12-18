@@ -16,12 +16,11 @@ class BaseExperiment(ABC):
 
     def __init__(self, name, data_file=""):
         """Initialize."""
-        inst_names = []
+        self.inst_names = []
         if hasattr(self, "__annotations__"):
             for attr_name, attr_type in self.__annotations__.items():
                 if Instrument in attr_type.__mro__:
-                    inst_names.append(attr_name)
-        self.inst_names = inst_names
+                    self.inst_names.append(attr_name)
         self.name = name
         if not data_file.endswith(".hdf5"):
             data_file = f"{name}_{time.strftime('%m/%d_%H:%M:%S')}.hdf5"
@@ -38,6 +37,7 @@ class BaseExperiment(ABC):
             self.main()
         except KeyboardInterrupt:
             log.warning("Interrupt signal received, exiting")
+            self.all_instruments("safe_reset")
         except Exception as e:
             log.error("\n\nException occured: %s", e)
             self.all_instruments("safe_reset")
@@ -64,12 +64,20 @@ class BaseExperiment(ABC):
             func = getattr(inst, func_name)
             func(*args, **kwargs)
 
-    def append_data_group(self, name: str, datasets: dict, **attributes):
+    def append_data_group(self, name: str, parent_name="", datasets=None, **attributes):
         """Save data appending to hdf5 file."""
         with h5py.File(self.data_file, "a") as file:
-            group = file.create_group(name)
-            for data_name, data in datasets.items():
-                group.create_dataset(data_name, data=data)
+            if parent_name != "":
+                if hasattr(file, parent_name):
+                    parent_group = getattr(file, parent_name)
+                else:
+                    parent_group = file.create_group(parent_name)
+                group = parent_group.create_group(name)
+            else:
+                group = file.create_group(name)
+            if datasets is not None:
+                for data_name, data in datasets.items():
+                    group.create_dataset(data_name, data=data)
             if attributes is not None:
                 for attr_name, attr in attributes.items():
                     group.attrs[attr_name] = attr
@@ -85,7 +93,6 @@ class MonitorExperiment(BaseExperiment):
             self.main()
             if event.is_set():
                 log.debug("Trigger event set, %s shutting down.", self.name)
-                self.all_instruments("safe_reset")
                 return
 
 
@@ -132,6 +139,7 @@ class Experiment(BaseExperiment):
     def monitor_failed(self) -> bool:
         """Check if monitoring condition has failed and restore safe values."""
         if self.event.is_set():
+            log.warning("Exception event has occurred.")
             self.all_instruments("safe_reset")
             return True
         return False

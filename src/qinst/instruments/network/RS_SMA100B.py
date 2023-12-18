@@ -72,7 +72,7 @@ class SMA100B(NetworkInst):
     @property
     def rf_status(self) -> str:
         """Activate the RF output signal."""
-        return self.write("OUTP:STAT?")
+        return self.query("OUTP:STAT?")
 
     @rf_status.setter
     def rf_status(self, state: str):
