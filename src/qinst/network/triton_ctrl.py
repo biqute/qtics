@@ -46,7 +46,7 @@ class Triton(NetworkInst):
         self._mixing_chamber_ch = int(
             self.query("READ:SYS:DR:CHAN:MC")[1:]
         )  # return is like "T5"
-        #return self._mixing_chamber_ch
+        # return self._mixing_chamber_ch
         return 8
 
     @property
@@ -71,7 +71,10 @@ class Triton(NetworkInst):
     def get_mixing_chamber_temp(self):
         """Return mixing chamber temperature in mK."""
 
-        if "READ:DEV:T8:TEMP:SIG:TEMP" == f"READ:DEV:T{self.mixing_chamber_ch}:TEMP:SIG:TEMP":
+        if (
+            "READ:DEV:T8:TEMP:SIG:TEMP"
+            == f"READ:DEV:T{self.mixing_chamber_ch}:TEMP:SIG:TEMP"
+        ):
             return 0
 
         print(f"READ:DEV:T{self.mixing_chamber_ch}:TEMP:SIG:TEMP")

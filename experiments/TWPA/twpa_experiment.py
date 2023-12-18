@@ -85,7 +85,8 @@ class TWPAExperiment(Experiment):
         config_attr = {
             key: getattr(self, key)
             for key in dir(self)
-            if isinstance(getattr(self, key), (int, float, str, bool)) and not key.startswith("_")
+            if isinstance(getattr(self, key), (int, float, str, bool))
+            and not key.startswith("_")
         }
         print(config_attr)
         self.append_data_group("config", **config_attr)
