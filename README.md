@@ -1,4 +1,4 @@
-# Qinst - Instrumentation Tools for BiQuTe Lab
+# Qinst - Instrumentation Tools for Quantum Laboratories
 
 ![docs](https://github.com/biqute/qinst/actions/workflows/deploy_docs.yml/badge.svg)
 ![Lint-Pytest-Mypy](https://github.com/biqute/qinst/actions/workflows/analysis.yml/badge.svg)
