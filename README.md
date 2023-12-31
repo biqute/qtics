@@ -1,4 +1,4 @@
-# Qtics - Instrumentation Tools for Quantum Laboratories
+# Qtics - Quantum Technologies Instrumentation ControlS
 
 ![docs](https://github.com/biqute/qtics/actions/workflows/deploy_docs.yml/badge.svg)
 ![Lint-Pytest-Mypy](https://github.com/biqute/qtics/actions/workflows/analysis.yml/badge.svg)
