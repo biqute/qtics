@@ -4,7 +4,6 @@ import time
 from typing import Literal
 
 import serial
-
 from qinst.serial_inst import SerialInst
 
 

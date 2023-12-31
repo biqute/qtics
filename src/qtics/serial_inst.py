@@ -3,7 +3,6 @@ import time
 from typing import Literal
 
 import serial
-
 from qinst import log
 from qinst.instrument import Instrument
 

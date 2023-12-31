@@ -11,7 +11,6 @@ from abc import ABC, abstractmethod
 from typing import Tuple
 
 import numpy as np
-
 from qinst import log
 from qinst.network_inst import NetworkInst
 

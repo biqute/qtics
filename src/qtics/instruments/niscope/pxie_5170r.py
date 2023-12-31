@@ -5,7 +5,6 @@ from dataclasses import dataclass
 from typing import Optional
 
 import niscope as ni
-
 from qinst import log
 from qinst.instrument import Instrument
 
