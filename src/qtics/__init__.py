@@ -1,4 +1,8 @@
-"""List of supported instruments."""
+"""Qtics module."""
+
+import importlib.metadata as im
+
+__version__ = im.version(__package__)
 
 from qtics.logger import qtics_log as log  # isort: skip
 
