@@ -12,8 +12,8 @@ from typing import Tuple
 
 import numpy as np
 
-from qinst import log
-from qinst.network_inst import NetworkInst
+from qtics import log
+from qtics.network_inst import NetworkInst
 
 MEAS_TIME_FACTOR = 1.02
 

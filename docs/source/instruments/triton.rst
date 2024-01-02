@@ -3,14 +3,14 @@ Triton controller
 
 Controller of the Triton Cryostat by Oxford Instruments.
 
-Base class: :class:`qinst.network_inst.NetworkInst`.
+Base class: :class:`qtics.network_inst.NetworkInst`.
 
 Example of opertations
 """"""""""""""""""""""
 
 .. code-block:: python
 
-   from qinst import Triton
+   from qtics import Triton
 
    controller = Triton("name", "address")
 

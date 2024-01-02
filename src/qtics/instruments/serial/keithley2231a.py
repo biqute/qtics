@@ -5,8 +5,8 @@ Controller of the Keithley2231A DC Power Supply.
 .. moduleauthor:: Marco Gobbo <marco.gobbo@mib.infn.it>
 """
 
-from qinst import log
-from qinst.serial_inst import SerialInst
+from qtics import log
+from qtics.serial_inst import SerialInst
 
 
 class Keithley2231A(SerialInst):

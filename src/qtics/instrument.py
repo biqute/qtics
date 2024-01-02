@@ -3,7 +3,7 @@
 from abc import ABC, abstractmethod
 from typing import Union
 
-from qinst import log
+from qtics import log
 
 
 class Instrument(ABC):

@@ -6,7 +6,7 @@ from datetime import datetime
 import h5py
 import numpy as np
 
-from qinst import VNAN9916A, Triton, log
+from qtics import VNAN9916A, Triton, log
 
 FILE_NAME = "data"
 
