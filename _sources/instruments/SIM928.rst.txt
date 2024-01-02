@@ -6,14 +6,14 @@ The manual of the instrument is available at `SRS <https://www.thinksrs.com/prod
 
 This instrument requires to use the corresponding `SRS SIM900 mainframe <https://www.thinksrs.com/products/sim900.html>`_. The connection will be established first to the mainframe, which will then create a passthrough to the port where the SIM928 is installed.
 
-Base class: :class:`qinst.serial_inst.SerialInst`.
+Base class: :class:`qtics.serial_inst.SerialInst`.
 
 Example of operations
 """""""""""""""""""""
 
 .. code-block:: python
 
-  from qinst import SRS_SIM928
+  from qtics import SRS_SIM928
 
   source = SRS_SIM928(name = "source", address = "/dev/ttyACM0")
   source.connect()

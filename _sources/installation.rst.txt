@@ -3,17 +3,17 @@
 Installation
 ============
 
-Qinst can be installed from PyPI
+Qtics can be installed from PyPI
 
 .. code-block:: bash
 
-   pip install qinst
+   pip install qtics
 
-To install Qinst with all the optional packages (experiments, analysis, docs) run
+To install Qtics with all the optional packages (experiments, analysis, docs) run
 
 .. code-block:: bash
 
-   pip install qinst[all]
+   pip install qtics[all]
 
 The optional packages are
 

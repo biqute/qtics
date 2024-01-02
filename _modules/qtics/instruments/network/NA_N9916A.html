@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../../genindex.html" /><link rel="search" title="Search" href="../../../../search.html" />
 
     <link rel="shortcut icon" href="../../../../_static/favicon.ico"/><!-- Generated with Sphinx 6.2.1 and Furo 2023.09.10 -->
-        <title>qinst.instruments.network.NA_N9916A - Qinst · 0.0.1</title>
+        <title>qtics.instruments.network.NA_N9916A - Qtics · 0.0.1</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/styles/furo.css?digest=369552022d0b975c8e74270ce6eabe0fb7978f24" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
@@ -127,7 +127,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../../../index.html"><div class="brand">Qinst · 0.0.1</div></a>
+      <a href="../../../../index.html"><div class="brand">Qtics · 0.0.1</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -154,7 +154,7 @@
     <img class="sidebar-logo only-dark" src="../../../../_static/biqute_logo.png" alt="Dark Logo"/>
   </div>
   
-  <span class="sidebar-brand-text">Qinst · 0.0.1</span>
+  <span class="sidebar-brand-text">Qtics · 0.0.1</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -181,12 +181,12 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Api reference</span></p>
 <ul>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../api-reference/modules.html">qinst</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of qinst</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../api-reference/qinst.html">qinst package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of qinst package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../api-reference/qinst.instruments.html">qinst.instruments package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of qinst.instruments package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api-reference/qinst.instruments.network.html">qinst.instruments.network package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api-reference/qinst.instruments.niscope.html">qinst.instruments.niscope package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api-reference/qinst.instruments.serial.html">qinst.instruments.serial package</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../api-reference/modules.html">qtics</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of qtics</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../api-reference/qtics.html">qtics package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of qtics package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../api-reference/qtics.instruments.html">qtics.instruments package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of qtics.instruments package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api-reference/qtics.instruments.network.html">qtics.instruments.network package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api-reference/qtics.instruments.niscope.html">qtics.instruments.niscope package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api-reference/qtics.instruments.serial.html">qtics.instruments.serial package</a></li>
 </ul>
 </li>
 </ul>
@@ -226,7 +226,7 @@
           </label>
         </div>
         <article role="main">
-          <h1>Source code for qinst.instruments.network.NA_N9916A</h1><div class="highlight"><pre>
+          <h1>Source code for qtics.instruments.network.NA_N9916A</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Controller of the N9916A Vector Analyzer by Keysight.</span>
 
@@ -241,13 +241,13 @@
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="kn">from</span> <span class="nn">qinst</span> <span class="kn">import</span> <span class="n">log</span>
-<span class="kn">from</span> <span class="nn">qinst.network_inst</span> <span class="kn">import</span> <span class="n">NetworkInst</span>
+<span class="kn">from</span> <span class="nn">qtics</span> <span class="kn">import</span> <span class="n">log</span>
+<span class="kn">from</span> <span class="nn">qtics.network_inst</span> <span class="kn">import</span> <span class="n">NetworkInst</span>
 
 <span class="n">MEAS_TIME_FACTOR</span> <span class="o">=</span> <span class="mf">1.02</span>
 
 
-<div class="viewcode-block" id="N9916A"><a class="viewcode-back" href="../../../../api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.N9916A">[docs]</a><span class="k">class</span> <span class="nc">N9916A</span><span class="p">(</span><span class="n">NetworkInst</span><span class="p">,</span> <span class="n">ABC</span><span class="p">):</span>
+<div class="viewcode-block" id="N9916A"><a class="viewcode-back" href="../../../../api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.N9916A">[docs]</a><span class="k">class</span> <span class="nc">N9916A</span><span class="p">(</span><span class="n">NetworkInst</span><span class="p">,</span> <span class="n">ABC</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;N9916A FieldFox Handheld Microwave Analyzer by Keysight.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
@@ -264,16 +264,16 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">timeout</span><span class="p">,</span> <span class="n">sleep</span><span class="p">,</span> <span class="n">no_delay</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_max_points</span> <span class="o">=</span> <span class="n">max_points</span>
 
-<div class="viewcode-block" id="N9916A.write_and_hold"><a class="viewcode-back" href="../../../../api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.N9916A.write_and_hold">[docs]</a>    <span class="k">def</span> <span class="nf">write_and_hold</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<div class="viewcode-block" id="N9916A.write_and_hold"><a class="viewcode-back" href="../../../../api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.N9916A.write_and_hold">[docs]</a>    <span class="k">def</span> <span class="nf">write_and_hold</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Write command and wait until it has been processed.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">hold</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="N9916A.clear"><a class="viewcode-back" href="../../../../api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.N9916A.clear">[docs]</a>    <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="N9916A.clear"><a class="viewcode-back" href="../../../../api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.N9916A.clear">[docs]</a>    <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Clear the error queue and all status registers.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write_and_hold</span><span class="p">(</span><span class="s2">&quot;*CLS&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="N9916A.hold"><a class="viewcode-back" href="../../../../api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.N9916A.hold">[docs]</a>    <span class="k">def</span> <span class="nf">hold</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="N9916A.hold"><a class="viewcode-back" href="../../../../api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.N9916A.hold">[docs]</a>    <span class="k">def</span> <span class="nf">hold</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Wait until all commands have been processed.&quot;&quot;&quot;</span>
         <span class="n">complete</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;*OPC?&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">complete</span> <span class="o">!=</span> <span class="s2">&quot;1&quot;</span><span class="p">:</span>
@@ -366,7 +366,7 @@
     <span class="k">def</span> <span class="nf">continuous</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write_and_hold</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;INIT:CONT </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">status</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="N9916A.single_sweep"><a class="viewcode-back" href="../../../../api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.N9916A.single_sweep">[docs]</a>    <span class="k">def</span> <span class="nf">single_sweep</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="N9916A.single_sweep"><a class="viewcode-back" href="../../../../api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.N9916A.single_sweep">[docs]</a>    <span class="k">def</span> <span class="nf">single_sweep</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Perform a single sweep, then hold. Use this sweep mode for reading trace data.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">continuous</span><span class="p">:</span>
             <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Setting continuous=False to perform single sweep triggering.&quot;</span><span class="p">)</span>
@@ -383,7 +383,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">validate_opt</span><span class="p">(</span><span class="n">form</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;REAL,32&quot;</span><span class="p">,</span> <span class="s2">&quot;REAL,64&quot;</span><span class="p">,</span> <span class="s2">&quot;ASC,0&quot;</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;FORM:DATA &quot;</span> <span class="o">+</span> <span class="n">form</span><span class="p">)</span>
 
-<div class="viewcode-block" id="N9916A.query_data"><a class="viewcode-back" href="../../../../api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.N9916A.query_data">[docs]</a>    <span class="k">def</span> <span class="nf">query_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">,</span> <span class="n">datatype</span><span class="o">=</span><span class="s2">&quot;REAL,64&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<div class="viewcode-block" id="N9916A.query_data"><a class="viewcode-back" href="../../../../api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.N9916A.query_data">[docs]</a>    <span class="k">def</span> <span class="nf">query_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">,</span> <span class="n">datatype</span><span class="o">=</span><span class="s2">&quot;REAL,64&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Send a command and parses response in IEEE 488.2 binary block format.</span>
 
@@ -435,23 +435,23 @@
 
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">frombuffer</span><span class="p">(</span><span class="n">raw_data</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">map_types</span><span class="p">[</span><span class="n">datatype</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="N9916A.clear_average"><a class="viewcode-back" href="../../../../api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.N9916A.clear_average">[docs]</a>    <span class="nd">@abstractmethod</span>
+<div class="viewcode-block" id="N9916A.clear_average"><a class="viewcode-back" href="../../../../api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.N9916A.clear_average">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">clear_average</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Reset averaging.&quot;&quot;&quot;</span></div>
 
-<div class="viewcode-block" id="N9916A.autoscale"><a class="viewcode-back" href="../../../../api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.N9916A.autoscale">[docs]</a>    <span class="nd">@abstractmethod</span>
+<div class="viewcode-block" id="N9916A.autoscale"><a class="viewcode-back" href="../../../../api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.N9916A.autoscale">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">autoscale</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Autoscale selected trace.&quot;&quot;&quot;</span></div>
 
-<div class="viewcode-block" id="N9916A.read_trace_data"><a class="viewcode-back" href="../../../../api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.N9916A.read_trace_data">[docs]</a>    <span class="nd">@abstractmethod</span>
+<div class="viewcode-block" id="N9916A.read_trace_data"><a class="viewcode-back" href="../../../../api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.N9916A.read_trace_data">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">read_trace_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">yformat</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Read trace data from the instrument.&quot;&quot;&quot;</span></div>
 
-<div class="viewcode-block" id="N9916A.read_freqs"><a class="viewcode-back" href="../../../../api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.N9916A.read_freqs">[docs]</a>    <span class="nd">@abstractmethod</span>
+<div class="viewcode-block" id="N9916A.read_freqs"><a class="viewcode-back" href="../../../../api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.N9916A.read_freqs">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">read_freqs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Read trace frequencies from the instrument.&quot;&quot;&quot;</span></div>
 
-<div class="viewcode-block" id="N9916A.snapshot"><a class="viewcode-back" href="../../../../api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.N9916A.snapshot">[docs]</a>    <span class="k">def</span> <span class="nf">snapshot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">yformat</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<div class="viewcode-block" id="N9916A.snapshot"><a class="viewcode-back" href="../../../../api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.N9916A.snapshot">[docs]</a>    <span class="k">def</span> <span class="nf">snapshot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">yformat</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get frequency and trace values for a single sweep.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">hold</span><span class="p">()</span>
@@ -460,7 +460,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">hold</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">f</span><span class="p">,</span> <span class="n">z</span></div>
 
-<div class="viewcode-block" id="N9916A.survey"><a class="viewcode-back" href="../../../../api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.N9916A.survey">[docs]</a>    <span class="k">def</span> <span class="nf">survey</span><span class="p">(</span>
+<div class="viewcode-block" id="N9916A.survey"><a class="viewcode-back" href="../../../../api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.N9916A.survey">[docs]</a>    <span class="k">def</span> <span class="nf">survey</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">f_win_start</span><span class="p">,</span> <span class="n">f_win_end</span><span class="p">,</span> <span class="n">f_win_size</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Execute multiple scans with higher resolution.&quot;&quot;&quot;</span>
@@ -474,7 +474,7 @@
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">z</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span></div></div>
 
 
-<div class="viewcode-block" id="VNAN9916A"><a class="viewcode-back" href="../../../../api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.VNAN9916A">[docs]</a><span class="k">class</span> <span class="nc">VNAN9916A</span><span class="p">(</span><span class="n">N9916A</span><span class="p">):</span>
+<div class="viewcode-block" id="VNAN9916A"><a class="viewcode-back" href="../../../../api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.VNAN9916A">[docs]</a><span class="k">class</span> <span class="nc">VNAN9916A</span><span class="p">(</span><span class="n">N9916A</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;VNA mode of the N9916A.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
@@ -496,7 +496,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">__trace</span> <span class="o">=</span> <span class="mi">1</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setup</span><span class="p">()</span>
 
-<div class="viewcode-block" id="VNAN9916A.setup"><a class="viewcode-back" href="../../../../api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.VNAN9916A.setup">[docs]</a>    <span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">par</span><span class="o">=</span><span class="s2">&quot;S21&quot;</span><span class="p">):</span>
+<div class="viewcode-block" id="VNAN9916A.setup"><a class="viewcode-back" href="../../../../api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.VNAN9916A.setup">[docs]</a>    <span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">par</span><span class="o">=</span><span class="s2">&quot;S21&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Configure standard measurement.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;DISP:WIND:SPL D1&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">s_par</span> <span class="o">=</span> <span class="n">par</span>
@@ -505,11 +505,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">yformat</span><span class="o">=</span><span class="s2">&quot;MLOG&quot;</span><span class="p">,</span> <span class="n">IFBW</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">smoothing</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data_format</span> <span class="o">=</span> <span class="s2">&quot;REAL,64&quot;</span></div>
 
-<div class="viewcode-block" id="VNAN9916A.autoscale"><a class="viewcode-back" href="../../../../api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.VNAN9916A.autoscale">[docs]</a>    <span class="k">def</span> <span class="nf">autoscale</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="VNAN9916A.autoscale"><a class="viewcode-back" href="../../../../api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.VNAN9916A.autoscale">[docs]</a>    <span class="k">def</span> <span class="nf">autoscale</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Autoscale selected trace.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DISP:WIND:TRAC</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">__trace</span><span class="si">}</span><span class="s2">:Y:AUTO&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="VNAN9916A.activate_trace"><a class="viewcode-back" href="../../../../api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.VNAN9916A.activate_trace">[docs]</a>    <span class="k">def</span> <span class="nf">activate_trace</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="VNAN9916A.activate_trace"><a class="viewcode-back" href="../../../../api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.VNAN9916A.activate_trace">[docs]</a>    <span class="k">def</span> <span class="nf">activate_trace</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Make active the selected trace.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CALC:PAR</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">__trace</span><span class="si">}</span><span class="s2">:SEL&quot;</span><span class="p">)</span></div>
 
@@ -560,7 +560,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">validate_opt</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;SWE&quot;</span><span class="p">,</span> <span class="s2">&quot;POINT&quot;</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;AVER:MODE </span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="VNAN9916A.clear_average"><a class="viewcode-back" href="../../../../api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.VNAN9916A.clear_average">[docs]</a>    <span class="k">def</span> <span class="nf">clear_average</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="VNAN9916A.clear_average"><a class="viewcode-back" href="../../../../api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.VNAN9916A.clear_average">[docs]</a>    <span class="k">def</span> <span class="nf">clear_average</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Reset averaging.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;AVER:CLE&quot;</span><span class="p">)</span></div>
 
@@ -583,11 +583,11 @@
         <span class="n">pwd</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="o">-</span><span class="mi">45</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">pwd</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SOUR:POW </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">pwd</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="VNAN9916A.read_freqs"><a class="viewcode-back" href="../../../../api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.VNAN9916A.read_freqs">[docs]</a>    <span class="k">def</span> <span class="nf">read_freqs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<div class="viewcode-block" id="VNAN9916A.read_freqs"><a class="viewcode-back" href="../../../../api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.VNAN9916A.read_freqs">[docs]</a>    <span class="k">def</span> <span class="nf">read_freqs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Read frequencies.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">query_data</span><span class="p">(</span><span class="s2">&quot;FREQ:DATA?&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_format</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="VNAN9916A.sweep"><a class="viewcode-back" href="../../../../api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.VNAN9916A.sweep">[docs]</a>    <span class="k">def</span> <span class="nf">sweep</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="VNAN9916A.sweep"><a class="viewcode-back" href="../../../../api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.VNAN9916A.sweep">[docs]</a>    <span class="k">def</span> <span class="nf">sweep</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Perform a frequency sweep measurement considering averaging and sweep mode.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">clear_average</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">autoscale</span><span class="p">()</span>
@@ -606,7 +606,7 @@
             <span class="sa">f</span><span class="s2">&quot;Bad combination of average mode </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">average_mode</span><span class="si">}</span><span class="s2"> and number </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">average</span><span class="si">}</span><span class="s2">.&quot;</span>
         <span class="p">)</span></div>
 
-<div class="viewcode-block" id="VNAN9916A.read_trace_data"><a class="viewcode-back" href="../../../../api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.VNAN9916A.read_trace_data">[docs]</a>    <span class="k">def</span> <span class="nf">read_trace_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">yformat</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<div class="viewcode-block" id="VNAN9916A.read_trace_data"><a class="viewcode-back" href="../../../../api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.VNAN9916A.read_trace_data">[docs]</a>    <span class="k">def</span> <span class="nf">read_trace_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">yformat</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Read unformatted IQ data or formatted trace data.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">yformat</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">sweep</span><span class="p">()</span>
@@ -621,7 +621,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">query_data</span><span class="p">(</span><span class="s2">&quot;CALC:DATA:FDATA?&quot;</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="SAN9916A"><a class="viewcode-back" href="../../../../api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.SAN9916A">[docs]</a><span class="k">class</span> <span class="nc">SAN9916A</span><span class="p">(</span><span class="n">N9916A</span><span class="p">):</span>
+<div class="viewcode-block" id="SAN9916A"><a class="viewcode-back" href="../../../../api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.SAN9916A">[docs]</a><span class="k">class</span> <span class="nc">SAN9916A</span><span class="p">(</span><span class="n">N9916A</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Spectrum Analyzer mode of the N9916A.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
@@ -645,11 +645,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">trace_type</span> <span class="o">=</span> <span class="s2">&quot;AVG&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data_format</span> <span class="o">=</span> <span class="s2">&quot;REAL,64&quot;</span>
 
-<div class="viewcode-block" id="SAN9916A.set_full_span"><a class="viewcode-back" href="../../../../api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.SAN9916A.set_full_span">[docs]</a>    <span class="k">def</span> <span class="nf">set_full_span</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SAN9916A.set_full_span"><a class="viewcode-back" href="../../../../api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.SAN9916A.set_full_span">[docs]</a>    <span class="k">def</span> <span class="nf">set_full_span</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set the frequency span to the entire span of the FieldFox.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;FREQ:SPAN:FULL&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="SAN9916A.set_zero_span"><a class="viewcode-back" href="../../../../api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.SAN9916A.set_zero_span">[docs]</a>    <span class="k">def</span> <span class="nf">set_zero_span</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SAN9916A.set_zero_span"><a class="viewcode-back" href="../../../../api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.SAN9916A.set_zero_span">[docs]</a>    <span class="k">def</span> <span class="nf">set_zero_span</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set the frequency span to 0 Hz around the center frequency.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;FREQ:SPAN:ZERO&quot;</span><span class="p">)</span></div>
 
@@ -720,7 +720,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">validate_opt</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;AUTO&quot;</span><span class="p">,</span> <span class="s2">&quot;POW&quot;</span><span class="p">,</span> <span class="s2">&quot;POWer&quot;</span><span class="p">,</span> <span class="s2">&quot;LOG&quot;</span><span class="p">,</span> <span class="s2">&quot;VOLT&quot;</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;AVER:TYPE </span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="SAN9916A.clear_average"><a class="viewcode-back" href="../../../../api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.SAN9916A.clear_average">[docs]</a>    <span class="k">def</span> <span class="nf">clear_average</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SAN9916A.clear_average"><a class="viewcode-back" href="../../../../api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.SAN9916A.clear_average">[docs]</a>    <span class="k">def</span> <span class="nf">clear_average</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Restart averaging from 1.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write_and_hold</span><span class="p">(</span><span class="s2">&quot;INIT:REST&quot;</span><span class="p">)</span></div>
 
@@ -754,15 +754,15 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">validate_opt</span><span class="p">(</span><span class="n">scale</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;LOG&quot;</span><span class="p">,</span> <span class="s2">&quot;LIN&quot;</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;AMPL:SCAL: </span><span class="si">{</span><span class="n">scale</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="SAN9916A.autoscale"><a class="viewcode-back" href="../../../../api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.SAN9916A.autoscale">[docs]</a>    <span class="k">def</span> <span class="nf">autoscale</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SAN9916A.autoscale"><a class="viewcode-back" href="../../../../api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.SAN9916A.autoscale">[docs]</a>    <span class="k">def</span> <span class="nf">autoscale</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Autoscale all traces.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;DISP:WIND:TRAC:Y:AUTO&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="SAN9916A.read_freqs"><a class="viewcode-back" href="../../../../api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.SAN9916A.read_freqs">[docs]</a>    <span class="k">def</span> <span class="nf">read_freqs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<div class="viewcode-block" id="SAN9916A.read_freqs"><a class="viewcode-back" href="../../../../api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.SAN9916A.read_freqs">[docs]</a>    <span class="k">def</span> <span class="nf">read_freqs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Compute the measured frequencies array.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">f_min</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">f_max</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sweep_points</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="SAN9916A.read_trace_data"><a class="viewcode-back" href="../../../../api-reference/qinst.instruments.network.html#qinst.instruments.network.NA_N9916A.SAN9916A.read_trace_data">[docs]</a>    <span class="k">def</span> <span class="nf">read_trace_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">yformat</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<div class="viewcode-block" id="SAN9916A.read_trace_data"><a class="viewcode-back" href="../../../../api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.SAN9916A.read_trace_data">[docs]</a>    <span class="k">def</span> <span class="nf">read_trace_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">yformat</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Read the current data trace values considering averaging.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">yformat</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">yformat</span> <span class="o">=</span> <span class="n">yformat</span>
@@ -796,7 +796,7 @@
           </div>
           <div class="right-details">
             <div class="icons">
-              <a class="muted-link " href="https://github.com/biqute/qinst" aria-label="GitHub">
+              <a class="muted-link " href="https://github.com/biqute/qtics" aria-label="GitHub">
                     <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
                     </svg>

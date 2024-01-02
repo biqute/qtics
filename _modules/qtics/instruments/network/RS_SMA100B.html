@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../../genindex.html" /><link rel="search" title="Search" href="../../../../search.html" />
 
     <link rel="shortcut icon" href="../../../../_static/favicon.ico"/><!-- Generated with Sphinx 6.2.1 and Furo 2023.09.10 -->
-        <title>qinst.instruments.network.RS_SMA100B - Qinst · 0.0.1</title>
+        <title>qtics.instruments.network.RS_SMA100B - Qtics · 0.0.1</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/styles/furo.css?digest=369552022d0b975c8e74270ce6eabe0fb7978f24" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
@@ -127,7 +127,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../../../index.html"><div class="brand">Qinst · 0.0.1</div></a>
+      <a href="../../../../index.html"><div class="brand">Qtics · 0.0.1</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -154,7 +154,7 @@
     <img class="sidebar-logo only-dark" src="../../../../_static/biqute_logo.png" alt="Dark Logo"/>
   </div>
   
-  <span class="sidebar-brand-text">Qinst · 0.0.1</span>
+  <span class="sidebar-brand-text">Qtics · 0.0.1</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -181,12 +181,12 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Api reference</span></p>
 <ul>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../api-reference/modules.html">qinst</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of qinst</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../api-reference/qinst.html">qinst package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of qinst package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../api-reference/qinst.instruments.html">qinst.instruments package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of qinst.instruments package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api-reference/qinst.instruments.network.html">qinst.instruments.network package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api-reference/qinst.instruments.niscope.html">qinst.instruments.niscope package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api-reference/qinst.instruments.serial.html">qinst.instruments.serial package</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../api-reference/modules.html">qtics</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of qtics</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../api-reference/qtics.html">qtics package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of qtics package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../api-reference/qtics.instruments.html">qtics.instruments package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of qtics.instruments package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api-reference/qtics.instruments.network.html">qtics.instruments.network package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api-reference/qtics.instruments.niscope.html">qtics.instruments.niscope package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api-reference/qtics.instruments.serial.html">qtics.instruments.serial package</a></li>
 </ul>
 </li>
 </ul>
@@ -226,24 +226,24 @@
           </label>
         </div>
         <article role="main">
-          <h1>Source code for qinst.instruments.network.RS_SMA100B</h1><div class="highlight"><pre>
+          <h1>Source code for qtics.instruments.network.RS_SMA100B</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Controller of the R&amp;S SMA100B RF and microwave signal generator.</span>
 
 <span class="sd">.. module:: RS_SMA100B.py</span>
 <span class="sd">.. moduleauthor:: Marco Gobbo &lt;marco.gobbo@mib.infn.it&gt;</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">qinst.network_inst</span> <span class="kn">import</span> <span class="n">NetworkInst</span>
+<span class="kn">from</span> <span class="nn">qtics.network_inst</span> <span class="kn">import</span> <span class="n">NetworkInst</span>
 
 
-<div class="viewcode-block" id="SMA100B"><a class="viewcode-back" href="../../../../api-reference/qinst.instruments.network.html#qinst.instruments.network.RS_SMA100B.SMA100B">[docs]</a><span class="k">class</span> <span class="nc">SMA100B</span><span class="p">(</span><span class="n">NetworkInst</span><span class="p">):</span>
+<div class="viewcode-block" id="SMA100B"><a class="viewcode-back" href="../../../../api-reference/qtics.instruments.network.html#qtics.instruments.network.RS_SMA100B.SMA100B">[docs]</a><span class="k">class</span> <span class="nc">SMA100B</span><span class="p">(</span><span class="n">NetworkInst</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;R&amp;S SMA100B RF and microwave signal generator by Rohde &amp; Schwarz.&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="SMA100B.clear"><a class="viewcode-back" href="../../../../api-reference/qinst.instruments.network.html#qinst.instruments.network.RS_SMA100B.SMA100B.clear">[docs]</a>    <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SMA100B.clear"><a class="viewcode-back" href="../../../../api-reference/qtics.instruments.network.html#qtics.instruments.network.RS_SMA100B.SMA100B.clear">[docs]</a>    <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Clear the output buffer.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;*CLS&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="SMA100B.wait"><a class="viewcode-back" href="../../../../api-reference/qinst.instruments.network.html#qinst.instruments.network.RS_SMA100B.SMA100B.wait">[docs]</a>    <span class="k">def</span> <span class="nf">wait</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SMA100B.wait"><a class="viewcode-back" href="../../../../api-reference/qtics.instruments.network.html#qtics.instruments.network.RS_SMA100B.SMA100B.wait">[docs]</a>    <span class="k">def</span> <span class="nf">wait</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Wait for command to be finished.</span>
 
 <span class="sd">        Prevents servicing of the subsequent commands until all preceding</span>
@@ -260,7 +260,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;*OPC?&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;1&quot;</span>
 
-<div class="viewcode-block" id="SMA100B.cal"><a class="viewcode-back" href="../../../../api-reference/qinst.instruments.network.html#qinst.instruments.network.RS_SMA100B.SMA100B.cal">[docs]</a>    <span class="k">def</span> <span class="nf">cal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">opt</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<div class="viewcode-block" id="SMA100B.cal"><a class="viewcode-back" href="../../../../api-reference/qtics.instruments.network.html#qtics.instruments.network.RS_SMA100B.SMA100B.cal">[docs]</a>    <span class="k">def</span> <span class="nf">cal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">opt</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Query the device to perform internal adjustments.</span>
 
 <span class="sd">        Valid options to query:</span>
@@ -273,7 +273,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">validate_opt</span><span class="p">(</span><span class="n">opt</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;MEAS&quot;</span><span class="p">,</span> <span class="s2">&quot;DATE&quot;</span><span class="p">,</span> <span class="s2">&quot;INF&quot;</span><span class="p">,</span> <span class="s2">&quot;TEMP&quot;</span><span class="p">,</span> <span class="s2">&quot;TIME&quot;</span><span class="p">))</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CAL:ALL:</span><span class="si">{</span><span class="n">opt</span><span class="si">}</span><span class="s2">?&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="SMA100B.diag"><a class="viewcode-back" href="../../../../api-reference/qinst.instruments.network.html#qinst.instruments.network.RS_SMA100B.SMA100B.diag">[docs]</a>    <span class="k">def</span> <span class="nf">diag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">opt</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<div class="viewcode-block" id="SMA100B.diag"><a class="viewcode-back" href="../../../../api-reference/qtics.instruments.network.html#qtics.instruments.network.RS_SMA100B.SMA100B.diag">[docs]</a>    <span class="k">def</span> <span class="nf">diag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">opt</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Query the device to perform diagnosis and servicing.</span>
 
 <span class="sd">        Valid options to query:</span>
@@ -293,7 +293,7 @@
         <span class="n">time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">validate_range</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">61</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DISP:PSAV:HOLD </span><span class="si">{</span><span class="n">time</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="SMA100B.screen_saver_mode"><a class="viewcode-back" href="../../../../api-reference/qinst.instruments.network.html#qinst.instruments.network.RS_SMA100B.SMA100B.screen_saver_mode">[docs]</a>    <span class="k">def</span> <span class="nf">screen_saver_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;OFF&quot;</span><span class="p">):</span>
+<div class="viewcode-block" id="SMA100B.screen_saver_mode"><a class="viewcode-back" href="../../../../api-reference/qtics.instruments.network.html#qtics.instruments.network.RS_SMA100B.SMA100B.screen_saver_mode">[docs]</a>    <span class="k">def</span> <span class="nf">screen_saver_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;OFF&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Activate the screen saver mode of the display.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">validate_opt</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;ON&quot;</span><span class="p">,</span> <span class="s2">&quot;OFF&quot;</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DISP:PSAV:STAT </span><span class="si">{</span><span class="n">state</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
@@ -438,7 +438,7 @@
         <span class="n">deg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">validate_range</span><span class="p">(</span><span class="n">deg</span><span class="p">,</span> <span class="o">-</span><span class="mi">36000</span><span class="p">,</span> <span class="mi">36000</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SOUR:PHAS </span><span class="si">{</span><span class="n">deg</span><span class="si">}</span><span class="s2"> DEG&quot;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="SMA100B.set_phase_ref"><a class="viewcode-back" href="../../../../api-reference/qinst.instruments.network.html#qinst.instruments.network.RS_SMA100B.SMA100B.set_phase_ref">[docs]</a>    <span class="k">def</span> <span class="nf">set_phase_ref</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SMA100B.set_phase_ref"><a class="viewcode-back" href="../../../../api-reference/qtics.instruments.network.html#qtics.instruments.network.RS_SMA100B.SMA100B.set_phase_ref">[docs]</a>    <span class="k">def</span> <span class="nf">set_phase_ref</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Assign the value set as the reference phase.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;SOUR:PHAS:REF&quot;</span><span class="p">)</span></div>
 
@@ -524,7 +524,7 @@
         <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">validate_range</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SOUR:SWE:POW:DWEL </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="SMA100B.sweep"><a class="viewcode-back" href="../../../../api-reference/qinst.instruments.network.html#qinst.instruments.network.RS_SMA100B.SMA100B.sweep">[docs]</a>    <span class="k">def</span> <span class="nf">sweep</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SMA100B.sweep"><a class="viewcode-back" href="../../../../api-reference/qtics.instruments.network.html#qtics.instruments.network.RS_SMA100B.SMA100B.sweep">[docs]</a>    <span class="k">def</span> <span class="nf">sweep</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Perform a one-off RF frequency/level sweep.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;*TRG&quot;</span><span class="p">)</span></div></div>
 </pre></div>
@@ -548,7 +548,7 @@
           </div>
           <div class="right-details">
             <div class="icons">
-              <a class="muted-link " href="https://github.com/biqute/qinst" aria-label="GitHub">
+              <a class="muted-link " href="https://github.com/biqute/qtics" aria-label="GitHub">
                     <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
                     </svg>
