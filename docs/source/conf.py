@@ -6,10 +6,12 @@ from pathlib import Path
 from recommonmark.transform import AutoStructify
 from sphinx.ext import apidoc
 
+import qtics
+
 project = "Qtics"
 copyright = "2023, The BiQuTe Team"
 author = "The BiQuTe Team"
-release = "0.0.1"
+release = qtics.__version__
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -36,7 +38,7 @@ exclude_patterns = []
 html_theme = "furo"
 html_favicon = "favicon.ico"
 
-html_title = "Qtics · 0.0.1"
+html_title = "Qtics · " + release
 
 html_theme_options = {
     "top_of_page_button": "edit",
