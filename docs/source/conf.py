@@ -38,7 +38,7 @@ exclude_patterns = []
 html_theme = "furo"
 html_favicon = "favicon.ico"
 
-html_title = "Qtics · 0.0.1"
+html_title = "Qtics · " + release
 
 html_theme_options = {
     "top_of_page_button": "edit",
