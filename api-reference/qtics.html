@@ -275,9 +275,21 @@
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></a></p>
 <p>Base instrument class.</p>
 <dl class="py method">
+<dt class="sig sig-object py" id="qtics.instrument.Instrument.clear_defaults">
+<span class="sig-name descname"><span class="pre">clear_defaults</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/instrument.html#Instrument.clear_defaults"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instrument.Instrument.clear_defaults" title="Permalink to this definition">#</a></dt>
+<dd><p>Clear the defaults dictionary.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="qtics.instrument.Instrument.connect">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">connect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/instrument.html#Instrument.connect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instrument.Instrument.connect" title="Permalink to this definition">#</a></dt>
 <dd><p>Connect to the instrument.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qtics.instrument.Instrument.defaults">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">defaults</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><span class="pre">dict</span></a></em><a class="headerlink" href="#qtics.instrument.Instrument.defaults" title="Permalink to this definition">#</a></dt>
+<dd><p>Default values for the instrument attributes.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -312,7 +324,7 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="qtics.instrument.Instrument.reset">
-<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/instrument.html#Instrument.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instrument.Instrument.reset" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">defaults</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/instrument.html#Instrument.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instrument.Instrument.reset" title="Permalink to this definition">#</a></dt>
 <dd><p>Reset device with SCPI standard command.</p>
 </dd></dl>
 
@@ -320,6 +332,18 @@
 <dt class="sig sig-object py" id="qtics.instrument.Instrument.set">
 <span class="sig-name descname"><span class="pre">set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/instrument.html#Instrument.set"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instrument.Instrument.set" title="Permalink to this definition">#</a></dt>
 <dd><p>Set multiple attributes and/or properties.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qtics.instrument.Instrument.set_defaults">
+<span class="sig-name descname"><span class="pre">set_defaults</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/instrument.html#Instrument.set_defaults"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instrument.Instrument.set_defaults" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the specified default values.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qtics.instrument.Instrument.update_defaults">
+<span class="sig-name descname"><span class="pre">update_defaults</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/instrument.html#Instrument.update_defaults"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instrument.Instrument.update_defaults" title="Permalink to this definition">#</a></dt>
+<dd><p>Validate and update the defaults dictionary.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -366,7 +390,7 @@
 <span class="target" id="module-network_inst.py"></span><p>The code was partially taken from <a class="reference external" href="https://github.com/morgan-at-keysight/socketscpi">https://github.com/morgan-at-keysight/socketscpi</a></p>
 <dl class="py class">
 <dt class="sig sig-object py" id="qtics.network_inst.NetworkInst">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qtics.network_inst.</span></span><span class="sig-name descname"><span class="pre">NetworkInst</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5025</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sleep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_delay</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/network_inst.html#NetworkInst"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.network_inst.NetworkInst" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qtics.network_inst.</span></span><span class="sig-name descname"><span class="pre">NetworkInst</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5025</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sleep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_delay</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/network_inst.html#NetworkInst"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.network_inst.NetworkInst" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#qtics.instrument.Instrument" title="qtics.instrument.Instrument"><code class="xref py py-class docutils literal notranslate"><span class="pre">Instrument</span></code></a></p>
 <p>Base class for instruments communicating via network connection.</p>
 <dl class="py method">
@@ -524,7 +548,9 @@
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#module-qtics.instrument">qtics.instrument module</a><ul>
 <li><a class="reference internal" href="#qtics.instrument.Instrument"><code class="docutils literal notranslate"><span class="pre">Instrument</span></code></a><ul>
+<li><a class="reference internal" href="#qtics.instrument.Instrument.clear_defaults"><code class="docutils literal notranslate"><span class="pre">Instrument.clear_defaults()</span></code></a></li>
 <li><a class="reference internal" href="#qtics.instrument.Instrument.connect"><code class="docutils literal notranslate"><span class="pre">Instrument.connect()</span></code></a></li>
+<li><a class="reference internal" href="#qtics.instrument.Instrument.defaults"><code class="docutils literal notranslate"><span class="pre">Instrument.defaults</span></code></a></li>
 <li><a class="reference internal" href="#qtics.instrument.Instrument.disconnect"><code class="docutils literal notranslate"><span class="pre">Instrument.disconnect()</span></code></a></li>
 <li><a class="reference internal" href="#qtics.instrument.Instrument.get"><code class="docutils literal notranslate"><span class="pre">Instrument.get()</span></code></a></li>
 <li><a class="reference internal" href="#qtics.instrument.Instrument.get_id"><code class="docutils literal notranslate"><span class="pre">Instrument.get_id()</span></code></a></li>
@@ -532,6 +558,8 @@
 <li><a class="reference internal" href="#qtics.instrument.Instrument.read"><code class="docutils literal notranslate"><span class="pre">Instrument.read()</span></code></a></li>
 <li><a class="reference internal" href="#qtics.instrument.Instrument.reset"><code class="docutils literal notranslate"><span class="pre">Instrument.reset()</span></code></a></li>
 <li><a class="reference internal" href="#qtics.instrument.Instrument.set"><code class="docutils literal notranslate"><span class="pre">Instrument.set()</span></code></a></li>
+<li><a class="reference internal" href="#qtics.instrument.Instrument.set_defaults"><code class="docutils literal notranslate"><span class="pre">Instrument.set_defaults()</span></code></a></li>
+<li><a class="reference internal" href="#qtics.instrument.Instrument.update_defaults"><code class="docutils literal notranslate"><span class="pre">Instrument.update_defaults()</span></code></a></li>
 <li><a class="reference internal" href="#qtics.instrument.Instrument.validate_opt"><code class="docutils literal notranslate"><span class="pre">Instrument.validate_opt()</span></code></a></li>
 <li><a class="reference internal" href="#qtics.instrument.Instrument.validate_range"><code class="docutils literal notranslate"><span class="pre">Instrument.validate_range()</span></code></a></li>
 <li><a class="reference internal" href="#qtics.instrument.Instrument.write"><code class="docutils literal notranslate"><span class="pre">Instrument.write()</span></code></a></li>
