@@ -1,7 +1,7 @@
 """Base Instrument."""
 
 from abc import ABC, abstractmethod
-from typing import Union
+from typing import Any, Dict, Union
 
 from qtics import log
 
@@ -13,7 +13,7 @@ class Instrument(ABC):
         """Initialize."""
         self.name = name
         self.address = address
-        self._defaults = {}
+        self._defaults: Dict[str, Any] = {}
 
     @abstractmethod
     def connect(self):
@@ -85,9 +85,9 @@ class Instrument(ABC):
         """Default values for the instrument attributes."""
         return self._defaults
 
-    def update_defaults(self, defaults: dict):
+    def update_defaults(self, **kwargs):
         """Validate and update the defaults dictionary."""
-        for key, value in defaults:
+        for key, value in kwargs.items():
             if hasattr(self, key):
                 self._defaults[key] = value
             else:

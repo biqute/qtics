@@ -92,3 +92,23 @@ class TestNetworklInst:
         assert inst.validate_range(19.3, 1, 100) == 19.3
         assert inst.validate_range(-19.3, 1, 100) == 1
         assert inst.validate_range(193, 1, 100) == 100
+
+    def test_update_defaults(self, network_inst):
+        """Test update defaults function."""
+        network_inst.update_defaults(sleep=5, port=1000)
+        assert network_inst.defaults == {"sleep": 5, "port": 1000}
+        with pytest.raises(RuntimeError):
+            network_inst.update_defaults(noattr=1)
+
+    def test_clear_defaults(self, network_inst):
+        """Test clear defaults function."""
+        network_inst.update_defaults(sleep=5, port=1000)
+        network_inst.clear_defaults()
+        assert network_inst.defaults == {}
+
+    def test_set_defaults(self, network_inst):
+        """Test set defaults function."""
+        network_inst.update_defaults(sleep=5, port=1000)
+        network_inst.set_defaults()
+        assert network_inst.sleep == 5
+        assert network_inst.port == 1000
