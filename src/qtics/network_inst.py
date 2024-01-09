@@ -24,7 +24,7 @@ class NetworkInst(Instrument):
         port: int = 5025,  # Keysight instruments standard port
         timeout: int = 10,
         sleep: float = 0.1,
-        no_delay=True,
+        no_delay: bool = True,
     ):
         """Initialize."""
         super().__init__(name, address)

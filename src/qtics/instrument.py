@@ -13,6 +13,7 @@ class Instrument(ABC):
         """Initialize."""
         self.name = name
         self.address = address
+        self._defaults = {}
 
     @abstractmethod
     def connect(self):
@@ -38,9 +39,11 @@ class Instrument(ABC):
         """Return name of the device from SCPI standard query."""
         return self.query("*IDN?")
 
-    def reset(self):
+    def reset(self, defaults=True):
         """Reset device with SCPI standard command."""
-        return self.write("*RST")
+        self.write("*RST")
+        if defaults:
+            self.set_defaults()
 
     def set(self, **kwargs):
         """Set multiple attributes and/or properties."""
@@ -76,3 +79,25 @@ class Instrument(ABC):
             )
             return valid
         return n
+
+    @property
+    def defaults(self) -> dict:
+        """Default values for the instrument attributes."""
+        return self._defaults
+
+    def update_defaults(self, defaults: dict):
+        """Validate and update the defaults dictionary."""
+        for key, value in defaults:
+            if hasattr(self, key):
+                self._defaults[key] = value
+            else:
+                raise RuntimeError(f"The instrument does not have the {key} parameter.")
+
+    def clear_defaults(self):
+        """Clear the defaults dictionary."""
+        self._defaults = {}
+
+    def set_defaults(self):
+        """Set the specified default values."""
+        if self.defaults:
+            self.set(**self.defaults)
