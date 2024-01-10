@@ -16,19 +16,22 @@ class BaseExperiment(ABC):
 
     def __init__(self, name, data_file=""):
         """Initialize."""
-        self.inst_names = []
-        if hasattr(self, "__annotations__"):
-            for attr_name, attr_type in self.__annotations__.items():
-                if Instrument in attr_type.__mro__:
-                    self.inst_names.append(attr_name)
         self.name = name
         if not data_file.endswith(".hdf5"):
             data_file = f"{name}_{time.strftime('%m_%d_%H_%M_%S')}.hdf5"
         self.data_file = data_file
+        self.inst_names = []
+        for attr_name, value in self.__class__.__dict__.items():
+            if not attr_name.startswith("_") and Instrument in type(value).__mro__:
+                self.inst_names.append(attr_name)
+        if hasattr(self, "__annotations__"):
+            for attr_name, attr_type in self.__annotations__.items():
+                if Instrument in attr_type.__mro__:
+                    self.inst_names.append(attr_name)
 
     def __del__(self):
         """Disconnect all devices and delete."""
-        self.all_instruments("__del__")
+        self.all_instruments("disconnect")
 
     @abstractmethod
     def main(self):
@@ -41,10 +44,10 @@ class BaseExperiment(ABC):
             self.main()
         except KeyboardInterrupt:
             log.warning("Interrupt signal received, exiting")
-            self.all_instruments("safe_reset")
+            self.all_instruments("reset")
         except Exception as e:
             log.error("\n\nException occured: %s", e)
-            self.all_instruments("safe_reset")
+            self.all_instruments("reset")
         finally:
             log.info("Experiment run succesfully.")
 
@@ -64,9 +67,10 @@ class BaseExperiment(ABC):
     def all_instruments(self, func_name, *args, **kwargs):
         """Apply function to all instruments."""
         for name in self.inst_names:
-            inst = getattr(self, name)
-            func = getattr(inst, func_name)
-            func(*args, **kwargs)
+            if hasattr(self, name):
+                inst = getattr(self, name)
+                func = getattr(inst, func_name)
+                _ = func(*args, **kwargs)
 
     def append_data_group(
         self, group_name: str, parent_name="", datasets=None, **attributes
@@ -146,6 +150,6 @@ class Experiment(BaseExperiment):
         """Check if monitoring condition has failed and restore safe values."""
         if self.event.is_set():
             log.warning("Exception event has occurred.")
-            self.all_instruments("safe_reset")
+            self.all_instruments("reset")
             return True
         return False
