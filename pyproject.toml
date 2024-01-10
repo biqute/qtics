@@ -51,7 +51,7 @@ h5py = "^3.10.0"
 matplotlib = ">=3.7"
 
 [[tool.mypy.overrides]]
-module=["serial", "niscope"]
+module=["serial", "niscope", "h5py"]
 ignore_missing_imports = true
 
 [tool.pylint]
