@@ -5,8 +5,8 @@ from time import sleep
 import h5py
 import pytest
 
-from qinst.experiment import BaseExperiment, Experiment, MonitorExperiment
-from qinst.instrument import Instrument
+from qtics.experiment import BaseExperiment, Experiment, MonitorExperiment
+from qtics.instrument import Instrument
 
 
 class DummyInstrument(Instrument):

@@ -1,8 +1,8 @@
 """Monitor experiment class for temperature check."""
 from time import sleep
 
-from qinst import Triton, log
-from qinst.experiment import MonitorExperiment
+from qtics import Triton, log
+from qtics.experiment import MonitorExperiment
 
 
 class TritonMonitor(MonitorExperiment):

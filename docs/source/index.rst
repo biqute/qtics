@@ -1,4 +1,4 @@
-Welcome to Qinst's documentation!
+Welcome to Qtics's documentation!
 =================================
 
 .. toctree::

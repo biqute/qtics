@@ -5,7 +5,7 @@ from typing import Literal
 
 import serial
 
-from qinst.serial_inst import SerialInst
+from qtics.serial_inst import SerialInst
 
 
 class SIM928(SerialInst):

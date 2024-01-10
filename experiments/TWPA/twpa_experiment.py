@@ -4,8 +4,8 @@ from time import sleep
 import numpy as np
 from triton_monitor import TritonMonitor
 
-from qinst import SIM928, SMA100B, VNAN9916A
-from qinst.experiment import Experiment
+from qtics import SIM928, SMA100B, VNAN9916A
+from qtics.experiment import Experiment
 
 
 class TWPAExperiment(Experiment):

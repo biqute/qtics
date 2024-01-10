@@ -7,8 +7,8 @@ from threading import Event
 
 import h5py
 
-from qinst import log
-from qinst.instrument import Instrument
+from qtics import log
+from qtics.instrument import Instrument
 
 
 class BaseExperiment(ABC):

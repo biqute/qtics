@@ -3,8 +3,8 @@ import socket
 
 import pytest
 
-from qinst.instrument import Instrument
-from qinst.network_inst import NetworkInst
+from qtics.instrument import Instrument
+from qtics.network_inst import NetworkInst
 
 
 def mock_pass(_=None, __=None):
