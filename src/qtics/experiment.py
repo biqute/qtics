@@ -29,6 +29,24 @@ class BaseExperiment(ABC):
                 if Instrument in attr_type.__mro__:
                     self.inst_names.append(attr_name)
 
+    def set_defaults(self):
+        """Set default values for the instruments from class attributes beginning by their name."""
+        public_attr = {
+            key: value
+            for key, value in self.__class__.__dict__.items()
+            if not key.startswith("_")
+        }
+
+        for inst_name in self.inst_names:
+            inst = getattr(self, inst_name)
+            inst.set_defaults(
+                **{
+                    key: value
+                    for key, value in public_attr.items()
+                    if key.startswith(inst_name + "_")
+                }
+            )
+
     def __del__(self):
         """Disconnect all devices and delete."""
         self.all_instruments("disconnect")

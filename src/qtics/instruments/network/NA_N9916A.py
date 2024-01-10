@@ -248,23 +248,14 @@ class N9916A(NetworkInst, ABC):
 class VNAN9916A(N9916A):
     """VNA mode of the N9916A."""
 
-    def __init__(
-        self,
-        name: str,
-        address: str,
-        port: int = 5025,
-        timeout: int = 1000,
-        sleep: float = 0.1,
-        no_delay=True,
-        max_points=100000,
-    ):
-        """Initialize super instrument and setup VNA mode."""
-        super().__init__(name, address, port, timeout, sleep, no_delay, max_points)
-        self.connect()
+    __trace: int = 1
+
+    def connect(self):
+        """Connect to the device and initialize VNA mode."""
+        super().connect()
         self.clear()
         self.reset()
         self._mode = "NA"
-        self.__trace = 1
         self.setup()
 
     def setup(self, par="S21"):
@@ -395,23 +386,14 @@ class VNAN9916A(N9916A):
 class SAN9916A(N9916A):
     """Spectrum Analyzer mode of the N9916A."""
 
-    def __init__(
-        self,
-        name: str,
-        address: str,
-        port: int = 5025,
-        timeout: int = 1000,
-        sleep: float = 0.1,
-        no_delay=True,
-        max_points=10001,
-    ):
-        """Initialize super instrument and setup VNA mode."""
-        super().__init__(name, address, port, timeout, sleep, no_delay, max_points)
-        self.connect()
+    __trace: int = 1
+
+    def connect(self):
+        """Connect to the device and setup SA mode."""
+        super().connect()
         self.clear()
         self.reset()
         self._mode = "SA"
-        self.__trace = 1
         self.continuous = False
         self.trace_type = "AVG"
         self.data_format = "REAL,64"

@@ -7,7 +7,7 @@ The SCPI commands and functions can be found in the `programming guide <https://
 
 Base class: :class:`qtics.network_inst.NetworkInst`.
 
-This instrument features different operational modes (VNA, SA, CAT...), with mostly different commands. Each mode is controlled by its respective class. When instantiated, these classes will automatically try to connect to the instrument and initialize a basic measurement setup.
+This instrument features different operational modes (VNA, SA, CAT...), with mostly different commands. Each mode is controlled by its respective class. When connecting, these classes will automatically try to initialize a basic measurement setup with the specific mode.
 
 Commands
 """"""""
@@ -53,6 +53,7 @@ Example of operation
   from qtics import VNAN9916A
 
   VNA = VNAN9916A(name = "myVNA", address = "192.168.40.10")
+  VNA.connect()
 
 
 Measure the :math:`S_{11}` parameter in the 4-8 GHz frequency range, averaging 5 sweeps of the VNA. The result consists of the frequency array and the raw IQ values, given as an array of complex numbers:
@@ -99,6 +100,7 @@ Example of operation
   from qtics import SAN9916A
 
   SA = SAN9916A(name = "mySA", address = "192.168.40.10")
+  SA.connect()
 
 
 Measure the amplitude of the signal in dB over the 4-8 GHz frequency range, averaging 5 sweeps of the SA and using a logarithmic scale for the amplitude. The result consists of the frequency array and the amplitude array of real numbers with the correct measurement unit and scale:
