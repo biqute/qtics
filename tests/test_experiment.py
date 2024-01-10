@@ -42,7 +42,8 @@ class DummyExperiment(Experiment):
 
     def main(self):
         """Run main part of the experiment."""
-        sleep(0.1)
+        sleep(0.2)
+        _ = self.monitor_failed()
 
 
 class DummyMonitor(MonitorExperiment):
@@ -53,6 +54,7 @@ class DummyMonitor(MonitorExperiment):
 
     def main(self):
         """Run main part of the experiment."""
+        sleep(0.1)
         if self.inst.read() > self.max_read:
             raise Exception("Read value over allowed maximum.")
 
@@ -73,7 +75,7 @@ def experiment(tmpdir):
 @pytest.fixture
 def monitor():
     """Dummy monitor fixture."""
-    return DummyMonitor("monitor")
+    return DummyMonitor("testmonitor")
 
 
 def test_init(experiment, tmpdir):
@@ -84,6 +86,8 @@ def test_init(experiment, tmpdir):
     assert experiment.name == "exp"
     assert experiment.inst_names == ["instrument1", "instrument2"]
     assert experiment.data_file == str(tmpdir.join("datafile.hdf5"))
+    assert experiment.monitors == []
+    assert not experiment.monitor_failed()
 
 
 def test_add_instrument(experiment, instrument):
@@ -105,10 +109,10 @@ def test_add_monitor(experiment, monitor):
 def test_all_instruments(experiment, instrument):
     """Test applying function to all instruments."""
     experiment.add_instrument(instrument)
-    experiment.all_instruments("set", name="setname")
+    experiment.all_instruments("set", address="setaddr")
 
-    assert experiment.instrument1.name == "setname"
-    assert experiment.instrument2.name == "setname"
+    assert experiment.instrument1.address == "setaddr"
+    assert experiment.instrument2.address == "setaddr"
 
 
 def test_append_data_group(experiment):
@@ -129,6 +133,23 @@ def test_append_data_group(experiment):
         for key, value in attributes.items():
             assert key in group1.attrs
             assert group1.attrs[key] == value
+
+
+def test_successful_run(experiment, monitor):
+    """Test succesful run."""
+    experiment.instrument1.update_defaults(name="reset occurred")
+    experiment.add_monitor(monitor)
+    experiment.run()
+    assert experiment.instrument1.name == "instrument1"
+
+
+def test_unsuccessful_run(experiment, monitor):
+    """Test run with monitor failure."""
+    monitor.max_read = 0
+    experiment.instrument1.update_defaults(name="reset occurred")
+    experiment.add_monitor(monitor)
+    experiment.run()
+    assert experiment.instrument1.name == "reset occurred"
 
 
 if __name__ == "__main__":

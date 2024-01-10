@@ -121,6 +121,7 @@ class Experiment(BaseExperiment):
 
     def run(self):
         """Run the experiment with parallel monitoring functions."""
+        self.event.clear()
         if len(self.monitors) == 0:
             super().run()
         else:

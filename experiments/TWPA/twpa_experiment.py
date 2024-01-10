@@ -30,7 +30,7 @@ class TWPAExperiment(Experiment):
         """Initialize."""
         super().__init__(name, data_file=data_file)
         self.add_instrument(VNAN9916A("vna", "192.168.40.10"))
-        self.vna.set(
+        self.vna.update_defaults(
             f_min=self.f_start,
             f_max=self.f_stop,
             power=self.vna_power,
@@ -39,7 +39,7 @@ class TWPAExperiment(Experiment):
             average=self.vna_average,
         )
         self.pump.connect()
-        self.pump.set(
+        self.pump.update_defaults(
             f_mode="CW",
             f_fixed=self.pump_freq,
             p_mode="CW",
@@ -48,6 +48,7 @@ class TWPAExperiment(Experiment):
         )
         self.bias.connect()
         self.bias.voltage = self.bias_voltage
+        self.all_instruments("set_defaults")
         self.add_monitor(TritonMonitor("tempcheck"))
 
     def attribute_sweep(
