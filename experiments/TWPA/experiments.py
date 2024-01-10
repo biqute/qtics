@@ -11,13 +11,13 @@ class S21vsBias(TWPAExperiment):
     delay_between_acquisitions = 5
     min_bias = 0
     max_bias = 2.4
-    bias_step = 0.02
+    step_bias = 0.02
     vna_power = -20
 
     def main(self):
         """Acquire for different bias voltage values."""
         self.pump.rf_status = "OFF"
-        bias_sweep = np.arange(self.min_bias, self.max_bias, self.bias_step)
+        bias_sweep = np.arange(self.min_bias, self.max_bias, self.step_bias)
         self.attribute_sweep("bias", "voltage", bias_sweep)
 
 
@@ -28,7 +28,7 @@ class GainVsFreq(TWPAExperiment):
     f_stop = 7e9
     f_window = 3e9
     vna_average = 1
-    sweep_points = 1000
+    vna_sweep_points = 1000
 
     def main(self):
         """Acquire with and without pump."""

@@ -39,10 +39,11 @@ class DummyExperiment(Experiment):
 
     instrument1 = DummyInstrument("instrument1", "address")
     instrument2: DummyInstrument
+    instrument1_address = "default address"
 
     def main(self):
         """Run main part of the experiment."""
-        sleep(0.2)
+        sleep(0.1)
         _ = self.monitor_failed()
 
 
@@ -54,7 +55,7 @@ class DummyMonitor(MonitorExperiment):
 
     def main(self):
         """Run main part of the experiment."""
-        sleep(0.1)
+        sleep(0.05)
         if self.inst.read() > self.max_read:
             raise Exception("Read value over allowed maximum.")
 
@@ -88,6 +89,12 @@ def test_init(experiment, tmpdir):
     assert experiment.data_file == str(tmpdir.join("datafile.hdf5"))
     assert experiment.monitors == []
     assert not experiment.monitor_failed()
+
+
+def test_update_defaults(experiment):
+    """Test default argument setter."""
+    experiment.update_defaults()
+    assert experiment.instrument1.defaults == {"address": "default address"}
 
 
 def test_add_instrument(experiment, instrument):

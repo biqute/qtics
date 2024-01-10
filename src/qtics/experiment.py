@@ -29,7 +29,7 @@ class BaseExperiment(ABC):
                 if Instrument in attr_type.__mro__:
                     self.inst_names.append(attr_name)
 
-    def set_defaults(self):
+    def update_defaults(self):
         """Set default values for the instruments from class attributes beginning by their name."""
         public_attr = {
             key: value
@@ -38,14 +38,16 @@ class BaseExperiment(ABC):
         }
 
         for inst_name in self.inst_names:
-            inst = getattr(self, inst_name)
-            inst.set_defaults(
-                **{
-                    key: value
-                    for key, value in public_attr.items()
-                    if key.startswith(inst_name + "_")
-                }
-            )
+            if hasattr(self, inst_name):
+                inst = getattr(self, inst_name)
+                identifier = inst_name + "_"
+                inst.update_defaults(
+                    **{
+                        key.replace(identifier, ""): value
+                        for key, value in public_attr.items()
+                        if key.startswith(identifier)
+                    }
+                )
 
     def __del__(self):
         """Disconnect all devices and delete."""
@@ -58,6 +60,8 @@ class BaseExperiment(ABC):
     def run(self):
         """Run the experiment."""
         log.info("Starting experiment %s.", self.name)
+        self.update_defaults()
+        self.all_instruments("set_defaults")
         try:
             self.main()
         except KeyboardInterrupt:
