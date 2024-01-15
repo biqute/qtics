@@ -38,9 +38,8 @@ class TestNetworklInst:
         assert inst.address == "address"
         assert inst.port == 5025
         assert inst.sleep == 0.1
-        assert isinstance(inst.socket, socket.socket)
         assert inst.no_delay == True
-        assert inst.socket.timeout == 10
+        assert inst.timeout == 10
 
     def test_del(self, network_inst):
         """Test destructor."""
@@ -52,6 +51,11 @@ class TestNetworklInst:
         """Test connect function."""
         inst = network_inst
         inst.connect()
+        assert isinstance(inst.socket, socket.socket)
+        assert inst.timeout == inst.socket.timeout
+        assert inst.no_delay == bool(
+            inst.socket.getsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY)
+        )
 
     def test_disconnect(self, network_inst):
         """Test disconnect function."""
@@ -63,12 +67,14 @@ class TestNetworklInst:
         """Test write function."""
         mocker.patch("socket.socket.sendall", new_callable=lambda: mock_pass)
         inst = network_inst
+        inst.connect()
         inst.write("test_cmd")
 
     def test_read(self, network_inst, mocker):
         """Test read function."""
         mocker.patch("socket.socket.recv", new_callable=lambda: mock_read)
         inst = network_inst
+        inst.connect()
         assert inst.read() == "test_read"
 
     def test_query(self, network_inst, mocker):
@@ -76,6 +82,7 @@ class TestNetworklInst:
         mocker.patch("socket.socket.recv", new_callable=lambda: mock_read)
         mocker.patch("socket.socket.sendall", new_callable=lambda: mock_pass)
         inst = network_inst
+        inst.connect()
         assert inst.query("CMD?") == "test_read"
         with pytest.raises(ValueError):
             inst.query("CMD")
