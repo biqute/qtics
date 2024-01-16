@@ -7,6 +7,7 @@ from concurrent.futures import FIRST_COMPLETED, ThreadPoolExecutor, wait
 from threading import Event
 
 import h5py
+import numpy as np
 
 from qtics import log
 from qtics.instrument import Instrument
@@ -96,6 +97,27 @@ class BaseExperiment(ABC):
                     group.create_dataset(data_name, data=data)
             if attributes:
                 group.attrs.update(attributes)
+
+    def get_datasets_dict(self, data_file=""):
+        """Load the datasets of an hdf5 file as dictionary."""
+
+        def _recurse(h5file, path):
+            data = {}
+            group = h5file[path]
+            for key in list(group):
+                if key != "config":
+                    item = group.get(key)
+                    if isinstance(item, h5py.Dataset):
+                        data[key] = np.asarray(group.get(key))
+                    elif isinstance(item, h5py.Group):
+                        data[key] = _recurse(h5file, path + key + "/")
+            return data
+
+        if not data_file:
+            data_file = self.data_file
+
+        with h5py.File(data_file, "r") as h5file:
+            return _recurse(h5file, "/")
 
     def save_config(self):
         """Save experiment's attributes and instruments defaults."""

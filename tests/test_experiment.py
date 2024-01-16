@@ -3,6 +3,7 @@
 from time import sleep
 
 import h5py
+import numpy as np
 import pytest
 
 from qtics.experiment import BaseExperiment, Experiment, MonitorExperiment
@@ -134,6 +135,17 @@ def test_append_data_group(experiment):
         for key, value in attributes.items():
             assert key in group1.attrs
             assert group1.attrs[key] == value
+
+
+def test_get_datasets_dict(experiment):
+    """Test loading datasets as dictionary."""
+    datasets = {"data1": 3, "data2": 5}
+    attributes = {"attr1": "value1", "attr2": "value2"}
+
+    experiment.append_data_group("group1", datasets=datasets, **attributes)
+    experiment.save_config()
+    data = experiment.get_datasets_dict()
+    assert data == {"group1": {"data1": np.asarray(3), "data2": np.asarray(5)}}
 
 
 def test_save_config(experiment):
