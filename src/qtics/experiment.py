@@ -21,36 +21,20 @@ class BaseExperiment(ABC):
             data_file = f"{name}_{time.strftime('%m_%d_%H_%M_%S')}.hdf5"
         self.data_file = data_file
         self.inst_names = []
-        for attr_name, value in self.__class__.__dict__.items():
-            if not attr_name.startswith("_") and Instrument in type(value).__mro__:
+        for attr_name in dir(self):
+            if (
+                not attr_name.startswith("_")
+                and Instrument in type(getattr(self, attr_name)).__mro__
+            ):
                 self.inst_names.append(attr_name)
         if hasattr(self, "__annotations__"):
             for attr_name, attr_type in self.__annotations__.items():
                 if Instrument in attr_type.__mro__:
                     self.inst_names.append(attr_name)
 
-    def update_defaults(self):
-        """Set default values for the instruments from class attributes beginning by their name."""
-        public_attr = {
-            key: value
-            for key, value in self.__class__.__dict__.items()
-            if not key.startswith("_")
-        }
-
-        for inst_name in self.inst_names:
-            if hasattr(self, inst_name):
-                inst = getattr(self, inst_name)
-                identifier = inst_name + "_"
-                inst.update_defaults(
-                    **{
-                        key.replace(identifier, ""): value
-                        for key, value in public_attr.items()
-                        if key.startswith(identifier)
-                    }
-                )
-
     def __del__(self):
         """Disconnect all devices and delete."""
+        self.all_instruments("clear_defaults")
         self.all_instruments("disconnect")
 
     @abstractmethod
@@ -60,18 +44,17 @@ class BaseExperiment(ABC):
     def run(self):
         """Run the experiment."""
         log.info("Starting experiment %s.", self.name)
-        self.update_defaults()
-        self.all_instruments("set_defaults")
         try:
             self.main()
         except KeyboardInterrupt:
             log.warning("Interrupt signal received, exiting")
             self.all_instruments("reset")
+            raise KeyboardInterrupt
         except Exception as e:
             log.error("\n\nException occured: %s", e)
             self.all_instruments("reset")
-        finally:
-            log.info("Experiment run succesfully.")
+            raise Exception(e)
+        log.info("Experiment run succesfully.")
 
     def add_instrument(self, inst: Instrument):
         """Add an instrument."""
@@ -100,18 +83,30 @@ class BaseExperiment(ABC):
         """Save data appending to hdf5 file."""
         with h5py.File(self.data_file, "a") as file:
             if parent_name != "":
-                if hasattr(file, parent_name):
-                    parent_group = getattr(file, parent_name)
-                else:
-                    parent_group = file.create_group(parent_name)
-                group = parent_group.create_group(group_name)
+                parent_group = file.require_group(parent_name)
+                group = parent_group.require_group(group_name)
             else:
-                group = file.create_group(group_name)
+                group = file.require_group(group_name)
+
             if datasets is not None:
                 for data_name, data in datasets.items():
                     group.create_dataset(data_name, data=data)
             if attributes:
                 group.attrs.update(attributes)
+
+    def save_config(self):
+        """Save experiment's attributes and instruments defaults."""
+        config_attr = {
+            key: getattr(self, key)
+            for key in dir(self)
+            if isinstance(getattr(self, key), (int, float, str, bool))
+            and not key.startswith("_")
+        }
+        self.append_data_group("config", **config_attr)
+        for inst_name in self.inst_names:
+            if hasattr(self, inst_name):
+                inst = getattr(self, inst_name)
+                self.append_data_group(inst_name, parent_name="config", **inst.defaults)
 
 
 class MonitorExperiment(BaseExperiment):

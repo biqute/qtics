@@ -4,6 +4,24 @@ from time import sleep
 import numpy as np
 from twpa_experiment import TWPAExperiment
 
+from qtics import VNAN9916A
+from qtics.experiment import Experiment
+
+
+class VNASnapshot(Experiment):
+    """Simple snapshot with vna."""
+
+    vna = VNAN9916A("vna", "192.168.40.10")
+
+    def main(self):
+        """Acquire VNA snapshot."""
+        self.vna.connect()
+        self.vna.set_defaults(
+            f_min=1e9, f_max=1e10, sweep_points=10000, average=1, IFBW=1000, power=-10
+        )
+        f, z = self.vna.snapshot()
+        self.append_data_group("snapshot", datasets={"frequencies": f, "values": z})
+
 
 class S21vsBias(TWPAExperiment):
     """Response as a function of bias voltage."""
@@ -12,10 +30,10 @@ class S21vsBias(TWPAExperiment):
     min_bias = 0
     max_bias = 2.4
     step_bias = 0.02
-    vna_power = -20
 
     def main(self):
         """Acquire for different bias voltage values."""
+        self.vna.set_defaults(power=-20)
         self.pump.rf_status = "OFF"
         bias_sweep = np.arange(self.min_bias, self.max_bias, self.step_bias)
         self.attribute_sweep("bias", "voltage", bias_sweep)
@@ -27,11 +45,11 @@ class GainVsFreq(TWPAExperiment):
     f_start = 1e9
     f_stop = 7e9
     f_window = 3e9
-    vna_average = 1
-    vna_sweep_points = 1000
 
     def main(self):
         """Acquire with and without pump."""
+        self.vna.set_defaults(average=1, sweep_points=1000)
+
         self.pump.rf_status = "ON"
         self.bias.output_on()
         sleep(0.1)
@@ -84,12 +102,12 @@ class CompressionPoint(TWPAExperiment):
     f_stop = 7e9
     min_vna_pow = -35
     max_vna_pow = -5
-    vna_pow_step = 0.5
+    step_vna_pow = 0.5
 
     def main(self):
         """Acquire for different vna power values."""
         self.pump.rf_status = "ON"
-        power_sweep = np.arange(self.min_vna_pow, self.max_vna_pow, self.vna_pow_step)
+        power_sweep = np.arange(self.min_vna_pow, self.max_vna_pow, self.step_vna_pow)
         self.attribute_sweep("vna", "power", power_sweep, parent_name="pump_on")
         self.pump.rf_status = "OFF"
         self.attribute_sweep("vna", "power", power_sweep, parent_name="pump_off")

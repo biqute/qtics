@@ -39,7 +39,7 @@ class DummyExperiment(Experiment):
 
     instrument1 = DummyInstrument("instrument1", "address")
     instrument2: DummyInstrument
-    instrument1_address = "default address"
+    exp_attr = "attr value"
 
     def main(self):
         """Run main part of the experiment."""
@@ -91,12 +91,6 @@ def test_init(experiment, tmpdir):
     assert not experiment.monitor_failed()
 
 
-def test_update_defaults(experiment):
-    """Test default argument setter."""
-    experiment.update_defaults()
-    assert experiment.instrument1.defaults == {"address": "default address"}
-
-
 def test_add_instrument(experiment, instrument):
     """Test adding instruments."""
     assert not hasattr(experiment, "instrument2")
@@ -140,6 +134,22 @@ def test_append_data_group(experiment):
         for key, value in attributes.items():
             assert key in group1.attrs
             assert group1.attrs[key] == value
+
+
+def test_save_config(experiment):
+    """Test saving config to data file."""
+    experiment.instrument1.update_defaults(address="default address")
+    experiment.instrument1.set_defaults()
+    experiment.save_config()
+    with h5py.File(experiment.data_file, "r") as file:
+        assert "config" in file
+        config = file["config"]
+        assert dict(config.attrs) == {
+            "exp_attr": "attr value",
+            "name": experiment.name,
+            "data_file": experiment.data_file,
+        }
+        assert dict(config["instrument1"].attrs) == {"address": "default address"}
 
 
 def test_successful_run(experiment, monitor):

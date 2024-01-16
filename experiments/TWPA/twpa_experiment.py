@@ -16,20 +16,20 @@ class TWPAExperiment(Experiment):
     bias = SIM928("bias", "COM34")
     delay_between_acquisitions = 1
     resistance = 1997
-    vna_f_min = 1e9
-    vna_f_max = 10e9
-    vna_power = -45
-    vna_sweep_points = 5000
-    vna_IFBW = 1000
-    vna_average = 1
-    pump_f_fixed = 7.95e9
-    pump_p_fixed = -2.5
-    bias_voltage = 2.4
 
     def __init__(self, name, data_file: str = ""):
         """Initialize."""
         super().__init__(name, data_file=data_file)
         self.add_monitor(TritonMonitor("tempcheck"))
+
+    def config_instruments(self):
+        """Configure instruments defaults."""
+        self.all_instruments("connect")
+        self.vna.set_defaults(
+            f_min=1e9, f_max=10e9, power=-45, sweep_point=5000, IFBW=1000, average=1
+        )
+        self.pump.set_defaults(f_fixed=7.95e9, p_fixed=-2.5)
+        self.bias.set_defaults(voltage=2.4)
 
     def attribute_sweep(
         self,
@@ -63,11 +63,4 @@ class TWPAExperiment(Experiment):
     def run(self):
         """Run experiment."""
         super().run()
-        config_attr = {
-            key: getattr(self, key)
-            for key in dir(self)
-            if isinstance(getattr(self, key), (int, float, str, bool))
-            and not key.startswith("_")
-        }
-        print(config_attr)
-        self.append_data_group("config", **config_attr)
+        self.save_config()
