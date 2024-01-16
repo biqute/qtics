@@ -26,7 +26,7 @@ class TWPAExperiment(Experiment):
         """Configure instruments defaults."""
         self.all_instruments("connect")
         self.vna.set_defaults(
-            f_min=1e9, f_max=10e9, power=-45, sweep_point=5000, IFBW=1000, average=1
+            f_min=1e9, f_max=10e9, power=-45, sweep_points=5000, IFBW=1000, average=1
         )
         self.pump.set_defaults(f_fixed=7.95e9, p_fixed=-2.5)
         self.bias.set_defaults(voltage=2.4)
@@ -51,7 +51,7 @@ class TWPAExperiment(Experiment):
                 self.bias.output_off()
             self.append_data_group(
                 str(value),
-                parent_name="",
+                parent_name=parent_name,
                 datasets={"frequencies": f, "values": z},
                 **group_attributes
             )
@@ -62,5 +62,6 @@ class TWPAExperiment(Experiment):
 
     def run(self):
         """Run experiment."""
+        self.config_instruments()
         super().run()
         self.save_config()

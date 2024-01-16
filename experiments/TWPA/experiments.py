@@ -21,9 +21,10 @@ class VNASnapshot(Experiment):
         )
         f, z = self.vna.snapshot()
         self.append_data_group("snapshot", datasets={"frequencies": f, "values": z})
+        self.save_config()
 
 
-class S21vsBias(TWPAExperiment):
+class S21VsBias(TWPAExperiment):
     """Response as a function of bias voltage."""
 
     delay_between_acquisitions = 5
@@ -40,31 +41,25 @@ class S21vsBias(TWPAExperiment):
 
 
 class GainVsFreq(TWPAExperiment):
-    """Long snapshot for ripples."""
-
-    f_start = 1e9
-    f_stop = 7e9
-    f_window = 3e9
+    """Gain profile."""
 
     def main(self):
         """Acquire with and without pump."""
-        self.vna.set_defaults(average=1, sweep_points=1000)
-
         self.pump.rf_status = "ON"
         self.bias.output_on()
         sleep(0.1)
-        f, z = self.vna.survey(self.f_start, self.f_stop, self.f_window)
+        f, z = self.vna.snapshot()
         self.append_data_group("pump_on", datasets={"frequencies": f, "values": z})
         self.pump.rf_status = "OFF"
         self.bias.output_off()
         sleep(self.delay_between_acquisitions)
         self.bias.output_on()
-        f, z = self.vna.survey(self.f_start, self.f_stop, self.f_window)
+        f, z = self.vna.snapshot()
         self.append_data_group("pump_off", datasets={"frequencies": f, "values": z})
         self.bias.output_off()
 
 
-class GainVsPump(TWPAExperiment):
+class GainVsPumpFreq(TWPAExperiment):
     """Gain as a function of pump frequency."""
 
     min_f_pump = 7.8e9
@@ -82,7 +77,32 @@ class GainVsPump(TWPAExperiment):
         f, z = self.vna.snapshot()
         self.append_data_group("pump_off", datasets={"frequencies": f, "values": z})
         self.bias.output_off()
+
         self.pump.rf_status = "ON"
+        freq_sweep = np.arange(self.min_f_pump, self.max_f_pump, self.f_pump_step)
+        self.attribute_sweep("pump", "frequency", freq_sweep)
+        self.pump.rf_status = "OFF"
+        self.bias.output_off()
+
+
+class GainVsPumpFreqVsPumpPow(TWPAExperiment):
+    """Gain as a function of pump frequency and power."""
+
+    min_f_pump = 7.8e9
+    max_f_pump = 8.3e9
+    f_pump_step = 1e7
+
+    min_p_pump = -4
+    max_p_pump = -2
+    p_pump_step = 0.1
+
+    def main(self):
+        """Acquire for different pump frequency values."""
+        self.bias.output_on()
+        self.pump.rf_status = "OFF"
+        f, z = self.vna.snapshot()
+        self.append_data_group("pump_off", datasets={"frequencies": f, "values": z})
+        self.bias.output_off()
 
         for pump_pow in np.arange(self.min_p_pump, self.max_p_pump, self.p_pump_step):
             self.pump.rf_status = "ON"
