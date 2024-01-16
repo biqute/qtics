@@ -17,9 +17,9 @@ class TWPAExperiment(Experiment):
     delay_between_acquisitions = 1
     resistance = 1997
 
-    def __init__(self, name, data_file: str = ""):
+    def __init__(self, name, data_file: str = "", data_dir="data"):
         """Initialize."""
-        super().__init__(name, data_file=data_file)
+        super().__init__(name, data_file=data_file, data_dir=data_dir)
         self.add_monitor(TritonMonitor("tempcheck"))
 
     def config_instruments(self):

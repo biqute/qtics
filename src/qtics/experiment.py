@@ -1,5 +1,6 @@
 """Base Experiment classes."""
 
+import os
 import time
 from abc import ABC, abstractmethod
 from concurrent.futures import FIRST_COMPLETED, ThreadPoolExecutor, wait
@@ -14,12 +15,14 @@ from qtics.instrument import Instrument
 class BaseExperiment(ABC):
     """Base experiment class."""
 
-    def __init__(self, name, data_file=""):
+    def __init__(self, name: str, data_file: str = "", data_dir: str = "data"):
         """Initialize."""
         self.name = name
         if not data_file.endswith(".hdf5"):
             data_file = f"{name}_{time.strftime('%m_%d_%H_%M_%S')}.hdf5"
-        self.data_file = data_file
+        if data_dir != "":
+            os.makedirs(data_dir, exist_ok=True)
+        self.data_file = os.path.join(data_dir, data_file)
         self.inst_names = []
         for attr_name in dir(self):
             if (
@@ -54,7 +57,7 @@ class BaseExperiment(ABC):
             log.error("\n\nException occured: %s", e)
             self.all_instruments("reset")
             raise Exception(e)
-        log.info("Experiment run succesfully.")
+        log.info("Experiment run successfully.")
 
     def add_instrument(self, inst: Instrument):
         """Add an instrument."""
@@ -126,9 +129,9 @@ class MonitorExperiment(BaseExperiment):
 class Experiment(BaseExperiment):
     """Experiment with monitoring functions."""
 
-    def __init__(self, name, data_file=""):
+    def __init__(self, name, data_file="", data_dir="data"):
         """Initialize."""
-        super().__init__(name, data_file=data_file)
+        super().__init__(name, data_file=data_file, data_dir=data_dir)
         self.monitors = []
         self.event = Event()
 

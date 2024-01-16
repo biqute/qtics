@@ -43,7 +43,7 @@ class SerialInst(Instrument):
         """Connect to the device."""
         if not self.serial.is_open:
             self.serial.open()
-            log.info(f"Instrument {self.name} connected succesfully.")
+            log.info(f"Instrument {self.name} connected successfully.")
         else:
             log.info(f"Instrument {self.name} already connected.")
 

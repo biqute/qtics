@@ -70,13 +70,13 @@ def instrument():
 def experiment(tmpdir):
     """Dummy experiment fixture."""
     datafile = str(tmpdir.join("datafile.hdf5"))
-    return DummyExperiment("exp", data_file=datafile)
+    return DummyExperiment("exp", data_file=datafile, data_dir="")
 
 
 @pytest.fixture
 def monitor():
     """Dummy monitor fixture."""
-    return DummyMonitor("testmonitor")
+    return DummyMonitor("testmonitor", data_dir="")
 
 
 def test_init(experiment, tmpdir):
