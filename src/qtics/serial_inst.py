@@ -41,14 +41,19 @@ class SerialInst(Instrument):
 
     def connect(self):
         """Connect to the device."""
-        self.serial.open()
-        log.info(f"Instrument {self.name} connected succesfully.")
+        if not self.serial.is_open:
+            self.serial.open()
+            log.info(f"Instrument {self.name} connected succesfully.")
+        else:
+            log.info(f"Instrument {self.name} already connected.")
 
     def disconnect(self):
         """Disconnect from the device."""
         if self.serial.is_open:
             self.serial.close()
             log.info(f"Instrument {self.name} disconnected.")
+        else:
+            log.info(f"No connection to close for instrument {self.name}.")
 
     def write(self, cmd, sleep=False):
         """Write a message to the serial port."""

@@ -97,7 +97,9 @@ class Instrument(ABC):
         """Clear the defaults dictionary."""
         self._defaults = {}
 
-    def set_defaults(self):
+    def set_defaults(self, **kwargs):
         """Set the specified default values."""
+        if kwargs:
+            self.update_defaults(**kwargs)
         if self.defaults:
             self.set(**self.defaults)
