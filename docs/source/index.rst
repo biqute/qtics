@@ -7,6 +7,7 @@ Welcome to Qtics's documentation!
 
    installation
    arduino
+   experiments
    instruments/modules
 
 .. toctree::

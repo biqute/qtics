@@ -1,4 +1,9 @@
-"""Base Experiment classes."""
+"""
+Base Experiment classes.
+
+.. module:: experiment.py
+
+"""
 
 import os
 import time
@@ -61,7 +66,7 @@ class BaseExperiment(ABC):
         log.info("Experiment run successfully.")
 
     def add_instrument(self, inst: Instrument):
-        """Add an instrument."""
+        """Add an instrument with the correct name."""
         name = inst.name
         if name not in self.inst_names:
             log.warning(
@@ -137,11 +142,14 @@ class BaseExperiment(ABC):
 class MonitorExperiment(BaseExperiment):
     """Base monitoring experiment class."""
 
+    sleep: float = 5
+
     def watch(self, event: Event):
         """Run the experiment continuously until event is set."""
         self.all_instruments("connect")
         log.info("Running monitor %s", self.name)
         while True:
+            time.sleep(self.sleep)
             self.main()
             if event.is_set():
                 log.info("Trigger event set, %s shutting down.", self.name)

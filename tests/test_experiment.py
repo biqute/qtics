@@ -44,7 +44,7 @@ class DummyExperiment(Experiment):
 
     def main(self):
         """Run main part of the experiment."""
-        sleep(0.1)
+        sleep(0.2)
         _ = self.monitor_failed()
 
 
@@ -53,10 +53,10 @@ class DummyMonitor(MonitorExperiment):
 
     inst = DummyInstrument("inst", "address")
     max_read = 1
+    sleep = 0.05
 
     def main(self):
         """Run main part of the experiment."""
-        sleep(0.05)
         if self.inst.read() > self.max_read:
             raise Exception("Read value over allowed maximum.")
 

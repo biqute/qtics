@@ -56,7 +56,6 @@ class TWPAExperiment(Experiment):
                 **group_attributes
             )
             if self.monitor_failed():
-                self.all_instruments("safe_reset")
                 return
             sleep(self.delay_between_acquisitions)
 
