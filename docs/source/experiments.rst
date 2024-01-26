@@ -3,7 +3,7 @@
 Experiments
 ===========
 
-Qtics helps coordinating multiple instruments and provides simple data handling functions through the ``Experiment`` classes. A complete example can be found in the `experiments/TWPA <https://github.com/biqute/qtics/tree/main/experiments/TWPA>`_ folder, which contains a collection of basic characterization routines for Traveling Wave Parametric Amplifiers.
+Qtics helps coordinating multiple instruments and provides simple data handling functions through the ``Experiment`` classes. A basic example can be found in the `examples <https://github.com/biqute/qtics/tree/main/examples>`_ folder.
 
 New experiments can be created using the :class:`qtics.experiment.Experiment` and :class:`qtics.experiment.MonitorExperiment` classes, which both inherit from :class:`qtics.experiment.BaseExperiment`. Some of the provided functionalities include:
 
