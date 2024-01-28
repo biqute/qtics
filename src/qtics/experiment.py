@@ -60,7 +60,7 @@ class BaseExperiment(ABC):
             self.all_instruments("reset")
             raise KeyboardInterrupt
         except Exception as e:
-            log.error("\n\nException occured: %s", e)
+            log.error("Exception occured: %s", e)
             self.all_instruments("reset")
             raise Exception(e)
         log.info("Experiment run successfully.")
@@ -105,7 +105,6 @@ class BaseExperiment(ABC):
 
     def get_datasets_dict(self, data_file=""):
         """Load the datasets of an hdf5 file as dictionary."""
-
         def _recurse(h5file, path):
             data = {}
             group = h5file[path]
@@ -148,12 +147,11 @@ class MonitorExperiment(BaseExperiment):
         """Run the experiment continuously until event is set."""
         self.all_instruments("connect")
         log.info("Running monitor %s", self.name)
-        while True:
+        while not event.is_set():
             time.sleep(self.sleep)
             self.main()
-            if event.is_set():
-                log.info("Trigger event set, %s shutting down.", self.name)
-                return
+        else:
+            log.info("Trigger event set, %s shutting down.", self.name)
 
 
 class Experiment(BaseExperiment):
@@ -174,12 +172,12 @@ class Experiment(BaseExperiment):
         self.event.clear()
         if len(self.monitors) == 0:
             super().run()
-        else:
-            with ThreadPoolExecutor(1 + len(self.monitors)) as executor:
+            return
+        with ThreadPoolExecutor(1 + len(self.monitors)) as executor:
                 futures = []
                 log.info("Starting experiment %s and monitors.", self.name)
-                for m in self.monitors:
-                    futures.append(executor.submit(m.watch, self.event))
+                for monitor in self.monitors:
+                    futures.append(executor.submit(monitor.watch, self.event))
                 futures.append(executor.submit(self.main))
                 done, _ = wait(futures, return_when=FIRST_COMPLETED)
                 if len(done) > 0 and len(done) != len(futures):

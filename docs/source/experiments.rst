@@ -10,7 +10,7 @@ New experiments can be created using the :class:`qtics.experiment.Experiment` an
 - Call methods common to all instruments
 - Simplified data saving and loading functions with hdf5 files
 - Automatic save of the instruments defaults and experiment's attributes in the data file
-- Reset the instruments when exceptions occurs.
+- Reset the instruments when exceptions occur.
 - Monitor in parallel the parameters of other instruments and interrupt the experiment if chosen conditions are not satisfied.
 
 Writing a new experiment
@@ -50,10 +50,10 @@ This will create a ``vna_snapshot_{current_date}.hdf5`` file with the acquired d
 MonitorExperiment
 """""""""""""""""
 
-The experiment classes allow to monitor in parallel the parameters of other instruments and reset the experiment if they do not respect some chosen condition. This can be done by writing a class derived from :class:``qtics.experiment.MonitorExperiment`` and adding it to the main experiment.
+The experiment classes allow to monitor in parallel the parameters of other instruments and reset the experiment if they do not respect some chosen condition. This can be done by writing a class derived from :class:`qtics.experiment.MonitorExperiment` and adding it to the main experiment.
 Their main features consist of:
 
-- The ``main`` method a ``MonitorExperiment`` is run every ``MonitorExperiment.sleep`` seconds.
+- The ``main`` method of a ``MonitorExperiment`` is run every ``MonitorExperiment.sleep`` seconds.
 - The reset and stop condition is activated by raising an ``Exception``
 
 Here's an example of a ``MonitorExperiment`` that checks if the temperature of the cryostat is in the allowed range.
@@ -74,7 +74,7 @@ Here's an example of a ``MonitorExperiment`` that checks if the temperature of t
               raise Exception("Temperature %s mK out of allowed range.", temperature)
 
 
-In the main experiment, the reset condition can be checked by calling the ''Experiment.monitor_failed()`` method, as in this example.
+In the main experiment, the reset condition can be checked by calling the ``Experiment.monitor_failed()`` method, as in this example.
 
 .. code-block:: python
 

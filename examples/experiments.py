@@ -42,7 +42,7 @@ class TritonMonitor(MonitorExperiment):
         """Execute main part of the experiment."""
         temperature = self.cryo.get_mixing_chamber_temp()
         log.info("Cryostat temperature %s mK", temperature)
-        if temperature < self.min_temp or temperature > self.max_temp:
+        if self.min_temp > temperature > self.max_temp:
             raise Exception("Temperature %s mK out of allowed range.", temperature)
         sleep(self.sleep)
 
@@ -58,9 +58,9 @@ class MultiVNASnapshot(Experiment):
         """Acquire VNA snapshot."""
         self.vna.connect()
         for i in range(self.n_snapshots):
-            f, z = self.vna.snapshot()
+            freqs, vals = self.vna.snapshot()
             self.append_data_group(
-                f"snapshot_{i}", datasets={"frequencies": f, "values": z}
+                f"snapshot_{i}", datasets={"frequencies": freqs, "values": vals}
             )
             if self.monitor_failed():
                 return

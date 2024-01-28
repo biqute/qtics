@@ -179,7 +179,3 @@ def test_unsuccessful_run(experiment, monitor):
     experiment.add_monitor(monitor)
     experiment.run()
     assert experiment.instrument1.name == "reset occurred"
-
-
-if __name__ == "__main__":
-    pytest.main()
