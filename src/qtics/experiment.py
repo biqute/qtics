@@ -105,6 +105,7 @@ class BaseExperiment(ABC):
 
     def get_datasets_dict(self, data_file=""):
         """Load the datasets of an hdf5 file as dictionary."""
+
         def _recurse(h5file, path):
             data = {}
             group = h5file[path]
@@ -174,26 +175,26 @@ class Experiment(BaseExperiment):
             super().run()
             return
         with ThreadPoolExecutor(1 + len(self.monitors)) as executor:
-                futures = []
-                log.info("Starting experiment %s and monitors.", self.name)
-                for monitor in self.monitors:
-                    futures.append(executor.submit(monitor.watch, self.event))
-                futures.append(executor.submit(self.main))
-                done, _ = wait(futures, return_when=FIRST_COMPLETED)
-                if len(done) > 0 and len(done) != len(futures):
-                    future = done.pop()
-                    if future.exception() is not None:
-                        log.warning(
-                            "One task failed with: %s, shutting down.",
-                            future.exception(),
-                        )
-                    else:
-                        log.info(
-                            "Main experiment finished successfully, shutting down monitors."
-                        )
-                    self.event.set()
-                    for future in futures:
-                        future.cancel()
+            futures = []
+            log.info("Starting experiment %s and monitors.", self.name)
+            for monitor in self.monitors:
+                futures.append(executor.submit(monitor.watch, self.event))
+            futures.append(executor.submit(self.main))
+            done, _ = wait(futures, return_when=FIRST_COMPLETED)
+            if len(done) > 0 and len(done) != len(futures):
+                future = done.pop()
+                if future.exception() is not None:
+                    log.warning(
+                        "One task failed with: %s, shutting down.",
+                        future.exception(),
+                    )
+                else:
+                    log.info(
+                        "Main experiment finished successfully, shutting down monitors."
+                    )
+                self.event.set()
+                for future in futures:
+                    future.cancel()
 
     def monitor_failed(self) -> bool:
         """Check if monitoring condition has failed and restore safe values."""
