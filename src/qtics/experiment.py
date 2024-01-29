@@ -10,7 +10,7 @@ import time
 from abc import ABC, abstractmethod
 from concurrent.futures import FIRST_COMPLETED, ThreadPoolExecutor, wait
 from threading import Event
-from typing import Optional
+from typing import List, Optional
 
 import h5py
 import numpy as np
@@ -180,7 +180,7 @@ class Experiment(BaseExperiment):
     ):
         """Initialize."""
         super().__init__(name, data_file=data_file, data_dir=data_dir)
-        self.monitors = []
+        self.monitors: List[MonitorExperiment] = []
         self.event = Event()
 
     def add_monitor(self, monitor: MonitorExperiment):
