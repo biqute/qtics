@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Experiments" href="experiments.html" /><link rel="prev" title="Installation" href="installation.html" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Supported Instruments" href="instruments/modules.html" /><link rel="prev" title="Compile Arduino Firmwares" href="arduino.html" />
 
     <link rel="shortcut icon" href="_static/favicon.ico"/><!-- Generated with Sphinx 6.2.1 and Furo 2023.09.10 -->
-        <title>Compile Arduino Firmwares - Qtics · 0.0.3</title>
+        <title>Experiments - Qtics · 0.0.3</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=369552022d0b975c8e74270ce6eabe0fb7978f24" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
@@ -166,8 +166,8 @@
   <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Compile Arduino Firmwares</a></li>
-<li class="toctree-l1"><a class="reference internal" href="experiments.html">Experiments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arduino.html">Compile Arduino Firmwares</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Experiments</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="instruments/modules.html">Supported Instruments</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Supported Instruments</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="instruments/R591722600.html">RF switch Radiall R591722600</a></li>
 <li class="toctree-l2"><a class="reference internal" href="instruments/3494_64.html">Attenuator Kratos 3494-64</a></li>
@@ -215,7 +215,7 @@
         </a>
         <div class="content-icon-container">
           <div class="edit-this-page">
-  <a class="muted-link" href="https://github.com/biqute/qtics/edit/main/docs/source/arduino.rst" title="Edit this page">
+  <a class="muted-link" href="https://github.com/biqute/qtics/edit/main/docs/source/experiments.rst" title="Edit this page">
     <svg aria-hidden="true" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
       <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
       <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />
@@ -237,26 +237,87 @@
           </label>
         </div>
         <article role="main">
-          <section id="compile-arduino-firmwares">
-<span id="arduino-firmware"></span><h1>Compile Arduino Firmwares<a class="headerlink" href="#compile-arduino-firmwares" title="Permalink to this heading">#</a></h1>
-<p>Some of the instruments include an Arduino firmware that requires to be compiled and uploaded on the Arduino controller.</p>
-<p>To compile the firmware, one should download the <a class="reference external" href="https://www.arduino.cc/en/software">Arduino</a> package.</p>
-<p>Then, two options are available: the Arduino IDE and the Arduino command line interface.</p>
-<section id="installation-through-arduino-ide">
-<h2>Installation through Arduino IDE<a class="headerlink" href="#installation-through-arduino-ide" title="Permalink to this heading">#</a></h2>
-<p>First, install the additional required library <cite>Vrekrer_scpi_parser</cite> (version 0.5.0).
-To do so, go to Tools -&gt; Manage Libraries. Search <cite>Vrekrer_scpi_parser</cite>, select the right version, and install it.</p>
-<p>Then, upload the firmware using the dedicated upload button.</p>
-</section>
-<section id="installation-through-command-line">
-<h2>Installation through Command Line<a class="headerlink" href="#installation-through-command-line" title="Permalink to this heading">#</a></h2>
-<p>First, download the arduino CLI tool from <a class="reference external" href="https://arduino.github.io/arduino-cli/0.23/installation/">the official website</a>.</p>
-<p>Then download the additional required library <cite>Vrekrer_scpi_parser</cite> (version 0.5.0):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>arduino-cli<span class="w"> </span>lib<span class="w"> </span>vrekrer_scpi_parser@0.5.0
+          <section id="experiments">
+<span id="id1"></span><h1>Experiments<a class="headerlink" href="#experiments" title="Permalink to this heading">#</a></h1>
+<p>Qtics helps coordinating multiple instruments and provides simple data handling functions through the <code class="docutils literal notranslate"><span class="pre">Experiment</span></code> classes. A basic example can be found in the <a class="reference external" href="https://github.com/biqute/qtics/tree/main/examples">examples</a> folder.</p>
+<p>New experiments can be created using the <a class="reference internal" href="api-reference/qtics.html#qtics.experiment.Experiment" title="qtics.experiment.Experiment"><code class="xref py py-class docutils literal notranslate"><span class="pre">qtics.experiment.Experiment</span></code></a> and <a class="reference internal" href="api-reference/qtics.html#qtics.experiment.MonitorExperiment" title="qtics.experiment.MonitorExperiment"><code class="xref py py-class docutils literal notranslate"><span class="pre">qtics.experiment.MonitorExperiment</span></code></a> classes, which both inherit from <a class="reference internal" href="api-reference/qtics.html#qtics.experiment.BaseExperiment" title="qtics.experiment.BaseExperiment"><code class="xref py py-class docutils literal notranslate"><span class="pre">qtics.experiment.BaseExperiment</span></code></a>. Some of the provided functionalities include:</p>
+<ul class="simple">
+<li><p>Call methods common to all instruments</p></li>
+<li><p>Simplified data saving and loading functions with hdf5 files</p></li>
+<li><p>Automatic save of the instruments defaults and experiment’s attributes in the data file</p></li>
+<li><p>Reset the instruments when exceptions occur.</p></li>
+<li><p>Monitor in parallel the parameters of other instruments and interrupt the experiment if chosen conditions are not satisfied.</p></li>
+</ul>
+<section id="writing-a-new-experiment">
+<h2>Writing a new experiment<a class="headerlink" href="#writing-a-new-experiment" title="Permalink to this heading">#</a></h2>
+<p>All new experiments classes must satisfy two requirements:</p>
+<ul class="simple">
+<li><p>All the instruments used in the experiment must be specified in the class definition, either as instances or with type annotations. Instruments can be added only if their name corresponds to the experiment’s attribute.</p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">main()</span></code> method must be implemented</p></li>
+</ul>
+<p>Here’s an example of a simple experiment that acquires and saves a <a class="reference external" href="https://biqute.github.io/qtics/instruments/N9916A.html">VNA</a> snapshot.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qtics</span> <span class="kn">import</span> <span class="n">VNAN9916A</span><span class="p">,</span> <span class="n">Experiment</span>
+
+<span class="k">class</span> <span class="nc">VNASnapshot</span><span class="p">(</span><span class="n">Experiment</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Simple snapshot with vna.&quot;&quot;&quot;</span>
+
+    <span class="n">vna</span> <span class="o">=</span> <span class="n">VNAN9916A</span><span class="p">(</span><span class="s2">&quot;vna&quot;</span><span class="p">,</span> <span class="s2">&quot;address&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Acquire VNA snapshot.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vna</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+        <span class="n">f</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vna</span><span class="o">.</span><span class="n">snapshot</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">append_data_group</span><span class="p">(</span><span class="s2">&quot;snapshot&quot;</span><span class="p">,</span> <span class="n">datasets</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;frequencies&quot;</span><span class="p">:</span> <span class="n">f</span><span class="p">,</span> <span class="s2">&quot;values&quot;</span><span class="p">:</span> <span class="n">z</span><span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">save_config</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Then compile and upload the firmware:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>arduino<span class="w"> </span>--upload<span class="w"> </span><span class="o">[</span>sketch.ino<span class="o">]</span>
+<p>The experiment can be launched by calling the <code class="docutils literal notranslate"><span class="pre">run()</span></code> method, which will execute <code class="docutils literal notranslate"><span class="pre">main()</span></code> while controlling for exceptions and errors.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">exp</span> <span class="o">=</span> <span class="n">VNASnapshot</span><span class="p">(</span><span class="s2">&quot;vna_snapshot&quot;</span><span class="p">)</span>
+<span class="n">exp</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This will create a <code class="docutils literal notranslate"><span class="pre">vna_snapshot_{current_date}.hdf5</span></code> file with the acquired data.</p>
+</section>
+<section id="monitorexperiment">
+<h2>MonitorExperiment<a class="headerlink" href="#monitorexperiment" title="Permalink to this heading">#</a></h2>
+<p>The experiment classes allow to monitor in parallel the parameters of other instruments and reset the experiment if they do not respect some chosen condition. This can be done by writing a class derived from <a class="reference internal" href="api-reference/qtics.html#qtics.experiment.MonitorExperiment" title="qtics.experiment.MonitorExperiment"><code class="xref py py-class docutils literal notranslate"><span class="pre">qtics.experiment.MonitorExperiment</span></code></a> and adding it to the main experiment.
+Their main features consist of:</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">main</span></code> method of a <code class="docutils literal notranslate"><span class="pre">MonitorExperiment</span></code> is run every <code class="docutils literal notranslate"><span class="pre">MonitorExperiment.sleep</span></code> seconds.</p></li>
+<li><p>The reset and stop condition is activated by raising an <code class="docutils literal notranslate"><span class="pre">Exception</span></code></p></li>
+</ul>
+<p>Here’s an example of a <code class="docutils literal notranslate"><span class="pre">MonitorExperiment</span></code> that checks if the temperature of the cryostat is in the allowed range.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TemperatureMonitor</span><span class="p">(</span><span class="n">MonitorExperiment</span><span class="p">):</span>
+
+    <span class="n">cryo</span> <span class="o">=</span> <span class="n">Triton</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;address&quot;</span><span class="p">)</span>
+    <span class="n">min_temp</span> <span class="o">=</span> <span class="mi">20</span>
+    <span class="n">max_temp</span> <span class="o">=</span> <span class="mi">60</span>
+    <span class="n">sleep</span> <span class="o">=</span> <span class="mi">5</span>
+
+    <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Check if temperature is in range.&quot;&quot;&quot;</span>
+        <span class="n">temperature</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cryo</span><span class="o">.</span><span class="n">get_mixing_chamber_temp</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">temperature</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_temp</span> <span class="ow">or</span> <span class="n">temperature</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_temp</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Temperature </span><span class="si">%s</span><span class="s2"> mK out of allowed range.&quot;</span><span class="p">,</span> <span class="n">temperature</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In the main experiment, the reset condition can be checked by calling the <code class="docutils literal notranslate"><span class="pre">Experiment.monitor_failed()</span></code> method, as in this example.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MultiVNASnapshot</span><span class="p">(</span><span class="n">Experiment</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Multiple vna snapshots with temperature checks.&quot;&quot;&quot;</span>
+
+    <span class="n">vna</span> <span class="o">=</span> <span class="n">VNAN9916A</span><span class="p">(</span><span class="s2">&quot;vna&quot;</span><span class="p">,</span> <span class="s2">&quot;address&quot;</span><span class="p">)</span>
+    <span class="n">monitors</span> <span class="o">=</span> <span class="p">[</span><span class="n">TemperatureMonitor</span><span class="p">(</span><span class="s2">&quot;tempcheck&quot;</span><span class="p">)]</span>
+    <span class="n">n_snapshots</span> <span class="o">=</span> <span class="mi">20</span>
+
+    <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Acquire VNA snapshot.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vna</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_snapshots</span><span class="p">):</span>
+            <span class="n">f</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vna</span><span class="o">.</span><span class="n">snapshot</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">append_data_group</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;snapshot_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">datasets</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;frequencies&quot;</span><span class="p">:</span> <span class="n">f</span><span class="p">,</span> <span class="s2">&quot;values&quot;</span><span class="p">:</span> <span class="n">z</span><span class="p">})</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">monitor_failed</span><span class="p">()</span>
+                <span class="k">return</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">save_config</span><span class="p">()</span>
 </pre></div>
 </div>
 </section>
@@ -267,23 +328,23 @@ To do so, go to Tools -&gt; Manage Libraries. Search <cite>Vrekrer_scpi_parser</
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="experiments.html">
+          <a class="next-page" href="instruments/modules.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Experiments</div>
+                <div class="title">Supported Instruments</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="installation.html">
+          <a class="prev-page" href="arduino.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Installation</div>
+                <div class="title">Compile Arduino Firmwares</div>
                 
               </div>
             </a>
@@ -324,9 +385,9 @@ To do so, go to Tools -&gt; Manage Libraries. Search <cite>Vrekrer_scpi_parser</
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">Compile Arduino Firmwares</a><ul>
-<li><a class="reference internal" href="#installation-through-arduino-ide">Installation through Arduino IDE</a></li>
-<li><a class="reference internal" href="#installation-through-command-line">Installation through Command Line</a></li>
+<li><a class="reference internal" href="#">Experiments</a><ul>
+<li><a class="reference internal" href="#writing-a-new-experiment">Writing a new experiment</a></li>
+<li><a class="reference internal" href="#monitorexperiment">MonitorExperiment</a></li>
 </ul>
 </li>
 </ul>

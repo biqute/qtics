@@ -165,6 +165,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="arduino.html">Compile Arduino Firmwares</a></li>
+<li class="toctree-l1"><a class="reference internal" href="experiments.html">Experiments</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="instruments/modules.html">Supported Instruments</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Supported Instruments</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="instruments/R591722600.html">RF switch Radiall R591722600</a></li>
 <li class="toctree-l2"><a class="reference internal" href="instruments/3494_64.html">Attenuator Kratos 3494-64</a></li>
@@ -238,10 +239,20 @@
 </li>
         <li><a href="api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.VNAN9916A.activate_trace">activate_trace() (qtics.instruments.network.NA_N9916A.VNAN9916A method)</a>
 </li>
+        <li><a href="api-reference/qtics.html#qtics.experiment.BaseExperiment.add_instrument">add_instrument() (qtics.experiment.BaseExperiment method)</a>
+</li>
+        <li><a href="api-reference/qtics.html#qtics.experiment.Experiment.add_monitor">add_monitor() (qtics.experiment.Experiment method)</a>
+</li>
+        <li><a href="api-reference/qtics.html#qtics.experiment.BaseExperiment.all_instruments">all_instruments() (qtics.experiment.BaseExperiment method)</a>
+</li>
+        <li><a href="api-reference/qtics.html#qtics.experiment.BaseExperiment.append_data_group">append_data_group() (qtics.experiment.BaseExperiment method)</a>
+</li>
         <li><a href="api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.SAN9916A.attenuation">attenuation (qtics.instruments.network.NA_N9916A.SAN9916A property)</a>
 </li>
         <li><a href="api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.SAN9916A.auto_attenuation">auto_attenuation (qtics.instruments.network.NA_N9916A.SAN9916A property)</a>
 </li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.SAN9916A.auto_res_bandwidth">auto_res_bandwidth (qtics.instruments.network.NA_N9916A.SAN9916A property)</a>
 </li>
         <li><a href="api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.N9916A.autoscale">autoscale() (qtics.instruments.network.NA_N9916A.N9916A method)</a>
@@ -252,8 +263,6 @@
           <li><a href="api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.VNAN9916A.autoscale">(qtics.instruments.network.NA_N9916A.VNAN9916A method)</a>
 </li>
         </ul></li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="api-reference/qtics.instruments.niscope.html#qtics.instruments.niscope.pxie_5170r.Pxie570R.available">available (qtics.instruments.niscope.pxie_5170r.Pxie570R property)</a>
 </li>
         <li><a href="api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.N9916A.average">average (qtics.instruments.network.NA_N9916A.N9916A property)</a>
@@ -270,12 +279,14 @@
   <h2>B</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api-reference/qtics.instruments.serial.html#qtics.instruments.serial.voltage_source_SIM928.SIM928.battery_charger_override">battery_charger_override() (qtics.instruments.serial.voltage_source_SIM928.SIM928 method)</a>
+        <li><a href="api-reference/qtics.html#qtics.experiment.BaseExperiment">BaseExperiment (class in qtics.experiment)</a>
 </li>
-        <li><a href="api-reference/qtics.instruments.serial.html#qtics.instruments.serial.voltage_source_SIM928.SIM928.battery_full_spec">battery_full_spec() (qtics.instruments.serial.voltage_source_SIM928.SIM928 method)</a>
+        <li><a href="api-reference/qtics.instruments.serial.html#qtics.instruments.serial.voltage_source_SIM928.SIM928.battery_charger_override">battery_charger_override() (qtics.instruments.serial.voltage_source_SIM928.SIM928 method)</a>
 </li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api-reference/qtics.instruments.serial.html#qtics.instruments.serial.voltage_source_SIM928.SIM928.battery_full_spec">battery_full_spec() (qtics.instruments.serial.voltage_source_SIM928.SIM928 method)</a>
+</li>
         <li><a href="api-reference/qtics.instruments.serial.html#qtics.instruments.serial.voltage_source_SIM928.SIM928.battery_spec">battery_spec() (qtics.instruments.serial.voltage_source_SIM928.SIM928 method)</a>
 </li>
         <li><a href="api-reference/qtics.instruments.serial.html#qtics.instruments.serial.voltage_source_SIM928.SIM928.battery_state">battery_state() (qtics.instruments.serial.voltage_source_SIM928.SIM928 method)</a>
@@ -320,11 +331,13 @@
           <li><a href="api-reference/qtics.instruments.niscope.html#qtics.instruments.niscope.pxie_5170r.Trigger.configure">(qtics.instruments.niscope.pxie_5170r.Trigger method)</a>
 </li>
         </ul></li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="api-reference/qtics.html#qtics.instrument.Instrument.connect">connect() (qtics.instrument.Instrument method)</a>
 
         <ul>
+          <li><a href="api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.SAN9916A.connect">(qtics.instruments.network.NA_N9916A.SAN9916A method)</a>
+</li>
+          <li><a href="api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.VNAN9916A.connect">(qtics.instruments.network.NA_N9916A.VNAN9916A method)</a>
+</li>
           <li><a href="api-reference/qtics.instruments.niscope.html#qtics.instruments.niscope.pxie_5170r.Pxie570R.connect">(qtics.instruments.niscope.pxie_5170r.Pxie570R method)</a>
 </li>
           <li><a href="api-reference/qtics.instruments.serial.html#qtics.instruments.serial.keithley2231a.Keithley2231A.connect">(qtics.instruments.serial.keithley2231a.Keithley2231A method)</a>
@@ -338,6 +351,8 @@
           <li><a href="api-reference/qtics.html#qtics.serial_inst.SerialInst.connect">(qtics.serial_inst.SerialInst method)</a>
 </li>
         </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="api-reference/qtics.instruments.serial.html#qtics.instruments.serial.voltage_source_SIM928.SIM928.connect_port">connect_port() (qtics.instruments.serial.voltage_source_SIM928.SIM928 method)</a>
 </li>
         <li><a href="api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.N9916A.continuous">continuous (qtics.instruments.network.NA_N9916A.N9916A property)</a>
@@ -404,10 +419,19 @@
     <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="api-reference/qtics.instruments.niscope.html#qtics.instruments.niscope.pxie_5170r.EdgeTrigger">EdgeTrigger (class in qtics.instruments.niscope.pxie_5170r)</a>
 </li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="api-reference/qtics.instruments.serial.html#qtics.instruments.serial.voltage_source_SIM928.SIM928.exe_error">exe_error() (qtics.instruments.serial.voltage_source_SIM928.SIM928 method)</a>
 </li>
+        <li><a href="api-reference/qtics.html#qtics.experiment.Experiment">Experiment (class in qtics.experiment)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li>
+    experiment.py
+
+        <ul>
+          <li><a href="api-reference/qtics.html#module-experiment.py">module</a>
+</li>
+        </ul></li>
         <li><a href="api-reference/qtics.instruments.serial.html#qtics.instruments.serial.synth_FSL0010.FSL0010.ext_ref_source">ext_ref_source (qtics.instruments.serial.synth_FSL0010.FSL0010 property)</a>
 </li>
     </ul></td>
@@ -478,6 +502,8 @@
 </li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api-reference/qtics.html#qtics.experiment.BaseExperiment.get_datasets_dict">get_datasets_dict() (qtics.experiment.BaseExperiment method)</a>
+</li>
         <li><a href="api-reference/qtics.html#qtics.instrument.Instrument.get_id">get_id() (qtics.instrument.Instrument method)</a>
 </li>
         <li><a href="api-reference/qtics.instruments.network.html#qtics.instruments.network.triton_ctrl.Triton.get_mixing_chamber_temp">get_mixing_chamber_temp() (qtics.instruments.network.triton_ctrl.Triton method)</a>
@@ -578,6 +604,8 @@
   <h2>M</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api-reference/qtics.html#qtics.experiment.BaseExperiment.main">main() (qtics.experiment.BaseExperiment method)</a>
+</li>
         <li><a href="api-reference/qtics.instruments.network.html#qtics.instruments.network.triton_ctrl.Triton.mixing_chamber_ch">mixing_chamber_ch (qtics.instruments.network.triton_ctrl.Triton property)</a>
 </li>
         <li><a href="api-reference/qtics.instruments.network.html#qtics.instruments.network.triton_ctrl.Triton.mixing_chamber_tset">mixing_chamber_tset (qtics.instruments.network.triton_ctrl.Triton property)</a>
@@ -586,6 +614,8 @@
     module
 
         <ul>
+          <li><a href="api-reference/qtics.html#module-experiment.py">experiment.py</a>
+</li>
           <li><a href="api-reference/qtics.instruments.serial.html#module-keithley2231a.py">keithley2231a.py</a>
 </li>
           <li><a href="api-reference/qtics.instruments.serial.html#module-keithley6514.py">keithley6514.py</a>
@@ -595,6 +625,8 @@
           <li><a href="api-reference/qtics.html#module-network_inst.py">network_inst.py</a>
 </li>
           <li><a href="api-reference/qtics.html#module-qtics">qtics</a>
+</li>
+          <li><a href="api-reference/qtics.html#module-qtics.experiment">qtics.experiment</a>
 </li>
           <li><a href="api-reference/qtics.html#module-qtics.instrument">qtics.instrument</a>
 </li>
@@ -633,6 +665,12 @@
           <li><a href="api-reference/qtics.instruments.serial.html#module-synth_FSL0010.py">synth_FSL0010.py</a>
 </li>
         </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api-reference/qtics.html#qtics.experiment.Experiment.monitor_failed">monitor_failed() (qtics.experiment.Experiment method)</a>
+</li>
+        <li><a href="api-reference/qtics.html#qtics.experiment.MonitorExperiment">MonitorExperiment (class in qtics.experiment)</a>
+</li>
     </ul></td>
   </tr></table>
 </section>
@@ -722,6 +760,13 @@
 
         <ul>
           <li><a href="api-reference/qtics.html#module-qtics">module</a>
+</li>
+        </ul></li>
+        <li>
+    qtics.experiment
+
+        <ul>
+          <li><a href="api-reference/qtics.html#module-qtics.experiment">module</a>
 </li>
         </ul></li>
         <li>
@@ -880,8 +925,6 @@
           <li><a href="api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.VNAN9916A.read_freqs">(qtics.instruments.network.NA_N9916A.VNAN9916A method)</a>
 </li>
         </ul></li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.N9916A.read_trace_data">read_trace_data() (qtics.instruments.network.NA_N9916A.N9916A method)</a>
 
         <ul>
@@ -890,6 +933,8 @@
           <li><a href="api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.VNAN9916A.read_trace_data">(qtics.instruments.network.NA_N9916A.VNAN9916A method)</a>
 </li>
         </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.SAN9916A.res_bandwidth">res_bandwidth (qtics.instruments.network.NA_N9916A.SAN9916A property)</a>
 </li>
         <li><a href="api-reference/qtics.html#qtics.instrument.Instrument.reset">reset() (qtics.instrument.Instrument method)</a>
@@ -901,6 +946,12 @@
 
         <ul>
           <li><a href="api-reference/qtics.instruments.network.html#module-RS_SMA100B.py">module</a>
+</li>
+        </ul></li>
+        <li><a href="api-reference/qtics.html#qtics.experiment.BaseExperiment.run">run() (qtics.experiment.BaseExperiment method)</a>
+
+        <ul>
+          <li><a href="api-reference/qtics.html#qtics.experiment.Experiment.run">(qtics.experiment.Experiment method)</a>
 </li>
         </ul></li>
     </ul></td>
@@ -918,6 +969,8 @@
         <li><a href="api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.SAN9916A">SAN9916A (class in qtics.instruments.network.NA_N9916A)</a>
 </li>
         <li><a href="api-reference/qtics.instruments.serial.html#qtics.instruments.serial.keithley2231a.Keithley2231A.save">save() (qtics.instruments.serial.keithley2231a.Keithley2231A method)</a>
+</li>
+        <li><a href="api-reference/qtics.html#qtics.experiment.BaseExperiment.save_config">save_config() (qtics.experiment.BaseExperiment method)</a>
 </li>
         <li><a href="api-reference/qtics.instruments.network.html#qtics.instruments.network.RS_SMA100B.SMA100B.screen_saver_mode">screen_saver_mode() (qtics.instruments.network.RS_SMA100B.SMA100B method)</a>
 </li>
@@ -946,6 +999,8 @@
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.N9916A.single_sweep">single_sweep() (qtics.instruments.network.NA_N9916A.N9916A method)</a>
+</li>
+        <li><a href="api-reference/qtics.html#qtics.experiment.MonitorExperiment.sleep">sleep (qtics.experiment.MonitorExperiment attribute)</a>
 </li>
         <li><a href="api-reference/qtics.instruments.niscope.html#qtics.instruments.niscope.pxie_5170r.DigitalTrigger.slope">slope (qtics.instruments.niscope.pxie_5170r.DigitalTrigger attribute)</a>
 
@@ -1060,6 +1115,8 @@
           <li><a href="api-reference/qtics.instruments.serial.html#qtics.instruments.serial.keithley2231a.Keithley2231A.wait">(qtics.instruments.serial.keithley2231a.Keithley2231A method)</a>
 </li>
         </ul></li>
+        <li><a href="api-reference/qtics.html#qtics.experiment.MonitorExperiment.watch">watch() (qtics.experiment.MonitorExperiment method)</a>
+</li>
         <li><a href="api-reference/qtics.html#qtics.instrument.Instrument.write">write() (qtics.instrument.Instrument method)</a>
 
         <ul>

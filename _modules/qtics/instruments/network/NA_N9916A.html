@@ -166,6 +166,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../arduino.html">Compile Arduino Firmwares</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../experiments.html">Experiments</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../../instruments/modules.html">Supported Instruments</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Supported Instruments</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../../instruments/R591722600.html">RF switch Radiall R591722600</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../instruments/3494_64.html">Attenuator Kratos 3494-64</a></li>
@@ -477,24 +478,15 @@
 <div class="viewcode-block" id="VNAN9916A"><a class="viewcode-back" href="../../../../api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.VNAN9916A">[docs]</a><span class="k">class</span> <span class="nc">VNAN9916A</span><span class="p">(</span><span class="n">N9916A</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;VNA mode of the N9916A.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">address</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">port</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5025</span><span class="p">,</span>
-        <span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">,</span>
-        <span class="n">sleep</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
-        <span class="n">no_delay</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-        <span class="n">max_points</span><span class="o">=</span><span class="mi">100000</span><span class="p">,</span>
-    <span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize super instrument and setup VNA mode.&quot;&quot;&quot;</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">timeout</span><span class="p">,</span> <span class="n">sleep</span><span class="p">,</span> <span class="n">no_delay</span><span class="p">,</span> <span class="n">max_points</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+    <span class="n">__trace</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span>
+
+<div class="viewcode-block" id="VNAN9916A.connect"><a class="viewcode-back" href="../../../../api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.VNAN9916A.connect">[docs]</a>    <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Connect to the device and initialize VNA mode.&quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_mode</span> <span class="o">=</span> <span class="s2">&quot;NA&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__trace</span> <span class="o">=</span> <span class="mi">1</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">setup</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setup</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="VNAN9916A.setup"><a class="viewcode-back" href="../../../../api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.VNAN9916A.setup">[docs]</a>    <span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">par</span><span class="o">=</span><span class="s2">&quot;S21&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Configure standard measurement.&quot;&quot;&quot;</span>
@@ -624,26 +616,17 @@
 <div class="viewcode-block" id="SAN9916A"><a class="viewcode-back" href="../../../../api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.SAN9916A">[docs]</a><span class="k">class</span> <span class="nc">SAN9916A</span><span class="p">(</span><span class="n">N9916A</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Spectrum Analyzer mode of the N9916A.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">address</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">port</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5025</span><span class="p">,</span>
-        <span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">,</span>
-        <span class="n">sleep</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
-        <span class="n">no_delay</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-        <span class="n">max_points</span><span class="o">=</span><span class="mi">10001</span><span class="p">,</span>
-    <span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize super instrument and setup VNA mode.&quot;&quot;&quot;</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">timeout</span><span class="p">,</span> <span class="n">sleep</span><span class="p">,</span> <span class="n">no_delay</span><span class="p">,</span> <span class="n">max_points</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+    <span class="n">__trace</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span>
+
+<div class="viewcode-block" id="SAN9916A.connect"><a class="viewcode-back" href="../../../../api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.SAN9916A.connect">[docs]</a>    <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Connect to the device and setup SA mode.&quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_mode</span> <span class="o">=</span> <span class="s2">&quot;SA&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__trace</span> <span class="o">=</span> <span class="mi">1</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">continuous</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">trace_type</span> <span class="o">=</span> <span class="s2">&quot;AVG&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">data_format</span> <span class="o">=</span> <span class="s2">&quot;REAL,64&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_format</span> <span class="o">=</span> <span class="s2">&quot;REAL,64&quot;</span></div>
 
 <div class="viewcode-block" id="SAN9916A.set_full_span"><a class="viewcode-back" href="../../../../api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.SAN9916A.set_full_span">[docs]</a>    <span class="k">def</span> <span class="nf">set_full_span</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set the frequency span to the entire span of the FieldFox.&quot;&quot;&quot;</span>

@@ -167,6 +167,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../arduino.html">Compile Arduino Firmwares</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments.html">Experiments</a></li>
 <li class="toctree-l1 current has-children"><a class="reference internal" href="modules.html">Supported Instruments</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Supported Instruments</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="R591722600.html">RF switch Radiall R591722600</a></li>
 <li class="toctree-l2"><a class="reference internal" href="3494_64.html">Attenuator Kratos 3494-64</a></li>
@@ -242,7 +243,7 @@
 The manuals of this instrument and similar models are available at <a class="reference external" href="https://www.keysight.com/us/en/lib/resources/service-manuals/keysight-fieldfox-library-help-and-manuals-2153870.html">Keysight</a>.
 The SCPI commands and functions can be found in the <a class="reference external" href="https://www.keysight.com/us/en/assets/9921-02561/programming-guides/FFProgrammingHelp.pdf">programming guide</a>.</p>
 <p>Base class: <a class="reference internal" href="../api-reference/qtics.html#qtics.network_inst.NetworkInst" title="qtics.network_inst.NetworkInst"><code class="xref py py-class docutils literal notranslate"><span class="pre">qtics.network_inst.NetworkInst</span></code></a>.</p>
-<p>This instrument features different operational modes (VNA, SA, CAT…), with mostly different commands. Each mode is controlled by its respective class. When instantiated, these classes will automatically try to connect to the instrument and initialize a basic measurement setup.</p>
+<p>This instrument features different operational modes (VNA, SA, CAT…), with mostly different commands. Each mode is controlled by its respective class. When connecting, these classes will automatically try to initialize a basic measurement setup with the specific mode.</p>
 <section id="commands">
 <h2>Commands<a class="headerlink" href="#commands" title="Permalink to this heading">#</a></h2>
 <p>Other than featuring all the methods of <a class="reference internal" href="../api-reference/qtics.html#qtics.network_inst.NetworkInst" title="qtics.network_inst.NetworkInst"><code class="xref py py-class docutils literal notranslate"><span class="pre">qtics.network_inst.NetworkInst</span></code></a>, the base <a class="reference internal" href="../api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.N9916A" title="qtics.instruments.network.NA_N9916A.N9916A"><code class="xref py py-class docutils literal notranslate"><span class="pre">qtics.instruments.network.NA_N9916A.N9916A</span></code></a> class contains the following methods and properties common to all the operational modes of the instrument.</p>
@@ -287,6 +288,7 @@ The SCPI commands and functions can be found in the <a class="reference external
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qtics</span> <span class="kn">import</span> <span class="n">VNAN9916A</span>
 
 <span class="n">VNA</span> <span class="o">=</span> <span class="n">VNAN9916A</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;myVNA&quot;</span><span class="p">,</span> <span class="n">address</span> <span class="o">=</span> <span class="s2">&quot;192.168.40.10&quot;</span><span class="p">)</span>
+<span class="n">VNA</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Measure the <span class="math notranslate nohighlight">\(S_{11}\)</span> parameter in the 4-8 GHz frequency range, averaging 5 sweeps of the VNA. The result consists of the frequency array and the raw IQ values, given as an array of complex numbers:</p>
@@ -330,6 +332,7 @@ The SCPI commands and functions can be found in the <a class="reference external
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qtics</span> <span class="kn">import</span> <span class="n">SAN9916A</span>
 
 <span class="n">SA</span> <span class="o">=</span> <span class="n">SAN9916A</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;mySA&quot;</span><span class="p">,</span> <span class="n">address</span> <span class="o">=</span> <span class="s2">&quot;192.168.40.10&quot;</span><span class="p">)</span>
+<span class="n">SA</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Measure the amplitude of the signal in dB over the 4-8 GHz frequency range, averaging 5 sweeps of the SA and using a logarithmic scale for the amplitude. The result consists of the frequency array and the amplitude array of real numbers with the correct measurement unit and scale:</p>
