@@ -58,7 +58,7 @@ class DummyMonitor(MonitorExperiment):
     def main(self):
         """Run main part of the experiment."""
         if self.inst.read() > self.max_read:
-            raise Exception("Read value over allowed maximum.")
+            raise RuntimeError("Read value over allowed maximum")
 
 
 @pytest.fixture
@@ -71,13 +71,13 @@ def instrument():
 def experiment(tmpdir):
     """Dummy experiment fixture."""
     datafile = str(tmpdir.join("datafile.hdf5"))
-    return DummyExperiment("exp", data_file=datafile, data_dir="")
+    return DummyExperiment("exp", data_file="datafile.hdf5", data_dir=str(tmpdir))
 
 
 @pytest.fixture
 def monitor():
     """Dummy monitor fixture."""
-    return DummyMonitor("testmonitor", data_dir="")
+    return DummyMonitor("testmonitor")
 
 
 def test_init(experiment, tmpdir):
@@ -87,6 +87,7 @@ def test_init(experiment, tmpdir):
     assert isinstance(experiment, BaseExperiment)
     assert experiment.name == "exp"
     assert experiment.inst_names == ["instrument1", "instrument2"]
+    assert experiment.data_dir == str(tmpdir)
     assert experiment.data_file == str(tmpdir.join("datafile.hdf5"))
     assert experiment.monitors == []
     assert not experiment.monitor_failed()
@@ -160,6 +161,7 @@ def test_save_config(experiment):
             "exp_attr": "attr value",
             "name": experiment.name,
             "data_file": experiment.data_file,
+            "data_dir": experiment.data_dir,
         }
         assert dict(config["instrument1"].attrs) == {"address": "default address"}
 

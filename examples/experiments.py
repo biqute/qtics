@@ -5,6 +5,15 @@ from time import sleep
 from qtics import VNAN9916A, Experiment, MonitorExperiment, Triton, log
 
 
+class TemperatureNotInRangeError(RuntimeError):
+    """Custom exception for temperatures outside an allowed range."""
+
+    def __init__(self, min: float, max: float, temp: float):
+        """Generate error message from current temperature and limits."""
+        message = f"Temperature is {temp} mK. Allowed is ({min}, {max})"
+        super().__init__(message)
+
+
 class VNASnapshot(Experiment):
     """Simple snapshot with vna."""
 
@@ -43,7 +52,7 @@ class TritonMonitor(MonitorExperiment):
         temperature = self.cryo.get_mixing_chamber_temp()
         log.info("Cryostat temperature %s mK", temperature)
         if self.min_temp > temperature > self.max_temp:
-            raise Exception("Temperature %s mK out of allowed range.", temperature)
+            raise TemperatureNotInRangeError(self.min_temp, self.max_temp, temperature)
         sleep(self.sleep)
 
 

@@ -10,6 +10,7 @@ import time
 from abc import ABC, abstractmethod
 from concurrent.futures import FIRST_COMPLETED, ThreadPoolExecutor, wait
 from threading import Event
+from typing import Optional
 
 import h5py
 import numpy as np
@@ -21,19 +22,33 @@ from qtics.instrument import Instrument
 class BaseExperiment(ABC):
     """Base experiment class."""
 
-    def __init__(self, name: str, data_file: str = "", data_dir: str = "data"):
-        """Initialize."""
+    def __init__(
+        self, name: str, data_file: Optional[str] = None, data_dir: Optional[str] = None
+    ):
+        """Initialize datafile and instruments names."""
         self.name = name
-        if not data_file.endswith(".hdf5"):
+        self.data_dir = data_dir
+
+        if data_file is not None:
+            if not data_file.endswith(".hdf5"):
+                data_file += ".hdf5"
+        else:
             data_file = f"{name}_{time.strftime('%m_%d_%H_%M_%S')}.hdf5"
-        if data_dir != "":
+
+        if data_dir is not None:
             os.makedirs(data_dir, exist_ok=True)
-        self.data_file = os.path.join(data_dir, data_file)
+            self.data_file = os.path.join(data_dir, data_file)
+        else:
+            self.data_file = data_file
+
+        self._update_intruments_names()
+
+    def _update_intruments_names(self):
+        """Update list of instruments stored in the experiment."""
         self.inst_names = []
         for attr_name in dir(self):
-            if (
-                not attr_name.startswith("_")
-                and Instrument in type(getattr(self, attr_name)).__mro__
+            if not attr_name.startswith("_") and isinstance(
+                getattr(self, attr_name), Instrument
             ):
                 self.inst_names.append(attr_name)
         if hasattr(self, "__annotations__"):
@@ -70,15 +85,13 @@ class BaseExperiment(ABC):
         name = inst.name
         if name not in self.inst_names:
             log.warning(
-                "Instrument name %s not in allowed instruments %s.",
-                name,
-                self.inst_names,
+                "Instrument %s not allowed, choose between %s.", name, self.inst_names
             )
         else:
             setattr(self, name, inst)
             log.info("Added instrument %s.", name)
 
-    def all_instruments(self, func_name, *args, **kwargs):
+    def all_instruments(self, func_name: str, *args, **kwargs):
         """Apply function to all instruments."""
         for name in self.inst_names:
             if hasattr(self, name):
@@ -87,11 +100,15 @@ class BaseExperiment(ABC):
                 _ = func(*args, **kwargs)
 
     def append_data_group(
-        self, group_name: str, parent_name="", datasets=None, **attributes
+        self,
+        group_name: str,
+        parent_name: Optional[str] = None,
+        datasets: Optional[dict] = None,
+        **attributes,
     ):
         """Save data appending to hdf5 file."""
         with h5py.File(self.data_file, "a") as file:
-            if parent_name != "":
+            if parent_name is not None:
                 parent_group = file.require_group(parent_name)
                 group = parent_group.require_group(group_name)
             else:
@@ -103,7 +120,7 @@ class BaseExperiment(ABC):
             if attributes:
                 group.attrs.update(attributes)
 
-    def get_datasets_dict(self, data_file=""):
+    def get_datasets_dict(self, data_file: Optional[str] = None):
         """Load the datasets of an hdf5 file as dictionary."""
 
         def _recurse(h5file, path):
@@ -158,7 +175,9 @@ class MonitorExperiment(BaseExperiment):
 class Experiment(BaseExperiment):
     """Experiment with monitoring functions."""
 
-    def __init__(self, name, data_file="", data_dir="data"):
+    def __init__(
+        self, name: str, data_file: Optional[str] = None, data_dir: Optional[str] = None
+    ):
         """Initialize."""
         super().__init__(name, data_file=data_file, data_dir=data_dir)
         self.monitors = []
