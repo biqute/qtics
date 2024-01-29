@@ -51,7 +51,7 @@ class NetworkInst(Instrument):
             )
             self.socket.connect((self.address, self.port))
             self.__is_connected = True
-            log.info(f"Instrument {self.name} connected succesfully.")
+            log.info(f"Instrument {self.name} connected successfully.")
         else:
             log.info(f"Instrument {self.name} already connected.")
 
