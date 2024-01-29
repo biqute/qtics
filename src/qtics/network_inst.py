@@ -6,6 +6,7 @@ Base class for instruments communicating via network connection.
 
 The code was partially taken from https://github.com/morgan-at-keysight/socketscpi
 """
+
 import ipaddress
 import socket
 import time

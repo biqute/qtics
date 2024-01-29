@@ -1,4 +1,5 @@
 """Base instrument for serial connections."""
+
 import time
 from typing import Literal
 

@@ -4,6 +4,7 @@ Controller of the R&S SMA100B RF and microwave signal generator.
 .. module:: RS_SMA100B.py
 .. moduleauthor:: Marco Gobbo <marco.gobbo@mib.infn.it>
 """
+
 from qtics.network_inst import NetworkInst
 
 
