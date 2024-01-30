@@ -1,4 +1,5 @@
 """Test network instrument base class."""
+
 import socket
 
 import pytest

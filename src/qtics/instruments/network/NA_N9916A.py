@@ -6,6 +6,7 @@ Controller of the N9916A Vector Analyzer by Keysight.
 
 The code for query_data() was partially taken from https://github.com/morgan-at-keysight/socketscpi
 """
+
 import time
 from abc import ABC, abstractmethod
 from typing import Tuple

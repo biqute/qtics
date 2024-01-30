@@ -4,6 +4,7 @@ FSL0010 QuickSyn microwave synthesizer by National Instruments.
 .. module:: synth_FSL0010.py
 .. moduleauthor:: Pietro Campana <campana.pietro@campus.unimib.it>
 """
+
 from typing import Literal
 
 import serial
