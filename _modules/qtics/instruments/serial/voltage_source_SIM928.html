@@ -235,6 +235,7 @@
 
 <span class="kn">import</span> <span class="nn">serial</span>
 
+<span class="kn">from</span> <span class="nn">qtics</span> <span class="kn">import</span> <span class="n">log</span>
 <span class="kn">from</span> <span class="nn">qtics.serial_inst</span> <span class="kn">import</span> <span class="n">SerialInst</span>
 
 
@@ -272,9 +273,10 @@
 
 <div class="viewcode-block" id="SIM928.connect"><a class="viewcode-back" href="../../../../api-reference/qtics.instruments.serial.html#qtics.instruments.serial.voltage_source_SIM928.SIM928.connect">[docs]</a>    <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Connect to the device.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">serial</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sleep</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">connect_port</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_mainframe_port</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">connect_port</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_mainframe_port</span><span class="p">)</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Instrument connected to port </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_mainframe_port</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="SIM928.connect_port"><a class="viewcode-back" href="../../../../api-reference/qtics.instruments.serial.html#qtics.instruments.serial.voltage_source_SIM928.SIM928.connect_port">[docs]</a>    <span class="k">def</span> <span class="nf">connect_port</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">port</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Connect to the a specific port in the mainframe.&quot;&quot;&quot;</span>
@@ -291,7 +293,10 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;esc&quot;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
             <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sleep</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">serial</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">serial</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Instrument </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> disconnected.&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No connection to close for instrument </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="SIM928.output_on"><a class="viewcode-back" href="../../../../api-reference/qtics.instruments.serial.html#qtics.instruments.serial.voltage_source_SIM928.SIM928.output_on">[docs]</a>    <span class="k">def</span> <span class="nf">output_on</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Turn the output on.&quot;&quot;&quot;</span>
