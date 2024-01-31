@@ -5,6 +5,7 @@ from typing import Literal
 
 import serial
 
+from qtics import log
 from qtics.serial_inst import SerialInst
 
 
@@ -42,9 +43,10 @@ class SIM928(SerialInst):
 
     def connect(self):
         """Connect to the device."""
-        self.serial.open()
+        super().connect()
         time.sleep(self.sleep)
         self.connect_port(self._mainframe_port)
+        log.info(f"Instrument connected to port {self._mainframe_port}")
 
     def connect_port(self, port: int):
         """Connect to the a specific port in the mainframe."""
@@ -62,6 +64,9 @@ class SIM928(SerialInst):
             self.reset()
             time.sleep(self.sleep)
             self.serial.close()
+            log.info(f"Instrument {self.name} disconnected.")
+        else:
+            log.info(f"No connection to close for instrument {self.name}.")
 
     def output_on(self):
         """Turn the output on."""
