@@ -75,7 +75,7 @@ class BaseExperiment(ABC):
             self.all_instruments("reset")
             raise KeyboardInterrupt
         except Exception as e:
-            log.error("Exception occured: %s", e)
+            log.error("Exception occurred: %s", e)
             self.all_instruments("reset")
             raise Exception(e)
         log.info("Experiment run successfully.")

@@ -18,7 +18,7 @@ class DummyInstrument(Instrument):
         pass
 
     def disconnect(self):
-        """Disonnect from the instrument."""
+        """Disconnect from the instrument."""
         pass
 
     def write(self, cmd, sleep=False):
@@ -167,7 +167,7 @@ def test_save_config(experiment):
 
 
 def test_successful_run(experiment, monitor):
-    """Test succesful run."""
+    """Test successful run."""
     experiment.instrument1.update_defaults(name="reset occurred")
     experiment.add_monitor(monitor)
     experiment.run()

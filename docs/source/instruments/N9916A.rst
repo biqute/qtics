@@ -65,7 +65,7 @@ Measure the :math:`S_{11}` parameter in the 4-8 GHz frequency range, averaging 5
   VNA.power = -20 # power of the probe signal in dB
   f, z = VNA.snapshot(f_min=4e9, f_max=8e9)
 
-Since the instrument allows a maximum number of 10001 points in a single sweep, the ``survey()`` function allows to perform more precise measurements over a large frequency range by patching togheter multiple snapshots over smaller ranges.
+Since the instrument allows a maximum number of 10001 points in a single sweep, the ``survey()`` function allows to perform more precise measurements over a large frequency range by patching together multiple snapshots over smaller ranges.
 
 .. code-block:: python
 
@@ -112,7 +112,7 @@ Measure the amplitude of the signal in dB over the 4-8 GHz frequency range, aver
   SA.yformat = "DBM" # amplitude measurement unit
   f, z = SA.snapshot(f_min=4e9, f_max=8e9)
 
-Since the instrument allows a maximum number of 10001 points in a single sweep, the ``survey()`` function allows to perform more precise measurements over a large frequency range by patching togheter multiple snapshots over smaller ranges.
+Since the instrument allows a maximum number of 10001 points in a single sweep, the ``survey()`` function allows to perform more precise measurements over a large frequency range by patching together multiple snapshots over smaller ranges.
 
 .. code-block:: python
 

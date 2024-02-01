@@ -163,7 +163,7 @@ class SIM928(SerialInst):
             "Parameter buffer overflow",
             "Bad floating-point",
             "Bad integer",
-            "Bad integer toke",
+            "Bad integer token",
             "Bad token value",
             "Bad hex block",
             "Unknown token",
