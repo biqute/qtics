@@ -6,7 +6,7 @@
 #include "Vrekrer_scpi_parser.h"
 
 SCPI_Parser my_instrument;
-int pulseLenght = 5;
+int pulseLength = 5;
 const int min_pin = 2;
 const int max_pin = 7;
 const int reset_pin = 8;
@@ -18,8 +18,8 @@ void setup() {
   my_instrument.RegisterCommand(F("DIGital:PINs?"), &GetDigitalPins);
 
   my_instrument.SetCommandTreeBase(F("PULse"));
-  my_instrument.RegisterCommand(F(":LENght"), &SetPulseLenght);
-  my_instrument.RegisterCommand(F(":LENght?"), &GetPulseLenght);
+  my_instrument.RegisterCommand(F(":LENgth"), &SetPulseLength);
+  my_instrument.RegisterCommand(F(":LENgth?"), &GetPulseLength);
 
   my_instrument.SetCommandTreeBase(F("SWItch"));
   my_instrument.RegisterCommand(F(":ON"), &SetOpen);
@@ -40,15 +40,15 @@ void Identify(SCPI_C commands, SCPI_P parameters, Stream &interface) {
   // "<vendor>,<model>,<serial number>,<firmware>"
 }
 
-void SetPulseLenght(SCPI_C commands, SCPI_P parameters, Stream &interface) {
+void SetPulseLength(SCPI_C commands, SCPI_P parameters, Stream &interface) {
   // For simplicity no bad parameter check is done.
   if (parameters.Size() > 0) {
-    pulseLenght = constrain(String(parameters[0]).toInt(), 0, 1000);
+    pulseLength = constrain(String(parameters[0]).toInt(), 0, 1000);
   }
 }
 
-void GetPulseLenght(SCPI_C commands, SCPI_P parameters, Stream &interface) {
-  interface.println(String(pulseLenght));
+void GetPulseLength(SCPI_C commands, SCPI_P parameters, Stream &interface) {
+  interface.println(String(pulseLength));
 }
 
 void ResetSwitch(SCPI_C commands, SCPI_P parameters, Stream &interface) {
@@ -78,7 +78,7 @@ void GetOpen(SCPI_C commands, SCPI_P parameters, Stream &interface) {
 
 void sendPulse(int pin) {
   digitalWrite(pin, HIGH);
-  delay(pulseLenght);
+  delay(pulseLength);
   digitalWrite(pin, LOW);
 }
 

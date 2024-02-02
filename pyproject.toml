@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "qtics"
-version = "0.0.3"
+version = "0.0.4"
 description = "Quantum Technologies Instrumentation ControlS"
 authors = ["The BiQuTe Team"]
 license = "Apache License 2.0"
@@ -56,3 +56,7 @@ ignore_missing_imports = true
 
 [tool.pylint]
 disable = "W1203"
+
+[tool.codespell]
+ignore-words-list = "poin,runn,sav"
+skip="./.*,docs/build,poetry.lock,pyproject.toml"

@@ -16,7 +16,7 @@ class Keithley2231A(SerialInst):
         """Put Keithley 2231A DC Power Supply in remote."""
         self.serial.open()
         self.write("SYST:REM")
-        log.info(f"Instrument {self.name} connected succesfully.")
+        log.info(f"Instrument {self.name} connected successfully.")
 
     def disconnect(self):
         """Take Keithley 2231A DC Power Supply out of remote."""
