@@ -7,7 +7,7 @@ Manual of the instrument is available at `Mouser <https://eu.mouser.com/datashee
 This instrument requires the correspondent Arduino firmware do be compiled and loaded.
 See related instruction at :ref:`arduino_firmware`.
 
-Base class: :class:`qtics.serial_inst.SerialInst`.
+Base class: :class:`qtics.instruments.serial_inst.SerialInst`.
 
 Example of operations
 """""""""""""""""""""

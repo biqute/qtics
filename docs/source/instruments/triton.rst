@@ -3,7 +3,7 @@ Triton controller
 
 Controller of the Triton Cryostat by Oxford Instruments.
 
-Base class: :class:`qtics.network_inst.NetworkInst`.
+Base class: :class:`qtics.instruments.network_inst.NetworkInst`.
 
 Example of opertations
 """"""""""""""""""""""

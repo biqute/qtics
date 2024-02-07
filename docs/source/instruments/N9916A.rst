@@ -5,13 +5,13 @@ N9916A FieldFox Handheld Microwave Analyzer by Keysight
 The manuals of this instrument and similar models are available at `Keysight <https://www.keysight.com/us/en/lib/resources/service-manuals/keysight-fieldfox-library-help-and-manuals-2153870.html>`_.
 The SCPI commands and functions can be found in the `programming guide <https://www.keysight.com/us/en/assets/9921-02561/programming-guides/FFProgrammingHelp.pdf>`_.
 
-Base class: :class:`qtics.network_inst.NetworkInst`.
+Base class: :class:`qtics.instruments.network_inst.NetworkInst`.
 
 This instrument features different operational modes (VNA, SA, CAT...), with mostly different commands. Each mode is controlled by its respective class. When connecting, these classes will automatically try to initialize a basic measurement setup with the specific mode.
 
 Commands
 """"""""
-Other than featuring all the methods of :class:`qtics.network_inst.NetworkInst`, the base :class:`qtics.instruments.network.NA_N9916A.N9916A` class contains the following methods and properties common to all the operational modes of the instrument.
+Other than featuring all the methods of :class:`qtics.instruments.network_inst.NetworkInst`, the base :class:`qtics.instruments.network.NA_N9916A.N9916A` class contains the following methods and properties common to all the operational modes of the instrument.
 
 Functions
 ------------
