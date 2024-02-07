@@ -7,7 +7,7 @@ import numpy as np
 import pytest
 
 from qtics.experiment import BaseExperiment, Experiment, MonitorExperiment
-from qtics.instrument import Instrument
+from qtics.instruments import Instrument
 
 
 class DummyInstrument(Instrument):

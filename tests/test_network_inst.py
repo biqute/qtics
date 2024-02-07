@@ -4,8 +4,7 @@ import socket
 
 import pytest
 
-from qtics.instrument import Instrument
-from qtics.network_inst import NetworkInst
+from qtics.instruments import Instrument, NetworkInst
 
 
 def mock_pass(_=None, __=None):

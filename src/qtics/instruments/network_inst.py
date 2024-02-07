@@ -12,7 +12,7 @@ import socket
 import time
 
 from qtics import log
-from qtics.instrument import Instrument
+from qtics.instruments import Instrument
 
 
 class NetworkInst(Instrument):

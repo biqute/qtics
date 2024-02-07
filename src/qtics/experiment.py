@@ -16,7 +16,7 @@ import h5py
 import numpy as np
 
 from qtics import log
-from qtics.instrument import Instrument
+from qtics.instruments import Instrument
 
 
 class BaseExperiment(ABC):

@@ -14,7 +14,7 @@ from typing import Tuple
 import numpy as np
 
 from qtics import log
-from qtics.network_inst import NetworkInst
+from qtics.instruments import NetworkInst
 
 MEAS_TIME_FACTOR = 1.02
 

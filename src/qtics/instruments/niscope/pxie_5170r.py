@@ -7,7 +7,7 @@ from typing import Optional
 import niscope as ni
 
 from qtics import log
-from qtics.instrument import Instrument
+from qtics.instruments import Instrument
 
 
 @dataclass

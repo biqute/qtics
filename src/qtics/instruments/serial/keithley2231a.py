@@ -6,7 +6,7 @@ Controller of the Keithley2231A DC Power Supply.
 """
 
 from qtics import log
-from qtics.serial_inst import SerialInst
+from qtics.instruments import SerialInst
 
 
 class Keithley2231A(SerialInst):
