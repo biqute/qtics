@@ -37,6 +37,7 @@ class NetworkInst(Instrument):
         self.timeout = timeout
         self.no_delay = no_delay
         self.__is_connected = False
+        self.socket = None
 
     def __del__(self):
         """Delete the object."""
@@ -69,6 +70,9 @@ class NetworkInst(Instrument):
     def read(self) -> str:
         """Read the output buffer of the instrument."""
         response = b""
+        if self.socket is None:
+            log.warning("Socket not initialized.")
+            return ""
         try:
             while response[-1:] != b"\n":
                 response += self.socket.recv(1024)
@@ -80,6 +84,9 @@ class NetworkInst(Instrument):
 
     def write(self, cmd: str, sleep=False):
         """Write a message to the serial port."""
+        if self.socket is None:
+            log.warning("Socket not initialized.")
+            return
         log.debug(f"WRITE: {cmd}")
         self.socket.sendall((cmd + "\n").encode())
         if sleep:

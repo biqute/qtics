@@ -70,14 +70,14 @@ class BaseExperiment(ABC):
         log.info("Starting experiment %s.", self.name)
         try:
             self.main()
-        except KeyboardInterrupt:
+        except KeyboardInterrupt as exc:
             log.warning("Interrupt signal received, exiting")
             self.all_instruments("reset")
-            raise KeyboardInterrupt
-        except Exception as e:
-            log.error("Exception occurred: %s", e)
+            raise exc
+        except Exception as exc:
+            log.error("Exception occurred: %s", exc)
             self.all_instruments("reset")
-            raise Exception(e)
+            raise exc
         log.info("Experiment run successfully.")
 
     def add_instrument(self, inst: Instrument):
@@ -168,8 +168,7 @@ class MonitorExperiment(BaseExperiment):
         while not event.is_set():
             time.sleep(self.sleep)
             self.main()
-        else:
-            log.info("Trigger event set, %s shutting down.", self.name)
+        log.info("Trigger event set, %s shutting down.", self.name)
 
 
 class Experiment(BaseExperiment):

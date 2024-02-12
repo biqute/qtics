@@ -181,6 +181,9 @@ class N9916A(NetworkInst, ABC):
         self.write(cmd)
 
         # Read # character, raise exception if not present.
+        if self.socket is None:
+            raise RuntimeError("Socket not initialized.")
+
         if self.socket.recv(1) != b"#":
             raise ValueError("Data in buffer is not in binblock format.")
 
