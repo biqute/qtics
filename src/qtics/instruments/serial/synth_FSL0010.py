@@ -9,7 +9,7 @@ from typing import Literal
 
 import serial
 
-from qtics.serial_inst import SerialInst
+from qtics.instruments import SerialInst
 
 DEFAULT_FREQ_SCALE = 1e-3  # Convert mHz to Hz
 

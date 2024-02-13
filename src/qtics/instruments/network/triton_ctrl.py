@@ -7,7 +7,7 @@ moduleauthor: Rodolfo Carobene <rodolfo.carobene@mib.infn.it>
 
 import time
 
-from qtics.network_inst import NetworkInst
+from qtics.instruments import NetworkInst
 
 ENABLE_SETTERS = False
 

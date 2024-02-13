@@ -6,7 +6,7 @@ Controller of the Keithley6514 Electrometer.
 """
 
 from qtics import log
-from qtics.serial_inst import SerialInst
+from qtics.instruments import SerialInst
 
 
 class Keithley6514(SerialInst):

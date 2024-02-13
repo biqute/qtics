@@ -14,7 +14,7 @@ from typing import Tuple
 import numpy as np
 
 from qtics import log
-from qtics.network_inst import NetworkInst
+from qtics.instruments import NetworkInst
 
 MEAS_TIME_FACTOR = 1.02
 
@@ -181,6 +181,9 @@ class N9916A(NetworkInst, ABC):
         self.write(cmd)
 
         # Read # character, raise exception if not present.
+        if self.socket is None:
+            raise RuntimeError("Socket not initialized.")
+
         if self.socket.recv(1) != b"#":
             raise ValueError("Data in buffer is not in binblock format.")
 

@@ -4,7 +4,7 @@ from typing import Literal
 
 import serial
 
-from qtics.serial_inst import SerialInst
+from qtics.instruments import SerialInst
 
 
 class Attenuator_3494_64(SerialInst):

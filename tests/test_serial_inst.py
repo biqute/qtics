@@ -2,8 +2,7 @@
 
 from serial import EIGHTBITS, PARITY_NONE, STOPBITS_ONE, Serial
 
-from qtics.instrument import Instrument
-from qtics.serial_inst import SerialInst
+from qtics.instruments import Instrument, SerialInst
 
 
 def mock_pass(_=None, __=None):
