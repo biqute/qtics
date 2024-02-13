@@ -185,12 +185,7 @@
 <ul>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../api-reference/modules.html">qtics</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of qtics</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../api-reference/qtics.html">qtics package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of qtics package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l3 has-children"><a class="reference internal" href="../api-reference/qtics.instruments.html">qtics.instruments package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of qtics.instruments package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l4"><a class="reference internal" href="../api-reference/qtics.instruments.network.html">qtics.instruments.network package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../api-reference/qtics.instruments.niscope.html">qtics.instruments.niscope package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../api-reference/qtics.instruments.serial.html">qtics.instruments.serial package</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="../api-reference/qtics.instruments.html">qtics.instruments package</a></li>
 </ul>
 </li>
 </ul>
@@ -242,11 +237,11 @@
 <p>N9916A FieldFox Handheld Microwave Analyzer by Keysight
 The manuals of this instrument and similar models are available at <a class="reference external" href="https://www.keysight.com/us/en/lib/resources/service-manuals/keysight-fieldfox-library-help-and-manuals-2153870.html">Keysight</a>.
 The SCPI commands and functions can be found in the <a class="reference external" href="https://www.keysight.com/us/en/assets/9921-02561/programming-guides/FFProgrammingHelp.pdf">programming guide</a>.</p>
-<p>Base class: <a class="reference internal" href="../api-reference/qtics.html#qtics.network_inst.NetworkInst" title="qtics.network_inst.NetworkInst"><code class="xref py py-class docutils literal notranslate"><span class="pre">qtics.network_inst.NetworkInst</span></code></a>.</p>
+<p>Base class: <a class="reference internal" href="../api-reference/qtics.instruments.html#qtics.instruments.network_inst.NetworkInst" title="qtics.instruments.network_inst.NetworkInst"><code class="xref py py-class docutils literal notranslate"><span class="pre">qtics.instruments.network_inst.NetworkInst</span></code></a>.</p>
 <p>This instrument features different operational modes (VNA, SA, CAT…), with mostly different commands. Each mode is controlled by its respective class. When connecting, these classes will automatically try to initialize a basic measurement setup with the specific mode.</p>
 <section id="commands">
 <h2>Commands<a class="headerlink" href="#commands" title="Permalink to this heading">#</a></h2>
-<p>Other than featuring all the methods of <a class="reference internal" href="../api-reference/qtics.html#qtics.network_inst.NetworkInst" title="qtics.network_inst.NetworkInst"><code class="xref py py-class docutils literal notranslate"><span class="pre">qtics.network_inst.NetworkInst</span></code></a>, the base <a class="reference internal" href="../api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.N9916A" title="qtics.instruments.network.NA_N9916A.N9916A"><code class="xref py py-class docutils literal notranslate"><span class="pre">qtics.instruments.network.NA_N9916A.N9916A</span></code></a> class contains the following methods and properties common to all the operational modes of the instrument.</p>
+<p>Other than featuring all the methods of <a class="reference internal" href="../api-reference/qtics.instruments.html#qtics.instruments.network_inst.NetworkInst" title="qtics.instruments.network_inst.NetworkInst"><code class="xref py py-class docutils literal notranslate"><span class="pre">qtics.instruments.network_inst.NetworkInst</span></code></a>, the base <code class="xref py py-class docutils literal notranslate"><span class="pre">qtics.instruments.network.NA_N9916A.N9916A</span></code> class contains the following methods and properties common to all the operational modes of the instrument.</p>
 <section id="functions">
 <h3>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
@@ -282,7 +277,7 @@ The SCPI commands and functions can be found in the <a class="reference external
 </section>
 <section id="vna-mode">
 <h2>VNA mode<a class="headerlink" href="#vna-mode" title="Permalink to this heading">#</a></h2>
-<p>Measure the scattering value parameter of a connected RF network by sweeping a probe signal over a range of frequencies. This mode is implemented by the <a class="reference internal" href="../api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.VNAN9916A" title="qtics.instruments.network.NA_N9916A.VNAN9916A"><code class="xref py py-class docutils literal notranslate"><span class="pre">qtics.instruments.network.NA_N9916A.VNAN9916A</span></code></a> class.</p>
+<p>Measure the scattering value parameter of a connected RF network by sweeping a probe signal over a range of frequencies. This mode is implemented by the <code class="xref py py-class docutils literal notranslate"><span class="pre">qtics.instruments.network.NA_N9916A.VNAN9916A</span></code> class.</p>
 <section id="example-of-operation">
 <h3>Example of operation<a class="headerlink" href="#example-of-operation" title="Permalink to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qtics</span> <span class="kn">import</span> <span class="n">VNAN9916A</span>
@@ -326,7 +321,7 @@ The SCPI commands and functions can be found in the <a class="reference external
 </section>
 <section id="sa-mode">
 <h2>SA mode<a class="headerlink" href="#sa-mode" title="Permalink to this heading">#</a></h2>
-<p>Measure the magnitude of an RF signal as a function of frequency. This mode is implemented by the <a class="reference internal" href="../api-reference/qtics.instruments.network.html#qtics.instruments.network.NA_N9916A.SAN9916A" title="qtics.instruments.network.NA_N9916A.SAN9916A"><code class="xref py py-class docutils literal notranslate"><span class="pre">qtics.instruments.network.NA_N9916A.SAN9916A</span></code></a> class.</p>
+<p>Measure the magnitude of an RF signal as a function of frequency. This mode is implemented by the <code class="xref py py-class docutils literal notranslate"><span class="pre">qtics.instruments.network.NA_N9916A.SAN9916A</span></code> class.</p>
 <section id="id3">
 <h3>Example of operation<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qtics</span> <span class="kn">import</span> <span class="n">SAN9916A</span>

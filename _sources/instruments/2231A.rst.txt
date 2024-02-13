@@ -4,7 +4,7 @@ Keithley Model 2231A-30-3 Triple Channel DC Power Supply.
 Keithley Model `2231A-30-3` Triple Channel DC Power Supply produced by Keithley Instruments.
 Manual of the instrument is available at `Tek <https://download.tek.com/manual/077100401_Reference%20manual.pdf>`_.
 
-Base class: :class:`qtics.serial_inst.SerialInst`.
+Base class: :class:`qtics.instruments.serial_inst.SerialInst`.
 
 Example of operations
 """""""""""""""""""""

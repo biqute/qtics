@@ -185,12 +185,7 @@
 <ul class="current">
 <li class="toctree-l1 current has-children"><a class="reference internal" href="modules.html">qtics</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of qtics</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l2 current has-children current-page"><a class="current reference internal" href="#">qtics package</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of qtics package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l3 has-children"><a class="reference internal" href="qtics.instruments.html">qtics.instruments package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of qtics.instruments package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.network.html">qtics.instruments.network package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.niscope.html">qtics.instruments.niscope package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.serial.html">qtics.instruments.serial package</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="qtics.instruments.html">qtics.instruments package</a></li>
 </ul>
 </li>
 </ul>
@@ -236,25 +231,46 @@
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="qtics.instruments.html">qtics.instruments package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="qtics.instruments.html#subpackages">Subpackages</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="qtics.instruments.network.html">qtics.instruments.network package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.network.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.network.html#module-qtics.instruments.network.NA_N9916A">qtics.instruments.network.NA_N9916A module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.network.html#module-qtics.instruments.network.RS_SMA100B">qtics.instruments.network.RS_SMA100B module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.network.html#module-qtics.instruments.network.triton_ctrl">qtics.instruments.network.triton_ctrl module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qtics.instruments.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qtics.instruments.html#module-qtics.instruments.instrument">qtics.instruments.instrument module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.instrument.Instrument"><code class="docutils literal notranslate"><span class="pre">Instrument</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.instrument.Instrument.clear_defaults"><code class="docutils literal notranslate"><span class="pre">Instrument.clear_defaults()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.instrument.Instrument.connect"><code class="docutils literal notranslate"><span class="pre">Instrument.connect()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.instrument.Instrument.defaults"><code class="docutils literal notranslate"><span class="pre">Instrument.defaults</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.instrument.Instrument.disconnect"><code class="docutils literal notranslate"><span class="pre">Instrument.disconnect()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.instrument.Instrument.get"><code class="docutils literal notranslate"><span class="pre">Instrument.get()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.instrument.Instrument.get_id"><code class="docutils literal notranslate"><span class="pre">Instrument.get_id()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.instrument.Instrument.query"><code class="docutils literal notranslate"><span class="pre">Instrument.query()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.instrument.Instrument.read"><code class="docutils literal notranslate"><span class="pre">Instrument.read()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.instrument.Instrument.reset"><code class="docutils literal notranslate"><span class="pre">Instrument.reset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.instrument.Instrument.set"><code class="docutils literal notranslate"><span class="pre">Instrument.set()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.instrument.Instrument.set_defaults"><code class="docutils literal notranslate"><span class="pre">Instrument.set_defaults()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.instrument.Instrument.update_defaults"><code class="docutils literal notranslate"><span class="pre">Instrument.update_defaults()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.instrument.Instrument.validate_opt"><code class="docutils literal notranslate"><span class="pre">Instrument.validate_opt()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.instrument.Instrument.validate_range"><code class="docutils literal notranslate"><span class="pre">Instrument.validate_range()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.instrument.Instrument.write"><code class="docutils literal notranslate"><span class="pre">Instrument.write()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="qtics.instruments.niscope.html">qtics.instruments.niscope package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.niscope.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.niscope.html#module-qtics.instruments.niscope.pxie_5170r">qtics.instruments.niscope.pxie_5170r module</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="qtics.instruments.serial.html">qtics.instruments.serial package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.serial.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.serial.html#module-qtics.instruments.serial.keithley2231a">qtics.instruments.serial.keithley2231a module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.serial.html#module-qtics.instruments.serial.keithley6514">qtics.instruments.serial.keithley6514 module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.serial.html#module-qtics.instruments.serial.synth_FSL0010">qtics.instruments.serial.synth_FSL0010 module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.serial.html#module-qtics.instruments.serial.voltage_source_SIM928">qtics.instruments.serial.voltage_source_SIM928 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qtics.instruments.html#module-qtics.instruments.network_inst">qtics.instruments.network_inst module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.network_inst.NetworkInst"><code class="docutils literal notranslate"><span class="pre">NetworkInst</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.network_inst.NetworkInst.connect"><code class="docutils literal notranslate"><span class="pre">NetworkInst.connect()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.network_inst.NetworkInst.disconnect"><code class="docutils literal notranslate"><span class="pre">NetworkInst.disconnect()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.network_inst.NetworkInst.query"><code class="docutils literal notranslate"><span class="pre">NetworkInst.query()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.network_inst.NetworkInst.read"><code class="docutils literal notranslate"><span class="pre">NetworkInst.read()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.network_inst.NetworkInst.write"><code class="docutils literal notranslate"><span class="pre">NetworkInst.write()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="qtics.instruments.html#module-qtics.instruments.serial_inst">qtics.instruments.serial_inst module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.serial_inst.SerialInst"><code class="docutils literal notranslate"><span class="pre">SerialInst</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.serial_inst.SerialInst.connect"><code class="docutils literal notranslate"><span class="pre">SerialInst.connect()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.serial_inst.SerialInst.disconnect"><code class="docutils literal notranslate"><span class="pre">SerialInst.disconnect()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.serial_inst.SerialInst.query"><code class="docutils literal notranslate"><span class="pre">SerialInst.query()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.serial_inst.SerialInst.read"><code class="docutils literal notranslate"><span class="pre">SerialInst.read()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.serial_inst.SerialInst.write"><code class="docutils literal notranslate"><span class="pre">SerialInst.write()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -277,7 +293,7 @@
 <p>Base experiment class.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="qtics.experiment.BaseExperiment.add_instrument">
-<span class="sig-name descname"><span class="pre">add_instrument</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inst</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#qtics.instrument.Instrument" title="qtics.instrument.Instrument"><span class="pre">Instrument</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/experiment.html#BaseExperiment.add_instrument"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.experiment.BaseExperiment.add_instrument" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">add_instrument</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inst</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.instrument.Instrument" title="qtics.instruments.instrument.Instrument"><span class="pre">Instrument</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/experiment.html#BaseExperiment.add_instrument"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.experiment.BaseExperiment.add_instrument" title="Permalink to this definition">#</a></dt>
 <dd><p>Add an instrument with the correct name.</p>
 </dd></dl>
 
@@ -363,107 +379,6 @@
 </dd></dl>
 
 </section>
-<section id="module-qtics.instrument">
-<span id="qtics-instrument-module"></span><h2>qtics.instrument module<a class="headerlink" href="#module-qtics.instrument" title="Permalink to this heading">#</a></h2>
-<p>Base Instrument.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="qtics.instrument.Instrument">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qtics.instrument.</span></span><span class="sig-name descname"><span class="pre">Instrument</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/instrument.html#Instrument"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instrument.Instrument" title="Permalink to this definition">#</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></a></p>
-<p>Base instrument class.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="qtics.instrument.Instrument.clear_defaults">
-<span class="sig-name descname"><span class="pre">clear_defaults</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/instrument.html#Instrument.clear_defaults"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instrument.Instrument.clear_defaults" title="Permalink to this definition">#</a></dt>
-<dd><p>Clear the defaults dictionary.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="qtics.instrument.Instrument.connect">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">connect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/instrument.html#Instrument.connect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instrument.Instrument.connect" title="Permalink to this definition">#</a></dt>
-<dd><p>Connect to the instrument.</p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="qtics.instrument.Instrument.defaults">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">defaults</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><span class="pre">dict</span></a></em><a class="headerlink" href="#qtics.instrument.Instrument.defaults" title="Permalink to this definition">#</a></dt>
-<dd><p>Default values for the instrument attributes.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="qtics.instrument.Instrument.disconnect">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">disconnect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/instrument.html#Instrument.disconnect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instrument.Instrument.disconnect" title="Permalink to this definition">#</a></dt>
-<dd><p>Disconnect from the instrument.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="qtics.instrument.Instrument.get">
-<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><span class="pre">dict</span></a></span></span><a class="reference internal" href="../_modules/qtics/instrument.html#Instrument.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instrument.Instrument.get" title="Permalink to this definition">#</a></dt>
-<dd><p>Get multiple attributes and/or properties.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="qtics.instrument.Instrument.get_id">
-<span class="sig-name descname"><span class="pre">get_id</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/instrument.html#Instrument.get_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instrument.Instrument.get_id" title="Permalink to this definition">#</a></dt>
-<dd><p>Return name of the device from SCPI standard query.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="qtics.instrument.Instrument.query">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cmd</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></span><a class="reference internal" href="../_modules/qtics/instrument.html#Instrument.query"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instrument.Instrument.query" title="Permalink to this definition">#</a></dt>
-<dd><p>Send a command and read from the instrument.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="qtics.instrument.Instrument.read">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/instrument.html#Instrument.read"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instrument.Instrument.read" title="Permalink to this definition">#</a></dt>
-<dd><p>Read from the instrument.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="qtics.instrument.Instrument.reset">
-<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">defaults</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/instrument.html#Instrument.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instrument.Instrument.reset" title="Permalink to this definition">#</a></dt>
-<dd><p>Reset device with SCPI standard command.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="qtics.instrument.Instrument.set">
-<span class="sig-name descname"><span class="pre">set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/instrument.html#Instrument.set"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instrument.Instrument.set" title="Permalink to this definition">#</a></dt>
-<dd><p>Set multiple attributes and/or properties.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="qtics.instrument.Instrument.set_defaults">
-<span class="sig-name descname"><span class="pre">set_defaults</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/instrument.html#Instrument.set_defaults"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instrument.Instrument.set_defaults" title="Permalink to this definition">#</a></dt>
-<dd><p>Set the specified default values.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="qtics.instrument.Instrument.update_defaults">
-<span class="sig-name descname"><span class="pre">update_defaults</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/instrument.html#Instrument.update_defaults"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instrument.Instrument.update_defaults" title="Permalink to this definition">#</a></dt>
-<dd><p>Validate and update the defaults dictionary.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="qtics.instrument.Instrument.validate_opt">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">validate_opt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">opt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">allowed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)"><span class="pre">tuple</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/instrument.html#Instrument.validate_opt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instrument.Instrument.validate_opt" title="Permalink to this definition">#</a></dt>
-<dd><p>Check if provided option is between allowed ones.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="qtics.instrument.Instrument.validate_range">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">validate_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_min</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_max</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/instrument.html#Instrument.validate_range"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instrument.Instrument.validate_range" title="Permalink to this definition">#</a></dt>
-<dd><p>Check if provided number is in allowed range.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="qtics.instrument.Instrument.write">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cmd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sleep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/instrument.html#Instrument.write"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instrument.Instrument.write" title="Permalink to this definition">#</a></dt>
-<dd><p>Send a command to the instrument.</p>
-</dd></dl>
-
-</dd></dl>
-
-</section>
 <section id="module-qtics.logger">
 <span id="qtics-logger-module"></span><h2>qtics.logger module<a class="headerlink" href="#module-qtics.logger" title="Permalink to this heading">#</a></h2>
 <p>Loggers configuration.</p>
@@ -476,89 +391,6 @@
 <dt class="sig sig-object py" id="qtics.logger.CustomHandler.format">
 <span class="sig-name descname"><span class="pre">format</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/logger.html#CustomHandler.format"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.logger.CustomHandler.format" title="Permalink to this definition">#</a></dt>
 <dd><p>Format the record with specific format.</p>
-</dd></dl>
-
-</dd></dl>
-
-</section>
-<section id="module-qtics.network_inst">
-<span id="qtics-network-inst-module"></span><h2>qtics.network_inst module<a class="headerlink" href="#module-qtics.network_inst" title="Permalink to this heading">#</a></h2>
-<p>Base class for instruments communicating via network connection.</p>
-<span class="target" id="module-network_inst.py"></span><p>The code was partially taken from <a class="reference external" href="https://github.com/morgan-at-keysight/socketscpi">https://github.com/morgan-at-keysight/socketscpi</a></p>
-<dl class="py class">
-<dt class="sig sig-object py" id="qtics.network_inst.NetworkInst">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qtics.network_inst.</span></span><span class="sig-name descname"><span class="pre">NetworkInst</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5025</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sleep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_delay</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/network_inst.html#NetworkInst"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.network_inst.NetworkInst" title="Permalink to this definition">#</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#qtics.instrument.Instrument" title="qtics.instrument.Instrument"><code class="xref py py-class docutils literal notranslate"><span class="pre">Instrument</span></code></a></p>
-<p>Base class for instruments communicating via network connection.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="qtics.network_inst.NetworkInst.connect">
-<span class="sig-name descname"><span class="pre">connect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/network_inst.html#NetworkInst.connect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.network_inst.NetworkInst.connect" title="Permalink to this definition">#</a></dt>
-<dd><p>Connect to the device.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="qtics.network_inst.NetworkInst.disconnect">
-<span class="sig-name descname"><span class="pre">disconnect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/network_inst.html#NetworkInst.disconnect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.network_inst.NetworkInst.disconnect" title="Permalink to this definition">#</a></dt>
-<dd><p>Disconnect from the device.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="qtics.network_inst.NetworkInst.query">
-<span class="sig-name descname"><span class="pre">query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cmd</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></span><a class="reference internal" href="../_modules/qtics/network_inst.html#NetworkInst.query"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.network_inst.NetworkInst.query" title="Permalink to this definition">#</a></dt>
-<dd><p>Send a message, then read from the serial port.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="qtics.network_inst.NetworkInst.read">
-<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></span><a class="reference internal" href="../_modules/qtics/network_inst.html#NetworkInst.read"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.network_inst.NetworkInst.read" title="Permalink to this definition">#</a></dt>
-<dd><p>Read the output buffer of the instrument.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="qtics.network_inst.NetworkInst.write">
-<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cmd</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">sleep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/network_inst.html#NetworkInst.write"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.network_inst.NetworkInst.write" title="Permalink to this definition">#</a></dt>
-<dd><p>Write a message to the serial port.</p>
-</dd></dl>
-
-</dd></dl>
-
-</section>
-<section id="module-qtics.serial_inst">
-<span id="qtics-serial-inst-module"></span><h2>qtics.serial_inst module<a class="headerlink" href="#module-qtics.serial_inst" title="Permalink to this heading">#</a></h2>
-<p>Base instrument for serial connections.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="qtics.serial_inst.SerialInst">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qtics.serial_inst.</span></span><span class="sig-name descname"><span class="pre">SerialInst</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">baudrate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">9600</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bytesize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.12)"><span class="pre">Literal</span></a><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'N'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'N'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stopbits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sleep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/serial_inst.html#SerialInst"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.serial_inst.SerialInst" title="Permalink to this definition">#</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#qtics.instrument.Instrument" title="qtics.instrument.Instrument"><code class="xref py py-class docutils literal notranslate"><span class="pre">Instrument</span></code></a></p>
-<p>Base class for instrument controlled via serial connection.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="qtics.serial_inst.SerialInst.connect">
-<span class="sig-name descname"><span class="pre">connect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/serial_inst.html#SerialInst.connect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.serial_inst.SerialInst.connect" title="Permalink to this definition">#</a></dt>
-<dd><p>Connect to the device.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="qtics.serial_inst.SerialInst.disconnect">
-<span class="sig-name descname"><span class="pre">disconnect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/serial_inst.html#SerialInst.disconnect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.serial_inst.SerialInst.disconnect" title="Permalink to this definition">#</a></dt>
-<dd><p>Disconnect from the device.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="qtics.serial_inst.SerialInst.query">
-<span class="sig-name descname"><span class="pre">query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cmd</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></span><a class="reference internal" href="../_modules/qtics/serial_inst.html#SerialInst.query"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.serial_inst.SerialInst.query" title="Permalink to this definition">#</a></dt>
-<dd><p>Send a message, then read from the serial port.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="qtics.serial_inst.SerialInst.read">
-<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></span><a class="reference internal" href="../_modules/qtics/serial_inst.html#SerialInst.read"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.serial_inst.SerialInst.read" title="Permalink to this definition">#</a></dt>
-<dd><p>Read a message from the serial port.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="qtics.serial_inst.SerialInst.write">
-<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cmd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sleep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/serial_inst.html#SerialInst.write"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.serial_inst.SerialInst.write" title="Permalink to this definition">#</a></dt>
-<dd><p>Write a message to the serial port.</p>
 </dd></dl>
 
 </dd></dl>
@@ -655,52 +487,9 @@
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#module-qtics.instrument">qtics.instrument module</a><ul>
-<li><a class="reference internal" href="#qtics.instrument.Instrument"><code class="docutils literal notranslate"><span class="pre">Instrument</span></code></a><ul>
-<li><a class="reference internal" href="#qtics.instrument.Instrument.clear_defaults"><code class="docutils literal notranslate"><span class="pre">Instrument.clear_defaults()</span></code></a></li>
-<li><a class="reference internal" href="#qtics.instrument.Instrument.connect"><code class="docutils literal notranslate"><span class="pre">Instrument.connect()</span></code></a></li>
-<li><a class="reference internal" href="#qtics.instrument.Instrument.defaults"><code class="docutils literal notranslate"><span class="pre">Instrument.defaults</span></code></a></li>
-<li><a class="reference internal" href="#qtics.instrument.Instrument.disconnect"><code class="docutils literal notranslate"><span class="pre">Instrument.disconnect()</span></code></a></li>
-<li><a class="reference internal" href="#qtics.instrument.Instrument.get"><code class="docutils literal notranslate"><span class="pre">Instrument.get()</span></code></a></li>
-<li><a class="reference internal" href="#qtics.instrument.Instrument.get_id"><code class="docutils literal notranslate"><span class="pre">Instrument.get_id()</span></code></a></li>
-<li><a class="reference internal" href="#qtics.instrument.Instrument.query"><code class="docutils literal notranslate"><span class="pre">Instrument.query()</span></code></a></li>
-<li><a class="reference internal" href="#qtics.instrument.Instrument.read"><code class="docutils literal notranslate"><span class="pre">Instrument.read()</span></code></a></li>
-<li><a class="reference internal" href="#qtics.instrument.Instrument.reset"><code class="docutils literal notranslate"><span class="pre">Instrument.reset()</span></code></a></li>
-<li><a class="reference internal" href="#qtics.instrument.Instrument.set"><code class="docutils literal notranslate"><span class="pre">Instrument.set()</span></code></a></li>
-<li><a class="reference internal" href="#qtics.instrument.Instrument.set_defaults"><code class="docutils literal notranslate"><span class="pre">Instrument.set_defaults()</span></code></a></li>
-<li><a class="reference internal" href="#qtics.instrument.Instrument.update_defaults"><code class="docutils literal notranslate"><span class="pre">Instrument.update_defaults()</span></code></a></li>
-<li><a class="reference internal" href="#qtics.instrument.Instrument.validate_opt"><code class="docutils literal notranslate"><span class="pre">Instrument.validate_opt()</span></code></a></li>
-<li><a class="reference internal" href="#qtics.instrument.Instrument.validate_range"><code class="docutils literal notranslate"><span class="pre">Instrument.validate_range()</span></code></a></li>
-<li><a class="reference internal" href="#qtics.instrument.Instrument.write"><code class="docutils literal notranslate"><span class="pre">Instrument.write()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
 <li><a class="reference internal" href="#module-qtics.logger">qtics.logger module</a><ul>
 <li><a class="reference internal" href="#qtics.logger.CustomHandler"><code class="docutils literal notranslate"><span class="pre">CustomHandler</span></code></a><ul>
 <li><a class="reference internal" href="#qtics.logger.CustomHandler.format"><code class="docutils literal notranslate"><span class="pre">CustomHandler.format()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-qtics.network_inst">qtics.network_inst module</a><ul>
-<li><a class="reference internal" href="#qtics.network_inst.NetworkInst"><code class="docutils literal notranslate"><span class="pre">NetworkInst</span></code></a><ul>
-<li><a class="reference internal" href="#qtics.network_inst.NetworkInst.connect"><code class="docutils literal notranslate"><span class="pre">NetworkInst.connect()</span></code></a></li>
-<li><a class="reference internal" href="#qtics.network_inst.NetworkInst.disconnect"><code class="docutils literal notranslate"><span class="pre">NetworkInst.disconnect()</span></code></a></li>
-<li><a class="reference internal" href="#qtics.network_inst.NetworkInst.query"><code class="docutils literal notranslate"><span class="pre">NetworkInst.query()</span></code></a></li>
-<li><a class="reference internal" href="#qtics.network_inst.NetworkInst.read"><code class="docutils literal notranslate"><span class="pre">NetworkInst.read()</span></code></a></li>
-<li><a class="reference internal" href="#qtics.network_inst.NetworkInst.write"><code class="docutils literal notranslate"><span class="pre">NetworkInst.write()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-qtics.serial_inst">qtics.serial_inst module</a><ul>
-<li><a class="reference internal" href="#qtics.serial_inst.SerialInst"><code class="docutils literal notranslate"><span class="pre">SerialInst</span></code></a><ul>
-<li><a class="reference internal" href="#qtics.serial_inst.SerialInst.connect"><code class="docutils literal notranslate"><span class="pre">SerialInst.connect()</span></code></a></li>
-<li><a class="reference internal" href="#qtics.serial_inst.SerialInst.disconnect"><code class="docutils literal notranslate"><span class="pre">SerialInst.disconnect()</span></code></a></li>
-<li><a class="reference internal" href="#qtics.serial_inst.SerialInst.query"><code class="docutils literal notranslate"><span class="pre">SerialInst.query()</span></code></a></li>
-<li><a class="reference internal" href="#qtics.serial_inst.SerialInst.read"><code class="docutils literal notranslate"><span class="pre">SerialInst.read()</span></code></a></li>
-<li><a class="reference internal" href="#qtics.serial_inst.SerialInst.write"><code class="docutils literal notranslate"><span class="pre">SerialInst.write()</span></code></a></li>
 </ul>
 </li>
 </ul>
