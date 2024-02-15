@@ -10,7 +10,11 @@ class Instrument(ABC):
     """Base instrument class."""
 
     def __init__(self, name: str, address: str):
-        """Initialize."""
+        """Initialize.
+
+        :param name: identifier of the instrument
+        :param address: ip address of the instrument
+        """
         self.name = name
         self.address = address
         self._defaults: Dict[str, Any] = {}
@@ -39,14 +43,20 @@ class Instrument(ABC):
         """Return name of the device from SCPI standard query."""
         return self.query("*IDN?")
 
-    def reset(self, defaults=True):
-        """Reset device with SCPI standard command."""
+    def reset(self, defaults: bool = True):
+        """Reset device with SCPI standard command.
+
+        :param defaults: if true set default values after reset
+        """
         self.write("*RST")
         if defaults:
             self.set_defaults()
 
     def set(self, **kwargs):
-        """Set multiple attributes and/or properties."""
+        """Set multiple attributes and/or properties.
+
+        :param kwargs: parameters and values to set
+        """
         for key, value in kwargs.items():
             if hasattr(self, key):
                 setattr(self, key, value)
@@ -54,7 +64,10 @@ class Instrument(ABC):
                 raise RuntimeError(f"The instrument does not have the {key} parameter.")
 
     def get(self, *args) -> dict:
-        """Get multiple attributes and/or properties."""
+        """Get multiple attributes and/or properties.
+
+        :param args: parameters to get
+        """
         values = {}
         for key in args:
             if hasattr(self, key):
@@ -65,13 +78,24 @@ class Instrument(ABC):
 
     @staticmethod
     def validate_opt(opt: Union[str, int], allowed: tuple):
-        """Check if provided option is between allowed ones."""
+        """Check if provided option is between allowed ones.
+
+        :param opt: chosen option
+        :param allowed: tuple of the allowed options
+        """
         if opt not in allowed:
             raise RuntimeError(f"Invalid option provided, choose between {allowed}")
 
     @staticmethod
     def validate_range(n, n_min, n_max):
-        """Check if provided number is in allowed range."""
+        """Check if provided number is in allowed range.
+
+        :param n: provided number
+        :param n_min: minimum value allowed
+        :param n_max: maximum value allowed
+
+        :return: n if is valid, otherwise n_max/n_min
+        """
         if not n_min <= n <= n_max:
             valid = max(n_min, min(n_max, n))
             log.warning(
@@ -82,11 +106,14 @@ class Instrument(ABC):
 
     @property
     def defaults(self) -> dict:
-        """Default values for the instrument attributes."""
+        """Return default values for the instrument attributes."""
         return self._defaults
 
     def update_defaults(self, **kwargs):
-        """Validate and update the defaults dictionary."""
+        """Validate and update the defaults dictionary.
+
+        :param kwargs: dictionary of default parameters and values
+        """
         for key, value in kwargs.items():
             if hasattr(self, key):
                 self._defaults[key] = value
@@ -98,7 +125,10 @@ class Instrument(ABC):
         self._defaults = {}
 
     def set_defaults(self, **kwargs):
-        """Set the specified default values."""
+        """Set the specified default values.
+
+        :param kwargs: dictionary of default parameters and values
+        """
         if kwargs:
             self.update_defaults(**kwargs)
         if self.defaults:
