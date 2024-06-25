@@ -50,7 +50,7 @@ class SMA100B(NetworkInst):
 
         Valid options to query:
         - OTIM: Queries the operating hours of the instrument so far
-        - POC: Queris how often the instrument has been turned on so far
+        - POC: Queries how often the instrument has been turned on so far
         """
         self.validate_opt(opt, ("OTIM", "POC"))
         return self.query(f"DIAG:INFO:{opt}?")
