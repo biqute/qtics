@@ -18,7 +18,7 @@ repos:
       - id: isort
         args: ["--profile", "black"]
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.15.2
+    rev: v3.16.0
     hooks:
       - id: pyupgrade
   - repo: https://github.com/hadialqattan/pycln
@@ -29,7 +29,7 @@ repos:
           - --config=pyproject.toml
           - --all
   - repo: https://github.com/pre-commit/mirrors-clang-format
-    rev: v18.1.4
+    rev: v18.1.7
     hooks:
     - id: clang-format
   - repo: https://github.com/pycqa/pydocstyle
@@ -37,6 +37,6 @@ repos:
     hooks:
       - id: pydocstyle
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.2.6
+    rev: v2.3.0
     hooks:
       - id: codespell
