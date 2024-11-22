@@ -10,6 +10,7 @@ The code was partially taken from https://github.com/morgan-at-keysight/socketsc
 import ipaddress
 import socket
 import time
+from typing import Optional
 
 from qtics import log
 from qtics.instruments import Instrument
@@ -27,7 +28,15 @@ class NetworkInst(Instrument):
         sleep: float = 0.1,
         no_delay: bool = True,
     ):
-        """Initialize."""
+        """Initialize.
+
+        :param name: instrument identifier
+        :param address: ip address of the instrument
+        :param port: port for instrument connection
+        :param timeout: timeout for connection
+        :param sleep: default sleep value
+        :param no_delay: socket no_delay
+        """
         super().__init__(name, address)
 
         # Validate IP
@@ -37,7 +46,7 @@ class NetworkInst(Instrument):
         self.timeout = timeout
         self.no_delay = no_delay
         self.__is_connected = False
-        self.socket = None
+        self.socket: Optional[socket.socket] = None
 
     def __del__(self):
         """Delete the object."""
@@ -59,7 +68,7 @@ class NetworkInst(Instrument):
 
     def disconnect(self):
         """Disconnect from the device."""
-        if self.__is_connected:
+        if self.__is_connected and self.socket is not None:
             self.socket.shutdown(socket.SHUT_RDWR)
             self.socket.close()
             self.__is_connected = False
@@ -68,7 +77,10 @@ class NetworkInst(Instrument):
             log.info(f"No connection to close for instrument {self.name}.")
 
     def read(self) -> str:
-        """Read the output buffer of the instrument."""
+        """Read the output buffer of the instrument.
+
+        :return: output in string form (UTF-8)
+        """
         response = b""
         if self.socket is None:
             log.warning("Socket not initialized.")
@@ -82,8 +94,12 @@ class NetworkInst(Instrument):
         log.debug(f"READ: {res}")
         return res
 
-    def write(self, cmd: str, sleep=False):
-        """Write a message to the serial port."""
+    def write(self, cmd: str, sleep: bool = False):
+        """Write a message to the serial port.
+
+        :param cmd: command in string form
+        :param sleep: if true, sleeps after writing
+        """
         if self.socket is None:
             log.warning("Socket not initialized.")
             return
@@ -93,7 +109,11 @@ class NetworkInst(Instrument):
             time.sleep(self.sleep)
 
     def query(self, cmd: str) -> str:
-        """Send a message, then read from the serial port."""
+        """Send a message, then read from the serial port.
+
+        :param cmd: command in string form (must have question mark)
+        :return: output in string form (UTF-8)
+        """
         if "?" not in cmd:
             raise ValueError('Query must include "?"')
         self.write(cmd, True)
