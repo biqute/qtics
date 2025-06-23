@@ -1,3 +1,5 @@
+"""Define proteox instrument object."""
+
 import asyncio
 import os
 
@@ -17,26 +19,11 @@ URL = os.getenv("WAMP_ROUTER_URL")
 REALM = os.getenv("WAMP_REALM")
 
 
-async def main():
-    instrument = Proteox()
-    await instrument.connect()
-
-    for _ in range(5):
-        # temp = await instrument.get_MC_T()
-        # print(f"{temp * 1000} mK")
-        status = await instrument.get_state()
-        print(status)
-        await asyncio.sleep(1)
-
-    await instrument.close()
-
-
 class Proteox:
-    """
-    High-level API for interacting with lab instruments over WAMP.
-    """
+    """High-level API for interacting with lab instruments over WAMP."""
 
     def __init__(self, url=URL, realm=REALM):
+        """Initialize properties."""
         self.url = url
         self.realm = realm
         self.session = None
@@ -44,9 +31,7 @@ class Proteox:
         self.disconnect_event = None
 
     async def connect(self):
-        """
-        Connect to the WAMP router and establish session.
-        """
+        """Connect to the WAMP router and establish session."""
         self.disconnect_event = asyncio.Event()
 
         def make_session(config):
@@ -61,9 +46,7 @@ class Proteox:
             await asyncio.sleep(0.1)
 
     async def close(self):
-        """
-        Cleanly close the WAMP session.
-        """
+        """Close the WAMP session."""
         if self.session:
             self.session.leave()
         if self.disconnect_event:
@@ -72,9 +55,11 @@ class Proteox:
 
     @wamp_call_handler()
     async def get_sensor(self, uri):
+        """Get sensor value from URI."""
         return await self.session.call(uri)
 
     def __getattr__(self, name):
+        """General get function from sensor name."""
         if name.startswith("get_"):
             key = name[len("get_") :]
             if key in getters:
@@ -87,7 +72,3 @@ class Proteox:
 
                 return dynamic_getter
         raise AttributeError(f"'Instrument' object has no attribute '{name}'")
-
-
-if __name__ == "__main__":
-    asyncio.run(main())

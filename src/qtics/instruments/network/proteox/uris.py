@@ -1,3 +1,5 @@
+"""URI and state mapping."""
+
 getters = {
     "state": "oi.decs.proteox.state",
     "PUBLISH": "oi.decs.proteox.eventlog",
