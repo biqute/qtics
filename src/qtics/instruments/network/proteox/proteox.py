@@ -1,7 +1,7 @@
 """Define proteox instrument object."""
 
-import asyncio
-import os
+from asyncio import Event, get_event_loop, sleep
+from os import getenv
 
 from autobahn.asyncio.wamp import ApplicationRunner
 from dotenv import load_dotenv
@@ -13,10 +13,10 @@ from qtics.instruments.network.proteox.instrument_session import (
 from qtics.instruments.network.proteox.uris import getters, state_labels
 
 load_dotenv()
-USER = os.getenv("WAMP_USER")
-USER_SECRET = os.getenv("WAMP_USER_SECRET")
-URL = os.getenv("WAMP_ROUTER_URL")
-REALM = os.getenv("WAMP_REALM")
+USER = getenv("WAMP_USER")
+USER_SECRET = getenv("WAMP_USER_SECRET")
+URL = getenv("WAMP_ROUTER_URL")
+REALM = getenv("WAMP_REALM")
 
 
 class Proteox:
@@ -32,18 +32,18 @@ class Proteox:
 
     async def connect(self):
         """Connect to the WAMP router and establish session."""
-        self.disconnect_event = asyncio.Event()
+        self.disconnect_event = Event()
 
         def make_session(config):
             return InstrumentSession(config, self)
 
         self._runner = ApplicationRunner(self.url, self.realm)
-        loop = asyncio.get_event_loop()
+        loop = get_event_loop()
         loop.create_task(self._runner.run(make_session, start_loop=False))
 
         # Wait until connection is ready (onJoin sets `session`)
         while self.session is None:
-            await asyncio.sleep(0.1)
+            await sleep(0.1)
 
     async def close(self):
         """Close the WAMP session."""

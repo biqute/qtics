@@ -1,6 +1,6 @@
 """Manager for WAMP session."""
 
-import os
+from os import getenv
 
 from autobahn.asyncio.wamp import ApplicationSession
 from autobahn.wamp import auth
@@ -8,10 +8,10 @@ from dotenv import load_dotenv
 
 # Load environment variables from a `.env` file
 load_dotenv()
-USER = os.getenv("WAMP_USER")  # WAMP username
-USER_SECRET = os.getenv("WAMP_USER_SECRET")  # WAMP user password/secret
-URL = os.getenv("WAMP_ROUTER_URL")  # WAMP router URL
-REALM = os.getenv("WAMP_REALM")  # WAMP realm name
+USER = getenv("WAMP_USER")  # WAMP username
+USER_SECRET = getenv("WAMP_USER_SECRET")  # WAMP user password/secret
+URL = getenv("WAMP_ROUTER_URL")  # WAMP router URL
+REALM = getenv("WAMP_REALM")  # WAMP realm name
 
 
 def wamp_call_handler():
