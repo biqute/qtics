@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Keithley Model 6514 System Electrometer" href="6514.html" /><link rel="prev" title="Isolated voltage source Stanford Research Systems SIM928" href="SIM928.html" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="qtics" href="../api-reference/modules.html" /><link rel="prev" title="Triton controller" href="triton.html" />
 
     <link rel="shortcut icon" href="../_static/favicon.ico"/><!-- Generated with Sphinx 6.2.1 and Furo 2023.09.10 -->
-        <title>Microwave synthesizer FSL0010 - Qtics · 0.0.5</title>
+        <title>Proteox controller - Qtics · 0.0.5</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=369552022d0b975c8e74270ce6eabe0fb7978f24" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -172,13 +172,13 @@
 <li class="toctree-l2"><a class="reference internal" href="R591722600.html">RF switch Radiall R591722600</a></li>
 <li class="toctree-l2"><a class="reference internal" href="3494_64.html">Attenuator Kratos 3494-64</a></li>
 <li class="toctree-l2"><a class="reference internal" href="SIM928.html">Isolated voltage source Stanford Research Systems SIM928</a></li>
-<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Microwave synthesizer FSL0010</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FSL0010.html">Microwave synthesizer FSL0010</a></li>
 <li class="toctree-l2"><a class="reference internal" href="6514.html">Keithley Model 6514 System Electrometer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2231A.html">Keithley Model 2231A-30-3 Triple Channel DC Power Supply.</a></li>
 <li class="toctree-l2"><a class="reference internal" href="SMA100B.html">R&amp;S®SMA100B RF and microwave signal generator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="N9916A.html">Handheld Microwave Analyzer FieldFox N9916A</a></li>
 <li class="toctree-l2"><a class="reference internal" href="triton.html">Triton controller</a></li>
-<li class="toctree-l2"><a class="reference internal" href="proteox.html">Proteox controller</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Proteox controller</a></li>
 </ul>
 </li>
 </ul>
@@ -211,7 +211,7 @@
         </a>
         <div class="content-icon-container">
           <div class="edit-this-page">
-  <a class="muted-link" href="https://github.com/biqute/qtics/edit/main/docs/source/instruments/FSL0010.rst" title="Edit this page">
+  <a class="muted-link" href="https://github.com/biqute/qtics/edit/main/docs/source/instruments/proteox.rst" title="Edit this page">
     <svg aria-hidden="true" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
       <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
       <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />
@@ -233,32 +233,123 @@
           </label>
         </div>
         <article role="main">
-          <section id="microwave-synthesizer-fsl0010">
-<h1>Microwave synthesizer FSL0010<a class="headerlink" href="#microwave-synthesizer-fsl0010" title="Permalink to this heading">#</a></h1>
-<p>FSW0010 Microwave Synthesizer by National Instruments
-The manual of this instrument and similar products can be found <a class="reference external" href="http://ni-microwavecomponents.com/quicksyn-lite#documentation">here</a>. The SCPI commands and functions can be found in the <a class="reference external" href="http://ni-microwavecomponents.com/manuals/5580522-01.pdf">communications specifications</a>.</p>
-<p>Base class: <a class="reference internal" href="../api-reference/qtics.instruments.html#qtics.instruments.serial_inst.SerialInst" title="qtics.instruments.serial_inst.SerialInst"><code class="xref py py-class docutils literal notranslate"><span class="pre">qtics.instruments.serial_inst.SerialInst</span></code></a>.</p>
-<section id="example-of-operation">
-<h2>Example of operation<a class="headerlink" href="#example-of-operation" title="Permalink to this heading">#</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qtics</span> <span class="kn">import</span> <span class="n">FSL0010</span>
-
-<span class="n">synth</span> <span class="o">=</span> <span class="n">FSL0010</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;mySynth&quot;</span><span class="p">,</span> <span class="n">address</span> <span class="o">=</span> <span class="s2">&quot;/dev/ttyUSB0&quot;</span><span class="p">)</span>
-<span class="n">synth</span><span class="o">.</span><span class="n">freq</span> <span class="o">=</span> <span class="mf">5.3e9</span>
-<span class="n">synth</span><span class="o">.</span><span class="n">output_on</span> <span class="o">=</span> <span class="kc">True</span>
+          <section id="proteox-controller">
+<h1>Proteox controller<a class="headerlink" href="#proteox-controller" title="Permalink to this heading">#</a></h1>
+<p>High-level controller for the Proteox cryostat system by Oxford Instruments, interfacing via WAMP.</p>
+<p>To configure the connection, you must include a .env file in the same folder as the Proteox module. This file must contain the following entries:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">WAMP_USER</span><span class="o">=</span><span class="s2">&quot;**********&quot;</span>
+<span class="nv">WAMP_USER_SECRET</span><span class="o">=</span><span class="s2">&quot;*************&quot;</span>
+<span class="nv">WAMP_REALM</span><span class="o">=</span><span class="s2">&quot;ucss&quot;</span>
+<span class="nv">WAMP_ROUTER_URL</span><span class="o">=</span><span class="s2">&quot;ws://************:8080/ws&quot;</span>
+<span class="nv">BIND_SERVER_TO_INTERFACE</span><span class="o">=</span><span class="s2">&quot;localhost&quot;</span>
+<span class="nv">SERVER_PORT</span><span class="o">=</span><span class="s2">&quot;33576&quot;</span>
 </pre></div>
 </div>
-</section>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>All API methods (including sensor accessors) are asynchronous and must be used with await inside an async function.</p>
+</div>
+<section id="example-of-operations">
+<h2>Example of operations<a class="headerlink" href="#example-of-operations" title="Permalink to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">asyncio</span> <span class="kn">import</span> <span class="n">run</span>
+<span class="kn">from</span> <span class="nn">qtics</span> <span class="kn">import</span> <span class="n">Proteox</span>
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">myfun</span><span class="p">():</span>
+    <span class="n">instrument</span> <span class="o">=</span> <span class="n">Proteox</span><span class="p">()</span>
+    <span class="k">await</span> <span class="n">instrument</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">mix</span> <span class="o">=</span> <span class="k">await</span> <span class="n">instrument</span><span class="o">.</span><span class="n">get_MC_T</span><span class="p">()</span>
+        <span class="n">pt1</span> <span class="o">=</span> <span class="k">await</span> <span class="n">instrument</span><span class="o">.</span><span class="n">get_PT1_T1</span><span class="p">()</span>
+        <span class="n">pt2</span> <span class="o">=</span> <span class="k">await</span> <span class="n">instrument</span><span class="o">.</span><span class="n">get_PT2_T1</span><span class="p">()</span>
+        <span class="n">sti</span> <span class="o">=</span> <span class="k">await</span> <span class="n">instrument</span><span class="o">.</span><span class="n">get_STILL_T</span><span class="p">()</span>
+        <span class="n">col</span> <span class="o">=</span> <span class="k">await</span> <span class="n">instrument</span><span class="o">.</span><span class="n">get_CP_T</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">TEMPS:&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;MIX: </span><span class="si">{</span><span class="n">mix</span><span class="o">*</span><span class="mi">1000</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> mK&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;STILL: </span><span class="si">{</span><span class="n">sti</span><span class="o">*</span><span class="mi">1000</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> mK&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;COLD: </span><span class="si">{</span><span class="n">col</span><span class="o">*</span><span class="mi">1000</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> mK&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;PT1: </span><span class="si">{</span><span class="n">pt1</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> K&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;PT2: </span><span class="si">{</span><span class="n">pt2</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> K&quot;</span><span class="p">)</span>
+
+    <span class="k">await</span> <span class="n">instrument</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="n">run</span><span class="p">(</span><span class="n">myfun</span><span class="p">())</span>
+</pre></div>
+</div>
 <section id="commands">
-<h2>Commands<a class="headerlink" href="#commands" title="Permalink to this heading">#</a></h2>
-<p>Other than featuring all the methods of <a class="reference internal" href="../api-reference/qtics.instruments.html#qtics.instruments.serial_inst.SerialInst" title="qtics.instruments.serial_inst.SerialInst"><code class="xref py py-class docutils literal notranslate"><span class="pre">qtics.instruments.serial_inst.SerialInst</span></code></a>, this class contains the following properties.</p>
-<section id="properties">
-<h3>Properties<a class="headerlink" href="#properties" title="Permalink to this heading">#</a></h3>
+<h3>Commands<a class="headerlink" href="#commands" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
-<li><p>freq</p></li>
-<li><p>output_on</p></li>
-<li><p>ext_ref_source</p></li>
-<li><p>temperature</p></li>
+<li><p>connect()
+Connect to the Proteox cryostat via WAMP.</p></li>
+<li><p>close()
+Cleanly disconnect from the cryostat session.</p></li>
+<li><p>get_&lt;sensor&gt;()
+Dynamic getter for supported sensors (see below). If the key is not recognized, raises an <cite>AttributeError</cite>.</p></li>
 </ul>
+</section>
+<section id="dynamic-getters">
+<h3>Dynamic getters<a class="headerlink" href="#dynamic-getters" title="Permalink to this heading">#</a></h3>
+<p>The following sensors are available via dynamic getter methods:</p>
+<section id="temperatures">
+<h4>Temperatures<a class="headerlink" href="#temperatures" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>get_SAMPLE_T() – Sample thermometer</p></li>
+<li><p>get_MC_T() – Mixing chamber temperature</p></li>
+<li><p>get_MC_T_SP() – Mixing chamber temperature setpoint</p></li>
+<li><p>get_STILL_T() – Still temperature</p></li>
+<li><p>get_CP_T() – Cold plate temperature</p></li>
+<li><p>get_SRB_T() – Sorb temperature</p></li>
+<li><p>get_DR2_T(), get_DR1_T() – DR stage temperatures</p></li>
+<li><p>get_PT2_T1(), get_PT1_T1() – Pulse tube stage temperatures</p></li>
+<li><p>get_MAG_T() – Magnet system temperature</p></li>
+</ul>
+</section>
+<section id="heaters-and-powers">
+<h4>Heaters and Powers<a class="headerlink" href="#heaters-and-powers" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>get_MC_H() – Mixing chamber heater power</p></li>
+<li><p>get_STILL_H() – Still heater power</p></li>
+</ul>
+</section>
+<section id="pressures">
+<h4>Pressures<a class="headerlink" href="#pressures" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>get_OVC_P() – Outer vacuum chamber pressure</p></li>
+<li><p>get_P1_P() to get_P6_P() – Various pressure gauges</p></li>
+</ul>
+</section>
+<section id="flows">
+<h4>Flows<a class="headerlink" href="#flows" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>get_3He_F() – ^3He flowmeter</p></li>
+</ul>
+</section>
+<section id="magnetic-field-control">
+<h4>Magnetic Field Control<a class="headerlink" href="#magnetic-field-control" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>get_MAG_VEC() – Magnetic field vector</p></li>
+<li><p>get_MAG_STATE(), get_SWZ_STATE() – Magnet controller and sweep state</p></li>
+<li><p>get_MAG_TARGET() – Field target</p></li>
+<li><p>get_MAG_X_STATE(), get_MAG_Y_STATE(), get_MAG_Z_STATE() – Axis state</p></li>
+<li><p>get_MAG_CURR_VEC(), get_CURR_TARGET() – Magnet current vector and targets</p></li>
+</ul>
+</section>
+<section id="state">
+<h4>State<a class="headerlink" href="#state" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>get_state() – Cryostat state (returns descriptive label e.g., “CONDENSING”)</p></li>
+</ul>
+<p>Available state labels:</p>
+<ul class="simple">
+<li><p>IDLE</p></li>
+<li><p>PUMPING</p></li>
+<li><p>CONDENSING</p></li>
+<li><p>CIRCULATING</p></li>
+<li><p>WARM UP</p></li>
+<li><p>CLEAN COLD TRAP</p></li>
+<li><p>SAMPLE EXCHANGE</p></li>
+</ul>
+</section>
 </section>
 </section>
 </section>
@@ -268,23 +359,23 @@ The manual of this instrument and similar products can be found <a class="refere
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="6514.html">
+          <a class="next-page" href="../api-reference/modules.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Keithley Model 6514 System Electrometer</div>
+                <div class="title">qtics</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="SIM928.html">
+          <a class="prev-page" href="triton.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Isolated voltage source Stanford Research Systems SIM928</div>
+                <div class="title">Triton controller</div>
                 
               </div>
             </a>
@@ -325,10 +416,18 @@ The manual of this instrument and similar products can be found <a class="refere
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">Microwave synthesizer FSL0010</a><ul>
-<li><a class="reference internal" href="#example-of-operation">Example of operation</a></li>
-<li><a class="reference internal" href="#commands">Commands</a><ul>
-<li><a class="reference internal" href="#properties">Properties</a></li>
+<li><a class="reference internal" href="#">Proteox controller</a><ul>
+<li><a class="reference internal" href="#example-of-operations">Example of operations</a><ul>
+<li><a class="reference internal" href="#commands">Commands</a></li>
+<li><a class="reference internal" href="#dynamic-getters">Dynamic getters</a><ul>
+<li><a class="reference internal" href="#temperatures">Temperatures</a></li>
+<li><a class="reference internal" href="#heaters-and-powers">Heaters and Powers</a></li>
+<li><a class="reference internal" href="#pressures">Pressures</a></li>
+<li><a class="reference internal" href="#flows">Flows</a></li>
+<li><a class="reference internal" href="#magnetic-field-control">Magnetic Field Control</a></li>
+<li><a class="reference internal" href="#state">State</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
