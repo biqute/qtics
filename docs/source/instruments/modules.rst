@@ -13,3 +13,4 @@ Supported Instruments
    SMA100B
    N9916A
    triton
+   proteox

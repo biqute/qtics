@@ -8,6 +8,7 @@ from qtics.logger import qtics_log as log  # isort: skip
 
 from qtics.experiment import BaseExperiment, Experiment, MonitorExperiment
 from qtics.instruments.network.NA_N9916A import SAN9916A, VNAN9916A
+from qtics.instruments.network.proteox.proteox import Proteox
 from qtics.instruments.network.RS_SMA100B import SMA100B
 from qtics.instruments.network.triton_ctrl import Triton
 from qtics.instruments.serial.keithley2231a import Keithley2231A

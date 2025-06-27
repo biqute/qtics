@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "qtics"
-version = "0.0.4"
+version = "0.0.5"
 description = "Quantum Technologies Instrumentation ControlS"
 authors = ["The BiQuTe Team"]
 license = "Apache License 2.0"
@@ -17,6 +17,8 @@ python = ">=3.11"
 pyserial = "^3.5"
 numpy = "^1.24"
 niscope = "^1.4.6"
+autobahn = "^24.4.2"
+dotenv = "^0.9.9"
 
 [build-system]
 requires = ["poetry-core"]
@@ -51,7 +53,7 @@ h5py = "^3.10.0"
 matplotlib = ">=3.7"
 
 [[tool.mypy.overrides]]
-module=["serial", "niscope", "h5py"]
+module=["serial", "niscope", "h5py", "autobahn.asyncio.wamp", "autobahn.wamp"]
 ignore_missing_imports = true
 
 [tool.pylint]
