@@ -242,11 +242,12 @@
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qtics</span> <span class="kn">import</span> <span class="n">Triton</span>
 
 <span class="n">controller</span> <span class="o">=</span> <span class="n">Triton</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;address&quot;</span><span class="p">)</span>
+<span class="n">controller</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mixing chamber temp: </span><span class="si">{</span><span class="n">controller</span><span class="o">.</span><span class="n">get_mixing_chamber_temp</span><span class="p">()</span><span class="si">}</span><span class="s2"> mK&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mixing chamber temp: </span><span class="si">{</span><span class="n">controller</span><span class="o">.</span><span class="n">get_mixing_chamber_temp</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1000</span><span class="si">}</span><span class="s2"> mK&quot;</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Set temperature: </span><span class="si">{</span><span class="n">controller</span><span class="o">.</span><span class="n">mixing_chamber_tset</span><span class="si">}</span><span class="s2"> mK&quot;</span><span class="p">)</span>
-<span class="n">controller</span><span class="o">.</span><span class="n">mixing_chamber_tset</span> <span class="o">=</span> <span class="mi">60</span>  <span class="c1"># mK</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Set temperature: </span><span class="si">{</span><span class="n">controller</span><span class="o">.</span><span class="n">mixing_chamber_tset</span><span class="o">*</span><span class="mi">1000</span><span class="si">}</span><span class="s2"> mK&quot;</span><span class="p">)</span>
+<span class="n">controller</span><span class="o">.</span><span class="n">mixing_chamber_tset</span> <span class="o">=</span> <span class="mf">0.06</span>  <span class="c1"># K</span>
 </pre></div>
 </div>
 </section>
@@ -255,15 +256,31 @@
 <section id="functions">
 <h3>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
-<li><p>get_mixing_chamber_temp()</p></li>
+<li><p><cite>get_mixing_chamber_temp()</cite>
+Return the mixing chamber temperature in K.</p></li>
+<li><p><cite>get_still_temp()</cite>
+Return the still temperature in K.</p></li>
+<li><p><cite>get_cool_temp()</cite>
+Return the cold plate (CP) temperature in K.</p></li>
+<li><p><cite>get_pt1_temp()</cite>
+Return the 1st stage pulse tube temperature in K.</p></li>
+<li><p><cite>get_pt2_temp()</cite>
+Return the 2nd stage pulse tube temperature in K.</p></li>
+<li><p><cite>get_sorb_temp()</cite>
+Return the sorption pump temperature in K.</p></li>
+<li><p><cite>get_state()</cite>
+Return the general state of the cryostat.</p></li>
+<li><p><cite>get_action()</cite>
+Return the current operational action of the cryostat (e.g., “Precooling”, “Condensing”, “Circulating”).</p></li>
 </ul>
 </section>
 <section id="properties">
 <h3>Properties<a class="headerlink" href="#properties" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
-<li><p>mixing_chamber_ch</p></li>
-<li><p>heater_range</p></li>
-<li><p>mixing_chamber_tset</p></li>
+<li><p><cite>heater_range</cite>
+Heater current range (readable; writable if <cite>ENABLE_SETTERS=True</cite>). Units: mA.</p></li>
+<li><p><cite>mixing_chamber_tset</cite>
+Mixing chamber temperature setpoint in K (readable; writable if <cite>ENABLE_SETTERS=True</cite>).</p></li>
 </ul>
 </section>
 </section>
