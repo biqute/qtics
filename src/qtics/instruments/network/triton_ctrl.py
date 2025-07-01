@@ -26,7 +26,6 @@ class Triton(NetworkInst):
     ):
         """Initialize."""
         super().__init__(name, address, port, timeout, sleep, no_delay)
-        self._mixing_chamber_ch = 8
 
     def query(self, cmd: str) -> str:
         """Send a message, then read from the serial port."""
@@ -35,26 +34,9 @@ class Triton(NetworkInst):
         return self.read()[len(cmd) + 1 :]
 
     @property
-    def mixing_chamber_ch(self) -> int:
-        """Return mixing chamber channel.
-
-        If it is not already cached as an attribute, ask to the instrument.
-        """
-        if self._mixing_chamber_ch is not None:
-            return self._mixing_chamber_ch
-        self._mixing_chamber_ch = int(
-            self.query("READ:SYS:DR:CHAN:MC")[1:]
-        )  # return is like "T5"
-        return self._mixing_chamber_ch
-
-    @mixing_chamber_ch.setter
-    def mixing_chamber_ch(self, channel: int):
-        self._mixing_chamber_ch = channel
-
-    @property
     def heater_range(self) -> float:
         """Return heater range."""
-        answer = self.query(f"READ:DEV:T{self.mixing_chamber_ch}:TEMP:LOOP:RANGE")
+        answer = self.query(f"READ:DEV:T8:TEMP:LOOP:RANGE")
         if answer == "NOT_FOUND":
             raise RuntimeError("Range not set.")
         conversions = {"uA": 1e-3, "mA": 1}
@@ -68,20 +50,45 @@ class Triton(NetworkInst):
         if hrange not in ranges:
             raise ValueError(f"Range {hrange} not allowed. Choose between {ranges}.")
 
-        self.write(f"SET:DEV:T{self.mixing_chamber_ch}:TEMP:LOOP:RANGE:{hrange/1000}")
+        self.write(f"SET:DEV:T8:TEMP:LOOP:RANGE:{hrange/1000}")
 
     def get_mixing_chamber_temp(self):
-        """Return mixing chamber temperature in mK."""
-        answer = self.query(f"READ:DEV:T{self.mixing_chamber_ch}:TEMP:SIG:TEMP")
-        return float(answer[:-1]) * 1000
+        """Return mixing chamber temperature in K."""
+        answer = self.query(f"READ:DEV:T8:TEMP:SIG:TEMP")
+        return float(answer[:-1])
+
+    def get_still_temp(self):
+        """Return still temperature in K."""
+        answer = self.query(f"READ:DEV:T3:TEMP:SIG:TEMP")
+        return float(answer[:-1])
+
+    def get_cool_temp(self):
+        """Return cold plate temperature in K."""
+        answer = self.query(f"READ:DEV:T5:TEMP:SIG:TEMP")
+        return float(answer[:-1])
+
+    def get_pt1_temp(self):
+        """Return pt1 temperature in K."""
+        answer = self.query(f"READ:DEV:T7:TEMP:SIG:TEMP")
+        return float(answer[:-1])
+
+    def get_pt2_temp(self):
+        """Return pt1 temperature in K."""
+        answer = self.query(f"READ:DEV:T2:TEMP:SIG:TEMP")
+        return float(answer[:-1])
+
+    def get_sorb_temp(self):
+        """Return sorb temperature in K."""
+        answer = self.query(f"READ:DEV:T11:TEMP:SIG:TEMP")
+        return float(answer[:-1])
 
     @property
     def mixing_chamber_tset(self) -> float:
-        """Return mixing chamber set temperature in mK."""
-        answer = self.query(f"READ:DEV:T{self.mixing_chamber_ch}:TEMP:LOOP:TSET")
+        """Return mixing chamber set temperature in K."""
+        answer = self.query(f"READ:DEV:T8:TEMP:LOOP:TSET")
         if answer == "NOT_FOUND":
             raise RuntimeError("Temperature mixing not set.")
-        return float(answer[:-1]) * 1000
+        return float(answer[:-1])
 
     @mixing_chamber_tset.setter
     def mixing_chamber_tset(self, temp: float):
@@ -89,4 +96,30 @@ class Triton(NetworkInst):
             raise RuntimeError("Setter not enabled!")
         if temp > 200:
             raise ValueError(f"Temperature set too high! Was {temp}.")
-        self.write(f"SET:DEV:T{self.mixing_chamber_ch}:TEMP:LOOP:TSET:{temp/1000}")
+        self.write(f"SET:DEV:T8:TEMP:LOOP:TSET:{temp/1000}")
+
+    def get_state(self) -> str:
+        """Return state of the cryostat."""
+        return self.query("READ:SYS:DR:STATUS")
+
+    def get_action(self) -> str:
+        """Return current action of the cryostat."""
+        state = self.get_state()
+        if state == "OK":
+            mapped = {
+                "PCL": "Precooling",
+                "EPCL": "Empty precool loop",
+                "COND": "Condensing",
+                "NONE": "Idle",
+                "COLL": "Collecting mixture",
+            }
+            msg = self.query("READ:SYS:DR:ACTN")
+            if msg in mapped:
+                res = mapped[msg]
+            else:
+                res = "Unknown"
+            if res == "Idle":
+                if self.get_mixing_chamber_temp() < 2000:
+                    res = "Circulating"
+            return res
+        raise RuntimeError(f"Current state is {state}")
