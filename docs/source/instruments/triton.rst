@@ -15,10 +15,10 @@ Example of opertations
    controller = Triton("name", "address")
    controller.connect()
 
-   print(f"Mixing chamber temp: {controller.get_mixing_chamber_temp()} mK")
+   print(f"Mixing chamber temp: {controller.get_mixing_chamber_temp() * 1000} mK")
 
-   print(f"Set temperature: {controller.mixing_chamber_tset} mK")
-   controller.mixing_chamber_tset = 60  # mK
+   print(f"Set temperature: {controller.mixing_chamber_tset*1000} mK")
+   controller.mixing_chamber_tset = 0.06  # K
 
 Commands
 """"""""
@@ -27,7 +27,7 @@ Functions
 ---------
 
 * `get_mixing_chamber_temp()`
-  Return the mixing chamber temperature in mK.
+  Return the mixing chamber temperature in K.
 
 * `get_still_temp()`
   Return the still temperature in K.
@@ -57,4 +57,4 @@ Properties
   Heater current range (readable; writable if `ENABLE_SETTERS=True`). Units: mA.
 
 * `mixing_chamber_tset`
-  Mixing chamber temperature setpoint in mK (readable; writable if `ENABLE_SETTERS=True`).
+  Mixing chamber temperature setpoint in K (readable; writable if `ENABLE_SETTERS=True`).

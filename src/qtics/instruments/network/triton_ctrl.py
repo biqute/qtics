@@ -53,9 +53,9 @@ class Triton(NetworkInst):
         self.write(f"SET:DEV:T8:TEMP:LOOP:RANGE:{hrange/1000}")
 
     def get_mixing_chamber_temp(self):
-        """Return mixing chamber temperature in mK."""
+        """Return mixing chamber temperature in K."""
         answer = self.query(f"READ:DEV:T8:TEMP:SIG:TEMP")
-        return float(answer[:-1]) * 1000
+        return float(answer[:-1])
 
     def get_still_temp(self):
         """Return still temperature in K."""
@@ -84,11 +84,11 @@ class Triton(NetworkInst):
 
     @property
     def mixing_chamber_tset(self) -> float:
-        """Return mixing chamber set temperature in mK."""
+        """Return mixing chamber set temperature in K."""
         answer = self.query(f"READ:DEV:T8:TEMP:LOOP:TSET")
         if answer == "NOT_FOUND":
             raise RuntimeError("Temperature mixing not set.")
-        return float(answer[:-1]) * 1000
+        return float(answer[:-1])
 
     @mixing_chamber_tset.setter
     def mixing_chamber_tset(self, temp: float):
