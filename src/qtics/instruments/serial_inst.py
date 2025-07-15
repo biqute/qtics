@@ -22,6 +22,7 @@ class SerialInst(Instrument):
         stopbits: int = serial.STOPBITS_ONE,
         timeout: int = 10,
         sleep: float = 0.1,
+        terminator="\n",
     ):
         """Initialize."""
         super().__init__(name, address)
@@ -33,6 +34,7 @@ class SerialInst(Instrument):
         self.serial.parity = parity
         self.serial.stopbits = stopbits
         self.serial.timeout = timeout
+        self.terminator = terminator
 
         self.sleep = sleep
 
@@ -60,7 +62,7 @@ class SerialInst(Instrument):
         """Write a message to the serial port."""
         if self.serial.is_open:
             log.debug(f"WRITE: {cmd}")
-            self.serial.write((cmd + "\n").encode())
+            self.serial.write((cmd + self.terminator).encode())
             if sleep:
                 time.sleep(self.sleep)
 
@@ -68,7 +70,7 @@ class SerialInst(Instrument):
         """Read a message from the serial port."""
         if self.serial.is_open:
             raw = self.serial.read(self.serial.in_waiting)
-            res = raw.decode("utf-8").strip("\n")
+            res = raw.decode("utf-8").strip("\n").strip("\r")
             log.debug(f"READ: {res}")
             return res
         return ""

@@ -18,7 +18,7 @@ class VALON5019(SerialInst):
         self,
         name: str,
         address: str,
-        baudrate: int = 115200,
+        baudrate: int = 9600,
         bytesize: int = serial.EIGHTBITS,
         parity: Literal["N"] = serial.PARITY_NONE,
         stopbits: int = serial.STOPBITS_ONE,
@@ -27,7 +27,7 @@ class VALON5019(SerialInst):
     ):
         """Initialize."""
         super().__init__(
-            name, address, baudrate, bytesize, parity, stopbits, timeout, sleep
+            name, address, baudrate, bytesize, parity, stopbits, timeout, sleep, "\r"
         )
 
     @property

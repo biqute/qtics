@@ -13,12 +13,13 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.11"
+python = ">=3.10"
 pyserial = "^3.5"
 numpy = "^1.24"
 niscope = "^1.4.6"
 autobahn = "^24.4.2"
 dotenv = "^0.9.9"
+h5py = "^3.14.0"
 
 [build-system]
 requires = ["poetry-core"]
