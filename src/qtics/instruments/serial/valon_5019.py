@@ -44,7 +44,11 @@ class VALON5019(SerialInst):
 
     def get_id(self):
         """Return name of the device from SCPI standard query."""
-        return self.query("ID")[0]
+        return " ".join(self.query("ID"))
+
+    def reset(self):
+        """Reset all values."""
+        self.write("RST")
 
     def write(self, cmd, sleep=False):
         """Write a message to the serial port."""
@@ -58,7 +62,7 @@ class VALON5019(SerialInst):
             res = res[self.last_cmd_lenght :]
             res = res.split(";")[0]
             res = res.split("\r\n\r-->")[0]
-            res = res.split("")
+            res = res.split(" ")
         return res[1:]
 
     @property
@@ -200,9 +204,9 @@ class VALON5019(SerialInst):
     @property
     def list_entry(self):
         """Frequencies in the table for list mode."""
-        raise NotImplementedError("READING DOESN'T WORK")
-        ret = self.query("LI")
-        return ret
+        raise NotImplementedError(
+            "Reading frequencies list is currently not compatible with the split in read()."
+        )
 
     @list_entry.setter
     def list_entry(self, frequencies, powers=None):
@@ -262,7 +266,7 @@ class VALON5019(SerialInst):
     @property
     def am_frequency(self):
         """AM frequency from 1Hz to 2 kHz."""
-        return float(self.query("AMF"))
+        return float(self.query("AMF")[0])
 
     @am_frequency.setter
     def am_frequency(self, freq):
@@ -282,7 +286,7 @@ class VALON5019(SerialInst):
     @property
     def ref_source(self):
         """Check which clock reference is used."""
-        ret = int(self.query("REFS"))
+        ret = int(self.query("REFS")[0])
         dict_par = {0: "Internal", 1: "External"}
         return dict_par[ret]
 
