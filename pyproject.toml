@@ -60,5 +60,5 @@ ignore_missing_imports = true
 disable = "W1203"
 
 [tool.codespell]
-ignore-words-list = "poin,runn,sav"
+ignore-words-list = "poin,runn,sav,OEN"
 skip="./.*,docs/build,poetry.lock,pyproject.toml"
