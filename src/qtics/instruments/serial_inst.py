@@ -62,6 +62,10 @@ class SerialInst(Instrument):
         """Write a message to the serial port."""
         if self.serial.is_open:
             log.debug(f"WRITE: {cmd}")
+            try:
+                self.serial.reset_input_buffer()
+            except Exception as e:
+                log.debug(f"Error in reset input buffer: {e}")
             self.serial.write((cmd + self.terminator).encode())
             if sleep:
                 time.sleep(self.sleep)
@@ -70,7 +74,7 @@ class SerialInst(Instrument):
         """Read a message from the serial port."""
         if self.serial.is_open:
             raw = self.serial.read(self.serial.in_waiting)
-            res = raw.decode("utf-8").strip("\n").strip("\r")
+            res = raw.decode("utf-8").strip("\n")
             log.debug(f"READ: {res}")
             return res
         return ""

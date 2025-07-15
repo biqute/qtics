@@ -30,6 +30,18 @@ class VALON5019(SerialInst):
             name, address, baudrate, bytesize, parity, stopbits, timeout, sleep, "\r"
         )
 
+    def write(self, cmd, sleep=False):
+        """Write a message to the serial port."""
+        self.last_cmd_lenght = len(cmd + self.terminator)
+        super().write(cmd, sleep)
+
+    def read(self) -> str:
+        """Read a message from the serial port."""
+        res = super().read()
+        if res != "":
+            res = res[self.last_cmd_lenght :].split(";")[0]
+        return res
+
     @property
     def mode(self):
         """Return current mode of operation (continuous tone, sweep, list)."""
