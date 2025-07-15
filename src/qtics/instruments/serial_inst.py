@@ -22,7 +22,7 @@ class SerialInst(Instrument):
         stopbits: int = serial.STOPBITS_ONE,
         timeout: int = 10,
         sleep: float = 0.1,
-        terminator="\n",
+        terminator: str = "\n",
     ):
         """Initialize."""
         super().__init__(name, address)
@@ -69,6 +69,8 @@ class SerialInst(Instrument):
             self.serial.write((cmd + self.terminator).encode())
             if sleep:
                 time.sleep(self.sleep)
+        else:
+            raise RuntimeError("Serial connection is not open.")
 
     def read(self) -> str:
         """Read a message from the serial port."""
