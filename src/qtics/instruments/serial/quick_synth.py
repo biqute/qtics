@@ -1,5 +1,5 @@
 """
-FSL0010 QuickSyn microwave synthesizer by National Instruments.
+QuickSyn microwave synthesizers by National Instruments.
 
 .. module:: synth_FSL0010.py
 .. moduleauthor:: Pietro Campana <campana.pietro@campus.unimib.it>
@@ -14,8 +14,8 @@ from qtics.instruments import SerialInst
 DEFAULT_FREQ_SCALE = 1e-3  # Convert mHz to Hz
 
 
-class FSL0010(SerialInst):
-    """FSL0010 QuickSyn microwave synthesizer by National Instruments."""
+class FSQS(SerialInst):
+    """QuickSyn microwave synthesizer by National Instruments."""
 
     def __init__(
         self,
@@ -33,6 +33,9 @@ class FSL0010(SerialInst):
             name, address, baudrate, bytesize, parity, stopbits, timeout, sleep
         )
 
+        self.min_freq = 0.5e9
+        self.max_freq = 10e9
+
     @property
     def freq(self) -> float:
         """Output signal frequency in Hz."""
@@ -40,7 +43,7 @@ class FSL0010(SerialInst):
 
     @freq.setter
     def freq(self, freq: float):
-        freq = self.validate_range(freq, 0.65e9, 10e9)
+        freq = self.validate_range(freq, self.min_freq, self.max_freq)
         self.write(f"FREQ {freq / DEFAULT_FREQ_SCALE}mlHz")
 
     @property
@@ -71,3 +74,31 @@ class FSL0010(SerialInst):
     def temperature(self) -> float:
         """Temperature in degrees Celsius."""
         return float(self.query("DIAG:MEAS? 21"))
+
+
+class FSL0010(FSQS):
+    """FSL_0010 QuickSyn."""
+
+    min_freq = 0.65e9
+    max_freq = 10e9
+
+
+class FSL0020(FSQS):
+    """FSW_0020 QuickSyn."""
+
+    min_freq = 0.65e9
+    max_freq = 20e9
+
+
+class FSW0010(FSQS):
+    """FSL_0010 QuickSyn."""
+
+    min_freq = 0.5e9
+    max_freq = 10e9
+
+
+class FSW0020(FSQS):
+    """FSW_0020 QuickSyn."""
+
+    min_freq = 0.5e9
+    max_freq = 20e9

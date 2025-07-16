@@ -7,7 +7,7 @@ Supported Instruments
    R591722600
    3494_64
    SIM928
-   FSL0010
+   QUICKSYNTH
    6514
    2231A
    SMA100B
