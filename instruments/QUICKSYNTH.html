@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Keithley Model 6514 System Electrometer" href="6514.html" /><link rel="prev" title="Isolated voltage source Stanford Research Systems SIM928" href="SIM928.html" />
 
     <link rel="shortcut icon" href="../_static/favicon.ico"/><!-- Generated with Sphinx 6.2.1 and Furo 2023.09.10 -->
-        <title>Microwave synthesizer FSL0010 - Qtics · 0.0.6</title>
+        <title>Microwave synthesizers by QuickSynth - Qtics · 0.0.6</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=369552022d0b975c8e74270ce6eabe0fb7978f24" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -172,7 +172,7 @@
 <li class="toctree-l2"><a class="reference internal" href="R591722600.html">RF switch Radiall R591722600</a></li>
 <li class="toctree-l2"><a class="reference internal" href="3494_64.html">Attenuator Kratos 3494-64</a></li>
 <li class="toctree-l2"><a class="reference internal" href="SIM928.html">Isolated voltage source Stanford Research Systems SIM928</a></li>
-<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Microwave synthesizer FSL0010</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Microwave synthesizers by QuickSynth</a></li>
 <li class="toctree-l2"><a class="reference internal" href="6514.html">Keithley Model 6514 System Electrometer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2231A.html">Keithley Model 2231A-30-3 Triple Channel DC Power Supply.</a></li>
 <li class="toctree-l2"><a class="reference internal" href="SMA100B.html">R&amp;S®SMA100B RF and microwave signal generator</a></li>
@@ -212,7 +212,7 @@
         </a>
         <div class="content-icon-container">
           <div class="edit-this-page">
-  <a class="muted-link" href="https://github.com/biqute/qtics/edit/main/docs/source/instruments/FSL0010.rst" title="Edit this page">
+  <a class="muted-link" href="https://github.com/biqute/qtics/edit/main/docs/source/instruments/QUICKSYNTH.rst" title="Edit this page">
     <svg aria-hidden="true" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
       <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
       <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />
@@ -234,14 +234,14 @@
           </label>
         </div>
         <article role="main">
-          <section id="microwave-synthesizer-fsl0010">
-<h1>Microwave synthesizer FSL0010<a class="headerlink" href="#microwave-synthesizer-fsl0010" title="Permalink to this heading">#</a></h1>
-<p>FSW0010 Microwave Synthesizer by National Instruments
+          <section id="microwave-synthesizers-by-quicksynth">
+<h1>Microwave synthesizers by QuickSynth<a class="headerlink" href="#microwave-synthesizers-by-quicksynth" title="Permalink to this heading">#</a></h1>
+<p>In these category, qtics supports the FSW and FSL series by Microwave Synthesizer by National Instruments
 The manual of this instrument and similar products can be found <a class="reference external" href="http://ni-microwavecomponents.com/quicksyn-lite#documentation">here</a>. The SCPI commands and functions can be found in the <a class="reference external" href="http://ni-microwavecomponents.com/manuals/5580522-01.pdf">communications specifications</a>.</p>
 <p>Base class: <a class="reference internal" href="../api-reference/qtics.instruments.html#qtics.instruments.serial_inst.SerialInst" title="qtics.instruments.serial_inst.SerialInst"><code class="xref py py-class docutils literal notranslate"><span class="pre">qtics.instruments.serial_inst.SerialInst</span></code></a>.</p>
 <section id="example-of-operation">
 <h2>Example of operation<a class="headerlink" href="#example-of-operation" title="Permalink to this heading">#</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qtics</span> <span class="kn">import</span> <span class="n">FSL0010</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qtics</span> <span class="kn">import</span> <span class="n">FSL0010</span> <span class="c1"># also FSL0020, FSW0010, FSW0020</span>
 
 <span class="n">synth</span> <span class="o">=</span> <span class="n">FSL0010</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;mySynth&quot;</span><span class="p">,</span> <span class="n">address</span> <span class="o">=</span> <span class="s2">&quot;/dev/ttyUSB0&quot;</span><span class="p">)</span>
 <span class="n">synth</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
@@ -327,7 +327,7 @@ The manual of this instrument and similar products can be found <a class="refere
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">Microwave synthesizer FSL0010</a><ul>
+<li><a class="reference internal" href="#">Microwave synthesizers by QuickSynth</a><ul>
 <li><a class="reference internal" href="#example-of-operation">Example of operation</a></li>
 <li><a class="reference internal" href="#commands">Commands</a><ul>
 <li><a class="reference internal" href="#properties">Properties</a></li>
