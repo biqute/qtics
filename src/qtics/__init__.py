@@ -14,13 +14,13 @@ from qtics.instruments.network.RS_ZNB import RSZNB
 from qtics.instruments.network.triton_ctrl import Triton
 from qtics.instruments.serial.keithley2231a import Keithley2231A
 from qtics.instruments.serial.keithley6514 import Keithley6514
+from qtics.instruments.serial.quick_synth import FSL0010, FSL0020, FSW0010, FSW0020
 from qtics.instruments.serial.rf_attenuator_3494_64.rf_attenuator_3494_64 import (
     Attenuator_3494_64,
 )
 from qtics.instruments.serial.rf_switch_R591722600.rf_switch_R591722600 import (
     Switch_R591,
 )
-from qtics.instruments.serial.synth_FSL0010 import FSL0010
 from qtics.instruments.serial.valon_5019 import VALON5019
 from qtics.instruments.serial.voltage_source_SIM928 import SIM928
 

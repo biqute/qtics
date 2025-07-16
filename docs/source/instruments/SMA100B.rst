@@ -11,7 +11,7 @@ Example of operations
 ---------------------
 .. code-block:: python
 
-  from qtics import SMA_100B
+  from qtics import SMA100B
 
   sg = SMA_100B(name = "mySignalGenerator", address = "192.168.40.15")
   sg.connect()

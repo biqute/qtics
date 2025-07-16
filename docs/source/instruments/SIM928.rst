@@ -31,6 +31,7 @@ To execute commands:
 
    source.connect_port(2) # change port of SIM900 mainframe
    source.disconnect_port() # disconnect the device and reset the SIM900 mainframe
+   source.disconnect() # close serial connection
 
 Commands
 """"""""
