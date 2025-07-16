@@ -195,6 +195,8 @@ class RSZNB(NetworkInst):
 
         self.write(cmd)
 
+        assert self.socket is not None
+
         # Read # character, raise exception if not present.
         if self.socket.recv(1) != b"#":
             raise ValueError("Data in buffer is not in binblock format.")
