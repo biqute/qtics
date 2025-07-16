@@ -7,12 +7,13 @@ Supported Instruments
    R591722600
    3494_64
    SIM928
-   FSL0010
+   QUICKSYNTH
    6514
    2231A
    KT2700
    SMA100B
    VALON519
+   RSZNB
    N9916A
    triton
    proteox
