@@ -15,6 +15,7 @@ Example of operation
   from qtics import FSL0010 # also FSL0020, FSW0010, FSW0020
 
   synth = FSL0010(name = "mySynth", address = "/dev/ttyUSB0")
+  synth.connect()
   synth.freq = 5.3e9
   synth.output_on = True
 
