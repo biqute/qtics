@@ -2,7 +2,7 @@
 Controller of the R&S ZNB Vector Network Analyzer.
 
 .. module:: RS_ZNB.py
-.. moduleauthor:: Pietro Campana <campana.pietro@campus.unimib.it>
+.. moduleauthor:: Pietro Campana <p.campana1@campus.unimib.it>
 """
 
 import time
