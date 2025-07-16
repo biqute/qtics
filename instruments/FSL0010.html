@@ -244,6 +244,7 @@ The manual of this instrument and similar products can be found <a class="refere
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qtics</span> <span class="kn">import</span> <span class="n">FSL0010</span>
 
 <span class="n">synth</span> <span class="o">=</span> <span class="n">FSL0010</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;mySynth&quot;</span><span class="p">,</span> <span class="n">address</span> <span class="o">=</span> <span class="s2">&quot;/dev/ttyUSB0&quot;</span><span class="p">)</span>
+<span class="n">synth</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
 <span class="n">synth</span><span class="o">.</span><span class="n">freq</span> <span class="o">=</span> <span class="mf">5.3e9</span>
 <span class="n">synth</span><span class="o">.</span><span class="n">output_on</span> <span class="o">=</span> <span class="kc">True</span>
 </pre></div>
