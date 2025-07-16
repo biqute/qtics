@@ -7,7 +7,7 @@ from typing import Optional
 import niscope as ni
 
 from qtics import log
-from qtics.instrument import Instrument
+from qtics.instruments import Instrument
 
 
 @dataclass
@@ -32,7 +32,7 @@ class DigitalTrigger(Trigger):
     holdoff: float = 0.0
     """Waiting time before trigger [s]."""
     delay: float = 0.0
-    """Delay between trigger and acqusition."""
+    """Delay between trigger and acquisition."""
 
     def configure(self, session: ni.Session):
         """Configure a session."""
@@ -53,7 +53,7 @@ class EdgeTrigger(Trigger):
     holdoff: float = 0.0
     """Waiting time before trigger [s]."""
     delay: float = 0.0
-    """Delay between trigger and acqusition."""
+    """Delay between trigger and acquisition."""
     level: float = 1.0
     """Voltage threshold."""
     trigger_coupling: ni.TriggerCoupling = ni.TriggerCoupling.DC
@@ -77,7 +77,7 @@ class SoftwareTrigger(Trigger):
     holdoff: float = 0.0
     """Waiting time before trigger [s]."""
     delay: float = 0.0
-    """Delay between trigger and acqusition."""
+    """Delay between trigger and acquisition."""
     source = None
     """Overwrite source property."""
 

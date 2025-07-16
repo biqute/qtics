@@ -4,7 +4,8 @@ Controller of the R&S SMA100B RF and microwave signal generator.
 .. module:: RS_SMA100B.py
 .. moduleauthor:: Marco Gobbo <marco.gobbo@mib.infn.it>
 """
-from qtics.network_inst import NetworkInst
+
+from qtics.instruments import NetworkInst
 
 
 class SMA100B(NetworkInst):
@@ -49,7 +50,7 @@ class SMA100B(NetworkInst):
 
         Valid options to query:
         - OTIM: Queries the operating hours of the instrument so far
-        - POC: Queris how often the instrument has been turned on so far
+        - POC: Queries how often the instrument has been turned on so far
         """
         self.validate_opt(opt, ("OTIM", "POC"))
         return self.query(f"DIAG:INFO:{opt}?")

@@ -5,13 +5,13 @@ N9916A FieldFox Handheld Microwave Analyzer by Keysight
 The manuals of this instrument and similar models are available at `Keysight <https://www.keysight.com/us/en/lib/resources/service-manuals/keysight-fieldfox-library-help-and-manuals-2153870.html>`_.
 The SCPI commands and functions can be found in the `programming guide <https://www.keysight.com/us/en/assets/9921-02561/programming-guides/FFProgrammingHelp.pdf>`_.
 
-Base class: :class:`qtics.network_inst.NetworkInst`.
+Base class: :class:`qtics.instruments.network_inst.NetworkInst`.
 
 This instrument features different operational modes (VNA, SA, CAT...), with mostly different commands. Each mode is controlled by its respective class. When connecting, these classes will automatically try to initialize a basic measurement setup with the specific mode.
 
 Commands
 """"""""
-Other than featuring all the methods of :class:`qtics.network_inst.NetworkInst`, the base :class:`qtics.instruments.network.NA_N9916A.N9916A` class contains the following methods and properties common to all the operational modes of the instrument.
+Other than featuring all the methods of :class:`qtics.instruments.network_inst.NetworkInst`, the base :class:`qtics.instruments.network.NA_N9916A.N9916A` class contains the following methods and properties common to all the operational modes of the instrument.
 
 Functions
 ------------
@@ -65,7 +65,7 @@ Measure the :math:`S_{11}` parameter in the 4-8 GHz frequency range, averaging 5
   VNA.power = -20 # power of the probe signal in dB
   f, z = VNA.snapshot(f_min=4e9, f_max=8e9)
 
-Since the instrument allows a maximum number of 10001 points in a single sweep, the ``survey()`` function allows to perform more precise measurements over a large frequency range by patching togheter multiple snapshots over smaller ranges.
+Since the instrument allows a maximum number of 10001 points in a single sweep, the ``survey()`` function allows to perform more precise measurements over a large frequency range by patching together multiple snapshots over smaller ranges.
 
 .. code-block:: python
 
@@ -112,7 +112,7 @@ Measure the amplitude of the signal in dB over the 4-8 GHz frequency range, aver
   SA.yformat = "DBM" # amplitude measurement unit
   f, z = SA.snapshot(f_min=4e9, f_max=8e9)
 
-Since the instrument allows a maximum number of 10001 points in a single sweep, the ``survey()`` function allows to perform more precise measurements over a large frequency range by patching togheter multiple snapshots over smaller ranges.
+Since the instrument allows a maximum number of 10001 points in a single sweep, the ``survey()`` function allows to perform more precise measurements over a large frequency range by patching together multiple snapshots over smaller ranges.
 
 .. code-block:: python
 

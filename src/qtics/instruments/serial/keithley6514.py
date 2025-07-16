@@ -6,7 +6,7 @@ Controller of the Keithley6514 Electrometer.
 """
 
 from qtics import log
-from qtics.serial_inst import SerialInst
+from qtics.instruments import SerialInst
 
 
 class Keithley6514(SerialInst):
@@ -16,7 +16,7 @@ class Keithley6514(SerialInst):
         """Put Keithley 6514 Electrometer in remote."""
         self.serial.open()
         self.write("SYST:REM")
-        log.info(f"Instrument {self.name} connected succesfully.")
+        log.info(f"Instrument {self.name} connected successfully.")
 
     def disconnect(self):
         """Take Keithley 6514 Electrometer out of remote."""

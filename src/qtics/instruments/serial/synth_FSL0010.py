@@ -4,11 +4,12 @@ FSL0010 QuickSyn microwave synthesizer by National Instruments.
 .. module:: synth_FSL0010.py
 .. moduleauthor:: Pietro Campana <campana.pietro@campus.unimib.it>
 """
+
 from typing import Literal
 
 import serial
 
-from qtics.serial_inst import SerialInst
+from qtics.instruments import SerialInst
 
 DEFAULT_FREQ_SCALE = 1e-3  # Convert mHz to Hz
 

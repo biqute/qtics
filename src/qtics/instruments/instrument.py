@@ -21,7 +21,7 @@ class Instrument(ABC):
 
     @abstractmethod
     def disconnect(self):
-        """Disonnect from the instrument."""
+        """Disconnect from the instrument."""
 
     @abstractmethod
     def write(self, cmd, sleep=False):

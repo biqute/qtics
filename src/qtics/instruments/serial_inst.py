@@ -1,11 +1,12 @@
 """Base instrument for serial connections."""
+
 import time
 from typing import Literal
 
 import serial
 
 from qtics import log
-from qtics.instrument import Instrument
+from qtics.instruments import Instrument
 
 
 class SerialInst(Instrument):
@@ -21,6 +22,7 @@ class SerialInst(Instrument):
         stopbits: int = serial.STOPBITS_ONE,
         timeout: int = 10,
         sleep: float = 0.1,
+        terminator: str = "\n",
     ):
         """Initialize."""
         super().__init__(name, address)
@@ -32,6 +34,7 @@ class SerialInst(Instrument):
         self.serial.parity = parity
         self.serial.stopbits = stopbits
         self.serial.timeout = timeout
+        self.terminator = terminator
 
         self.sleep = sleep
 
@@ -59,9 +62,15 @@ class SerialInst(Instrument):
         """Write a message to the serial port."""
         if self.serial.is_open:
             log.debug(f"WRITE: {cmd}")
-            self.serial.write((cmd + "\n").encode())
+            try:
+                self.serial.reset_input_buffer()
+            except Exception as e:
+                log.debug(f"Error in reset input buffer: {e}")
+            self.serial.write((cmd + self.terminator).encode())
             if sleep:
                 time.sleep(self.sleep)
+        else:
+            raise RuntimeError("Serial connection is not open.")
 
     def read(self) -> str:
         """Read a message from the serial port."""

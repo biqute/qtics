@@ -4,7 +4,7 @@ from typing import Literal
 
 import serial
 
-from qtics.serial_inst import SerialInst
+from qtics.instruments import SerialInst
 
 
 class Switch_R591(SerialInst):
@@ -41,7 +41,7 @@ class Switch_R591(SerialInst):
         self.write(f"PUL:LEN {value}")
 
     def open(self, pin: int) -> None:
-        """Open port at specififed pin."""
+        """Open port at specified pin."""
         self.write(f"SWI:ON {pin}")
 
     def get_open_ports(self):
