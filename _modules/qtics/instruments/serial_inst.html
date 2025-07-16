@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" />
 
     <link rel="shortcut icon" href="../../../_static/favicon.ico"/><!-- Generated with Sphinx 6.2.1 and Furo 2023.09.10 -->
-        <title>qtics.instruments.serial_inst - Qtics · 0.0.5</title>
+        <title>qtics.instruments.serial_inst - Qtics · 0.0.6</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?digest=369552022d0b975c8e74270ce6eabe0fb7978f24" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
@@ -127,7 +127,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../../index.html"><div class="brand">Qtics · 0.0.5</div></a>
+      <a href="../../../index.html"><div class="brand">Qtics · 0.0.6</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -154,7 +154,7 @@
     <img class="sidebar-logo only-dark" src="../../../_static/biqute_logo.png" alt="Dark Logo"/>
   </div>
   
-  <span class="sidebar-brand-text">Qtics · 0.0.5</span>
+  <span class="sidebar-brand-text">Qtics · 0.0.6</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -175,6 +175,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../instruments/6514.html">Keithley Model 6514 System Electrometer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../instruments/2231A.html">Keithley Model 2231A-30-3 Triple Channel DC Power Supply.</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../instruments/SMA100B.html">R&amp;S®SMA100B RF and microwave signal generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../instruments/VALON519.html">Frequency Synthesizer module Valon Model 5019</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../instruments/N9916A.html">Handheld Microwave Analyzer FieldFox N9916A</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../instruments/triton.html">Triton controller</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../instruments/proteox.html">Proteox controller</a></li>
@@ -248,6 +249,7 @@
         <span class="n">stopbits</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">serial</span><span class="o">.</span><span class="n">STOPBITS_ONE</span><span class="p">,</span>
         <span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
         <span class="n">sleep</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
+        <span class="n">terminator</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize.&quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">address</span><span class="p">)</span>
@@ -259,6 +261,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">serial</span><span class="o">.</span><span class="n">parity</span> <span class="o">=</span> <span class="n">parity</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">serial</span><span class="o">.</span><span class="n">stopbits</span> <span class="o">=</span> <span class="n">stopbits</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">serial</span><span class="o">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="n">timeout</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">terminator</span> <span class="o">=</span> <span class="n">terminator</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">sleep</span> <span class="o">=</span> <span class="n">sleep</span>
 
@@ -286,9 +289,15 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Write a message to the serial port.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">serial</span><span class="o">.</span><span class="n">is_open</span><span class="p">:</span>
             <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;WRITE: </span><span class="si">{</span><span class="n">cmd</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">serial</span><span class="o">.</span><span class="n">write</span><span class="p">((</span><span class="n">cmd</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">serial</span><span class="o">.</span><span class="n">reset_input_buffer</span><span class="p">()</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error in reset input buffer: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">serial</span><span class="o">.</span><span class="n">write</span><span class="p">((</span><span class="n">cmd</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">terminator</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
             <span class="k">if</span> <span class="n">sleep</span><span class="p">:</span>
-                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sleep</span><span class="p">)</span></div>
+                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sleep</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Serial connection is not open.&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="SerialInst.read"><a class="viewcode-back" href="../../../api-reference/qtics.instruments.html#qtics.instruments.serial_inst.SerialInst.read">[docs]</a>    <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Read a message from the serial port.&quot;&quot;&quot;</span>

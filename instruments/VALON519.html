@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Keithley Model 2231A-30-3 Triple Channel DC Power Supply." href="2231A.html" /><link rel="prev" title="Microwave synthesizer FSL0010" href="FSL0010.html" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Handheld Microwave Analyzer FieldFox N9916A" href="N9916A.html" /><link rel="prev" title="R&amp;S®SMA100B RF and microwave signal generator" href="SMA100B.html" />
 
     <link rel="shortcut icon" href="../_static/favicon.ico"/><!-- Generated with Sphinx 6.2.1 and Furo 2023.09.10 -->
-        <title>Keithley Model 6514 System Electrometer - Qtics · 0.0.6</title>
+        <title>Frequency Synthesizer module Valon Model 5019 - Qtics · 0.0.6</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=369552022d0b975c8e74270ce6eabe0fb7978f24" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -173,10 +173,10 @@
 <li class="toctree-l2"><a class="reference internal" href="3494_64.html">Attenuator Kratos 3494-64</a></li>
 <li class="toctree-l2"><a class="reference internal" href="SIM928.html">Isolated voltage source Stanford Research Systems SIM928</a></li>
 <li class="toctree-l2"><a class="reference internal" href="FSL0010.html">Microwave synthesizer FSL0010</a></li>
-<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Keithley Model 6514 System Electrometer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6514.html">Keithley Model 6514 System Electrometer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2231A.html">Keithley Model 2231A-30-3 Triple Channel DC Power Supply.</a></li>
 <li class="toctree-l2"><a class="reference internal" href="SMA100B.html">R&amp;S®SMA100B RF and microwave signal generator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="VALON519.html">Frequency Synthesizer module Valon Model 5019</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Frequency Synthesizer module Valon Model 5019</a></li>
 <li class="toctree-l2"><a class="reference internal" href="N9916A.html">Handheld Microwave Analyzer FieldFox N9916A</a></li>
 <li class="toctree-l2"><a class="reference internal" href="triton.html">Triton controller</a></li>
 <li class="toctree-l2"><a class="reference internal" href="proteox.html">Proteox controller</a></li>
@@ -212,7 +212,7 @@
         </a>
         <div class="content-icon-container">
           <div class="edit-this-page">
-  <a class="muted-link" href="https://github.com/biqute/qtics/edit/main/docs/source/instruments/6514.rst" title="Edit this page">
+  <a class="muted-link" href="https://github.com/biqute/qtics/edit/main/docs/source/instruments/VALON519.rst" title="Edit this page">
     <svg aria-hidden="true" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
       <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
       <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />
@@ -234,24 +234,16 @@
           </label>
         </div>
         <article role="main">
-          <section id="keithley-model-6514-system-electrometer">
-<h1>Keithley Model 6514 System Electrometer<a class="headerlink" href="#keithley-model-6514-system-electrometer" title="Permalink to this heading">#</a></h1>
-<p>Keithley Model <cite>6514</cite> System Electrometer produced by Keithley Instruments.
-Manual of the instrument is available at <a class="reference external" href="https://download.tek.com/manual/6514-901-01(D-May2003)(Instruction).pdf">Tek</a>.</p>
+          <section id="frequency-synthesizer-module-valon-model-5019">
+<h1>Frequency Synthesizer module Valon Model 5019<a class="headerlink" href="#frequency-synthesizer-module-valon-model-5019" title="Permalink to this heading">#</a></h1>
+<p>The manuals of this instrument and similar models are available at <a class="reference external" href="https://www.valonrf.com/5019-frequency-synthesizer-20ghz-542911.html">Valon</a>.</p>
 <p>Base class: <a class="reference internal" href="../api-reference/qtics.instruments.html#qtics.instruments.serial_inst.SerialInst" title="qtics.instruments.serial_inst.SerialInst"><code class="xref py py-class docutils literal notranslate"><span class="pre">qtics.instruments.serial_inst.SerialInst</span></code></a>.</p>
 <section id="example-of-operations">
 <h2>Example of operations<a class="headerlink" href="#example-of-operations" title="Permalink to this heading">#</a></h2>
-<p>To initialize a controller you can execute the following directives on any Python script or notebook:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qtics</span> <span class="kn">import</span> <span class="n">Keithley6514</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qtics</span> <span class="kn">import</span> <span class="n">VALON5019</span>
 
-<span class="n">electrometer</span> <span class="o">=</span> <span class="n">Keithley6514</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;my_electrometer&quot;</span><span class="p">,</span> <span class="n">address</span> <span class="o">=</span> <span class="s2">&quot;/dev/ttyACM0&quot;</span><span class="p">)</span>
-<span class="n">electrometer</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>To execute commands:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">electrometer</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span> <span class="c1"># reset the device to default conditions</span>
-<span class="n">electrometer</span><span class="o">.</span><span class="n">set_measure</span><span class="p">(</span><span class="s1">&#39;CURR&#39;</span><span class="p">)</span> <span class="c1"># set the device to perform a current measurement</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">electrometer</span><span class="o">.</span><span class="n">read_data</span><span class="p">())</span> <span class="c1"># get the value of the measured current</span>
+<span class="n">fs</span> <span class="o">=</span> <span class="n">VALON5019</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;myvalon&quot;</span><span class="p">,</span> <span class="n">address</span> <span class="o">=</span> <span class="s2">&quot;/dev/ttyUSB0&quot;</span><span class="p">)</span>
+<span class="n">fs</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
 </pre></div>
 </div>
 </section>
@@ -261,12 +253,37 @@ Manual of the instrument is available at <a class="reference external" href="htt
 <h3>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>reset()</p></li>
-<li><p>zcheck_on()</p></li>
-<li><p>zcheck_off()</p></li>
-<li><p>zcorrect()</p></li>
-<li><p>set_zero()</p></li>
-<li><p>set_measure(parameter)</p></li>
-<li><p>read_data()</p></li>
+<li><p>write(cmd, sleep=False)</p></li>
+<li><p>read()</p></li>
+<li><p>get_id()</p></li>
+<li><p>increment_freq()</p></li>
+<li><p>decrement_freq()</p></li>
+<li><p>sweep_run()</p></li>
+<li><p>sweep_halt()</p></li>
+<li><p>sweep_trigger()</p></li>
+</ul>
+</section>
+<section id="properties">
+<h3>Properties<a class="headerlink" href="#properties" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>mode</p></li>
+<li><p>freq</p></li>
+<li><p>freq_offset</p></li>
+<li><p>freq_step</p></li>
+<li><p>sweep_start</p></li>
+<li><p>sweep_stop</p></li>
+<li><p>sweep_step</p></li>
+<li><p>sweep_rate</p></li>
+<li><p>sweep_rtime</p></li>
+<li><p>sweep_tmode</p></li>
+<li><p>list_entry (setter only; getter raises <cite>NotImplementedError</cite>)</p></li>
+<li><p>power</p></li>
+<li><p>power_oen</p></li>
+<li><p>power_pdn</p></li>
+<li><p>am_modulation</p></li>
+<li><p>am_frequency</p></li>
+<li><p>ref_freq</p></li>
+<li><p>ref_source</p></li>
 </ul>
 </section>
 </section>
@@ -277,23 +294,23 @@ Manual of the instrument is available at <a class="reference external" href="htt
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="2231A.html">
+          <a class="next-page" href="N9916A.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Keithley Model 2231A-30-3 Triple Channel DC Power Supply.</div>
+                <div class="title">Handheld Microwave Analyzer FieldFox N9916A</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="FSL0010.html">
+          <a class="prev-page" href="SMA100B.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Microwave synthesizer FSL0010</div>
+                <div class="title">R&amp;S®SMA100B RF and microwave signal generator</div>
                 
               </div>
             </a>
@@ -334,10 +351,11 @@ Manual of the instrument is available at <a class="reference external" href="htt
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">Keithley Model 6514 System Electrometer</a><ul>
+<li><a class="reference internal" href="#">Frequency Synthesizer module Valon Model 5019</a><ul>
 <li><a class="reference internal" href="#example-of-operations">Example of operations</a></li>
 <li><a class="reference internal" href="#commands">Commands</a><ul>
 <li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#properties">Properties</a></li>
 </ul>
 </li>
 </ul>
