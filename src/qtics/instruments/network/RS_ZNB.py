@@ -4,13 +4,14 @@ Controller of the R&S ZNB Vector Network Analyzer.
 .. module:: RS_ZNB.py
 .. moduleauthor:: Pietro Campana <campana.pietro@campus.unimib.it>
 """
+
 import time
 from typing import Tuple
 
 import numpy as np
 
 from qtics import log
-from qtics.network_inst import NetworkInst
+from qtics.instruments import NetworkInst
 
 MEAS_TIME_FACTOR = 1.02
 
