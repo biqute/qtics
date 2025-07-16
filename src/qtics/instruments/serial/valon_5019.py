@@ -11,17 +11,6 @@ import serial
 from qtics.instruments import SerialInst
 
 
-def freq_result_to_hz(res):
-    """Convert list [value, unit] to Hz value."""
-    if res[1] == "MHz":
-        return float(res[0]) * 1e6
-    if res[1] == "KHz":
-        return float(res[0]) * 1e3
-    if res[1] == "Hz":
-        return float(res[0])
-    return res
-
-
 class VALON5019(SerialInst):
     """Frequency synthesizer driver for VALON5019."""
 
@@ -41,6 +30,22 @@ class VALON5019(SerialInst):
             name, address, baudrate, bytesize, parity, stopbits, timeout, sleep, "\r"
         )
         self.last_cmd_lenght = 0
+
+    @staticmethod
+    def freq_result_to_hz(res):
+        """Convert list [value, unit] to Hz value."""
+        value, unit = res
+        value = float(value)
+
+        match unit:
+            case "Hz":
+                return value
+            case "KHz":
+                return value * 1e3
+            case "MHz":
+                return value * 1e6
+            case _:
+                return res
 
     def get_id(self):
         """Return name of the device from SCPI standard query."""
@@ -81,7 +86,7 @@ class VALON5019(SerialInst):
     def freq(self):
         """Output signal frequency in Hz."""
         res = self.query("F")
-        return freq_result_to_hz(res)
+        return self.freq_result_to_hz(res)
 
     @freq.setter
     def freq(self, freq: float):
@@ -93,7 +98,7 @@ class VALON5019(SerialInst):
     def freq_offset(self):
         """Offset frequency that can be added or subtracted to the frequency."""
         res = self.query("OFF")
-        return freq_result_to_hz(res)
+        return self.freq_result_to_hz(res)
 
     @freq_offset.setter
     def freq_offset(self, freq_to_set):
@@ -104,7 +109,7 @@ class VALON5019(SerialInst):
     def freq_step(self):
         """Step frequency for the CW mode. Used with increment/decrement."""
         res = self.query("FS")
-        return freq_result_to_hz(res)
+        return self.freq_result_to_hz(res)
 
     @freq_step.setter
     def freq_step(self, freq_to_set):
@@ -114,18 +119,18 @@ class VALON5019(SerialInst):
     def increment_freq(self):
         """In CW mode, step frequency is used for increment."""
         res = self.query("FINC")
-        return freq_result_to_hz(res)
+        return self.freq_result_to_hz(res)
 
     def decrement_freq(self):
         """In CW mode, step frequency is used for decrement."""
         res = self.query("FDEC")
-        return freq_result_to_hz(res)
+        return self.freq_result_to_hz(res)
 
     @property
     def sweep_start(self):
         """Start frequency for Sweep mode."""
         res = self.query("STAR")
-        return freq_result_to_hz(res)
+        return self.freq_result_to_hz(res)
 
     @sweep_start.setter
     def sweep_start(self, freq_to_set):
@@ -136,7 +141,7 @@ class VALON5019(SerialInst):
     def sweep_stop(self):
         """Stop frequency for Sweep mode."""
         res = self.query("STOP")
-        return freq_result_to_hz(res)
+        return self.freq_result_to_hz(res)
 
     @sweep_stop.setter
     def sweep_stop(self, freq_to_set):
@@ -147,7 +152,7 @@ class VALON5019(SerialInst):
     def sweep_step(self):
         """Step frequency for Sweep mode."""
         res = self.query("STEP")
-        return freq_result_to_hz(res)
+        return self.freq_result_to_hz(res)
 
     @sweep_step.setter
     def sweep_step(self, freq_to_set):
@@ -277,7 +282,7 @@ class VALON5019(SerialInst):
     def ref_freq(self):
         """Expected value of the external reference frequency."""
         res = self.query("REF")
-        return freq_result_to_hz(res)
+        return self.freq_result_to_hz(res)
 
     @ref_freq.setter
     def ref_freq(self, value):
