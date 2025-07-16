@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "qtics"
-version = "0.0.5"
+version = "0.0.6"
 description = "Quantum Technologies Instrumentation ControlS"
 authors = ["The BiQuTe Team"]
 license = "Apache License 2.0"
@@ -13,12 +13,13 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.11"
+python = ">=3.10"
 pyserial = "^3.5"
 numpy = "^1.24"
 niscope = "^1.4.6"
 autobahn = "^24.4.2"
 dotenv = "^0.9.9"
+h5py = "^3.14.0"
 
 [build-system]
 requires = ["poetry-core"]
@@ -60,5 +61,5 @@ ignore_missing_imports = true
 disable = "W1203"
 
 [tool.codespell]
-ignore-words-list = "poin,runn,sav"
+ignore-words-list = "poin,runn,sav,OEN"
 skip="./.*,docs/build,poetry.lock,pyproject.toml"

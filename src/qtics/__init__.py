@@ -20,6 +20,7 @@ from qtics.instruments.serial.rf_switch_R591722600.rf_switch_R591722600 import (
     Switch_R591,
 )
 from qtics.instruments.serial.synth_FSL0010 import FSL0010
+from qtics.instruments.serial.valon_5019 import VALON5019
 from qtics.instruments.serial.voltage_source_SIM928 import SIM928
 
 Radiall_R591722600 = Switch_R591
