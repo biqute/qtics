@@ -11,5 +11,7 @@ Supported Instruments
    6514
    2231A
    SMA100B
+   VALON519
    N9916A
    triton
+   proteox

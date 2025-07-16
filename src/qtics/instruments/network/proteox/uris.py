@@ -1,0 +1,47 @@
+"""URI and state mapping."""
+
+getters = {
+    "state": "oi.decs.proteox.state",
+    "PUBLISH": "oi.decs.proteox.eventlog",
+    "SAMPLE_T": "oi.decs.temperature_control.DRI_MIX_CL.DRI_MIX_S.temperature",
+    "MC_T": "oi.decs.temperature_control.DRI_MIX_CL.DRI_MIX_S.temperature",
+    "MC_T_SP": "oi.decs.temperature_control.DRI_MIX_CL.setpoint",
+    "MC_H": "oi.decs.temperature_control.DRI_MIX_CL.DRI_MIX_H.power",
+    "STILL_T": "oi.decs.temperature_control.DRI_STL_S.temperature",
+    "STILL_H": "oi.decs.temperature_control.DRI_STL_H.power",
+    "CP_T": "oi.decs.temperature_control.DRI_CLD_S.temperature",
+    "SRB_T": "oi.decs.temperature_control.SRB_GGS_CL.SRB_GGS_S.temperature",
+    "DR2_T": "oi.decs.temperature_control.DRI_PT2_S.temperature",
+    "PT2_T1": "oi.decs.temperature_control.PTR1_PT2_S.temperature",
+    "DR1_T": "oi.decs.temperature_control.DRI_PT1_S.temperature",
+    "PT1_T1": "oi.decs.temperature_control.PTR1_PT1_S.temperature",
+    "3He_F": "oi.decs.flow_control.3CL_FM_01.flow",
+    "OVC_P": "oi.decs.proteox.OVC_PG_01.pressure",
+    "P1_P": "oi.decs.proteox.3CL_PG_01.pressure",
+    "P2_P": "oi.decs.proteox.3CL_PG_02.pressure",
+    "P3_P": "oi.decs.proteox.3CL_PG_03.pressure",
+    "P4_P": "oi.decs.proteox.3CL_PG_04.pressure",
+    "P5_P": "oi.decs.proteox.3CL_PG_05.pressure",
+    "P6_P": "oi.decs.proteox.3CL_PG_06.pressure",
+    "MAG_T": "oi.decs.magnetic_field_control.MAG_MSP_S.temperature",
+    "MAG_VEC": "oi.decs.magnetic_field_control.VRM_01.magnetic_field_vector",
+    "MAG_STATE": "oi.decs.magnetic_field_control.VRM_01.state",
+    "SWZ_STATE": "oi.decs.magnetic_field_control.VRM_01.SWZ.state",
+    "MAG_TARGET": "oi.decs.magnetic_field_control.VRM_01.field_target",
+    "MAG_X_STATE": "oi.decs.magnetic_field_control.VRM_01.MAG_X.state",
+    "MAG_Y_STATE": "oi.decs.magnetic_field_control.VRM_01.MAG_Y.state",
+    "MAG_Z_STATE": "oi.decs.magnetic_field_control.VRM_01.MAG_Z.state",
+    "MAG_CURR_VEC": "oi.decs.magnetic_field_control.VRM_01.current_vector",
+    "CURR_TARGET": "oi.decs.magnetic_field_control.VRM_01.output_current_target",
+}
+
+
+state_labels = {
+    0: "IDLE",
+    2000: "PUMPING",
+    4000: "CONDENSING",
+    5000: "CIRCULATING",
+    8000: "WARM UP",
+    10000: "CLEAN COLD TRAP",
+    11000: "SAMPLE EXCHANGE",
+}
