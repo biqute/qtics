@@ -1,0 +1,49 @@
+Keithley Model 2700 Multimeter
+==============================
+
+Keithley Model `2700` Multimeter produced by Keithley Instruments.
+Manual of the instrument is available at `Tek <https://www.tek.com/en/products/keithley/data-acquisition-daq-systems/2700-multimeter-data-acquisition-switch-system>`_.
+
+Base class: :class:`qtics.instruments.gpib_inst.GpibInst`.
+
+Example of operations
+"""""""""""""""""""""
+
+To initialize a controller you can execute the following directives on any Python script or notebook:
+
+.. code-block:: python
+
+  from qtics import Keithley2700
+
+  inst = Keithley6514(name = "my_inst", address = "...")
+  inst.connect()
+
+
+To execute commands:
+
+.. code-block:: python
+
+   inst.channel = 1 # select channel 1
+   inst.voltage = 3.3 # set 3.3 V to channel 1
+   print(inst.current) # get the value of the measured current
+
+Commands
+""""""""
+
+Functions
+---------
+
+- clear()
+- save()
+- load()
+- wait()
+
+Properties
+----------
+
+- is_completed
+- channel
+- voltage
+- voltage_limit
+- current
+- current_limit
