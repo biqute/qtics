@@ -10,6 +10,7 @@ Supported Instruments
    QUICKSYNTH
    6514
    2231A
+   KT2700
    SMA100B
    VALON519
    RSZNB
