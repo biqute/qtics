@@ -13,6 +13,8 @@ import numpy as np
 from qtics import log
 from qtics.instruments import NetworkInst
 
+from .utils import query_data
+
 MEAS_TIME_FACTOR = 1.02
 
 
@@ -178,52 +180,6 @@ class RSZNB(NetworkInst):
         self.validate_opt(form, ("REAL,32", "REAL,64", "ASC,0"))
         self.write("FORMat:DATA " + form)
 
-    def query_data(self, cmd, datatype="REAL,64") -> np.ndarray:
-        """
-        Send a command and parses response in IEEE 488.2 binary block format.
-
-        Similar to N9916A implementation but adapted for R&S ZNB.
-        """
-        self.data_format = datatype
-
-        if datatype == "ASC,0":
-            return np.array(self.query(cmd).split(",")).astype(float)
-
-        map_types = {"REAL,32": np.float32, "REAL,64": np.float64}
-        if datatype not in map_types:
-            raise ValueError("Invalid data type selected.")
-
-        self.write(cmd)
-
-        assert self.socket is not None
-
-        # Read # character, raise exception if not present.
-        if self.socket.recv(1) != b"#":
-            raise ValueError("Data in buffer is not in binblock format.")
-
-        # Extract header length and number of bytes in binblock.
-        header_length = int(self.socket.recv(1).decode("utf-8"), 16)
-        n_bytes = int(self.socket.recv(header_length).decode("utf-8"))
-
-        # Create a buffer and expose a memoryview for efficient socket reading
-        raw_data = bytearray(n_bytes)
-        buf = memoryview(raw_data)
-
-        while n_bytes:
-            # Read data from instrument into buffer.
-            bytes_recv = self.socket.recv_into(buf, n_bytes)
-            # Slice buffer to preserve data already written to it.
-            buf = buf[bytes_recv:]
-            # Subtract bytes received from total bytes.
-            n_bytes -= bytes_recv
-
-        # Receive termination character.
-        term = self.socket.recv(1)
-        if term != b"\n":
-            raise ValueError("Data not terminated correctly.")
-
-        return np.frombuffer(raw_data, dtype=map_types[datatype]).astype(float)
-
     @property
     def s_par(self) -> str:
         """The current scattering matrix parameter."""
@@ -355,7 +311,7 @@ class RSZNB(NetworkInst):
             # Read complex S-parameter data
             self.sweep()
             self.activate_trace()
-            IQ = self.query_data(f"CALCulate{self._channel}:DATA? SDATa")
+            IQ = query_data(self, f"CALCulate{self._channel}:DATA? SDATa")
             len_2 = int(len(IQ) / 2)
             z = np.empty(len_2, dtype=np.complex128)
             z.real = IQ[0::2]
@@ -366,7 +322,7 @@ class RSZNB(NetworkInst):
             self.yformat = yformat
             self.sweep()
             self.activate_trace()
-            return self.query_data(f"CALCulate{self._channel}:DATA? FDATa")
+            return query_data(self, f"CALCulate{self._channel}:DATA? FDATa")
 
     def snapshot(self, yformat=None, **kwargs) -> Tuple[np.ndarray, np.ndarray]:
         """Get frequency and trace values for a single sweep."""

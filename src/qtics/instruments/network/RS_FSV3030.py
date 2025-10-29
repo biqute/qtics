@@ -4,6 +4,8 @@ import numpy as np
 
 from qtics.instruments import NetworkInst
 
+from .utils import query_data
+
 
 class FSV3030(NetworkInst):
     """R&S FSV3030 Spectrum Analyzer by Rohde & Schwarz."""
@@ -154,9 +156,8 @@ class FSV3030(NetworkInst):
     def read_trace_data(self, trace: int = 1) -> np.ndarray:
         """Read trace data (in dBm) as a numpy array."""
         self.single_sweep()
-        self.write(f"FORM:DATA REAL,64")
-        data = self.query(f"TRAC? TRACE{trace}")
-        return np.array(data.split(","), dtype=float)
+        data = query_data(self, f"TRAC? TRACE{trace}")
+        return data
 
     def read_freqs(self) -> np.ndarray:
         """Return frequency axis corresponding to current span."""
@@ -165,11 +166,11 @@ class FSV3030(NetworkInst):
         points = self.sweep_points
         return np.linspace(start, stop, points)
 
-    def snapshot(self) -> tuple[np.ndarray, np.ndarray]:
+    def snapshot(self, trace: int = 1) -> tuple[np.ndarray, np.ndarray]:
         """Perform single sweep and return (freqs, trace)."""
         self.single_sweep()
         freqs = self.read_freqs()
-        trace = self.read_trace_data()
+        trace = self.read_trace_data(trace)
         return freqs, trace
 
     # ============================================================
