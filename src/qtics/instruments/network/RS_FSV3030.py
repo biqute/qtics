@@ -188,3 +188,24 @@ class FSV3030(NetworkInst):
     def marker_power(self, marker: int = 1) -> float:
         """Query marker power in dBm."""
         return float(self.query(f"CALC:MARK{marker}:Y?"))
+
+    # ============================================================
+    # Max-hold acquisition
+    # ============================================================
+
+    def set_max_hold(self, trace: int = 1):
+        """Set a trace to max-hold mode."""
+        self.write(f"TRAC{trace}:MODE MAXH")
+        self.single_sweep()  # Start sweep in max-hold mode
+
+    def clear_max_hold(self, trace: int = 1):
+        """Clear the max-hold trace (reset)."""
+        self.write(f"TRAC{trace}:MODE WRIT")
+        self.single_sweep()
+
+    def read_max_hold(self, trace: int = 1) -> np.ndarray:
+        """Acquire the current max-hold trace data."""
+        self.set_max_hold(trace)
+        # optional: wait for a few sweeps if needed to build the max-hold
+        data = query_data(self, f"TRAC? TRACE{trace}")
+        return data
