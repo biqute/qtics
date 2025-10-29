@@ -170,8 +170,8 @@ class FSV3030(NetworkInst):
         """Perform single sweep and return (freqs, trace)."""
         self.single_sweep()
         freqs = self.read_freqs()
-        trace = self.read_trace_data(trace)
-        return freqs, trace
+        tot_trace = self.read_trace_data(trace)
+        return freqs, tot_trace
 
     # ============================================================
     # Marker control
