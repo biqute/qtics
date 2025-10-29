@@ -13,6 +13,7 @@ Supported Instruments
    SMA100B
    VALON519
    RSZNB
+   RSFSV
    N9916A
    triton
    proteox
