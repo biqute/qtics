@@ -10,7 +10,7 @@ from qtics.instruments.network.proteox.instrument_session import (
     InstrumentSession,
     wamp_call_handler,
 )
-from qtics.instruments.network.proteox.uris import getters, state_labels
+from qtics.instruments.network.proteox.uris import getters, setters, state_labels
 
 load_dotenv()
 USER = getenv("WAMP_USER")
@@ -54,9 +54,16 @@ class Proteox:
             print("Instrument disconnected.")
 
     @wamp_call_handler()
-    async def get_sensor(self, uri):
+    async def get_sensor(self, uri, value=None):
         """Get sensor value from URI."""
         return await self.session.call(uri)
+
+    @wamp_call_handler()
+    async def set_sensor(self, uri, value):
+        """Get sensor value from URI."""
+        if "temperature_control" in uri:
+            # the 1 is for closed control loop
+            await self.session.call(f"{uri}", value, 1)
 
     def __getattr__(self, name):
         """General get function from sensor name."""
@@ -71,4 +78,13 @@ class Proteox:
                     return value
 
                 return dynamic_getter
+
+        elif name.startswith("set_"):
+            key = name[len("set_") :]
+            if key in setters:
+
+                async def dynamic_setter(value):
+                    await self.set_sensor(setters[key], value)
+
+                return dynamic_setter
         raise AttributeError(f"'Instrument' object has no attribute '{name}'")

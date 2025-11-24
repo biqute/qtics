@@ -24,9 +24,9 @@ def wamp_call_handler():
     """
 
     def decorator(func):
-        async def wrapper(self, uri):
+        async def wrapper(self, uri, value=None):
             try:
-                result = await func(self, uri)
+                result = await func(self, uri, value)
                 return result.results[4]  # Return only the 5th item from result
             except Exception as e:
                 print(f"Failed to query: {e}")

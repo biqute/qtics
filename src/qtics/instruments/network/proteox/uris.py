@@ -34,6 +34,20 @@ getters = {
     "MAG_CURR_VEC": "oi.decs.magnetic_field_control.VRM_01.current_vector",
     "CURR_TARGET": "oi.decs.magnetic_field_control.VRM_01.output_current_target",
 }
+setters = {
+    "SAMPLE_T": "oi.decs.temperature_control.DRI_MIX_CL.setpoint",
+    "MC_T": "oi.decs.temperature_control.DRI_MIX_CL.setpoint",
+    "MC_H": "oi.decs.temperature_control.DRI_MIX_CL.DRI_MIX_H.power",
+    "MC_H_OFF": "oi.decs.temperature_control.DRI_MIX_CL.DRI_MIX_H.power",
+    "STILL_H": "oi.decs.temperature_control.DRI_STL_H.power",
+    "STILL_H_OFF": "oi.decs.temperature_control.DRI_STL_H.power",
+    "MAG_TARGET": "oi.decs.magnetic_field_control.VRM_01.set_field_target",
+    "MAG_STATE": "oi.decs.magnetic_field_control.VRM_01.set_state",
+    "MAG_X_STATE": "oi.decs.magnetic_field_control.VRM_01.MAG_X.set_state",
+    "MAG_Y_STATE": "oi.decs.magnetic_field_control.VRM_01.MAG_Y.set_state",
+    "MAG_Z_STATE": "oi.decs.magnetic_field_control.VRM_01.MAG_Z.set_state",
+    "CURR_TARGET": "oi.decs.magnetic_field_control.VRM_01.set_output_current_target",
+}
 
 
 state_labels = {
