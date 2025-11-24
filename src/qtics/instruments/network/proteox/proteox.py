@@ -54,14 +54,16 @@ class Proteox:
             print("Instrument disconnected.")
 
     @wamp_call_handler()
-    async def get_sensor(self, uri):
+    async def get_sensor(self, uri, value=None):
         """Get sensor value from URI."""
         return await self.session.call(uri)
 
     @wamp_call_handler()
     async def set_sensor(self, uri, value):
         """Get sensor value from URI."""
-        await self.session.call(f"{uri}:{value}")
+        if "temperature_control" in uri:
+            # the 1 is for closed control loop
+            await self.session.call(f"{uri}", value, 1)
 
     def __getattr__(self, name):
         """General get function from sensor name."""
