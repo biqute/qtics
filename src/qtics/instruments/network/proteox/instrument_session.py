@@ -6,6 +6,8 @@ from autobahn.asyncio.wamp import ApplicationSession
 from autobahn.wamp import auth
 from dotenv import load_dotenv
 
+from qtics import log
+
 # Load environment variables from a `.env` file
 load_dotenv()
 USER = getenv("WAMP_USER")  # WAMP username
@@ -14,8 +16,8 @@ URL = getenv("WAMP_ROUTER_URL")  # WAMP router URL
 REALM = getenv("WAMP_REALM")  # WAMP realm name
 
 
-def wamp_call_handler():
-    """Create the decorator for wrapping WAMP RPC calls.
+def wamp_call_handler_get():
+    """Create the decorator for wrapping getters WAMP RPC calls.
 
     Handles exceptions and extracts the 5th result item from the call response.
 
@@ -29,7 +31,27 @@ def wamp_call_handler():
                 result = await func(self, uri)
                 return result.results[4]  # Return only the 5th item from result
             except Exception as e:
-                print(f"Failed to query: {e}")
+                log.error(f"Failed to query: {e}")
+                return None
+
+        return wrapper
+
+    return decorator
+
+
+def wamp_call_handler_set():
+    """Create the decorator for wrapping setters WAMP RPC calls.
+
+    Returns:
+        Callable: The wrapped function.
+    """
+
+    def decorator(func):
+        async def wrapper(self, uri, value=None):
+            try:
+                await func(self, uri, value)
+            except Exception as e:
+                log.error(f"Failed to query: {e}")
                 return None
 
         return wrapper
@@ -88,29 +110,27 @@ class InstrumentSession(ApplicationSession):
             mode = await self.call("oi.decs.sessionmanager.system_control_mode")
 
             if mode == 0:
-                print("[Instrument] System is in LOCAL mode. Aborting session.")
+                log.warning("[Instrument] System is in LOCAL mode. Aborting session.")
                 self.leave()
 
             elif mode == 1:
-                print("[Instrument] System is in REMOTE mode. Proceeding.")
                 try:
                     controller = await self.call(
                         "oi.decs.sessionmanager.system_controller"
                     )
                     if controller.results[0] == 0:
-                        print("[Instrument] No controller detected, claiming control")
                         await self.call("oi.decs.sessionmanager.claim_system_control")
                     else:
-                        print(
+                        log.warning(
                             "[Instrument] A controller has been detected, disconnecting"
                         )
                         self.leave()
 
                 except Exception as e:
-                    print("ERROR ", e)
+                    log.error("ERROR ", e)
 
         except Exception as e:
-            print(f"[Instrument] Failed to query control mode: {e}")
+            log.error(f"[Instrument] Failed to query control mode: {e}")
             self.leave()
 
         # Link the session to the instrument object
