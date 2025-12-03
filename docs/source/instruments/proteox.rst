@@ -144,12 +144,13 @@ Example
 
   # Change the mixing chamber setpoint and heater power
   await instrument.set_MC_T(0.1)     # set MC temperature setpoint to 100 mK
-  await instrument.set_MC_H(1.0e-5)  # set MC heater power to 10 µW
+
+.. note::
+   The temperature is here in kelvin!
 
 Temperature and Heater Control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* set\_SAMPLE\_T(value) – Set sample temperature setpoint
 * set\_MC\_T(value) – Set mixing chamber temperature setpoint
 * set\_MC\_H(value) – Set mixing chamber heater power
 * set\_MC\_H\_OFF(value=0) – Turn off mixing chamber heater
@@ -162,7 +163,6 @@ Magnet Control
 * set\_MAG\_TARGET(value) – Set magnetic field target (vector or scalar depending on mode)
 * set\_MAG\_STATE(value) – Set magnet controller state
 * set\_MAG\_X\_STATE(value), set\_MAG\_Y\_STATE(value), set\_MAG\_Z\_STATE(value) – Set state for each magnet axis
-* set\_CURR\_TARGET(value) – Set magnet output current target
 
 .. note::
 

@@ -35,7 +35,6 @@ getters = {
     "CURR_TARGET": "oi.decs.magnetic_field_control.VRM_01.output_current_target",
 }
 setters = {
-    "SAMPLE_T": "oi.decs.temperature_control.DRI_MIX_CL.setpoint",
     "MC_T": "oi.decs.temperature_control.DRI_MIX_CL.setpoint",
     "MC_H": "oi.decs.temperature_control.DRI_MIX_CL.DRI_MIX_H.power",
     "MC_H_OFF": "oi.decs.temperature_control.DRI_MIX_CL.DRI_MIX_H.power",

@@ -8,7 +8,8 @@ from dotenv import load_dotenv
 
 from qtics.instruments.network.proteox.instrument_session import (
     InstrumentSession,
-    wamp_call_handler,
+    wamp_call_handler_get,
+    wamp_call_handler_set,
 )
 from qtics.instruments.network.proteox.uris import getters, setters, state_labels
 
@@ -53,12 +54,12 @@ class Proteox:
             await self.disconnect_event.wait()
             print("Instrument disconnected.")
 
-    @wamp_call_handler()
-    async def get_sensor(self, uri, value=None):
+    @wamp_call_handler_get()
+    async def get_sensor(self, uri):
         """Get sensor value from URI."""
         return await self.session.call(uri)
 
-    @wamp_call_handler()
+    @wamp_call_handler_set()
     async def set_sensor(self, uri, value):
         """Get sensor value from URI."""
         if "temperature_control" in uri:
