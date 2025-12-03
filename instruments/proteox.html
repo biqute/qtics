@@ -250,7 +250,7 @@
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>All API methods (including sensor accessors) are asynchronous and must be used with await inside an async function.</p>
+<p>All API methods (including sensor accessors) are asynchronous and must be used with <code class="docutils literal notranslate"><span class="pre">await</span></code> inside an async function.</p>
 </div>
 <section id="example-of-operations">
 <h2>Example of operations<a class="headerlink" href="#example-of-operations" title="Permalink to this heading">#</a></h2>
@@ -281,13 +281,21 @@
 </div>
 <section id="commands">
 <h3>Commands<a class="headerlink" href="#commands" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>connect()
-Connect to the Proteox cryostat via WAMP.</p></li>
-<li><p>close()
-Cleanly disconnect from the cryostat session.</p></li>
-<li><p>get_&lt;sensor&gt;()
-Dynamic getter for supported sensors (see below). If the key is not recognized, raises an <cite>AttributeError</cite>.</p></li>
+<ul>
+<li><p><strong>connect()</strong></p>
+<p>Connect to the Proteox cryostat via WAMP.</p>
+</li>
+<li><p><strong>close()</strong></p>
+<p>Cleanly disconnect from the cryostat session.</p>
+</li>
+<li><p><strong>get_&lt;sensor&gt;()</strong></p>
+<p>Dynamic getter for supported sensors (see below).
+If the key is not recognized, raises an <code class="docutils literal notranslate"><span class="pre">AttributeError</span></code>.</p>
+</li>
+<li><p><strong>set_&lt;attribute&gt;(&lt;value&gt;)</strong></p>
+<p>Dynamic setter for supported control parameters (see below).
+If the key is not recognized, raises an <code class="docutils literal notranslate"><span class="pre">AttributeError</span></code>.</p>
+</li>
 </ul>
 </section>
 <section id="dynamic-getters">
@@ -354,6 +362,39 @@ Dynamic getter for supported sensors (see below). If the key is not recognized, 
 </ul>
 </section>
 </section>
+<section id="dynamic-setters">
+<h3>Dynamic setters<a class="headerlink" href="#dynamic-setters" title="Permalink to this heading">#</a></h3>
+<p>The following control parameters are available via dynamic setter methods.
+Each setter corresponds to a WAMP procedure call and must be awaited:</p>
+</section>
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Change the mixing chamber setpoint and heater power</span>
+<span class="k">await</span> <span class="n">instrument</span><span class="o">.</span><span class="n">set_MC_T</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>     <span class="c1"># set MC temperature setpoint to 100 mK</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The temperature is here in kelvin!</p>
+</div>
+<ul class="simple">
+<li><p>set_MC_T(value) – Set mixing chamber temperature setpoint</p></li>
+<li><p>set_MC_H(value) – Set mixing chamber heater power</p></li>
+<li><p>set_MC_H_OFF(value=0) – Turn off mixing chamber heater</p></li>
+<li><p>set_STILL_H(value) – Set still heater power</p></li>
+<li><p>set_STILL_H_OFF(value=0) – Turn off still heater</p></li>
+</ul>
+<ul class="simple">
+<li><p>set_MAG_TARGET(value) – Set magnetic field target (vector or scalar depending on mode)</p></li>
+<li><p>set_MAG_STATE(value) – Set magnet controller state</p></li>
+<li><p>set_MAG_X_STATE(value), set_MAG_Y_STATE(value), set_MAG_Z_STATE(value) – Set state for each magnet axis</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Setter operations must always be awaited.
+Example: <code class="docutils literal notranslate"><span class="pre">await</span> <span class="pre">instrument.set_MAG_STATE(&quot;SWEEP&quot;)</span></code></p>
+</div>
 </section>
 </section>
 
@@ -431,8 +472,10 @@ Dynamic getter for supported sensors (see below). If the key is not recognized, 
 <li><a class="reference internal" href="#state">State</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#dynamic-setters">Dynamic setters</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#example">Example</a></li>
 </ul>
 </li>
 </ul>

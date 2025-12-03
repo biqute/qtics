@@ -17,7 +17,7 @@ To configure the connection, you must include a .env file in the same folder as 
 
 .. warning::
 
-  All API methods (including sensor accessors) are asynchronous and must be used with await inside an async function.
+  All API methods (including sensor accessors) are asynchronous and must be used with ``await`` inside an async function.
 
 Example of operations
 """""""""""""""""""""
@@ -52,14 +52,24 @@ Example of operations
 Commands
 --------
 
-* connect()
+* **connect()**
+
   Connect to the Proteox cryostat via WAMP.
 
-* close()
+* **close()**
+
   Cleanly disconnect from the cryostat session.
 
-* get_<sensor>()
-  Dynamic getter for supported sensors (see below). If the key is not recognized, raises an `AttributeError`.
+* **get_<sensor>()**
+
+  Dynamic getter for supported sensors (see below).
+  If the key is not recognized, raises an ``AttributeError``.
+
+* **set_<attribute>(<value>)**
+
+  Dynamic setter for supported control parameters (see below).
+  If the key is not recognized, raises an ``AttributeError``.
+
 
 Dynamic getters
 ---------------
@@ -119,3 +129,42 @@ Available state labels:
 * WARM UP
 * CLEAN COLD TRAP
 * SAMPLE EXCHANGE
+
+
+Dynamic setters
+---------------
+
+The following control parameters are available via dynamic setter methods.
+Each setter corresponds to a WAMP procedure call and must be awaited:
+
+Example
+"""""""
+
+.. code-block:: python
+
+  # Change the mixing chamber setpoint and heater power
+  await instrument.set_MC_T(0.1)     # set MC temperature setpoint to 100 mK
+
+.. note::
+   The temperature is here in kelvin!
+
+Temperature and Heater Control
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* set\_MC\_T(value) – Set mixing chamber temperature setpoint
+* set\_MC\_H(value) – Set mixing chamber heater power
+* set\_MC\_H\_OFF(value=0) – Turn off mixing chamber heater
+* set\_STILL\_H(value) – Set still heater power
+* set\_STILL\_H\_OFF(value=0) – Turn off still heater
+
+Magnet Control
+^^^^^^^^^^^^^^
+
+* set\_MAG\_TARGET(value) – Set magnetic field target (vector or scalar depending on mode)
+* set\_MAG\_STATE(value) – Set magnet controller state
+* set\_MAG\_X\_STATE(value), set\_MAG\_Y\_STATE(value), set\_MAG\_Z\_STATE(value) – Set state for each magnet axis
+
+.. note::
+
+   Setter operations must always be awaited.
+   Example: ``await instrument.set_MAG_STATE("SWEEP")``
