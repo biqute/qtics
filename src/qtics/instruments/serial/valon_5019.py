@@ -83,15 +83,15 @@ class VALON5019(SerialInst):
         self.write(f"MOD {mode_to_set}")
 
     @property
-    def freq(self):
+    def f_fixed(self):
         """Output signal frequency in Hz."""
         res = self.query("F")
         return self.freq_result_to_hz(res)
 
-    @freq.setter
-    def freq(self, freq: float):
+    @f_fixed.setter
+    def f_fixed(self, freq: float):
         """Set signal frequency in Hz."""
-        freq = self.validate_range(freq, 10e6, 15e9)
+        freq = self.validate_range(freq, 10e6, 20e9)
         self.write(f"F{freq}Hz")
 
     @property
@@ -223,27 +223,28 @@ class VALON5019(SerialInst):
         self.write("SAVE")
 
     @property
-    def power(self):
+    def p_fixed(self):
         """Power of the output in dBm."""
         return float(self.query("PWR")[0])
 
-    @power.setter
-    def power(self, pow_to_set):
+    @p_fixed.setter
+    def p_fixed(self, pow_to_set):
         pow_to_set = self.validate_range(pow_to_set, -50, 20)
         self.write(f"PWR {pow_to_set}")
 
     @property
-    def power_oen(self):
+    def rf_status(self):
         """Enable or disable the RF output buffer amplifiers while leaving the synthesizer PLL locked."""
-        return self.query("OEN")[0] == "1"
+        return "ON" if self.query("OEN")[0] == "1" else "OFF"  # codespell:ignore
 
-    @power_oen.setter
-    def power_oen(self, value):
-        if value in (True, 1, "True"):
-            self.write(f"OEN 1")
-        elif value in (False, 0, "False"):
-            self.write(f"OEN 0")
-        raise ValueError(f"Value {value} not supported.")
+    @rf_status.setter
+    def rf_status(self, value):
+        if value in (True, 1, "True", "ON"):
+            self.write(f"OEN 1")  # codespell:ignore
+        elif value in (False, 0, "False", "OFF"):
+            self.write(f"OEN 0")  # codespell:ignore
+        else:
+            raise ValueError(f"Value {value} not supported.")
 
     @property
     def power_pdn(self):
@@ -256,7 +257,8 @@ class VALON5019(SerialInst):
             self.write(f"PDN 1")
         elif value in (False, 0, "False"):
             self.write(f"PDN 0")
-        raise ValueError(f"Value {value} not supported.")
+        else:
+            raise ValueError(f"Value {value} not supported.")
 
     @property
     def am_modulation(self):

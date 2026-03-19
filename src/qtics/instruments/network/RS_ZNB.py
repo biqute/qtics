@@ -202,6 +202,14 @@ class RSZNB(NetworkInst):
             "S42",
             "S43",
             "S44",
+            "Z-S11",
+            "Z-S21",
+            "Z-S12",
+            "Z-S22",
+            "Y-S11",
+            "Y-S21",
+            "Y-S12",
+            "Y-S22",
         )
         if not any(par.upper().startswith(sp) for sp in valid_spars):
             log.warning(f"S-parameter {par} may not be supported. Continuing anyway.")
@@ -415,3 +423,87 @@ class RSZNB(NetworkInst):
             traces = response.split(",")
             return [(traces[i], traces[i + 1]) for i in range(0, len(traces), 2)]
         return []
+
+    @property
+    def time_domain(self) -> str:
+        """Get time domain mode status."""
+        return str(self.query(f"CALCulate{self._channel}:TRANsform:TIME:STATe?"))
+
+    @time_domain.setter
+    def time_domain(self, state: str | bool):
+
+        if state in (True, 1, "True", "ON"):
+            state = "ON"
+        elif state in (False, 0, "False", "OFF"):
+            state = "OFF"
+        self.validate_opt(state, ("ON", "OFF"))
+        self.write(f"CALCulate{self._channel}:TRANsform:TIME:STATe {state}")
+
+    @property
+    def t_min(self) -> float:
+        """Minimum measured time."""
+        return float(self.query(f"CALCulate{self._channel}:TRANsform:TIME:STARt?"))
+
+    @t_min.setter
+    def t_min(self, t_min: float) -> float:
+        self.write(f"CALCulate{self._channel}:TRANsform:TIME:STARt {t_min}")
+
+    @property
+    def t_max(self) -> float:
+        """Maximum measured time."""
+        return float(self.query(f"CALCulate{self._channel}:TRANsform:TIME:STOP?"))
+
+    @t_max.setter
+    def t_max(self, t_max: float) -> float:
+        self.write(f"CALCulate{self._channel}:TRANsform:TIME:STOP {t_max}")
+
+    def read_times(self) -> np.ndarray:
+        """Read time domain x axis."""
+        return np.linspace(self.t_min, self.t_max, self.sweep_points)
+
+    @property
+    def time_domain_window(self) -> str:
+        """Window shape used to process frequency into time domain data."""
+        return str(self.query(f"CALCulate{self._channel}:TRANsform:TIME:WINDow?"))
+
+    @time_domain_window.setter
+    def time_domain_window(self, window: str) -> str:
+        self.validate_opt(window, ("RECT", "HANN", "HAMM", "BOHM", "DCH"))
+        self.write(f"CALCulate{self._channel}:TRANsform:TIME:WINDOW {window}")
+
+    @property
+    def harmonic_grid(self) -> str:
+        """Status of automatic harmonic grid for step response time domain measurements."""
+        return str(self.query(f"SENSe{self._channel}:HARMonic:AUTO?"))
+
+    @harmonic_grid.setter
+    def harmonic_grid(self, state: str | bool):
+        if state in (True, 1, "True", "ON"):
+            state = "ON"
+        elif state in (False, 0, "False", "OFF"):
+            state = "OFF"
+        self.validate_opt(state, ("ON", "OFF"))
+        self.write(f"SENSe{self._channel}:HARMonic:AUTO {state}")
+
+    @property
+    def low_pass_extrapolation(self) -> float:
+        """Reflection coefficient extrapolation at 0 frequency."""
+        return float(
+            self.query(f"CALCulate{self._channel}:TRANsform:TIME:LPASs:DCSParam?")
+        )
+
+    @low_pass_extrapolation.setter
+    def low_pass_extrapolation(self, low_pass_extrapolation: float) -> float:
+        self.write(
+            f"CALCulate{self._channel}:TRANsform:TIME:LPASs:DCSParam {self.validate_range(low_pass_extrapolation, -1, 1)}"
+        )
+
+    @property
+    def low_pass_stimulus(self) -> str:
+        """Shape of the low pass time domain probe."""
+        return self.query(f"CALCulate{self._channel}:TRANsform:TIME:STIM?")
+
+    @low_pass_stimulus.setter
+    def low_pass_stimulus(self, low_pass_stimulus: str) -> float:
+        self.validate_opt(low_pass_stimulus, ("STEP", "IMP"))
+        self.write(f"CALCulate{self._channel}:TRANsform:TIME:STIM {low_pass_stimulus}")
