@@ -445,7 +445,7 @@ class RSZNB(NetworkInst):
         return float(self.query(f"CALCulate{self._channel}:TRANsform:TIME:STARt?"))
 
     @t_min.setter
-    def t_min(self, t_min: float) -> float:
+    def t_min(self, t_min: float):
         self.write(f"CALCulate{self._channel}:TRANsform:TIME:STARt {t_min}")
 
     @property
@@ -454,7 +454,7 @@ class RSZNB(NetworkInst):
         return float(self.query(f"CALCulate{self._channel}:TRANsform:TIME:STOP?"))
 
     @t_max.setter
-    def t_max(self, t_max: float) -> float:
+    def t_max(self, t_max: float):
         self.write(f"CALCulate{self._channel}:TRANsform:TIME:STOP {t_max}")
 
     def read_times(self) -> np.ndarray:
@@ -467,7 +467,7 @@ class RSZNB(NetworkInst):
         return str(self.query(f"CALCulate{self._channel}:TRANsform:TIME:WINDow?"))
 
     @time_domain_window.setter
-    def time_domain_window(self, window: str) -> str:
+    def time_domain_window(self, window: str):
         self.validate_opt(window, ("RECT", "HANN", "HAMM", "BOHM", "DCH"))
         self.write(f"CALCulate{self._channel}:TRANsform:TIME:WINDOW {window}")
 
@@ -493,7 +493,7 @@ class RSZNB(NetworkInst):
         )
 
     @low_pass_extrapolation.setter
-    def low_pass_extrapolation(self, low_pass_extrapolation: float) -> float:
+    def low_pass_extrapolation(self, low_pass_extrapolation: float):
         self.write(
             f"CALCulate{self._channel}:TRANsform:TIME:LPASs:DCSParam {self.validate_range(low_pass_extrapolation, -1, 1)}"
         )
@@ -504,6 +504,6 @@ class RSZNB(NetworkInst):
         return self.query(f"CALCulate{self._channel}:TRANsform:TIME:STIM?")
 
     @low_pass_stimulus.setter
-    def low_pass_stimulus(self, low_pass_stimulus: str) -> float:
+    def low_pass_stimulus(self, low_pass_stimulus: str):
         self.validate_opt(low_pass_stimulus, ("STEP", "IMP"))
         self.write(f"CALCulate{self._channel}:TRANsform:TIME:STIM {low_pass_stimulus}")
