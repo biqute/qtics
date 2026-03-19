@@ -109,12 +109,12 @@ class FSV3030(NetworkInst):
     @property
     def sweep_points(self) -> int:
         """Number of sweep points."""
-        return int(self.query("SWE:POIN?"))
+        return int(self.query("SWE:POIN?"))  # codespell:ignore
 
     @sweep_points.setter
     def sweep_points(self, n: int):
         n = self.validate_range(n, 101, 10001)
-        self.write(f"SWE:POIN {n}")
+        self.write(f"SWE:POIN {n}")  # codespell:ignore
 
     @property
     def sweep_time(self) -> float:
@@ -156,7 +156,7 @@ class FSV3030(NetworkInst):
     def read_trace_data(self, trace: int = 1) -> np.ndarray:
         """Read trace data (in dBm) as a numpy array."""
         self.single_sweep()
-        data = query_data(self, f"TRAC? TRACE{trace}")
+        data = query_data(self, f"TRAC? TRACE{trace}", datatype="ASC,0")
         return data
 
     def read_freqs(self) -> np.ndarray:
@@ -207,5 +207,5 @@ class FSV3030(NetworkInst):
         """Acquire the current max-hold trace data."""
         self.set_max_hold(trace)
         # optional: wait for a few sweeps if needed to build the max-hold
-        data = query_data(self, f"TRAC? TRACE{trace}")
+        data = query_data(self, f"TRAC? TRACE{trace}", datatype="ASC,0")
         return data

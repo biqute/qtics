@@ -35,6 +35,7 @@ Functions
 - select_trace()
 - delete_trace()
 - list_trace()
+- read_times()
 
 Properties
 ------------
@@ -53,3 +54,10 @@ Properties
 - smoothing
 - IFBW
 - power
+- time_domain
+- t_min
+- t_max
+- time_domain_window
+- harmonic_grid
+- low_pass_extrapolation
+- low_pass_stimulus
