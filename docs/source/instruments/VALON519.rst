@@ -34,7 +34,7 @@ Properties
 ----------
 
 - mode
-- freq
+- f_fixed
 - freq_offset
 - freq_step
 - sweep_start
@@ -44,8 +44,8 @@ Properties
 - sweep_rtime
 - sweep_tmode
 - list_entry (setter only; getter raises `NotImplementedError`)
-- power
-- power_oen
+- p_fixed
+- rf_status
 - power_pdn
 - am_modulation
 - am_frequency
