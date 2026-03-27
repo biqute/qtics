@@ -29,6 +29,8 @@ def wamp_call_handler_get():
         async def wrapper(self, uri):
             try:
                 result = await func(self, uri)
+                if isinstance(result, int):
+                    return result
                 return result.results[4]  # Return only the 5th item from result
             except Exception as e:
                 log.error(f"Failed to query: {e}")
