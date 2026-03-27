@@ -33,6 +33,16 @@ getters = {
     "MAG_Z_STATE": "oi.decs.magnetic_field_control.VRM_01.MAG_Z.state",
     "MAG_CURR_VEC": "oi.decs.magnetic_field_control.VRM_01.current_vector",
     "CURR_TARGET": "oi.decs.magnetic_field_control.VRM_01.output_current_target",
+    "OVC_AV_01_CLOSED": "oi.decs.proteox.3CL_GHS.3CL_AV_01.state",
+    "PTR_ON": "oi.decs.proteox.3CL_PTR.state",
+    "FP_ON": "oi.decs.proteox.3CL_FP_01.state",
+    "CP_ON": "oi.decs.proteox.3CL_CP_01.state",
+    "TP_ON": "oi.decs.proteox.3CL_TP.state",
+    "MC_CTRL_ON": "oi.decs.temperature_control.DRI_MIX_CL.rag_status",
+    "V4_CLOSED": "oi.decs.proteox.3CL_GHS.3CL_AV_04.state",
+    "V9_error": "oi.decs.proteox.3CL_GHS.3CL_AV_09.rag_status",
+    "V10_error": "oi.decs.proteox.3CL_GHS.3CL_AV_10.rag_status",
+    "AV_08_CLOSED": "oi.decs.proteox.3CL_GHS.3CL_AV_08.state",
 }
 setters = {
     "MC_T": "oi.decs.temperature_control.DRI_MIX_CL.setpoint",

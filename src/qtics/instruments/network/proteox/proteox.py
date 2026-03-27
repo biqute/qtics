@@ -11,6 +11,7 @@ from qtics.instruments.network.proteox.instrument_session import (
     wamp_call_handler_get,
     wamp_call_handler_set,
 )
+from qtics.instruments.network.proteox.recognized_states import RecognizedStateManager
 from qtics.instruments.network.proteox.uris import getters, setters, state_labels
 
 load_dotenv()
@@ -30,6 +31,7 @@ class Proteox:
         self.session = None
         self._runner = None
         self.disconnect_event = None
+        self.recognized_states = RecognizedStateManager(self)
 
     async def connect(self):
         """Connect to the WAMP router and establish session."""
@@ -89,3 +91,21 @@ class Proteox:
 
                 return dynamic_setter
         raise AttributeError(f"'Instrument' object has no attribute '{name}'")
+
+    async def is_in_recognized_state(self) -> bool:
+        """Return True if the cryostat is in a recognized state."""
+        return await self.recognized_states.is_in_recognized_state()
+
+    async def get_recognized_states(self):
+        """Return all matched recognized states."""
+        return await self.recognized_states.get_recognized_states()
+
+    async def how_to_go_to_recognized_state(self, target_state=None) -> str:
+        """
+        Return instructions to reach a state.
+
+        In particular:
+        - the closest recognized state, if target_state is None
+        - or a specific recognized state
+        """
+        return await self.recognized_states.how_to_go_to_recognized_state(target_state)
