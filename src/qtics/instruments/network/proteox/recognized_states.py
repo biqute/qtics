@@ -2,18 +2,6 @@
 
 This module evaluates whether the cryostat is in one of the recognized
 states defined by the Proteox truth table.
-
-IMPORTANT:
-- Matching is EXCLUSIVE:
-  a state is matched only if all its required TRUE conditions are true
-  AND all its required FALSE conditions are false.
-- This avoids "subset matches" such as matching "Idle And Vented"
-  while the system is actually in "Circulating Compressor Bypassed".
-
-NOTES:
-- Some getters referenced here may not yet exist in your driver.
-  Missing getters are handled gracefully and return None.
-- You should progressively replace placeholder getters with real URIs.
 """
 
 from __future__ import annotations
