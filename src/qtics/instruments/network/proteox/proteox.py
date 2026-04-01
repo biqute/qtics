@@ -50,11 +50,14 @@ class Proteox:
 
     async def close(self):
         """Close the WAMP session."""
-        if self.session:
+        if self.session._session_id:
             self.session.leave()
         if self.disconnect_event:
             await self.disconnect_event.wait()
-            print("Instrument disconnected.")
+
+    async def is_in_remote(self):
+        """Check if Proteox is connected (or in local mode)."""
+        return not self.session._session_id
 
     @wamp_call_handler_get()
     async def get_sensor(self, uri):

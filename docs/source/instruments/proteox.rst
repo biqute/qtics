@@ -60,6 +60,10 @@ Commands
 
   Cleanly disconnect from the cryostat session.
 
+* **is_in_remote()**
+
+  Check if instrument is connected or the system is in remote, refusing connection.
+
 * **get_<sensor>()**
 
   Dynamic getter for supported sensors (see below).

@@ -4,6 +4,7 @@ from os import getenv
 
 from autobahn.asyncio.wamp import ApplicationSession
 from autobahn.wamp import auth
+from autobahn.wamp.types import CloseDetails
 from dotenv import load_dotenv
 
 from qtics import log
@@ -84,6 +85,11 @@ class InstrumentSession(ApplicationSession):
     def onConnect(self):
         """Join the realm using WAMP-CRA authentication."""
         self.join(self.config.realm, ["wampcra"], USER)
+
+    def onLeave(self, details: CloseDetails):
+        """Override standard onLeave to avoid not necessary warning."""
+        details.reason = CloseDetails.REASON_DEFAULT
+        return super().onLeave(details)
 
     def onChallenge(self, challenge):
         """Authenticate.
