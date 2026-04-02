@@ -133,7 +133,8 @@ def build_conditions() -> dict[str, Condition]:
             key="PT2_STAGE_COLD",
             label="DRI-PT2-S < 5 K",
             evaluator=lambda s: (
-                _safe_float(s.get("DR2_T")) is not None
+                _safe_float(s.get("DR2_T")) != 0.0
+                and _safe_float(s.get("DR2_T")) is not None
                 and _safe_float(s.get("DR2_T")) < 5.0
             ),
             suggestion_if_false="Wait/cool until PT2 stage temperature (DRI-PT2-S) < 5 K.",
@@ -143,7 +144,8 @@ def build_conditions() -> dict[str, Condition]:
             key="MIX_CHAMBER_COLD",
             label="DRI-MIX-S < 2 K",
             evaluator=lambda s: (
-                _safe_float(s.get("MC_T")) is not None
+                _safe_float(s.get("MC_T")) != 0.0
+                and _safe_float(s.get("MC_T")) is not None
                 and _safe_float(s.get("MC_T")) < 2.0
             ),
             suggestion_if_false="Cool mixing chamber until DRI-MIX-S < 2 K.",
@@ -205,7 +207,8 @@ def build_conditions() -> dict[str, Condition]:
             key="MIX_CHAMBER_PRECOOLED",
             label="DRI-MIX-S < 6 K",
             evaluator=lambda s: (
-                _safe_float(s.get("MC_T")) is not None
+                _safe_float(s.get("MC_T")) != 0.0
+                and _safe_float(s.get("MC_T")) is not None
                 and _safe_float(s.get("MC_T")) < 6.0
             ),
             suggestion_if_false="Wait/cool until DRI-MIX-S < 6 K.",
@@ -215,7 +218,8 @@ def build_conditions() -> dict[str, Condition]:
             key="SORB_COLD",
             label="SRB-GGS-S < 6 K",
             evaluator=lambda s: (
-                _safe_float(s.get("SRB_T")) is not None
+                _safe_float(s.get("SRB_T")) != 0.0
+                and _safe_float(s.get("SRB_T")) is not None
                 and _safe_float(s.get("SRB_T")) < 6.0
             ),
             suggestion_if_false="Wait/cool until SRB-GGS-S < 6 K.",
