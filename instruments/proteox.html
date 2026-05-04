@@ -239,7 +239,7 @@
           <section id="proteox-controller">
 <h1>Proteox controller<a class="headerlink" href="#proteox-controller" title="Permalink to this heading">#</a></h1>
 <p>High-level controller for the Proteox cryostat system by Oxford Instruments, interfacing via WAMP.</p>
-<p>To configure the connection, you must include a .env file in the same folder as the Proteox module. This file must contain the following entries:</p>
+<p>To configure the connection, you must include a <code class="docutils literal notranslate"><span class="pre">.env</span></code> file in the same folder as the Proteox module. This file must contain the following entries:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">WAMP_USER</span><span class="o">=</span><span class="s2">&quot;**********&quot;</span>
 <span class="nv">WAMP_USER_SECRET</span><span class="o">=</span><span class="s2">&quot;*************&quot;</span>
 <span class="nv">WAMP_REALM</span><span class="o">=</span><span class="s2">&quot;ucss&quot;</span>
@@ -250,7 +250,7 @@
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>All API methods (including sensor accessors) are asynchronous and must be used with <code class="docutils literal notranslate"><span class="pre">await</span></code> inside an async function.</p>
+<p>All API methods (including sensor accessors and recognized-state helpers) are asynchronous and must be used with <code class="docutils literal notranslate"><span class="pre">await</span></code> inside an async function.</p>
 </div>
 <section id="example-of-operations">
 <h2>Example of operations<a class="headerlink" href="#example-of-operations" title="Permalink to this heading">#</a></h2>
@@ -261,18 +261,18 @@
     <span class="n">instrument</span> <span class="o">=</span> <span class="n">Proteox</span><span class="p">()</span>
     <span class="k">await</span> <span class="n">instrument</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
 
-    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
-        <span class="n">mix</span> <span class="o">=</span> <span class="k">await</span> <span class="n">instrument</span><span class="o">.</span><span class="n">get_MC_T</span><span class="p">()</span>
-        <span class="n">pt1</span> <span class="o">=</span> <span class="k">await</span> <span class="n">instrument</span><span class="o">.</span><span class="n">get_PT1_T1</span><span class="p">()</span>
-        <span class="n">pt2</span> <span class="o">=</span> <span class="k">await</span> <span class="n">instrument</span><span class="o">.</span><span class="n">get_PT2_T1</span><span class="p">()</span>
-        <span class="n">sti</span> <span class="o">=</span> <span class="k">await</span> <span class="n">instrument</span><span class="o">.</span><span class="n">get_STILL_T</span><span class="p">()</span>
-        <span class="n">col</span> <span class="o">=</span> <span class="k">await</span> <span class="n">instrument</span><span class="o">.</span><span class="n">get_CP_T</span><span class="p">()</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">TEMPS:&quot;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;MIX: </span><span class="si">{</span><span class="n">mix</span><span class="o">*</span><span class="mi">1000</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> mK&quot;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;STILL: </span><span class="si">{</span><span class="n">sti</span><span class="o">*</span><span class="mi">1000</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> mK&quot;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;COLD: </span><span class="si">{</span><span class="n">col</span><span class="o">*</span><span class="mi">1000</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> mK&quot;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;PT1: </span><span class="si">{</span><span class="n">pt1</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> K&quot;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;PT2: </span><span class="si">{</span><span class="n">pt2</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> K&quot;</span><span class="p">)</span>
+    <span class="n">mix</span> <span class="o">=</span> <span class="k">await</span> <span class="n">instrument</span><span class="o">.</span><span class="n">get_MC_T</span><span class="p">()</span>
+    <span class="n">pt1</span> <span class="o">=</span> <span class="k">await</span> <span class="n">instrument</span><span class="o">.</span><span class="n">get_PT1_T1</span><span class="p">()</span>
+    <span class="n">pt2</span> <span class="o">=</span> <span class="k">await</span> <span class="n">instrument</span><span class="o">.</span><span class="n">get_PT2_T1</span><span class="p">()</span>
+    <span class="n">sti</span> <span class="o">=</span> <span class="k">await</span> <span class="n">instrument</span><span class="o">.</span><span class="n">get_STILL_T</span><span class="p">()</span>
+    <span class="n">col</span> <span class="o">=</span> <span class="k">await</span> <span class="n">instrument</span><span class="o">.</span><span class="n">get_CP_T</span><span class="p">()</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">TEMPS:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;MIX: </span><span class="si">{</span><span class="n">mix</span><span class="o">*</span><span class="mi">1000</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> mK&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;STILL: </span><span class="si">{</span><span class="n">sti</span><span class="o">*</span><span class="mi">1000</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> mK&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;COLD: </span><span class="si">{</span><span class="n">col</span><span class="o">*</span><span class="mi">1000</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> mK&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;PT1: </span><span class="si">{</span><span class="n">pt1</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> K&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;PT2: </span><span class="si">{</span><span class="n">pt2</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> K&quot;</span><span class="p">)</span>
 
     <span class="k">await</span> <span class="n">instrument</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
@@ -288,6 +288,9 @@
 <li><p><strong>close()</strong></p>
 <p>Cleanly disconnect from the cryostat session.</p>
 </li>
+<li><p><strong>is_in_remote()</strong></p>
+<p>Check if instrument is connected or the system is in remote, refusing connection.</p>
+</li>
 <li><p><strong>get_&lt;sensor&gt;()</strong></p>
 <p>Dynamic getter for supported sensors (see below).
 If the key is not recognized, raises an <code class="docutils literal notranslate"><span class="pre">AttributeError</span></code>.</p>
@@ -295,6 +298,20 @@ If the key is not recognized, raises an <code class="docutils literal notranslat
 <li><p><strong>set_&lt;attribute&gt;(&lt;value&gt;)</strong></p>
 <p>Dynamic setter for supported control parameters (see below).
 If the key is not recognized, raises an <code class="docutils literal notranslate"><span class="pre">AttributeError</span></code>.</p>
+</li>
+<li><p><strong>is_in_recognized_state()</strong></p>
+<p>Return <code class="docutils literal notranslate"><span class="pre">True</span></code> if the current cryostat conditions match one of the recognized exclusive states.</p>
+</li>
+<li><p><strong>get_recognized_states()</strong></p>
+<p>Return a list of recognized states currently matched.
+In normal operation this should usually contain <strong>zero or one</strong> state, because matching is implemented as <strong>exclusive</strong>.</p>
+</li>
+<li><p><strong>how_to_go_to_recognized_state(target_state=None)</strong></p>
+<p>Return a human-readable suggestion describing what conditions are missing or conflicting in order to reach:</p>
+<ul class="simple">
+<li><p>the <strong>closest recognized state</strong>, if <code class="docutils literal notranslate"><span class="pre">target_state</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code></p></li>
+<li><p>a <strong>specific recognized state</strong>, if <code class="docutils literal notranslate"><span class="pre">target_state</span></code> is provided</p></li>
+</ul>
 </li>
 </ul>
 </section>
@@ -304,97 +321,243 @@ If the key is not recognized, raises an <code class="docutils literal notranslat
 <section id="temperatures">
 <h4>Temperatures<a class="headerlink" href="#temperatures" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
-<li><p>get_SAMPLE_T() – Sample thermometer</p></li>
-<li><p>get_MC_T() – Mixing chamber temperature</p></li>
-<li><p>get_MC_T_SP() – Mixing chamber temperature setpoint</p></li>
-<li><p>get_STILL_T() – Still temperature</p></li>
-<li><p>get_CP_T() – Cold plate temperature</p></li>
-<li><p>get_SRB_T() – Sorb temperature</p></li>
-<li><p>get_DR2_T(), get_DR1_T() – DR stage temperatures</p></li>
-<li><p>get_PT2_T1(), get_PT1_T1() – Pulse tube stage temperatures</p></li>
-<li><p>get_MAG_T() – Magnet system temperature</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_SAMPLE_T()</span></code> – Sample thermometer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_MC_T()</span></code> – Mixing chamber temperature</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_MC_T_SP()</span></code> – Mixing chamber temperature setpoint</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_STILL_T()</span></code> – Still temperature</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_CP_T()</span></code> – Cold plate temperature</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_SRB_T()</span></code> – Sorb temperature</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_DR2_T()</span></code>, <code class="docutils literal notranslate"><span class="pre">get_DR1_T()</span></code> – DR stage temperatures</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_PT2_T1()</span></code>, <code class="docutils literal notranslate"><span class="pre">get_PT1_T1()</span></code> – Pulse tube stage temperatures</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_MAG_T()</span></code> – Magnet system temperature</p></li>
 </ul>
 </section>
 <section id="heaters-and-powers">
 <h4>Heaters and Powers<a class="headerlink" href="#heaters-and-powers" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
-<li><p>get_MC_H() – Mixing chamber heater power</p></li>
-<li><p>get_STILL_H() – Still heater power</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_MC_H()</span></code> – Mixing chamber heater power</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_STILL_H()</span></code> – Still heater power</p></li>
 </ul>
 </section>
 <section id="pressures">
 <h4>Pressures<a class="headerlink" href="#pressures" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
-<li><p>get_OVC_P() – Outer vacuum chamber pressure</p></li>
-<li><p>get_P1_P() to get_P6_P() – Various pressure gauges</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_OVC_P()</span></code> – Outer vacuum chamber pressure</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_P1_P()</span></code> to <code class="docutils literal notranslate"><span class="pre">get_P6_P()</span></code> – Various pressure gauges</p></li>
 </ul>
 </section>
 <section id="flows">
 <h4>Flows<a class="headerlink" href="#flows" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
-<li><p>get_3He_F() – ^3He flowmeter</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_3He_F()</span></code> – :sup:<a href="#id1"><span class="problematic" id="id2">`</span></a>3`He flowmeter</p></li>
 </ul>
 </section>
 <section id="magnetic-field-control">
 <h4>Magnetic Field Control<a class="headerlink" href="#magnetic-field-control" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
-<li><p>get_MAG_VEC() – Magnetic field vector</p></li>
-<li><p>get_MAG_STATE(), get_SWZ_STATE() – Magnet controller and sweep state</p></li>
-<li><p>get_MAG_TARGET() – Field target</p></li>
-<li><p>get_MAG_X_STATE(), get_MAG_Y_STATE(), get_MAG_Z_STATE() – Axis state</p></li>
-<li><p>get_MAG_CURR_VEC(), get_CURR_TARGET() – Magnet current vector and targets</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_MAG_VEC()</span></code> – Magnetic field vector</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_MAG_STATE()</span></code>, <code class="docutils literal notranslate"><span class="pre">get_SWZ_STATE()</span></code> – Magnet controller and sweep state</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_MAG_TARGET()</span></code> – Field target</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_MAG_X_STATE()</span></code>, <code class="docutils literal notranslate"><span class="pre">get_MAG_Y_STATE()</span></code>, <code class="docutils literal notranslate"><span class="pre">get_MAG_Z_STATE()</span></code> – Axis state</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_MAG_CURR_VEC()</span></code>, <code class="docutils literal notranslate"><span class="pre">get_CURR_TARGET()</span></code> – Magnet current vector and targets</p></li>
 </ul>
 </section>
-<section id="state">
-<h4>State<a class="headerlink" href="#state" title="Permalink to this heading">#</a></h4>
+<section id="cryostat-state">
+<h4>Cryostat State<a class="headerlink" href="#cryostat-state" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
-<li><p>get_state() – Cryostat state (returns descriptive label e.g., “CONDENSING”)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_state()</span></code> – Cryostat state (returns descriptive label, e.g. <code class="docutils literal notranslate"><span class="pre">&quot;CONDENSING&quot;</span></code>)</p></li>
 </ul>
 <p>Available state labels:</p>
 <ul class="simple">
-<li><p>IDLE</p></li>
-<li><p>PUMPING</p></li>
-<li><p>CONDENSING</p></li>
-<li><p>CIRCULATING</p></li>
-<li><p>WARM UP</p></li>
-<li><p>CLEAN COLD TRAP</p></li>
-<li><p>SAMPLE EXCHANGE</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">IDLE</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PUMPING</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CONDENSING</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CIRCULATING</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">WARM</span> <span class="pre">UP</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CLEAN</span> <span class="pre">COLD</span> <span class="pre">TRAP</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SAMPLE</span> <span class="pre">EXCHANGE</span></code></p></li>
 </ul>
 </section>
 </section>
 <section id="dynamic-setters">
 <h3>Dynamic setters<a class="headerlink" href="#dynamic-setters" title="Permalink to this heading">#</a></h3>
 <p>The following control parameters are available via dynamic setter methods.
-Each setter corresponds to a WAMP procedure call and must be awaited:</p>
+Each setter corresponds to a WAMP procedure call and must be awaited.</p>
 </section>
 </section>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Change the mixing chamber setpoint and heater power</span>
-<span class="k">await</span> <span class="n">instrument</span><span class="o">.</span><span class="n">set_MC_T</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>     <span class="c1"># set MC temperature setpoint to 100 mK</span>
+<span class="k">await</span> <span class="n">instrument</span><span class="o">.</span><span class="n">set_MC_T</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>   <span class="c1"># set MC temperature setpoint to 100 mK</span>
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The temperature is here in kelvin!</p>
+<p>Temperature values are expected in <strong>kelvin</strong>.</p>
 </div>
 <ul class="simple">
-<li><p>set_MC_T(value) – Set mixing chamber temperature setpoint</p></li>
-<li><p>set_MC_H(value) – Set mixing chamber heater power</p></li>
-<li><p>set_MC_H_OFF(value=0) – Turn off mixing chamber heater</p></li>
-<li><p>set_STILL_H(value) – Set still heater power</p></li>
-<li><p>set_STILL_H_OFF(value=0) – Turn off still heater</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">set_MC_T(value)</span></code> – Set mixing chamber temperature setpoint</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">set_MC_H(value)</span></code> – Set mixing chamber heater power</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">set_MC_H_OFF(value=0)</span></code> – Turn off mixing chamber heater</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">set_STILL_H(value)</span></code> – Set still heater power</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">set_STILL_H_OFF(value=0)</span></code> – Turn off still heater</p></li>
 </ul>
 <ul class="simple">
-<li><p>set_MAG_TARGET(value) – Set magnetic field target (vector or scalar depending on mode)</p></li>
-<li><p>set_MAG_STATE(value) – Set magnet controller state</p></li>
-<li><p>set_MAG_X_STATE(value), set_MAG_Y_STATE(value), set_MAG_Z_STATE(value) – Set state for each magnet axis</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">set_MAG_TARGET(value)</span></code> – Set magnetic field target (vector or scalar depending on mode)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">set_MAG_STATE(value)</span></code> – Set magnet controller state</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">set_MAG_X_STATE(value)</span></code>, <code class="docutils literal notranslate"><span class="pre">set_MAG_Y_STATE(value)</span></code>, <code class="docutils literal notranslate"><span class="pre">set_MAG_Z_STATE(value)</span></code> – Set state for each magnet axis</p></li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Setter operations must always be awaited.
 Example: <code class="docutils literal notranslate"><span class="pre">await</span> <span class="pre">instrument.set_MAG_STATE(&quot;SWEEP&quot;)</span></code></p>
 </div>
+<section id="recognized-states">
+<h3>Recognized states<a class="headerlink" href="#recognized-states" title="Permalink to this heading">#</a></h3>
+<p>The Proteox driver also provides a <strong>recognized-state evaluator</strong>.</p>
+<p>This system compares a set of measured cryostat conditions (pressures, temperatures, valve states, pumps, etc.) against an internal <strong>exclusive truth table</strong> of known operational states.</p>
+<p>This is useful to:</p>
+<ul class="simple">
+<li><p>check whether the cryostat is currently in a valid known configuration</p></li>
+<li><p>identify the current recognized operating state</p></li>
+<li><p>determine the <strong>closest valid state</strong></p></li>
+<li><p>obtain a list of suggested actions to reach a target state</p></li>
+</ul>
+<section id="recognized-state-table">
+<h4>Recognized state table<a class="headerlink" href="#recognized-state-table" title="Permalink to this heading">#</a></h4>
+<p>The state recognition logic is based on the following operational truth table:</p>
+<a class="reference internal image-reference" href="../_images/recognisable_states.png"><img alt="Proteox recognized states truth table" class="align-center" src="../_images/recognisable_states.png" style="width: 100%;" /></a>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Matching is <strong>exclusive</strong>.</p>
+<p>This means that a state is considered matched only if:</p>
+<ul class="simple">
+<li><p>all conditions expected to be <strong>True</strong> are actually True</p></li>
+<li><p>all conditions expected to be <strong>False</strong> are actually False</p></li>
+</ul>
+<p>In other words, extra active conditions can invalidate a state match.</p>
+</div>
+</section>
+<section id="available-high-level-methods">
+<h4>Available high-level methods<a class="headerlink" href="#available-high-level-methods" title="Permalink to this heading">#</a></h4>
+<p>You can access the recognized-state API directly from the <code class="docutils literal notranslate"><span class="pre">Proteox</span></code> object.</p>
+<p><strong>Check whether the current state is recognized</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ok</span> <span class="o">=</span> <span class="k">await</span> <span class="n">instrument</span><span class="o">.</span><span class="n">is_in_recognized_state</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ok</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Example output:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+<p><strong>Get the currently recognized state(s)</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">states</span> <span class="o">=</span> <span class="k">await</span> <span class="n">instrument</span><span class="o">.</span><span class="n">get_recognized_states</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">states</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Example output:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[&#39;Circulating Compressor Bypassed&#39;]
+</pre></div>
+</div>
+<p><strong>Get instructions to reach the closest recognized state</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">suggestion</span> <span class="o">=</span> <span class="k">await</span> <span class="n">instrument</span><span class="o">.</span><span class="n">how_to_go_to_recognized_state</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">suggestion</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Example output:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Closest target state: &#39;Circulating&#39;
+Total mismatches: 1
+
+Required actions:
+ - 3CL-CP-01 is On -&gt; Turn ON compressor (3CL-CP-01).
+</pre></div>
+</div>
+<p><strong>Get instructions to reach a specific recognized state</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">suggestion</span> <span class="o">=</span> <span class="k">await</span> <span class="n">instrument</span><span class="o">.</span><span class="n">how_to_go_to_recognized_state</span><span class="p">(</span><span class="s2">&quot;Circulating&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">suggestion</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Example output:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Target state: &#39;Circulating&#39;
+Total mismatches: 1
+
+Required actions:
+ - 3CL-CP-01 is On -&gt; Turn ON compressor (3CL-CP-01).
+</pre></div>
+</div>
+</section>
+<section id="full-example">
+<h4>Full example<a class="headerlink" href="#full-example" title="Permalink to this heading">#</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">asyncio</span> <span class="kn">import</span> <span class="n">run</span>
+<span class="kn">from</span> <span class="nn">qtics</span> <span class="kn">import</span> <span class="n">Proteox</span>
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">myfun</span><span class="p">():</span>
+    <span class="n">instrument</span> <span class="o">=</span> <span class="n">Proteox</span><span class="p">()</span>
+    <span class="k">await</span> <span class="n">instrument</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+
+    <span class="n">ok</span> <span class="o">=</span> <span class="k">await</span> <span class="n">instrument</span><span class="o">.</span><span class="n">is_in_recognized_state</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Recognized:&quot;</span><span class="p">,</span> <span class="n">ok</span><span class="p">)</span>
+
+    <span class="n">states</span> <span class="o">=</span> <span class="k">await</span> <span class="n">instrument</span><span class="o">.</span><span class="n">get_recognized_states</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Matched states:&quot;</span><span class="p">,</span> <span class="n">states</span><span class="p">)</span>
+
+    <span class="n">suggestion</span> <span class="o">=</span> <span class="k">await</span> <span class="n">instrument</span><span class="o">.</span><span class="n">how_to_go_to_recognized_state</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Closest-state suggestion:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">suggestion</span><span class="p">)</span>
+
+    <span class="n">suggestion_specific</span> <span class="o">=</span> <span class="k">await</span> <span class="n">instrument</span><span class="o">.</span><span class="n">how_to_go_to_recognized_state</span><span class="p">(</span><span class="s2">&quot;Circulating&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">How to reach &#39;Circulating&#39;:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">suggestion_specific</span><span class="p">)</span>
+
+    <span class="k">await</span> <span class="n">instrument</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="n">run</span><span class="p">(</span><span class="n">myfun</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+<section id="internal-recognized-state-manager">
+<h4>Internal recognized-state manager<a class="headerlink" href="#internal-recognized-state-manager" title="Permalink to this heading">#</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">Proteox</span></code> object internally exposes a recognized-state manager:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">instrument</span><span class="o">.</span><span class="n">recognized_states</span>
+</pre></div>
+</div>
+<p>This helper is mainly useful for advanced debugging, diagnostics, or future GUI integration.</p>
+<p>It currently supports internal methods such as:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">evaluate_conditions()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_condition_report()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">match_all_states()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_closest_state()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_state_gap(target_state)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_transition_plan(target_state=None)</span></code></p></li>
+</ul>
+<p>These methods are generally intended for advanced users and internal tooling rather than routine control scripts.</p>
+</section>
+<section id="typical-usage-pattern">
+<h4>Typical usage pattern<a class="headerlink" href="#typical-usage-pattern" title="Permalink to this heading">#</a></h4>
+<p>A practical workflow is:</p>
+<ol class="arabic simple">
+<li><p>read the current cryostat status</p></li>
+<li><p>check whether it is recognized</p></li>
+<li><p>if not, ask for the nearest valid state</p></li>
+<li><p>optionally request how to reach a specific target state</p></li>
+</ol>
+<p>Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ok</span> <span class="o">=</span> <span class="k">await</span> <span class="n">instrument</span><span class="o">.</span><span class="n">is_in_recognized_state</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">ok</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="k">await</span> <span class="n">instrument</span><span class="o">.</span><span class="n">how_to_go_to_recognized_state</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>This is especially useful when building:</p>
+<ul class="simple">
+<li><p>monitoring dashboards</p></li>
+<li><p>operator guidance tools</p></li>
+<li><p>automated safety or recovery procedures</p></li>
+<li><p>state-aware experiment orchestration</p></li>
+</ul>
+</section>
+</section>
 </section>
 </section>
 
@@ -469,13 +632,23 @@ Example: <code class="docutils literal notranslate"><span class="pre">await</spa
 <li><a class="reference internal" href="#pressures">Pressures</a></li>
 <li><a class="reference internal" href="#flows">Flows</a></li>
 <li><a class="reference internal" href="#magnetic-field-control">Magnetic Field Control</a></li>
-<li><a class="reference internal" href="#state">State</a></li>
+<li><a class="reference internal" href="#cryostat-state">Cryostat State</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#dynamic-setters">Dynamic setters</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#example">Example</a></li>
+<li><a class="reference internal" href="#example">Example</a><ul>
+<li><a class="reference internal" href="#recognized-states">Recognized states</a><ul>
+<li><a class="reference internal" href="#recognized-state-table">Recognized state table</a></li>
+<li><a class="reference internal" href="#available-high-level-methods">Available high-level methods</a></li>
+<li><a class="reference internal" href="#full-example">Full example</a></li>
+<li><a class="reference internal" href="#internal-recognized-state-manager">Internal recognized-state manager</a></li>
+<li><a class="reference internal" href="#typical-usage-pattern">Typical usage pattern</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
