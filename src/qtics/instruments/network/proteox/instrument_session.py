@@ -4,6 +4,7 @@ from os import getenv
 
 from autobahn.asyncio.wamp import ApplicationSession
 from autobahn.wamp import auth
+from autobahn.wamp.types import CloseDetails
 from dotenv import load_dotenv
 
 from qtics import log
@@ -29,6 +30,8 @@ def wamp_call_handler_get():
         async def wrapper(self, uri):
             try:
                 result = await func(self, uri)
+                if isinstance(result, int):
+                    return result
                 return result.results[4]  # Return only the 5th item from result
             except Exception as e:
                 log.error(f"Failed to query: {e}")
@@ -83,6 +86,11 @@ class InstrumentSession(ApplicationSession):
         """Join the realm using WAMP-CRA authentication."""
         self.join(self.config.realm, ["wampcra"], USER)
 
+    def onLeave(self, details: CloseDetails):
+        """Override standard onLeave to avoid not necessary warning."""
+        details.reason = CloseDetails.REASON_DEFAULT
+        return super().onLeave(details)
+
     def onChallenge(self, challenge):
         """Authenticate.
 
@@ -127,7 +135,7 @@ class InstrumentSession(ApplicationSession):
                         self.leave()
 
                 except Exception as e:
-                    log.error("ERROR ", e)
+                    log.error(f"ERROR: {e}")
 
         except Exception as e:
             log.error(f"[Instrument] Failed to query control mode: {e}")
