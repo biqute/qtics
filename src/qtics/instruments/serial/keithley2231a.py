@@ -2,8 +2,11 @@
 Controller of the Keithley2231A DC Power Supply.
 
 .. module:: keithley2231a.py
-.. moduleauthor:: Marco Gobbo <marco.gobbo@mib.infn.it>
 """
+
+from typing import Literal
+
+import serial
 
 from qtics import log
 from qtics.instruments import SerialInst
@@ -11,6 +14,22 @@ from qtics.instruments import SerialInst
 
 class Keithley2231A(SerialInst):
     """Keithley Model 2231A-30-3 Triple Channel DC Power Supply by Keithley Instruments."""
+
+    def __init__(
+        self,
+        address: str,
+        baudrate: int = 9600,
+        bytesize: int = serial.EIGHTBITS,
+        parity: Literal["N"] = serial.PARITY_NONE,
+        stopbits: int = serial.STOPBITS_ONE,
+        timeout: int = 10,
+        sleep: float = 0.3,
+        name: str = "Keithley2231A",
+    ):
+        """Initialize."""
+        super().__init__(
+            address, baudrate, bytesize, parity, stopbits, timeout, sleep, name=name
+        )
 
     def connect(self):
         """Put Keithley 2231A DC Power Supply in remote."""

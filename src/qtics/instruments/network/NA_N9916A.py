@@ -24,16 +24,16 @@ class N9916A(NetworkInst, ABC):
 
     def __init__(
         self,
-        name: str,
         address: str,
         port: int = 5025,
         timeout: int = 8000,
         sleep: float = 0.1,
         no_delay: bool = True,
         max_points: int = 10001,
+        name: str = "N9916A",
     ):
         """Initialize instrument."""
-        super().__init__(name, address, port, timeout, sleep, no_delay)
+        super().__init__(address, port, timeout, sleep, no_delay, name)
         self._max_points = max_points
 
     def write_and_hold(self, cmd: str):

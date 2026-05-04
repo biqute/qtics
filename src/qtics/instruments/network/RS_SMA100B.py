@@ -11,6 +11,18 @@ from qtics.instruments import NetworkInst
 class SMA100B(NetworkInst):
     """R&S SMA100B RF and microwave signal generator by Rohde & Schwarz."""
 
+    def __init__(
+        self,
+        address: str,
+        port: int = 5025,
+        timeout: int = 8000,
+        sleep: float = 0.1,
+        no_delay: bool = True,
+        name: str = "SMA100B",
+    ):
+        """Initialize instrument."""
+        super().__init__(address, port, timeout, sleep, no_delay, name)
+
     def clear(self):
         """Clear the output buffer."""
         self.write("*CLS")
@@ -70,10 +82,22 @@ class SMA100B(NetworkInst):
         self.validate_opt(state, ("ON", "OFF"))
         self.write(f"DISP:PSAV:STAT {state}")
 
+    def on(self):
+        """Rename to standard name function."""
+        self.rf_status = "ON"
+
+    def off(self):
+        """Rename to standard name function."""
+        self.rf_status = "OFF"
+
+    def is_on(self):
+        """Return true if rf output is on."""
+        return self.rf_status == "1"
+
     @property
     def rf_status(self) -> str:
         """Activate the RF output signal."""
-        return self.write("OUTP:STAT?")
+        return self.query("OUTP:STAT?")
 
     @rf_status.setter
     def rf_status(self, state: str):

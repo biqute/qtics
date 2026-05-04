@@ -10,6 +10,18 @@ from .utils import query_data
 class FSV3030(NetworkInst):
     """R&S FSV3030 Spectrum Analyzer by Rohde & Schwarz."""
 
+    def __init__(
+        self,
+        address: str,
+        port: int = 5025,
+        timeout: int = 8000,
+        sleep: float = 0.1,
+        no_delay: bool = True,
+        name: str = "FSV3030",
+    ):
+        """Initialize instrument."""
+        super().__init__(address, port, timeout, sleep, no_delay, name)
+
     def clear(self):
         """Clear the error queue and status registers."""
         self.write("*CLS")

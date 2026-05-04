@@ -20,12 +20,12 @@ class NetworkInst(Instrument):
 
     def __init__(
         self,
-        name: str,
         address: str,
         port: int = 5025,  # Keysight instruments standard port
         timeout: int = 10,
         sleep: float = 0.1,
         no_delay: bool = True,
+        name: str = "GenericNetworkInst",
     ):
         """Initialize."""
         super().__init__(name, address)

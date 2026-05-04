@@ -52,7 +52,7 @@ Example of operation
 
   from qtics import VNAN9916A
 
-  VNA = VNAN9916A(name = "myVNA", address = "192.168.40.10")
+  VNA = VNAN9916A(address = "192.168.40.10")
   VNA.connect()
 
 
@@ -99,7 +99,7 @@ Example of operation
 
   from qtics import SAN9916A
 
-  SA = SAN9916A(name = "mySA", address = "192.168.40.10")
+  SA = SAN9916A(address = "192.168.40.10")
   SA.connect()
 
 
