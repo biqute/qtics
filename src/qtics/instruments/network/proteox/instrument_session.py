@@ -135,7 +135,7 @@ class InstrumentSession(ApplicationSession):
                         self.leave()
 
                 except Exception as e:
-                    log.error("ERROR ", e)
+                    log.error(f"ERROR: {e}")
 
         except Exception as e:
             log.error(f"[Instrument] Failed to query control mode: {e}")
