@@ -246,7 +246,7 @@ The manual of the instrument is available at <a class="reference external" href=
 <h2>Example of operations<a class="headerlink" href="#example-of-operations" title="Permalink to this heading">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qtics</span> <span class="kn">import</span> <span class="n">SRS_SIM928</span>
 
-<span class="n">source</span> <span class="o">=</span> <span class="n">SRS_SIM928</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;source&quot;</span><span class="p">,</span> <span class="n">address</span> <span class="o">=</span> <span class="s2">&quot;/dev/ttyACM0&quot;</span><span class="p">)</span>
+<span class="n">source</span> <span class="o">=</span> <span class="n">SRS_SIM928</span><span class="p">(</span><span class="n">address</span> <span class="o">=</span> <span class="s2">&quot;/dev/ttyACM0&quot;</span><span class="p">)</span>
 <span class="n">source</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -270,8 +270,11 @@ The manual of the instrument is available at <a class="reference external" href=
 <ul class="simple">
 <li><p>connect_port(port)</p></li>
 <li><p>reset()</p></li>
-<li><p>output_on</p></li>
+<li><p>output_on()</p></li>
 <li><p>output_off()</p></li>
+<li><p>on()</p></li>
+<li><p>off()</p></li>
+<li><p>is_on()</p></li>
 <li><p>battery_charger_override()</p></li>
 <li><p>battery_state()</p></li>
 <li><p>battery_spec(option)</p></li>

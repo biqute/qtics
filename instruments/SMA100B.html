@@ -246,7 +246,7 @@ The SCPI commands and functions can be found in the <a class="reference external
 <h2>Example of operations<a class="headerlink" href="#example-of-operations" title="Permalink to this heading">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qtics</span> <span class="kn">import</span> <span class="n">SMA100B</span>
 
-<span class="n">sg</span> <span class="o">=</span> <span class="n">SMA_100B</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;mySignalGenerator&quot;</span><span class="p">,</span> <span class="n">address</span> <span class="o">=</span> <span class="s2">&quot;192.168.40.15&quot;</span><span class="p">)</span>
+<span class="n">sg</span> <span class="o">=</span> <span class="n">SMA_100B</span><span class="p">(</span><span class="n">address</span> <span class="o">=</span> <span class="s2">&quot;192.168.40.15&quot;</span><span class="p">)</span>
 <span class="n">sg</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -285,6 +285,9 @@ The SCPI commands and functions can be found in the <a class="reference external
 <li><p>screen_saver_mode(state)</p></li>
 <li><p>set_phase_ref()</p></li>
 <li><p>sweep()</p></li>
+<li><p>on()</p></li>
+<li><p>off()</p></li>
+<li><p>is_on()</p></li>
 </ul>
 </section>
 <section id="properties">

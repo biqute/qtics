@@ -244,7 +244,7 @@
 <h2>Example of opertations<a class="headerlink" href="#example-of-opertations" title="Permalink to this heading">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qtics</span> <span class="kn">import</span> <span class="n">Triton</span>
 
-<span class="n">controller</span> <span class="o">=</span> <span class="n">Triton</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;address&quot;</span><span class="p">)</span>
+<span class="n">controller</span> <span class="o">=</span> <span class="n">Triton</span><span class="p">(</span><span class="n">address</span><span class="o">=</span><span class="s2">&quot;192.288.1919.11&quot;</span><span class="p">)</span>
 <span class="n">controller</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mixing chamber temp: </span><span class="si">{</span><span class="n">controller</span><span class="o">.</span><span class="n">get_mixing_chamber_temp</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1000</span><span class="si">}</span><span class="s2"> mK&quot;</span><span class="p">)</span>

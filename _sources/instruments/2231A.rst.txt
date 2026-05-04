@@ -15,7 +15,7 @@ To initialize a controller you can execute the following directives on any Pytho
 
   from qtics import Keithley2231A
 
-  power_supply = Keithley2231A(name = "my_power_supply", address = "/dev/ttyACM0")
+  power_supply = Keithley2231A(address = "/dev/ttyACM0")
   power_supply.connect()
 
 
