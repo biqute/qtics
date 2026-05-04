@@ -27,14 +27,13 @@ class TestNetworklInst:
         mocker.patch("socket.socket.connect", new_callable=lambda: mock_pass)
         mocker.patch("socket.socket.shutdown", new_callable=lambda: mock_pass)
         mocker.patch("socket.socket.close", new_callable=lambda: mock_pass)
-        return NetworkInst("name_inst", "address")
+        return NetworkInst("address")
 
     def test_init(self, network_inst):
         """Test initialization."""
         inst = network_inst
         assert isinstance(inst, NetworkInst)
         assert isinstance(inst, Instrument)
-        assert inst.name == "name_inst"
         assert inst.address == "address"
         assert inst.port == 5025
         assert inst.sleep == 0.1
