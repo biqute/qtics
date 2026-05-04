@@ -11,7 +11,7 @@ Example of operations
 
   from qtics import VALON5019
 
-  fs = VALON5019(name = "myvalon", address = "/dev/ttyUSB0")
+  fs = VALON5019(address = "/dev/ttyUSB0")
   fs.connect()
 
 Commands

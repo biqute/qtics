@@ -12,7 +12,7 @@ Example of opertations
 
    from qtics import Triton
 
-   controller = Triton("name", "address")
+   controller = Triton(address="192.288.1919.11")
    controller.connect()
 
    print(f"Mixing chamber temp: {controller.get_mixing_chamber_temp() * 1000} mK")

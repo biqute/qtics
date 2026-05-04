@@ -13,7 +13,7 @@ Example of operations
 
   from qtics import SMA100B
 
-  sg = SMA_100B(name = "mySignalGenerator", address = "192.168.40.15")
+  sg = SMA_100B(address = "192.168.40.15")
   sg.connect()
 
 Set the frequency and the RF level applied to the DUT at 1 GHz and 1 V respectively.
@@ -53,6 +53,9 @@ Functions
 - screen_saver_mode(state)
 - set_phase_ref()
 - sweep()
+- on()
+- off()
+- is_on()
 
 Properties
 ------------

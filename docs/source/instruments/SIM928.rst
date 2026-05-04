@@ -15,7 +15,7 @@ Example of operations
 
   from qtics import SRS_SIM928
 
-  source = SRS_SIM928(name = "source", address = "/dev/ttyACM0")
+  source = SRS_SIM928(address = "/dev/ttyACM0")
   source.connect()
 
 
@@ -41,8 +41,11 @@ Functions
 
 - connect_port(port)
 - reset()
-- output_on
+- output_on()
 - output_off()
+- on()
+- off()
+- is_on()
 - battery_charger_override()
 - battery_state()
 - battery_spec(option)

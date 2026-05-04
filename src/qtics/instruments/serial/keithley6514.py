@@ -2,8 +2,11 @@
 Controller of the Keithley6514 Electrometer.
 
 .. module:: keithley6514.py
-.. moduleauthor:: Marco Gobbo <marco.gobbo@mib.infn.it>
 """
+
+from typing import Literal
+
+import serial
 
 from qtics import log
 from qtics.instruments import SerialInst
@@ -11,6 +14,22 @@ from qtics.instruments import SerialInst
 
 class Keithley6514(SerialInst):
     """Keithley 6514 Programmable Electrometer by Keithley Instruments."""
+
+    def __init__(
+        self,
+        address: str,
+        baudrate: int = 9600,
+        bytesize: int = serial.EIGHTBITS,
+        parity: Literal["N"] = serial.PARITY_NONE,
+        stopbits: int = serial.STOPBITS_ONE,
+        timeout: int = 10,
+        sleep: float = 0.3,
+        name: str = "Keithley6514",
+    ):
+        """Initialize."""
+        super().__init__(
+            address, baudrate, bytesize, parity, stopbits, timeout, sleep, name=name
+        )
 
     def connect(self):
         """Put Keithley 6514 Electrometer in remote."""

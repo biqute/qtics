@@ -17,15 +17,15 @@ class Triton(NetworkInst):
 
     def __init__(
         self,
-        name: str,
         address: str = "212.189.204.22",
         port: int = 33576,
         timeout: int = 10,
         sleep: float = 0.1,
         no_delay: bool = True,
+        name: str = "Triton",
     ):
         """Initialize."""
-        super().__init__(name, address, port, timeout, sleep, no_delay)
+        super().__init__(address, port, timeout, sleep, no_delay, name)
 
     def query(self, cmd: str) -> str:
         """Send a message, then read from the serial port."""

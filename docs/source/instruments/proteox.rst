@@ -124,7 +124,7 @@ Pressures
 Flows
 ^^^^^
 
-* ``get_3He_F()`` – :sup:`3`He flowmeter
+* ``get_3He_F()`` – :sup:`3` He flowmeter
 
 Magnetic Field Control
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -170,7 +170,7 @@ Example
    Temperature values are expected in **kelvin**.
 
 Temperature and Heater Control
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+------------------------------
 
 * ``set_MC_T(value)`` – Set mixing chamber temperature setpoint
 * ``set_MC_H(value)`` – Set mixing chamber heater power
@@ -179,7 +179,7 @@ Temperature and Heater Control
 * ``set_STILL_H_OFF(value=0)`` – Turn off still heater
 
 Magnet Control
-^^^^^^^^^^^^^^
+--------------
 
 * ``set_MAG_TARGET(value)`` – Set magnetic field target (vector or scalar depending on mode)
 * ``set_MAG_STATE(value)`` – Set magnet controller state

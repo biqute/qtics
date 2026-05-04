@@ -12,7 +12,6 @@ class Switch_R591(SerialInst):
 
     def __init__(
         self,
-        name: str,
         address: str,
         baudrate: int = 9600,
         bytesize: int = serial.EIGHTBITS,
@@ -21,10 +20,11 @@ class Switch_R591(SerialInst):
         timeout: int = 10,
         sleep: float = 0.1,
         pulse_lenght: int = 5,  # milliseconds
+        name: str = "Switch",
     ):
         """Initialize super and set pulse length."""
         super().__init__(
-            name, address, baudrate, bytesize, parity, stopbits, timeout, sleep
+            address, baudrate, bytesize, parity, stopbits, timeout, sleep, name=name
         )
 
         if self.serial.is_open:
