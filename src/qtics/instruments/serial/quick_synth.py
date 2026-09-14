@@ -2,6 +2,7 @@
 QuickSyn microwave synthesizers by National Instruments.
 
 .. module:: synth_FSL0010.py
+.. moduleauthor:: Pietro Campana <campana.pietro@campus.unimib.it>
 """
 
 from typing import Literal
@@ -18,6 +19,7 @@ class FSQS(SerialInst):
 
     def __init__(
         self,
+        name: str,
         address: str,
         baudrate: int = 115200,
         bytesize: int = serial.EIGHTBITS,
@@ -25,11 +27,10 @@ class FSQS(SerialInst):
         stopbits: int = serial.STOPBITS_ONE,
         timeout: int = 10,
         sleep: float = 0.1,
-        name: str = "FSQS",
     ):
         """Initialize."""
         super().__init__(
-            address, baudrate, bytesize, parity, stopbits, timeout, sleep, name=name
+            name, address, baudrate, bytesize, parity, stopbits, timeout, sleep
         )
 
         self.min_freq = 0.5e9

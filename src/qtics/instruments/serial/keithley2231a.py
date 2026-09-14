@@ -2,11 +2,8 @@
 Controller of the Keithley2231A DC Power Supply.
 
 .. module:: keithley2231a.py
+.. moduleauthor:: Marco Gobbo <marco.gobbo@mib.infn.it>
 """
-
-from typing import Literal
-
-import serial
 
 from qtics import log
 from qtics.instruments import SerialInst
@@ -15,27 +12,14 @@ from qtics.instruments import SerialInst
 class Keithley2231A(SerialInst):
     """Keithley Model 2231A-30-3 Triple Channel DC Power Supply by Keithley Instruments."""
 
-    def __init__(
-        self,
-        address: str,
-        baudrate: int = 9600,
-        bytesize: int = serial.EIGHTBITS,
-        parity: Literal["N"] = serial.PARITY_NONE,
-        stopbits: int = serial.STOPBITS_ONE,
-        timeout: int = 10,
-        sleep: float = 0.3,
-        name: str = "Keithley2231A",
-    ):
-        """Initialize."""
-        super().__init__(
-            address, baudrate, bytesize, parity, stopbits, timeout, sleep, name=name
-        )
-
     def connect(self):
         """Put Keithley 2231A DC Power Supply in remote."""
         self.serial.open()
         self.write("SYST:REM")
         log.info(f"Instrument {self.name} connected successfully.")
+        self._voltage = 0
+        self.channel = 1
+        self.output_off()
 
     def disconnect(self):
         """Take Keithley 2231A DC Power Supply out of remote."""
@@ -72,17 +56,27 @@ class Keithley2231A(SerialInst):
 
     @channel.setter
     def channel(self, ch: int):
-        self.write(f"INST:NSEL {self.validate_opt(ch, (1,2,3))}")
+        self.validate_opt(ch, [1])
+        self.write(f"INST:NSEL {int(ch)}")
 
     @property
     def voltage(self) -> float:
-        """Voltage of the selected the channel."""
+        """Voltage of the selected channel."""
         return float(self.query("SOUR:VOLT:LEV:IMM:AMPL?"))
 
     @voltage.setter
     def voltage(self, value: float):
         v_max = 5 if self.channel == 3 else 30
+        self._voltage = value
         self.write(f"SOUR:VOLT:LEV:IMM:AMPL {self.validate_range(value, 0, v_max)}")
+
+    def output_on(self):
+        v_max = 5 if self.channel == 3 else 30
+        value = self._voltage
+        self.write(f"SOUR:VOLT:LEV:IMM:AMPL {self.validate_range(value, 0, v_max)}")
+
+    def output_off(self):
+        self.write(f"SOUR:VOLT:LEV:IMM:AMPL 0")
 
     @property
     def current(self) -> float:
@@ -111,3 +105,17 @@ class Keithley2231A(SerialInst):
     @current_limit.setter
     def current_limit(self, value: float):
         self.write(f"SOUR:VOLT:LIMIT:LEV {self.validate_range(value, 0, 3)}")
+
+
+if __name__ == "__main__":
+
+    source = Keithley2231A("source", "/dev/ttyUSB0")
+    source.connect()
+    source.get_id()
+
+    # source.clear()
+    source.channel = 2
+    source.voltage = 1
+    # source.write(r"INST:NSEL 1")
+    print(source.channel)
+    # source.disconnect()

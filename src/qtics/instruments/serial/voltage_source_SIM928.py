@@ -18,6 +18,7 @@ class SIM928(SerialInst):
 
     def __init__(
         self,
+        name: str,
         address: str,
         baudrate: int = 9600,
         bytesize: int = serial.EIGHTBITS,
@@ -25,11 +26,11 @@ class SIM928(SerialInst):
         stopbits: int = serial.STOPBITS_ONE,
         timeout: int = 10,
         sleep: float = 0.1,
-        name: str = "SIM928",
         mainframe_port: int = 1,
     ):
         """Initialize the class."""
         super().__init__(
+            name,
             address,
             baudrate,
             bytesize,
@@ -37,13 +38,8 @@ class SIM928(SerialInst):
             stopbits,
             timeout,
             sleep,
-            name=name,
         )
         self._mainframe_port = mainframe_port
-
-    def query(self, cmd) -> str:
-        """Return query without terminal character."""
-        return super().query(cmd)[:-1]
 
     def connect(self):
         """Connect to the device."""
@@ -79,18 +75,6 @@ class SIM928(SerialInst):
     def output_off(self):
         """Turn the output off."""
         self.write("OPOF")
-
-    def on(self):
-        """Rename to standard name function."""
-        self.output_on()
-
-    def off(self):
-        """Rename to standard name function."""
-        self.output_off()
-
-    def is_on(self):
-        """Return true if output is on."""
-        return self.query("EXON?") == "1"
 
     @property
     def voltage(self) -> str:

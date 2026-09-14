@@ -16,6 +16,7 @@ class VALON5019(SerialInst):
 
     def __init__(
         self,
+        name: str,
         address: str,
         baudrate: int = 9600,
         bytesize: int = serial.EIGHTBITS,
@@ -23,11 +24,10 @@ class VALON5019(SerialInst):
         stopbits: int = serial.STOPBITS_ONE,
         timeout: int = 10,
         sleep: float = 0.3,
-        name: str = "VALON",
     ):
         """Initialize."""
         super().__init__(
-            address, baudrate, bytesize, parity, stopbits, timeout, sleep, "\r", name
+            name, address, baudrate, bytesize, parity, stopbits, timeout, sleep, "\r"
         )
         self.last_cmd_lenght = 0
 

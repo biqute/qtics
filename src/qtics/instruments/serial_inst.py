@@ -14,6 +14,7 @@ class SerialInst(Instrument):
 
     def __init__(
         self,
+        name: str,
         address: str,
         baudrate: int = 9600,
         bytesize: int = serial.EIGHTBITS,
@@ -22,7 +23,6 @@ class SerialInst(Instrument):
         timeout: int = 10,
         sleep: float = 0.1,
         terminator: str = "\n",
-        name: str = "GenericSerialInst",
     ):
         """Initialize."""
         super().__init__(name, address)

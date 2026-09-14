@@ -23,6 +23,7 @@ class RSZNB(NetworkInst):
 
     def __init__(
         self,
+        name: str,
         address: str,
         port: int = 5025,
         timeout: int = 8000,
@@ -30,10 +31,9 @@ class RSZNB(NetworkInst):
         no_delay: bool = True,
         max_points: int = 100001,
         channel: int = 1,
-        name: str = "RSZNB",
     ):
         """Initialize instrument."""
-        super().__init__(address, port, timeout, sleep, no_delay, name)
+        super().__init__(name, address, port, timeout, sleep, no_delay)
         self._max_points = max_points
         self._channel = channel
         self._active_trace = "Trc1"

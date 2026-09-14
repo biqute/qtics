@@ -12,6 +12,7 @@ class Attenuator_3494_64(SerialInst):
 
     def __init__(
         self,
+        name: str,
         address: str,
         baudrate: int = 9600,
         bytesize: int = serial.EIGHTBITS,
@@ -19,11 +20,10 @@ class Attenuator_3494_64(SerialInst):
         stopbits: int = serial.STOPBITS_ONE,
         timeout: int = 5,
         sleep: float = 0.1,
-        name: str = "Attenuator349464",
     ):
         """Initialize."""
         super().__init__(
-            address, baudrate, bytesize, parity, stopbits, timeout, sleep, name=name
+            name, address, baudrate, bytesize, parity, stopbits, timeout, sleep
         )
         self._attenuation: float = 0.0
 

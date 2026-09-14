@@ -20,6 +20,8 @@ niscope = "^1.4.6"
 autobahn = "^24.4.2"
 dotenv = "^0.9.9"
 h5py = "^3.14.0"
+PyVISA = "^1.16.2"
+PyVISA-py = "^0.8.1"
 
 [build-system]
 requires = ["poetry-core"]
@@ -54,7 +56,7 @@ h5py = "^3.10.0"
 matplotlib = ">=3.7"
 
 [[tool.mypy.overrides]]
-module=["serial", "niscope", "h5py", "autobahn.asyncio.wamp", "autobahn.wamp", "autobahn.wamp.types"]
+module=["serial", "niscope", "h5py", "autobahn.asyncio.wamp", "autobahn.wamp"]
 ignore_missing_imports = true
 
 [tool.pylint]

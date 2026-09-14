@@ -72,11 +72,11 @@ class BaseExperiment(ABC):
             self.main()
         except KeyboardInterrupt as exc:
             log.warning("Interrupt signal received, exiting")
-            self.all_instruments("reset")
+            # self.all_instruments("reset")
             raise exc
         except Exception as exc:
             log.error("Exception occurred: %s", exc)
-            self.all_instruments("reset")
+            # self.all_instruments("reset")
             raise exc
         log.info("Experiment run successfully.")
 
@@ -116,7 +116,10 @@ class BaseExperiment(ABC):
 
             if datasets is not None:
                 for data_name, data in datasets.items():
-                    group.create_dataset(data_name, data=data)
+                    if data_name in group:
+                        group[data_name][...] = data
+                    else:
+                        group.create_dataset(data_name, data=data)
             if attributes:
                 group.attrs.update(attributes)
 
