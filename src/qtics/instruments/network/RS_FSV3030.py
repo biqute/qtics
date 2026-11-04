@@ -14,7 +14,7 @@ class FSV3030(NetworkInst):
         self,
         address: str,
         port: int = 5025,
-        timeout: int = 8000,
+        timeout: int = 10,
         sleep: float = 0.1,
         no_delay: bool = True,
         name: str = "FSV3030",

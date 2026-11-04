@@ -214,12 +214,9 @@ class VALON5019(SerialInst):
         )
 
     @list_entry.setter
-    def list_entry(self, frequencies, powers=None):
-        for idx, freq in frequencies:
-            if powers is None:
-                self.write(f"LI {idx+1} {freq}Hz")
-            else:
-                self.write(f"LI {idx+1} {freq}Hz {powers[idx]}")
+    def list_entry(self, frequencies):
+        for idx, freq in enumerate(frequencies):
+            self.write(f"LI {idx+1} {freq}Hz")
         self.write("SAVE")
 
     @property

@@ -72,7 +72,8 @@ class Keithley2231A(SerialInst):
 
     @channel.setter
     def channel(self, ch: int):
-        self.write(f"INST:NSEL {self.validate_opt(ch, (1,2,3))}")
+        self.validate_opt(ch, (1, 2, 3))
+        self.write(f"INST:NSEL {ch}")
 
     @property
     def voltage(self) -> float:
@@ -110,4 +111,4 @@ class Keithley2231A(SerialInst):
 
     @current_limit.setter
     def current_limit(self, value: float):
-        self.write(f"SOUR:VOLT:LIMIT:LEV {self.validate_range(value, 0, 3)}")
+        self.write(f"SOUR:CURR:LIMIT:LEV {self.validate_range(value, 0, 3)}")
