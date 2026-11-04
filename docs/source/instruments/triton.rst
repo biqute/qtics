@@ -57,7 +57,9 @@ Properties
 ----------
 
 * `heater_range`
-  Heater current range (readable; writable if `ENABLE_SETTERS=True`). Units: mA.
+  Mixing chamber heater range in A, one of `HEATER_RANGES` (readable; writable if
+  `ENABLE_SETTERS=True`).
 
 * `mixing_chamber_tset`
-  Mixing chamber temperature setpoint in K (readable; writable if `ENABLE_SETTERS=True`).
+  Mixing chamber temperature setpoint in K (readable; writable if `ENABLE_SETTERS=True`,
+  up to `MAX_TSET` = 0.2 K).

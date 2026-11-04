@@ -65,8 +65,10 @@ def test_heater_range_and_tset():
             "READ:DEV:T8:TEMP:LOOP:TSET": "0.05K",
         }
     )
-    assert inst.heater_range == pytest.approx(10)
+    assert inst.heater_range == pytest.approx(10e-3)
     assert inst.mixing_chamber_tset == pytest.approx(0.05)
+    inst = make({"READ:DEV:T8:TEMP:LOOP:RANGE": "316uA"})
+    assert inst.heater_range == pytest.approx(316e-6)
 
 
 def test_not_found():
@@ -94,15 +96,21 @@ def test_setters_disabled():
 
 
 def test_setters_enabled(monkeypatch):
-    """Enabled setters send the (unchanged) /1000 command."""
+    """Set temperature in K and heater range in A, sent as K and mA."""
     monkeypatch.setattr(triton_module, "ENABLE_SETTERS", True)
     inst = make({})
-    inst.mixing_chamber_tset = 50
-    assert inst.transport.written == ["SET:DEV:T8:TEMP:LOOP:TSET:0.05"]
+    inst.mixing_chamber_tset = 0.05
+    inst.heater_range = 10e-3
+    inst.heater_range = 31.6e-6
+    assert inst.transport.written == [
+        "SET:DEV:T8:TEMP:LOOP:TSET:0.05",
+        "SET:DEV:T8:TEMP:LOOP:RANGE:10",
+        "SET:DEV:T8:TEMP:LOOP:RANGE:0.0316",
+    ]
     with pytest.raises(ValueError):
-        inst.mixing_chamber_tset = 300
+        inst.mixing_chamber_tset = 0.3
     with pytest.raises(ValueError):
-        inst.heater_range = 5
+        inst.heater_range = 5e-3
 
 
 def test_get_action():
@@ -122,6 +130,14 @@ def test_get_action():
         }
     )
     assert inst.get_action() == "Circulating"
+    inst = make(
+        {
+            "READ:SYS:DR:STATUS": "OK",
+            "READ:SYS:DR:ACTN": "NONE",
+            "READ:DEV:T8:TEMP:SIG:TEMP": "290K",
+        }
+    )
+    assert inst.get_action() == "Idle"
     inst = make({"READ:SYS:DR:STATUS": "ERR"})
     with pytest.raises(RuntimeError):
         inst.get_action()
@@ -132,3 +148,28 @@ def test_reset_sends_nothing():
     inst = make({})
     inst.reset()
     assert inst.transport.written == []
+
+
+@pytest.mark.parametrize("temp", [-0.01, float("nan"), 0.3])
+def test_tset_invalid(monkeypatch, temp):
+    """Negative, NaN and too high set temperatures are rejected."""
+    monkeypatch.setattr(triton_module, "ENABLE_SETTERS", True)
+    inst = make({})
+    with pytest.raises(ValueError):
+        inst.mixing_chamber_tset = temp
+    assert inst.transport.written == []
+
+
+def test_tset_decimal_format(monkeypatch):
+    """Small set temperatures are sent in plain decimal notation."""
+    monkeypatch.setattr(triton_module, "ENABLE_SETTERS", True)
+    inst = make({})
+    inst.mixing_chamber_tset = 1e-5
+    assert inst.transport.written == ["SET:DEV:T8:TEMP:LOOP:TSET:0.00001"]
+
+
+def test_heater_range_unknown_unit():
+    """An unexpected unit is a clear error."""
+    inst = make({"READ:DEV:T8:TEMP:LOOP:RANGE": "1A"})
+    with pytest.raises(RuntimeError):
+        inst.heater_range  # pylint: disable=pointless-statement

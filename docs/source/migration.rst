@@ -103,11 +103,33 @@ RF sources:
   ``rf_status``/``on()``/``off()``/``is_on()`` -> ``output``,
   ``f_min``/``f_max`` -> ``f_start``/``f_stop``, ``p_min``/``p_max`` ->
   ``p_start``/``p_stop``. The power unit is set to dBm when connecting.
+  Frequency limits follow the multiplier and offset (``rf_min``/``rf_max`` set the
+  hardware range); ``f_stop`` is clipped like the other frequencies instead of
+  raising.
 - ``Valon5019``: ``f_fixed`` -> ``frequency``, ``p_fixed`` -> ``power``,
   ``rf_status`` -> ``output``, ``sweep_start``/``sweep_stop``/``sweep_step`` ->
   ``f_start``/``f_stop``/``f_step``, ``freq_offset`` -> ``f_offset``,
   ``freq_step`` -> ``f_step_cw``; ``output`` and ``power_pdn`` take bool.
 - ``QuickSyn``: ``freq`` -> ``frequency``, ``output_on`` -> ``output``.
+
+Experiments:
+
+- ``Experiment.monitors`` declared on the class are now used (they were ignored).
+- With monitors, an exception in ``main`` is re-raised after resetting the
+  instruments (it was only logged), and a failed monitor makes ``run()`` raise
+  ``qtics.experiment.MonitorError`` once ``main`` returns.
+- ``add_instrument(inst, name=None)`` raises ``ValueError`` for an unknown name
+  (it only logged a warning).
+- Experiments no longer disconnect their instruments when garbage collected
+  (class-level instruments are shared between instances): call ``close()`` or
+  use ``with MyExperiment(...) as exp:``.
+
+Triton:
+
+- ``mixing_chamber_tset`` is set in K, like it is read (the setter took mK).
+- ``heater_range`` is in A (it was read in mA).
+- ``get_action`` reports "Circulating" only below 2 K (the threshold compared K
+  with 2000).
 
 Power supplies and others:
 

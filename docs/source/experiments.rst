@@ -17,8 +17,10 @@ Writing a new experiment
 """"""""""""""""""""""""
 All new experiments classes must satisfy two requirements:
 
-- All the instruments used in the experiment must be specified in the class definition, either as instances or with type annotations. Instruments can be added only if their name corresponds to the experiment's attribute.
+- All the instruments used in the experiment must be specified in the class definition, either as instances or with type annotations. Instruments are added with ``add_instrument(inst, name=...)``, where ``name`` (default: the instrument name) must be one of these attributes.
 - A ``main()`` method must be implemented
+
+Call ``close()`` when done, or use the experiment in a ``with`` block, to clear the instruments defaults and disconnect them.
 
 Here's an example of a simple experiment that acquires and saves a `VNA <https://biqute.github.io/qtics/instruments/N9916A.html>`_ snapshot.
 
@@ -74,7 +76,7 @@ Here's an example of a ``MonitorExperiment`` that checks if the temperature of t
               raise Exception("Temperature %s mK out of allowed range.", temperature)
 
 
-In the main experiment, the reset condition can be checked by calling the ``Experiment.monitor_failed()`` method, as in this example.
+In the main experiment, the reset condition can be checked by calling the ``Experiment.monitor_failed()`` method, as in this example. The first time it returns True the instruments are reset; when ``main`` returns, ``run()`` raises ``qtics.experiment.MonitorError`` with the monitor's exception as cause.
 
 .. code-block:: python
 

@@ -57,12 +57,8 @@ class MultiVNASnapshot(Experiment):
     """Multiple vna snapshots with temperature checks."""
 
     vna = VNAN9916A("192.168.0.10", name="vna")
+    monitors = [TritonMonitor("tempcheck")]
     n_snapshots = 20
-
-    def __init__(self, name: str):
-        """Initialize and add the temperature monitor."""
-        super().__init__(name)
-        self.add_monitor(TritonMonitor("tempcheck"))
 
     def main(self):
         """Acquire VNA snapshot."""

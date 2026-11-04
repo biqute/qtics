@@ -17,19 +17,43 @@ class SMA100B(RFSource, SCPIInstrument):
     comply with the :class:`RFSource` interface (``power`` in dBm), the unit is
     set to dBm right after connecting. ``p_unit`` stays available, but changing
     it makes ``power`` read and write in that unit.
+
+    Frequencies are the displayed ones, ``f_rf * f_mult + f_offset``: their range
+    follows the multiplier and offset of a downstream instrument. These are read
+    when connecting and tracked by the ``f_mult``/``f_offset`` properties (a change
+    from the front panel is seen after reading them or reconnecting).
     """
 
     default_transport = SocketTransport
     transport_defaults = {"port": 5025, "timeout": 10, "delay": 0.1, "no_delay": True}
+
+    rf_min = 8e3
+    """Minimum RF output frequency [Hz]."""
+    rf_max = 20e9
+    """Maximum RF output frequency [Hz], depends on the frequency option."""
 
     def __init__(
         self, transport: Transport | str, name: str = "SMA100B", **transport_kwargs
     ):
         """Initialize instrument."""
         super().__init__(transport, name, **transport_kwargs)
+        self._f_mult = 1.0
+        self._f_offset = 0.0
 
     def _after_connect(self):
         self.write("UNIT:POW DBM")
+        _ = self.f_mult, self.f_offset  # read them to set the frequency range
+
+    def reset(self, defaults: bool = True):
+        """Reset the instrument (multiplier 1, offset 0), then restore the defaults."""
+        self._f_mult, self._f_offset = 1.0, 0.0
+        super().reset(defaults)
+
+    def _validate_frequency(self, f: float) -> float:
+        """Clip a displayed frequency to the range allowed by multiplier and offset."""
+        mult = self._f_mult or 1.0  # a zero multiplier is not a valid setting
+        limits = sorted(rf * mult + self._f_offset for rf in (self.rf_min, self.rf_max))
+        return self.validate_range(f, *limits)
 
     def cal(self, opt: str) -> str:
         """Query the device to perform internal adjustments.
@@ -95,28 +119,32 @@ class SMA100B(RFSource, SCPIInstrument):
 
     @frequency.setter
     def frequency(self, f: float):
-        f = self.validate_range(f, 8e3, 20e9)
+        f = self._validate_frequency(f)
         self.write(f"SOUR:FREQ:CW {f}")
 
     @property
     def f_mult(self) -> float:
         """Multiplication factor of a subsequent downstream instrument."""
-        return float(self.query("SOUR:FREQ:MULT?"))
+        self._f_mult = float(self.query("SOUR:FREQ:MULT?"))
+        return self._f_mult
 
     @f_mult.setter
     def f_mult(self, n: float = 1.0):
         n = self.validate_range(n, -10000, 10000)
         self.write(f"SOUR:FREQ:MULT {n}")
+        self._f_mult = n
 
     @property
     def f_offset(self) -> float:
         """Frequency offset of a downstream instrument."""
-        return float(self.query("SOUR:FREQ:OFFS?"))
+        self._f_offset = float(self.query("SOUR:FREQ:OFFS?"))
+        return self._f_offset
 
     @f_offset.setter
     def f_offset(self, f: float):
         # No range in the manual, the instrument shifts the RF range by the offset
         self.write(f"SOUR:FREQ:OFFS {f}")
+        self._f_offset = f
 
     @property
     def f_sweep_mode(self) -> str:
@@ -141,7 +169,7 @@ class SMA100B(RFSource, SCPIInstrument):
 
     @f_start.setter
     def f_start(self, f: float):
-        f = self.validate_range(f, 8e3, 20e9)
+        f = self._validate_frequency(f)
         self.write(f"SOUR:FREQ:STAR {f}")
 
     @property
@@ -151,12 +179,8 @@ class SMA100B(RFSource, SCPIInstrument):
 
     @f_stop.setter
     def f_stop(self, f: float):
-        if 8e3 <= f <= 20e9:
-            self.write(f"SOUR:FREQ:STOP {f}")
-        else:
-            raise ValueError(
-                "The maximum frequency of the RF output signal must be 8 kHz to 20 GHz."
-            )
+        f = self._validate_frequency(f)
+        self.write(f"SOUR:FREQ:STOP {f}")
 
     @property
     def f_center(self) -> float:
@@ -165,7 +189,7 @@ class SMA100B(RFSource, SCPIInstrument):
 
     @f_center.setter
     def f_center(self, f: float):
-        f = self.validate_range(f, 8e3, 20e9)
+        f = self._validate_frequency(f)
         self.write(f"SOUR:FREQ:CENT {f}")
 
     @property
@@ -175,8 +199,10 @@ class SMA100B(RFSource, SCPIInstrument):
 
     @f_span.setter
     def f_span(self, f: float):
-        f = self.validate_range(f, 8e3, 20e9)
-        self.write(f"SOUR:FREQ:SPAN {abs(f)}")
+        f = self.validate_range(
+            abs(f), 0, (self.rf_max - self.rf_min) * abs(self._f_mult)
+        )
+        self.write(f"SOUR:FREQ:SPAN {f}")
 
     @property
     def f_step(self) -> float:

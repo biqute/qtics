@@ -5,6 +5,7 @@ module: triton.py
 moduleauthor: Rodolfo Carobene <rodolfo.carobene@mib.infn.it>
 """
 
+import math
 import time
 from typing import Union
 
@@ -12,10 +13,18 @@ from qtics.instruments.base import MessageInstrument
 from qtics.transport import Transport
 
 ENABLE_SETTERS = False
+HEATER_RANGES = (31.6e-6, 100e-6, 316e-6, 1e-3, 3.16e-3, 10e-3, 31.6e-3, 100e-3)
+"""Allowed mixing chamber heater ranges [A]."""
+MAX_TSET = 0.2
+"""Maximum mixing chamber set temperature [K], as a safety limit."""
 
 
 class Triton(MessageInstrument):
-    """Controller of Triton dilution refrigerator by Oxford Instruments."""
+    """Controller of Triton dilution refrigerator by Oxford Instruments.
+
+    Temperatures are in K and currents in A. Setters are disabled unless the module
+    flag ``ENABLE_SETTERS`` is set to True.
+    """
 
     transport_defaults = {"port": 33576, "timeout": 10, "delay": 0.1}
 
@@ -34,22 +43,26 @@ class Triton(MessageInstrument):
 
     @property
     def heater_range(self) -> float:
-        """Return heater range."""
+        """Mixing chamber heater range [A], one of ``HEATER_RANGES``."""
         answer = self.query(f"READ:DEV:T8:TEMP:LOOP:RANGE")
         if answer == "NOT_FOUND":
             raise RuntimeError("Range not set.")
-        conversions = {"uA": 1e-3, "mA": 1}
-        return float(answer[:-2]) * conversions[answer[-2:]]
+        conversions = {"uA": 1e-6, "mA": 1e-3}
+        unit = answer[-2:]
+        if unit not in conversions:
+            raise RuntimeError(f"Unexpected heater range answer {answer}.")
+        return float(answer[:-2]) * conversions[unit]
 
     @heater_range.setter
     def heater_range(self, hrange: float):
         if not ENABLE_SETTERS:
             raise RuntimeError("Setter not enabled!")
-        ranges = (31.6 / 1e3, 100 / 1e3, 316 / 1e3, 1, 3.16, 10, 31.6, 100)
-        if hrange not in ranges:
-            raise ValueError(f"Range {hrange} not allowed. Choose between {ranges}.")
-
-        self.write(f"SET:DEV:T8:TEMP:LOOP:RANGE:{hrange/1000}")
+        if not any(math.isclose(hrange, r) for r in HEATER_RANGES):
+            raise ValueError(
+                f"Range {hrange} A not allowed. Choose between {HEATER_RANGES}."
+            )
+        # The cryostat takes the range in mA, as it reports it
+        self.write(f"SET:DEV:T8:TEMP:LOOP:RANGE:{hrange * 1e3:g}")
 
     def get_mixing_chamber_temp(self):
         """Return mixing chamber temperature in K."""
@@ -72,7 +85,7 @@ class Triton(MessageInstrument):
         return float(answer[:-1])
 
     def get_pt2_temp(self):
-        """Return pt1 temperature in K."""
+        """Return pt2 temperature in K."""
         answer = self.query(f"READ:DEV:T2:TEMP:SIG:TEMP")
         return float(answer[:-1])
 
@@ -93,9 +106,10 @@ class Triton(MessageInstrument):
     def mixing_chamber_tset(self, temp: float):
         if not ENABLE_SETTERS:
             raise RuntimeError("Setter not enabled!")
-        if temp > 200:
-            raise ValueError(f"Temperature set too high! Was {temp}.")
-        self.write(f"SET:DEV:T8:TEMP:LOOP:TSET:{temp/1000}")
+        if not 0 <= temp <= MAX_TSET:
+            raise ValueError(f"Set temperature {temp} K not in [0, {MAX_TSET}] K.")
+        value = f"{temp:.6f}".rstrip("0").rstrip(".") or "0"
+        self.write(f"SET:DEV:T8:TEMP:LOOP:TSET:{value}")
 
     def get_state(self) -> str:
         """Return state of the cryostat."""
@@ -117,8 +131,8 @@ class Triton(MessageInstrument):
                 res = mapped[msg]
             else:
                 res = "Unknown"
-            if res == "Idle":
-                if self.get_mixing_chamber_temp() < 2000:
-                    res = "Circulating"
+            # No action running with a cold mixing chamber means circulating
+            if res == "Idle" and self.get_mixing_chamber_temp() < 2.0:
+                res = "Circulating"
             return res
         raise RuntimeError(f"Current state is {state}")
