@@ -154,3 +154,61 @@ def test_type_interface_enforced(fake):
 
     with pytest.raises(TypeError):
         Incomplete(fake)  # pylint: disable=abstract-class-instantiated
+
+
+def test_validate_range():
+    """Values outside the range are clipped."""
+    assert Instrument.validate_range(19.3, 1, 100) == 19.3
+    assert Instrument.validate_range(-19.3, 1, 100) == 1
+    assert Instrument.validate_range(193, 1, 100) == 100
+
+
+def test_defaults(fake):
+    """Update, set and clear defaults."""
+    dev = Device(fake)
+    dev.update_defaults(level=5.0)
+    assert dev.defaults == {"level": 5.0}
+    with pytest.raises(RuntimeError):
+        dev.update_defaults(noattr=1)
+    dev.set_defaults()
+    assert dev.level == 5.0
+    dev.clear_defaults()
+    assert dev.defaults == {}
+
+
+class Tunable(SCPIInstrument):
+    """Instrument with a queried property."""
+
+    @property
+    def frequency(self) -> float:
+        """Frequency."""
+        return float(self.query("FREQ?"))
+
+    @frequency.setter
+    def frequency(self, value: float):
+        self.write(f"FREQ {value}")
+
+
+def test_set_does_not_query(fake):
+    """Checking a parameter exists must not read it from the instrument."""
+    dev = Tunable(fake)
+    dev.connect()
+    dev.set(frequency=5.0)
+    assert fake.written == ["FREQ 5.0"]
+    with pytest.raises(RuntimeError):
+        dev.set(nofrequency=1)
+
+
+class FailingSetup(SCPIInstrument):
+    """Instrument whose setup fails."""
+
+    def _after_connect(self):
+        raise TimeoutError("setup failed")
+
+
+def test_connect_closes_on_failed_setup(fake):
+    """A failed setup closes the transport, so a retry runs the setup again."""
+    dev = FailingSetup(fake)
+    with pytest.raises(TimeoutError):
+        dev.connect()
+    assert not fake.is_connected

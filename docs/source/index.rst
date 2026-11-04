@@ -6,6 +6,7 @@ Welcome to Qtics's documentation!
    :caption: Contents:
 
    installation
+   migration
    arduino
    experiments
    instruments/modules

@@ -3,7 +3,9 @@ Triton controller
 
 Controller of the Triton Cryostat by Oxford Instruments.
 
-Base class: :class:`qtics.instruments.network_inst.NetworkInst`.
+Base class: :class:`qtics.instruments.base.MessageInstrument` (TCP socket transport, default port 33576).
+The address of the cryostat is required, there is no default. Transport options (``port``, ``timeout``,
+``delay``, ``no_delay``) can be passed as keyword arguments, or a ready transport can be given instead of the address.
 
 Example of opertations
 """"""""""""""""""""""
@@ -12,13 +14,14 @@ Example of opertations
 
    from qtics import Triton
 
-   controller = Triton(address="192.288.1919.11")
+   controller = Triton("192.168.1.10")  # address of the cryostat
    controller.connect()
 
    print(f"Mixing chamber temp: {controller.get_mixing_chamber_temp() * 1000} mK")
 
    print(f"Set temperature: {controller.mixing_chamber_tset*1000} mK")
-   controller.mixing_chamber_tset = 0.06  # K
+   controller.mixing_chamber_tset = 0.06  # setter must be enabled, see below
+   controller.disconnect()
 
 Commands
 """"""""

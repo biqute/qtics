@@ -6,11 +6,26 @@ This driver has been tested for the `ZNB20` and `ZNB26` VNAs of which documentat
 
 The SCPI commands and functions can be found in the `programming guide <https://www.rohde-schwarz.com/webhelp/ZNB_ZNBT_HTML_UserManual_en/Content/welcome.htm>`_.
 
-Base class: :class:`qtics.instruments.network_inst.NetworkInst`.
+Base class: :class:`qtics.instruments.base.SCPIInstrument` (socket transport, port 5025). It implements the :class:`qtics.instruments.types.VNA` interface.
+
+Example of operation
+---------------------
+
+.. code-block:: python
+
+  from qtics import ZNB
+
+  vna = ZNB("192.168.40.11", channel=1)
+  vna.connect()
+
+  vna.s_parameter = "S21"
+  vna.averages = 5
+  vna.power = -30  # dBm
+  f, z = vna.snapshot(f_start=4e9, f_stop=8e9)  # sweep once, return (freqs, complex data)
 
 Commands
 """"""""
-Other than featuring all the methods of :class:`qtics.instruments.network_inst.NetworkInst`, the base :class:`qtics.instruments.network.RS_ZNB.RSZNB` class contains the following methods and properties:
+Other than featuring all the methods of :class:`qtics.instruments.base.SCPIInstrument`, the :class:`qtics.instruments.rohde_schwarz.znb.ZNB` class contains the following methods and properties:
 
 Functions
 ------------
@@ -19,13 +34,11 @@ Functions
 - hold()
 - clear()
 - activate_trace()
-- single_sweep()
-- query_data()
+- sweep(): single sweep waiting for completion, considering averaging
 - clear_average()
 - autoscale()
 - read_freqs()
 - read_trace_data()
-- sweep()
 - snapshot()
 - survey()
 - start_calibration()
@@ -34,29 +47,29 @@ Functions
 - create_trace()
 - select_trace()
 - delete_trace()
-- list_trace()
+- list_traces()
 - read_times()
 
 Properties
 ------------
-- f_min
-- f_max
+- f_start
+- f_stop
 - f_center
 - f_span
-- sweep_points
+- points
 - sweep_time
 - sweep_meas_time
-- average
+- averages
 - continuous
 - data_format
-- s_par
+- s_parameter
 - yformat
 - smoothing
-- IFBW
+- ifbw
 - power
 - time_domain
-- t_min
-- t_max
+- t_start
+- t_stop
 - time_domain_window
 - harmonic_grid
 - low_pass_extrapolation

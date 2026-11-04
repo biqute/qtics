@@ -47,10 +47,14 @@ class Instrument(ABC):
         if defaults:
             self.set_defaults()
 
+    def _has_parameter(self, key: str) -> bool:
+        """Check that ``key`` is an attribute or property, without reading it."""
+        return key in self.__dict__ or hasattr(type(self), key)
+
     def set(self, **kwargs):
         """Set multiple attributes and/or properties, in the given order."""
         for key, value in kwargs.items():
-            if hasattr(self, key):
+            if self._has_parameter(key):
                 setattr(self, key, value)
             else:
                 raise RuntimeError(f"The instrument does not have the {key} parameter.")
@@ -59,7 +63,7 @@ class Instrument(ABC):
         """Get multiple attributes and/or properties."""
         values = {}
         for key in args:
-            if hasattr(self, key):
+            if self._has_parameter(key):
                 values[key] = getattr(self, key)
             else:
                 raise RuntimeError(f"The instrument does not have the {key} parameter.")
@@ -91,7 +95,7 @@ class Instrument(ABC):
     def update_defaults(self, **kwargs):
         """Validate and update the defaults dictionary."""
         for key, value in kwargs.items():
-            if hasattr(self, key):
+            if self._has_parameter(key):
                 self._defaults[key] = value
             else:
                 raise RuntimeError(f"The instrument does not have the {key} parameter.")
@@ -147,7 +151,12 @@ class MessageInstrument(Instrument):
             log.info(f"Instrument {self.name} already connected.")
             return
         self.transport.connect()
-        self._after_connect()
+        try:
+            self._after_connect()
+        except BaseException:
+            # Closing makes a retry run the setup again
+            self.transport.close()
+            raise
         log.info(f"Instrument {self.name} connected successfully.")
 
     def disconnect(self):

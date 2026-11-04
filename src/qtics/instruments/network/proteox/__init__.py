@@ -1,1 +1,0 @@
-"""Proteox module."""
