@@ -48,6 +48,24 @@ poetry install --with docs,analysis,experiments
 pre-commit install
 ```
 
+## Usage
+
+Drivers are imported from `qtics` and take the instrument address (or a
+transport from `qtics.transport`):
+
+```python
+from qtics import SMA100B, ZNB
+
+with ZNB("192.168.0.4") as vna, SMA100B("192.168.0.5") as source:
+    source.frequency = 5e9  # Hz
+    source.power = -10  # dBm
+    source.output = True
+    vna.set(f_start=4e9, f_stop=6e9, points=1001)
+    freqs, s21 = vna.snapshot()
+```
+
+Coming from qtics 0.0.x? See the migration guide in the documentation.
+
 ## License
 
 Qtics is licensed under the [Apache License 2.0](LICENSE). See the

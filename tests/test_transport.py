@@ -95,3 +95,12 @@ def test_fake_callable_answer():
     transport = FakeTransport({"ECHO": lambda cmd: cmd.lower()})
     transport.connect()
     assert transport.query("ECHO") == "echo"
+
+
+def test_fake_default_only_for_queries():
+    """Plain commands do not queue the default answer."""
+    transport = FakeTransport(default="0")
+    transport.connect()
+    transport.write("FREQ 5")
+    assert transport.read() == ""
+    assert transport.query("FREQ?") == "0"

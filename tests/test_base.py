@@ -212,3 +212,26 @@ def test_connect_closes_on_failed_setup(fake):
     with pytest.raises(TimeoutError):
         dev.connect()
     assert not fake.is_connected
+
+
+def test_missing_optional_dependency(monkeypatch):
+    """A driver needing a missing package explains what to install."""
+    import sys
+
+    import qtics
+
+    monkeypatch.delattr(qtics, "Pxie5170R", raising=False)
+    monkeypatch.delitem(sys.modules, "qtics.instruments.ni.pxie5170r", raising=False)
+    monkeypatch.setitem(sys.modules, "niscope", None)
+    with pytest.raises(ModuleNotFoundError, match="niscope"):
+        qtics.Pxie5170R  # pylint: disable=pointless-statement
+
+
+def test_internal_import_error_not_masked(monkeypatch):
+    """A broken internal import is not reported as a missing optional package."""
+    import qtics
+
+    monkeypatch.setitem(qtics._EXPORTS, "Broken", "qtics.instruments.not_a_module")
+    with pytest.raises(ModuleNotFoundError) as exc:
+        qtics.Broken  # pylint: disable=pointless-statement
+    assert "optional package" not in str(exc.value)

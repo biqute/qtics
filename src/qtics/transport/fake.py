@@ -13,13 +13,14 @@ class FakeTransport(Transport):
     Every written command is appended to :attr:`written`. If the command is a key of
     ``answers`` its answer is queued for reading: strings are returned by
     :meth:`read`, bytes by :meth:`read_raw`, callables are called with the command.
-    Commands without a scripted answer queue ``default`` (if not None).
+    Queries (commands containing "?") without a scripted answer get ``default``
+    (if not None); other commands get no answer.
     """
 
     def __init__(
         self,
         answers: Optional[Dict[str, Answer]] = None,
-        default: Optional[str] = None,
+        default: Optional[Answer] = None,
         address: str = "fake",
         terminator: str = "\n",
     ):
@@ -48,7 +49,9 @@ class FakeTransport(Transport):
     def _write_bytes(self, data: bytes):
         cmd = data.decode()[: -len(self.terminator) or None]
         self.written.append(cmd)
-        answer: Optional[Answer] = self.answers.get(cmd, self.default)
+        answer: Optional[Answer] = self.answers.get(
+            cmd, self.default if "?" in cmd else None
+        )
         if callable(answer):
             answer = answer(cmd)
         if isinstance(answer, bytes):

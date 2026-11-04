@@ -61,7 +61,16 @@ def __getattr__(name: str):
     """Import exported classes on first access."""
     target = _ALIASES.get(name, name)
     if target in _EXPORTS:
-        value = getattr(importlib.import_module(_EXPORTS[target]), target)
+        try:
+            module = importlib.import_module(_EXPORTS[target])
+        except ModuleNotFoundError as exc:
+            if exc.name is None or exc.name.split(".")[0] == "qtics":
+                raise
+            raise ModuleNotFoundError(
+                f"{name} requires the optional package '{exc.name}', install it to "
+                "use this driver."
+            ) from exc
+        value = getattr(module, target)
         globals()[name] = value
         return value
     raise AttributeError(f"module 'qtics' has no attribute '{name}'")
