@@ -33,7 +33,7 @@ class Proteox:
         self.disconnect_event = None
         self.recognized_states = RecognizedStateManager(self)
 
-    async def connect(self):
+    async def connect(self, timeout: float = 10):
         """Connect to the WAMP router and establish session."""
         self.disconnect_event = Event()
 
@@ -45,11 +45,17 @@ class Proteox:
         loop.create_task(self._runner.run(make_session, start_loop=False))
 
         # Wait until connection is ready (onJoin sets `session`)
+        elapsed = 0.0
         while self.session is None:
+            if self.disconnect_event.is_set() or elapsed >= timeout:
+                raise ConnectionError(f"Could not open a WAMP session with {self.url}.")
             await sleep(0.1)
+            elapsed += 0.1
 
     async def close(self):
         """Close the WAMP session."""
+        if self.session is None:
+            return
         if self.session._session_id:
             self.session.leave()
         if self.disconnect_event:
@@ -66,10 +72,17 @@ class Proteox:
 
     @wamp_call_handler_set()
     async def set_sensor(self, uri, value):
-        """Get sensor value from URI."""
-        if "temperature_control" in uri:
+        """Set value of the given URI, parameters as in MAN-NS-0002 Appendix D."""
+        if isinstance(value, (list, tuple)):
+            await self.session.call(uri, *value)
+        elif uri.endswith(".setpoint"):
             # the 1 is for closed control loop
-            await self.session.call(f"{uri}", value, 1)
+            await self.session.call(uri, value, 1)
+        elif uri.endswith(".power"):
+            # the True enables the heater output
+            await self.session.call(uri, value, True)
+        else:
+            await self.session.call(uri, value)
 
     def __getattr__(self, name):
         """General get function from sensor name."""
@@ -89,7 +102,9 @@ class Proteox:
             key = name[len("set_") :]
             if key in setters:
 
-                async def dynamic_setter(value):
+                async def dynamic_setter(value=None):
+                    if key.endswith("_OFF"):
+                        value = (0.0, False)
                     await self.set_sensor(setters[key], value)
 
                 return dynamic_setter

@@ -120,6 +120,7 @@ class InstrumentSession(ApplicationSession):
             if mode == 0:
                 log.warning("[Instrument] System is in LOCAL mode. Aborting session.")
                 self.leave()
+                return
 
             elif mode == 1:
                 try:
@@ -133,6 +134,7 @@ class InstrumentSession(ApplicationSession):
                             "[Instrument] A controller has been detected, disconnecting"
                         )
                         self.leave()
+                        return
 
                 except Exception as e:
                     log.error(f"ERROR: {e}")
@@ -140,6 +142,7 @@ class InstrumentSession(ApplicationSession):
         except Exception as e:
             log.error(f"[Instrument] Failed to query control mode: {e}")
             self.leave()
+            return
 
         # Link the session to the instrument object
         self.instrument.session = self
