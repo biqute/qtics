@@ -2,7 +2,15 @@
 
 import pytest
 
-from qtics import FSL0010, FSL0020, FSW0010, FSW0020, VALON5019, Keithley2231A
+from qtics import (
+    FSL0010,
+    FSL0020,
+    FSW0010,
+    FSW0020,
+    VALON5019,
+    Keithley2231A,
+    Switch_R591,
+)
 
 
 def mock_io(mocker, inst):
@@ -61,3 +69,32 @@ def test_valon5019_list_entry(mocker):
         mocker.call("LI 2 2000000000.0Hz"),
         mocker.call("SAVE"),
     ]
+
+
+@pytest.mark.parametrize(
+    "res, hz", [(["5", "Hz"], 5.0), (["2", "MHz"], 2e6), (["1.5", "GHz"], 1.5e9)]
+)
+def test_valon5019_freq_result_to_hz(res, hz):
+    """Frequency answers are converted to Hz."""
+    assert VALON5019.freq_result_to_hz(res) == hz
+
+
+def test_valon5019_freq_result_unknown_unit():
+    """Unknown units must raise."""
+    with pytest.raises(ValueError):
+        VALON5019.freq_result_to_hz(["1", "THz"])
+
+
+def test_quick_synth_output_on(mocker):
+    """Output state query may answer 1/0."""
+    synth = mock_io(mocker, FSL0010("/dev/null"))
+    synth.query.return_value = "1"
+    assert synth.output_on is True
+
+
+def test_switch_r591_pulse_length_on_connect(mocker):
+    """Pulse length passed at init is sent when connecting."""
+    switch = mock_io(mocker, Switch_R591("/dev/null", pulse_lenght=7))
+    mocker.patch.object(switch.serial, "open")
+    switch.connect()
+    switch.write.assert_called_once_with("PUL:LEN 7")

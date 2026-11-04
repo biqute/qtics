@@ -141,7 +141,7 @@ class SMA100B(NetworkInst):
 
     @f_offset.setter
     def f_offset(self, f: float):
-        self.validate_range(f, 8e3, 20e9)
+        # No range in the manual, the instrument shifts the RF range by the offset
         self.write(f"SOUR:FREQ:OFFS {f}")
 
     @property

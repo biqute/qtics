@@ -44,8 +44,10 @@ class VALON5019(SerialInst):
                 return value * 1e3
             case "MHz":
                 return value * 1e6
+            case "GHz":
+                return value * 1e9
             case _:
-                return res
+                raise ValueError(f"Unknown frequency unit {unit}.")
 
     def get_id(self):
         """Return name of the device from SCPI standard query."""

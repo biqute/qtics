@@ -118,3 +118,10 @@ class TestNetworklInst:
         network_inst.set_defaults()
         assert network_inst.sleep == 5
         assert network_inst.port == 1000
+
+
+@pytest.mark.filterwarnings("error::pytest.PytestUnraisableExceptionWarning")
+def test_invalid_address_no_del_error():
+    """Invalid address raises in init without errors in __del__."""
+    with pytest.raises(ValueError):
+        NetworkInst("not_an_ip")

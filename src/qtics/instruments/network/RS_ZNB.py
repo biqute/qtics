@@ -104,9 +104,7 @@ class RSZNB(NetworkInst):
 
     @f_center.setter
     def f_center(self, f: float):
-        span = self.f_span
-        self.f_min = f - span / 2
-        self.f_max = f + span / 2
+        self.write(f"SENSe{self._channel}:FREQuency:CENTer {f}")
 
     @property
     def f_span(self) -> float:
@@ -288,9 +286,9 @@ class RSZNB(NetworkInst):
             f"SOURce{self._channel}:POWer:LEVel:IMMediate:AMPLitude {round(pwd, 1)}"
         )
 
-    def autoscale(self):
-        """Autoscale selected trace."""
-        self.write(f"DISPlay:WINDow1:TRACe1:Y:SCALe:AUTO ONCE")
+    def autoscale(self, trace: int = 1):
+        """Autoscale the given trace of window 1."""
+        self.write(f"DISPlay:WINDow1:TRACe{trace}:Y:SCALe:AUTO ONCE")
 
     def read_freqs(self) -> np.ndarray:
         """Read frequencies."""
@@ -419,7 +417,8 @@ class RSZNB(NetworkInst):
         """List all traces in the current channel."""
         response = self.query(f"CALCulate{self._channel}:PARameter:CATalog?")
         # Response format: 'TraceName,S-Parameter,TraceName,S-Parameter,...'
-        if response.strip():
+        response = response.strip().strip("'\"")
+        if response:
             traces = response.split(",")
             return [(traces[i], traces[i + 1]) for i in range(0, len(traces), 2)]
         return []

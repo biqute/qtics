@@ -78,8 +78,8 @@ class SoftwareTrigger(Trigger):
     """Waiting time before trigger [s]."""
     delay: float = 0.0
     """Delay between trigger and acquisition."""
-    source = None
-    """Overwrite source property."""
+    source: Optional[str] = None
+    """Software trigger has no source."""
 
     def configure(self, session: ni.Session):
         """Configure a session."""
@@ -89,8 +89,8 @@ class SoftwareTrigger(Trigger):
         )
 
 
-class Pxie570R(Instrument):
-    """Instrument class."""
+class Pxie5170R(Instrument):
+    """NI PXIe-5170R oscilloscope."""
 
     def __init__(self, name: str, address: str):
         """Initialize."""
@@ -98,7 +98,7 @@ class Pxie570R(Instrument):
         self.voltage_range = 1
         self.coupling = "DC"
         self.sample_rate = int(250e6)  # Samples per second
-        self.trigger = DigitalTrigger("ch1")  # TODO check this is reasonable
+        self.trigger = None  # niscope default: immediate trigger
 
     def connect(self):
         """Empty method to comply with interface."""
@@ -160,7 +160,7 @@ class Pxie570R(Instrument):
         return self._trigger
 
     @trigger.setter
-    def trigger(self, value: Trigger):
+    def trigger(self, value: Optional[Trigger]):
         self._trigger = value
 
     def acquire(self, channels, duration, ref_position=50, options=None):
@@ -178,3 +178,6 @@ class Pxie570R(Instrument):
             if self.trigger:
                 self.trigger.configure(session)
             return session.channels[channels].read(num_samples=num_samples)
+
+
+Pxie570R = Pxie5170R  # deprecated misspelled name

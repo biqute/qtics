@@ -48,7 +48,7 @@ class FSQS(SerialInst):
     @property
     def output_on(self) -> bool:
         """Turn on RF output."""
-        return self.query("OUTP:STAT?") == "ON"
+        return self.query("OUTP:STAT?") in ("1", "ON")
 
     @output_on.setter
     def output_on(self, on: bool):
