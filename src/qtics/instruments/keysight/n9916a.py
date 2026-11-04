@@ -211,10 +211,10 @@ class VNAN9916A(N9916A, VNA):
         self._mode = "NA"
         self.setup()
 
-    def setup(self, par="S21"):
+    def setup(self, s_parameter="S21"):
         """Configure standard measurement."""
         self.write("DISP:WIND:SPL D1")
-        self.s_parameter = par
+        self.s_parameter = s_parameter
         self.activate_trace()
         self.hold()
         self.set(yformat="MLOG", ifbw=1000, smoothing=0)

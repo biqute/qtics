@@ -8,8 +8,7 @@
 Qtics is a collection of tools designed to facilitate the instrumentation of the
 [BiQuTe Cryogenic Laboratory](https://biqute.unimib.it/research/cryogenic-lab).
 
-In the experiments folder, some experiments are provided as examples, along with
-various helpers.
+In the examples folder, some experiments are provided as examples.
 
 ## Documentation
 

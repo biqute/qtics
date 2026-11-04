@@ -42,14 +42,14 @@ class ZNB(VNA, SCPIInstrument):
         self.reset()
         self.setup()
 
-    def setup(self, s_par="S21"):
+    def setup(self, s_parameter="S21"):
         """Configure standard measurement."""
         # Create default trace if it doesn't exist
         self.write(
-            f"CALCulate{self._channel}:PARameter:SDEFine '{self._active_trace}', '{s_par}'"
+            f"CALCulate{self._channel}:PARameter:SDEFine '{self._active_trace}', '{s_parameter}'"
         )
         self.write(f"DISPlay:WINDow1:TRACe1:FEED '{self._active_trace}'")
-        self.s_parameter = s_par
+        self.s_parameter = s_parameter
         self.activate_trace()
         self.hold()
         self.set(yformat="MLOG", ifbw=1000, smoothing=0, averages=1)

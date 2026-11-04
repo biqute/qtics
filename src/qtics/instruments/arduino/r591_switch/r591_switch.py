@@ -13,7 +13,7 @@ class R591Switch(SCPIInstrument):
     def __init__(
         self,
         transport: Transport | str,
-        name: str = "Switch",
+        name: str = "",
         pulse_length: int = 5,  # milliseconds
         **transport_kwargs,
     ):

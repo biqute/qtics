@@ -17,9 +17,7 @@ class QuickSyn(RFSource, SCPIInstrument):
     default_transport = SerialTransport
     transport_defaults = {"baudrate": 115200, "timeout": 10, "delay": 0.1}
 
-    def __init__(
-        self, transport: Transport | str, name: str = "QuickSyn", **transport_kwargs
-    ):
+    def __init__(self, transport: Transport | str, name: str = "", **transport_kwargs):
         """Initialize."""
         super().__init__(transport, name, **transport_kwargs)
 

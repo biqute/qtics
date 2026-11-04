@@ -18,7 +18,7 @@ class Kratos3494Attenuator(SCPIInstrument):
     def __init__(
         self,
         transport: Transport | str,
-        name: str = "Attenuator349464",
+        name: str = "",
         **transport_kwargs,
     ):
         """Initialize."""

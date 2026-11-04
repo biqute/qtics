@@ -31,7 +31,7 @@ Here's an example of a simple experiment that acquires and saves a `VNA <https:/
   class VNASnapshot(Experiment):
       """Simple snapshot with vna."""
 
-      vna = VNAN9916A("vna", "address")
+      vna = VNAN9916A("192.168.0.10", name="vna")
 
       def main(self):
           """Acquire VNA snapshot."""
@@ -47,7 +47,7 @@ The experiment can be launched by calling the ``run()`` method, which will execu
    exp = VNASnapshot("vna_snapshot")
    exp.run()
 
-This will create a ``vna_snapshot_{current_date}.hdf5`` file with the acquired data.
+This will create a ``vna_snapshot_<month>_<day>_<hour>_<minute>_<second>.hdf5`` file with the acquired data (or pass ``data_file``/``data_dir`` to choose it). Call ``exp.close()`` at the end, or use ``with VNASnapshot(...) as exp:``, to disconnect the instruments.
 
 MonitorExperiment
 """""""""""""""""
@@ -62,18 +62,20 @@ Here's an example of a ``MonitorExperiment`` that checks if the temperature of t
 
 .. code-block:: python
 
+  from qtics import MonitorExperiment, Triton
+
   class TemperatureMonitor(MonitorExperiment):
 
-      cryo = Triton("name", "address")
-      min_temp = 20
-      max_temp = 60
-      sleep = 5
+      cryo = Triton("192.168.0.20", name="cryo")
+      min_temp = 20  # mK
+      max_temp = 60  # mK
+      sleep = 5  # s
 
       def main(self):
           """Check if temperature is in range."""
-          temperature = self.cryo.get_mixing_chamber_temp()
-          if temperature < self.min_temp or temperature > self.max_temp:
-              raise Exception("Temperature %s mK out of allowed range.", temperature)
+          temperature = self.cryo.get_mixing_chamber_temp() * 1e3  # K to mK
+          if not self.min_temp <= temperature <= self.max_temp:
+              raise RuntimeError(f"Temperature {temperature} mK out of allowed range.")
 
 
 In the main experiment, the reset condition can be checked by calling the ``Experiment.monitor_failed()`` method, as in this example. The first time it returns True the instruments are reset; when ``main`` returns, ``run()`` raises ``qtics.experiment.MonitorError`` with the monitor's exception as cause.
@@ -83,7 +85,7 @@ In the main experiment, the reset condition can be checked by calling the ``Expe
   class MultiVNASnapshot(Experiment):
       """Multiple vna snapshots with temperature checks."""
 
-      vna = VNAN9916A("vna", "address")
+      vna = VNAN9916A("192.168.0.10", name="vna")
       monitors = [TemperatureMonitor("tempcheck")]
       n_snapshots = 20
 
@@ -93,6 +95,6 @@ In the main experiment, the reset condition can be checked by calling the ``Expe
           for i in range(self.n_snapshots):
               f, z = self.vna.snapshot()
               self.append_data_group(f"snapshot_{i}", datasets={"frequencies": f, "values": z})
-              if self.monitor_failed()
+              if self.monitor_failed():
                   return
           self.save_config()
