@@ -25,6 +25,9 @@ To install the latest released version, you can use the standard pip command:
 pip install qtics
 ```
 
+Drivers needing extra packages have pip extras: `qtics[proteox]` (Oxford
+Proteox), `qtics[niscope]` (NI PXIe-5170R) or `qtics[all]`.
+
 ### Latest version:
 
 To install the latest version, unreleased, you can first clone the repository
@@ -44,7 +47,7 @@ Use poetry to install the latest version in developer mode, remember to also
 install the pre-commits!
 
 ```bash
-poetry install --with docs,analysis,experiments
+poetry install --all-extras --with docs,analysis,experiments
 pre-commit install
 ```
 

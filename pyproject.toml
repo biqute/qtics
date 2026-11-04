@@ -16,10 +16,15 @@ classifiers = [
 python = ">=3.10"
 pyserial = "^3.5"
 numpy = "^1.24"
-niscope = "^1.4.6"
-autobahn = "^24.4.2"
-dotenv = "^0.9.9"
+niscope = { version = "^1.4.6", optional = true }
+autobahn = { version = "^24.4.2", optional = true }
+python-dotenv = { version = "^1.1.0", optional = true }
 h5py = "^3.14.0"
+
+[tool.poetry.extras]
+proteox = ["autobahn", "python-dotenv"]
+niscope = ["niscope"]
+all = ["autobahn", "python-dotenv", "niscope"]
 
 [build-system]
 requires = ["poetry-core"]
