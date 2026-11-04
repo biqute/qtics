@@ -39,7 +39,7 @@ def test_all_conditions_defined():
 )
 def test_trap_bypassed(v9, v10, v4, expected):
     """Trap is bypassed with V9, V10 open and V4 closed (Table 59)."""
-    signals = {"V9_OPEN": v9, "V10_OPEN": v10, "V4_CLOSED": v4}
+    signals = {"V9_OPEN": v9, "V10_OPEN": v10, "V4_OPEN": v4}
     assert evaluate("TRAP_BYPASSED", signals) is expected
 
 
@@ -55,9 +55,9 @@ def test_precool_valves(key, signal):
 
 def test_ovc_valve_open():
     """OVC valve state is 1 when open (OiValveStateRecord)."""
-    assert getters["OVC_AV_01_CLOSED"] == "oi.decs.proteox.OVC_AV_01.state"
-    assert evaluate("OVC_VALVE_OPEN", {"OVC_AV_01_CLOSED": 1}) is True
-    assert evaluate("OVC_VALVE_OPEN", {"OVC_AV_01_CLOSED": 0}) is False
+    assert getters["OVC_AV_01_OPEN"] == "oi.decs.proteox.OVC_AV_01.state"
+    assert evaluate("OVC_VALVE_OPEN", {"OVC_AV_01_OPEN": 1}) is True
+    assert evaluate("OVC_VALVE_OPEN", {"OVC_AV_01_OPEN": 0}) is False
 
 
 def test_set_setpoint_closed_loop(proteox):
@@ -113,3 +113,57 @@ def test_connect_timeout(mocker):
     inst = Proteox(url="ws://localhost", realm="test")
     with pytest.raises(ConnectionError):
         asyncio.run(inst.connect(timeout=0.2))
+
+
+@pytest.mark.parametrize(
+    "old, new", [("V4_CLOSED", "V4_OPEN"), ("AV_08_CLOSED", "AV_08_OPEN")]
+)
+def test_valve_getters_named_open(old, new):
+    """Valve state is 1 when open, getter names must say so."""
+    assert old not in getters
+    assert new in getters
+
+
+def test_emptying_trap():
+    """Emptying trap when 3CL-AV-08 is open (Table 59)."""
+    assert evaluate("EMPTYING_TRAP", {"AV_08_OPEN": 1}) is True
+    assert evaluate("EMPTYING_TRAP", {"AV_08_OPEN": 0}) is False
+
+
+def test_getter_raises_on_error(proteox):
+    """Failed WAMP calls must reach the caller."""
+    proteox.session.call.side_effect = RuntimeError("wamp error")
+    with pytest.raises(RuntimeError):
+        asyncio.run(proteox.get_MC_T())
+
+
+def test_setter_raises_on_error(proteox):
+    """Failed WAMP calls must reach the caller."""
+    proteox.session.call.side_effect = RuntimeError("error.not_authorized")
+    with pytest.raises(RuntimeError):
+        asyncio.run(proteox.set_MC_T(0.1))
+
+
+@pytest.mark.parametrize("mode, expected", [(1, True), (0, False)])
+def test_is_in_remote(proteox, mode, expected):
+    """Remote mode is read from the session manager (Appendix D)."""
+    proteox.session.call.return_value = mode
+    assert asyncio.run(proteox.is_in_remote()) is expected
+    proteox.session.call.assert_awaited_once_with(
+        "oi.decs.sessionmanager.system_control_mode"
+    )
+
+
+def test_unknown_attribute_message(proteox):
+    """Error message must name the Proteox class."""
+    with pytest.raises(AttributeError, match="'Proteox'"):
+        proteox.get_NOT_A_SENSOR  # pylint: disable=pointless-statement
+
+
+def test_mc_control_loop_on(proteox, mocker):
+    """Control loop state is actual_mode of the setpoint record (Appendix D)."""
+    proteox.session.call.return_value = mocker.Mock(results=[1050, 0, 0, 0, 2.5, 1, 1])
+    assert asyncio.run(proteox.get_MC_CTRL_ON()) == 1
+    proteox.session.call.assert_awaited_once_with(
+        "oi.decs.temperature_control.DRI_MIX_CL.setpoint"
+    )

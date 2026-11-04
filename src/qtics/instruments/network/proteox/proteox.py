@@ -12,7 +12,12 @@ from qtics.instruments.network.proteox.instrument_session import (
     wamp_call_handler_set,
 )
 from qtics.instruments.network.proteox.recognized_states import RecognizedStateManager
-from qtics.instruments.network.proteox.uris import getters, setters, state_labels
+from qtics.instruments.network.proteox.uris import (
+    getter_indices,
+    getters,
+    setters,
+    state_labels,
+)
 
 load_dotenv()
 USER = getenv("WAMP_USER")
@@ -61,9 +66,10 @@ class Proteox:
         if self.disconnect_event:
             await self.disconnect_event.wait()
 
-    async def is_in_remote(self):
-        """Check if Proteox is connected (or in local mode)."""
-        return not self.session._session_id
+    async def is_in_remote(self) -> bool:
+        """Check if Proteox is in remote mode, i.e. it can be controlled."""
+        mode = await self.session.call("oi.decs.sessionmanager.system_control_mode")
+        return mode == 1
 
     @wamp_call_handler_get()
     async def get_sensor(self, uri):
@@ -91,7 +97,9 @@ class Proteox:
             if key in getters:
 
                 async def dynamic_getter():
-                    value = await self.get_sensor(getters[key])
+                    value = await self.get_sensor(
+                        getters[key], getter_indices.get(key, 4)
+                    )
                     if key == "state":
                         return state_labels.get(value, f"Unknown ({value})")
                     return value
@@ -108,7 +116,7 @@ class Proteox:
                     await self.set_sensor(setters[key], value)
 
                 return dynamic_setter
-        raise AttributeError(f"'Instrument' object has no attribute '{name}'")
+        raise AttributeError(f"'Proteox' object has no attribute '{name}'")
 
     async def is_in_recognized_state(self) -> bool:
         """Return True if the cryostat is in a recognized state."""

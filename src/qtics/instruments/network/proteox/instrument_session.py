@@ -20,22 +20,23 @@ REALM = getenv("WAMP_REALM")  # WAMP realm name
 def wamp_call_handler_get():
     """Create the decorator for wrapping getters WAMP RPC calls.
 
-    Handles exceptions and extracts the 5th result item from the call response.
+    Handles exceptions and extracts the item at `index` (default the 5th, the
+    value of most records) from the call response.
 
     Returns:
         Callable: The wrapped function.
     """
 
     def decorator(func):
-        async def wrapper(self, uri):
+        async def wrapper(self, uri, index=4):
             try:
                 result = await func(self, uri)
                 if isinstance(result, int):
                     return result
-                return result.results[4]  # Return only the 5th item from result
+                return result.results[index]
             except Exception as e:
-                log.error(f"Failed to query: {e}")
-                return None
+                log.error(f"Failed to query {uri}: {e}")
+                raise
 
         return wrapper
 
@@ -54,8 +55,8 @@ def wamp_call_handler_set():
             try:
                 await func(self, uri, value)
             except Exception as e:
-                log.error(f"Failed to query: {e}")
-                return None
+                log.error(f"Failed to query {uri}: {e}")
+                raise
 
         return wrapper
 
