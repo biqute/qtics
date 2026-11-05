@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "border-accent-on-rounded",
+        "value": "*",
+        "files": [
+          "docs/source/_static/css/style.css"
+        ],
+        "createdAt": "2026-11-05T11:22:58.627Z",
+        "reason": "builder: class signature dt sets border-radius: 0 explicitly; detector pairs it with Furo's radius statically"
+      }
+    ]
+  }
+}

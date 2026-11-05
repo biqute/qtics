@@ -43,6 +43,26 @@ html_favicon = "favicon.ico"
 
 html_title = "Qtics · " + release
 
+html_baseurl = "https://biqute.github.io/qtics/"
+
+# Version switcher: versions.json (written by the docs workflow) lives at the site root
+html_context = {"versions_json": html_baseurl + "versions.json"}
+
+html_sidebars = {
+    "**": [
+        "sidebar/brand.html",
+        "sidebar/versions.html",
+        "sidebar/search.html",
+        "sidebar/scroll-start.html",
+        "sidebar/navigation.html",
+        "sidebar/scroll-end.html",
+        "sidebar/variant-selector.html",
+    ]
+}
+
+pygments_style = "a11y-dark"
+pygments_dark_style = "a11y-dark"
+
 html_theme_options = {
     "top_of_page_button": "edit",
     "source_repository": "https://github.com/biqute/qtics/",
@@ -50,11 +70,7 @@ html_theme_options = {
     "source_directory": "docs/source/",
     "light_logo": "biqute_logo.png",
     "dark_logo": "biqute_logo.png",
-    "light_css_variables": {
-        "color-brand-primary": "#6400FF",
-        "color-brand-secondary": "#6400FF",
-        "color-brand-content": "#6400FF",
-    },
+    "sidebar_hide_name": True,
     "footer_icons": [
         {
             "name": "GitHub",
@@ -69,6 +85,7 @@ html_theme_options = {
     ],
 }
 html_static_path = ["_static"]
+html_js_files = ["js/versions.js", "js/captions.js"]
 
 # -- Intersphinx  -------------------------------------------------------------
 
