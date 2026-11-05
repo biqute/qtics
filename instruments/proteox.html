@@ -400,22 +400,25 @@ Each setter corresponds to a WAMP procedure call and must be awaited.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">set_MC_T(value)</span></code> – Set mixing chamber temperature setpoint</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">set_MC_H(value)</span></code> – Set mixing chamber heater power</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">set_MC_H_OFF(value=0)</span></code> – Turn off mixing chamber heater</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">set_MC_H_OFF()</span></code> – Turn off mixing chamber heater</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">set_STILL_H(value)</span></code> – Set still heater power</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">set_STILL_H_OFF(value=0)</span></code> – Turn off still heater</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">set_STILL_H_OFF()</span></code> – Turn off still heater</p></li>
 </ul>
 </section>
 <section id="magnet-control">
 <h3>Magnet Control<a class="headerlink" href="#magnet-control" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">set_MAG_TARGET(value)</span></code> – Set magnetic field target (vector or scalar depending on mode)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">set_MAG_STATE(value)</span></code> – Set magnet controller state</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">set_MAG_TARGET((coord,</span> <span class="pre">x,</span> <span class="pre">y,</span> <span class="pre">z,</span> <span class="pre">mode,</span> <span class="pre">param,</span> <span class="pre">persist))</span></code> – Set magnetic field target</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">set_MAG_STATE(value)</span></code> – Set magnet controller state: 0 Hold, 10 Enter Persistent Mode,
+20 Leave Persistent Mode, 30 Sweep Field, 40 Sweep PSU Output</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">set_MAG_X_STATE(value)</span></code>, <code class="docutils literal notranslate"><span class="pre">set_MAG_Y_STATE(value)</span></code>, <code class="docutils literal notranslate"><span class="pre">set_MAG_Z_STATE(value)</span></code> – Set state for each magnet axis</p></li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Setter operations must always be awaited.
-Example: <code class="docutils literal notranslate"><span class="pre">await</span> <span class="pre">instrument.set_MAG_STATE(&quot;SWEEP&quot;)</span></code></p>
+<p>Setter operations must always be awaited, and they raise if the WAMP call fails.
+Parameters follow the Proteox manual (MAN-NS-0002) Appendix D: a tuple value
+is passed as the list of call parameters.
+Example: <code class="docutils literal notranslate"><span class="pre">await</span> <span class="pre">instrument.set_MAG_STATE(30)</span></code></p>
 </div>
 </section>
 <section id="recognized-states">

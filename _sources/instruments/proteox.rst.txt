@@ -174,21 +174,24 @@ Temperature and Heater Control
 
 * ``set_MC_T(value)`` – Set mixing chamber temperature setpoint
 * ``set_MC_H(value)`` – Set mixing chamber heater power
-* ``set_MC_H_OFF(value=0)`` – Turn off mixing chamber heater
+* ``set_MC_H_OFF()`` – Turn off mixing chamber heater
 * ``set_STILL_H(value)`` – Set still heater power
-* ``set_STILL_H_OFF(value=0)`` – Turn off still heater
+* ``set_STILL_H_OFF()`` – Turn off still heater
 
 Magnet Control
 --------------
 
-* ``set_MAG_TARGET(value)`` – Set magnetic field target (vector or scalar depending on mode)
-* ``set_MAG_STATE(value)`` – Set magnet controller state
+* ``set_MAG_TARGET((coord, x, y, z, mode, param, persist))`` – Set magnetic field target
+* ``set_MAG_STATE(value)`` – Set magnet controller state: 0 Hold, 10 Enter Persistent Mode,
+  20 Leave Persistent Mode, 30 Sweep Field, 40 Sweep PSU Output
 * ``set_MAG_X_STATE(value)``, ``set_MAG_Y_STATE(value)``, ``set_MAG_Z_STATE(value)`` – Set state for each magnet axis
 
 .. note::
 
-   Setter operations must always be awaited.
-   Example: ``await instrument.set_MAG_STATE("SWEEP")``
+   Setter operations must always be awaited, and they raise if the WAMP call fails.
+   Parameters follow the Proteox manual (MAN-NS-0002) Appendix D: a tuple value
+   is passed as the list of call parameters.
+   Example: ``await instrument.set_MAG_STATE(30)``
 
 
 Recognized states
