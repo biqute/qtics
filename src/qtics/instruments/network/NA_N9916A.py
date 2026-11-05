@@ -26,7 +26,7 @@ class N9916A(NetworkInst, ABC):
         self,
         address: str,
         port: int = 5025,
-        timeout: int = 8000,
+        timeout: int = 10,
         sleep: float = 0.1,
         no_delay: bool = True,
         max_points: int = 10001,
@@ -423,16 +423,16 @@ class SAN9916A(N9916A):
     @property
     def auto_attenuation(self) -> bool:
         """Automatic RF attenuation."""
-        return self.query("POW:ATT:AUTO?") == "ON"
+        return self.query("POW:ATT:AUTO?") in ("1", "ON")
 
     @auto_attenuation.setter
     def auto_attenuation(self, auto: bool):
-        self.write(f"POW:GAIN:STAT {int(auto)}")
+        self.write(f"POW:ATT:AUTO {int(auto)}")
 
     @property
     def gain(self) -> bool:
         """Automatic gain selection."""
-        return self.query("POW:GAIN:STAT?") == "ON"
+        return self.query("POW:GAIN:STAT?") in ("1", "ON")
 
     @gain.setter
     def gain(self, auto: bool):
@@ -451,7 +451,7 @@ class SAN9916A(N9916A):
     @property
     def auto_res_bandwidth(self) -> bool:
         """Automatic resolution bandwidth."""
-        return self.query("BAND:RES:AUTO?") == "ON"
+        return self.query("BAND:RES:AUTO?") in ("1", "ON")
 
     @auto_res_bandwidth.setter
     def auto_res_bandwidth(self, auto: bool):
@@ -509,7 +509,7 @@ class SAN9916A(N9916A):
     @yscale.setter
     def yscale(self, scale: str):
         self.validate_opt(scale, ("LOG", "LIN"))
-        self.write(f"AMPL:SCAL: {scale}")
+        self.write(f"AMPL:SCAL {scale}")
 
     def autoscale(self):
         """Autoscale all traces."""

@@ -154,7 +154,7 @@ def build_conditions() -> dict[str, Condition]:
         "OVC_VALVE_OPEN": Condition(
             key="OVC_VALVE_OPEN",
             label="OVC-AV-01 is Open",
-            evaluator=lambda s: not _safe_bool_from_state(s.get("OVC_AV_01_CLOSED")),
+            evaluator=lambda s: _safe_bool_from_state(s.get("OVC_AV_01_OPEN")),
             suggestion_if_false="Open OVC valve (OVC-AV-01).",
             suggestion_if_true="Close OVC valve (OVC-AV-01).",
         ),
@@ -173,17 +173,13 @@ def build_conditions() -> dict[str, Condition]:
         ),
         "TRAP_BYPASSED": Condition(
             key="TRAP_BYPASSED",
-            label="V9, V10 Closed & V4 Open",
+            label="V9, V10 Open & V4 Closed",
             evaluator=lambda s: (
-                (
-                    _safe_bool_from_state(
-                        s.get("V9_error")
-                        == _safe_bool_from_state(s.get("V10_error") == 0)
-                    )
-                )
-                and (not _safe_bool_from_state(s.get("V4_CLOSED")))
+                _safe_bool_from_state(s.get("V9_OPEN"))
+                and _safe_bool_from_state(s.get("V10_OPEN"))
+                and not _safe_bool_from_state(s.get("V4_OPEN"))
             ),
-            suggestion_if_false="Set trap bypass: close V9, close V10, open V4.",
+            suggestion_if_false="Set trap bypass: open V9, open V10, close V4.",
             suggestion_if_true="Disable trap bypass and restore normal valve configuration.",
         ),
         "OVC_VENTED": Condition(
@@ -199,9 +195,23 @@ def build_conditions() -> dict[str, Condition]:
         "EMPTYING_TRAP": Condition(
             key="EMPTYING_TRAP",
             label="3CL-AV-08 is Open",
-            evaluator=lambda s: _safe_bool_from_state(s.get("AV_08_CLOSED")),
+            evaluator=lambda s: _safe_bool_from_state(s.get("AV_08_OPEN")),
             suggestion_if_false="Open 3CL-AV-08 to empty trap.",
             suggestion_if_true="Close 3CL-AV-08.",
+        ),
+        "PRECOOL_ENABLED": Condition(
+            key="PRECOOL_ENABLED",
+            label="3CL-AV-15 is Open",
+            evaluator=lambda s: _safe_bool_from_state(s.get("AV_15_OPEN")),
+            suggestion_if_false="Open 3CL-AV-15 to enable precool.",
+            suggestion_if_true="Close 3CL-AV-15.",
+        ),
+        "EMPTYING_PRECOOL": Condition(
+            key="EMPTYING_PRECOOL",
+            label="3CL-AV-17 is Open",
+            evaluator=lambda s: _safe_bool_from_state(s.get("AV_17_OPEN")),
+            suggestion_if_false="Open 3CL-AV-17 to empty precool loop.",
+            suggestion_if_true="Close 3CL-AV-17.",
         ),
         "MIX_CHAMBER_PRECOOLED": Condition(
             key="MIX_CHAMBER_PRECOOLED",
@@ -527,12 +537,14 @@ class RecognizedStateManager:
             "FP_ON": await self._maybe_get("FP_ON"),
             "CP_ON": await self._maybe_get("CP_ON"),
             "TP_ON": await self._maybe_get("TP_ON"),
-            "OVC_AV_01_CLOSED": await self._maybe_get("OVC_AV_01_CLOSED"),
+            "OVC_AV_01_OPEN": await self._maybe_get("OVC_AV_01_OPEN"),
             "MC_CTRL_ON": await self._maybe_get("MC_CTRL_ON"),
-            "V4_CLOSED": await self._maybe_get("V4_CLOSED"),
-            "V9_error": await self._maybe_get("V9_error"),
-            "V10_error": await self._maybe_get("V10_error"),
-            "AV_08_CLOSED": await self._maybe_get("AV_08_CLOSED"),
+            "V4_OPEN": await self._maybe_get("V4_OPEN"),
+            "V9_OPEN": await self._maybe_get("V9_OPEN"),
+            "V10_OPEN": await self._maybe_get("V10_OPEN"),
+            "AV_08_OPEN": await self._maybe_get("AV_08_OPEN"),
+            "AV_15_OPEN": await self._maybe_get("AV_15_OPEN"),
+            "AV_17_OPEN": await self._maybe_get("AV_17_OPEN"),
         }
 
         return signals

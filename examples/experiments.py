@@ -1,7 +1,5 @@
 """Examples of experiments written with qtics."""
 
-from time import sleep
-
 from qtics import VNAN9916A, Experiment, MonitorExperiment, Triton, log
 
 
@@ -17,7 +15,7 @@ class TemperatureNotInRangeError(RuntimeError):
 class VNASnapshot(Experiment):
     """Simple snapshot with vna."""
 
-    vna = VNAN9916A("vna", "address")
+    vna = VNAN9916A("192.168.0.10", name="vna")
 
     def main(self):
         """Acquire VNA snapshot."""
@@ -30,7 +28,7 @@ class VNASnapshot(Experiment):
 class TritonMonitor(MonitorExperiment):
     """Monitor temperature of Triton cryostat."""
 
-    cryo = Triton("name", "address")
+    cryo = Triton("192.168.0.20", name="cryo")
     sleep = 5
 
     def __init__(
@@ -49,19 +47,22 @@ class TritonMonitor(MonitorExperiment):
 
     def main(self):
         """Execute main part of the experiment."""
-        temperature = self.cryo.get_mixing_chamber_temp()
+        temperature = self.cryo.get_mixing_chamber_temp() * 1e3  # K to mK
         log.info("Cryostat temperature %s mK", temperature)
-        if self.min_temp > temperature > self.max_temp:
+        if not self.min_temp <= temperature <= self.max_temp:
             raise TemperatureNotInRangeError(self.min_temp, self.max_temp, temperature)
-        sleep(self.sleep)
 
 
 class MultiVNASnapshot(Experiment):
     """Multiple vna snapshots with temperature checks."""
 
-    vna = VNAN9916A("vna", "address")
-    monitors = [TritonMonitor("tempcheck")]
+    vna = VNAN9916A("192.168.0.10", name="vna")
     n_snapshots = 20
+
+    def __init__(self, name: str):
+        """Initialize and add the temperature monitor."""
+        super().__init__(name)
+        self.add_monitor(TritonMonitor("tempcheck"))
 
     def main(self):
         """Acquire VNA snapshot."""

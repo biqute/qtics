@@ -14,7 +14,7 @@ class FSV3030(NetworkInst):
         self,
         address: str,
         port: int = 5025,
-        timeout: int = 8000,
+        timeout: int = 10,
         sleep: float = 0.1,
         no_delay: bool = True,
         name: str = "FSV3030",
@@ -180,7 +180,6 @@ class FSV3030(NetworkInst):
 
     def snapshot(self, trace: int = 1) -> tuple[np.ndarray, np.ndarray]:
         """Perform single sweep and return (freqs, trace)."""
-        self.single_sweep()
         freqs = self.read_freqs()
         tot_trace = self.read_trace_data(trace)
         return freqs, tot_trace
@@ -216,8 +215,6 @@ class FSV3030(NetworkInst):
         self.single_sweep()
 
     def read_max_hold(self, trace: int = 1) -> np.ndarray:
-        """Acquire the current max-hold trace data."""
-        self.set_max_hold(trace)
-        # optional: wait for a few sweeps if needed to build the max-hold
+        """Read the max-hold trace accumulated since set_max_hold."""
         data = query_data(self, f"TRAC? TRACE{trace}", datatype="ASC,0")
         return data

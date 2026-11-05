@@ -15,7 +15,7 @@ class SMA100B(NetworkInst):
         self,
         address: str,
         port: int = 5025,
-        timeout: int = 8000,
+        timeout: int = 10,
         sleep: float = 0.1,
         no_delay: bool = True,
         name: str = "SMA100B",
@@ -141,7 +141,7 @@ class SMA100B(NetworkInst):
 
     @f_offset.setter
     def f_offset(self, f: float):
-        self.validate_range(f, 8e3, 20e9)
+        # No range in the manual, the instrument shifts the RF range by the offset
         self.write(f"SOUR:FREQ:OFFS {f}")
 
     @property
@@ -152,7 +152,7 @@ class SMA100B(NetworkInst):
     @f_sweep_mode.setter
     def f_sweep_mode(self, mode: str = "SING"):
         """Set the cycle mode for the frequency sweep."""
-        self.validate_opt(mode, ("EXT", "EAUT"))
+        self.validate_opt(mode, ("AUTO", "SING", "EXT", "EAUT"))
         self.write(f"TRIG:FSW:SOUR {mode}")
 
     @property
@@ -192,7 +192,7 @@ class SMA100B(NetworkInst):
     @f_center.setter
     def f_center(self, f: float):
         f = self.validate_range(f, 8e3, 20e9)
-        self.write(f"SOUR:FREQ:STOP {f}")
+        self.write(f"SOUR:FREQ:CENT {f}")
 
     @property
     def f_span(self) -> float:

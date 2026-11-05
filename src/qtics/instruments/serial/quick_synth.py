@@ -16,6 +16,9 @@ DEFAULT_FREQ_SCALE = 1e-3  # Convert mHz to Hz
 class FSQS(SerialInst):
     """QuickSyn microwave synthesizer by National Instruments."""
 
+    min_freq = 0.5e9
+    max_freq = 10e9
+
     def __init__(
         self,
         address: str,
@@ -32,9 +35,6 @@ class FSQS(SerialInst):
             address, baudrate, bytesize, parity, stopbits, timeout, sleep, name=name
         )
 
-        self.min_freq = 0.5e9
-        self.max_freq = 10e9
-
     @property
     def freq(self) -> float:
         """Output signal frequency in Hz."""
@@ -48,7 +48,7 @@ class FSQS(SerialInst):
     @property
     def output_on(self) -> bool:
         """Turn on RF output."""
-        return self.query("OUTP:STAT?") == "ON"
+        return self.query("OUTP:STAT?") in ("1", "ON")
 
     @output_on.setter
     def output_on(self, on: bool):
@@ -83,14 +83,14 @@ class FSL0010(FSQS):
 
 
 class FSL0020(FSQS):
-    """FSW_0020 QuickSyn."""
+    """FSL_0020 QuickSyn."""
 
     min_freq = 0.65e9
     max_freq = 20e9
 
 
 class FSW0010(FSQS):
-    """FSL_0010 QuickSyn."""
+    """FSW_0010 QuickSyn."""
 
     min_freq = 0.5e9
     max_freq = 10e9

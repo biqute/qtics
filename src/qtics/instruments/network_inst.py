@@ -29,6 +29,8 @@ class NetworkInst(Instrument):
     ):
         """Initialize."""
         super().__init__(name, address)
+        self.__is_connected = False
+        self.socket = None
 
         # Validate IP
         _ = ipaddress.ip_address(address)
@@ -36,8 +38,6 @@ class NetworkInst(Instrument):
         self.sleep = sleep
         self.timeout = timeout
         self.no_delay = no_delay
-        self.__is_connected = False
-        self.socket = None
 
     def __del__(self):
         """Delete the object."""

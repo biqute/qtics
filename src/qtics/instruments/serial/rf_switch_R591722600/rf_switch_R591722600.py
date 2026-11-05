@@ -27,8 +27,12 @@ class Switch_R591(SerialInst):
             address, baudrate, bytesize, parity, stopbits, timeout, sleep, name=name
         )
 
-        if self.serial.is_open:
-            self.pulse_lenght = pulse_lenght
+        self._pulse_lenght = pulse_lenght
+
+    def connect(self):
+        """Connect and set the pulse length."""
+        super().connect()
+        self.pulse_lenght = self._pulse_lenght
 
     @property
     def pulse_lenght(self):
