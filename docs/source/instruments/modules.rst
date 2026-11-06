@@ -17,3 +17,4 @@ Supported Instruments
    N9916A
    triton
    proteox
+   PXIE5170R
