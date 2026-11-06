@@ -3,7 +3,21 @@ Proteox controller
 
 High-level controller for the Proteox cryostat system by Oxford Instruments, interfacing via WAMP.
 
-To configure the connection, you must include a ``.env`` file in the same folder as the Proteox module. This file must contain the following entries:
+Two classes are available:
+
+* :class:`~qtics.instruments.oxford.proteox.AsyncProteox`: asynchronous API, every method must be awaited.
+* :class:`~qtics.instruments.oxford.proteox.Proteox`: synchronous wrapper (an :class:`~qtics.instruments.base.Instrument`).
+  It runs an ``AsyncProteox`` on an event loop in a daemon thread, so ``connect()``, ``disconnect()``,
+  ``get_<sensor>()``, ``set_<attribute>(value)`` and the recognized-state helpers are plain blocking calls.
+  Errors raised by the WAMP calls propagate to the caller.
+
+Credentials
+"""""""""""
+
+Both classes take ``url``, ``realm``, ``user`` and ``secret`` as arguments. Missing values are read in the
+constructor from the environment variables ``WAMP_ROUTER_URL``, ``WAMP_REALM``, ``WAMP_USER`` and
+``WAMP_USER_SECRET``, after loading a ``.env`` file with python-dotenv (searched from the calling script's folder upwards).
+Nothing is read at import time. Example ``.env`` (keep it out of version control):
 
 .. code-block:: bash
 
@@ -11,24 +25,36 @@ To configure the connection, you must include a ``.env`` file in the same folder
    WAMP_USER_SECRET="*************"
    WAMP_REALM="ucss"
    WAMP_ROUTER_URL="ws://************:8080/ws"
-   BIND_SERVER_TO_INTERFACE="localhost"
-   SERVER_PORT="33576"
+
+
+Synchronous example
+"""""""""""""""""""
+
+.. code-block:: python
+
+   from qtics import Proteox
+
+   with Proteox() as instrument:   # connect() / disconnect()
+       mix = instrument.get_MC_T()
+       pt1 = instrument.get_PT1_T1()
+       print(f"MIX: {mix*1000:.2f} mK, PT1: {pt1:.2f} K")
+       instrument.set_MC_T(0.1)    # K
+
+
+Asynchronous example
+""""""""""""""""""""
 
 .. warning::
 
-   All API methods (including sensor accessors and recognized-state helpers) are asynchronous and must be used with ``await`` inside an async function.
-
-
-Example of operations
-"""""""""""""""""""""
+   All ``AsyncProteox`` methods (including sensor accessors and recognized-state helpers) are coroutines and must be used with ``await`` inside an async function.
 
 .. code-block:: python
 
    from asyncio import run
-   from qtics import Proteox
+   from qtics import AsyncProteox
 
    async def myfun():
-       instrument = Proteox()
+       instrument = AsyncProteox()
        await instrument.connect()
 
        mix = await instrument.get_MC_T()
@@ -56,7 +82,7 @@ Commands
 
   Connect to the Proteox cryostat via WAMP.
 
-* **close()**
+* **close()** (``AsyncProteox``) / **disconnect()** (``Proteox``)
 
   Cleanly disconnect from the cryostat session.
 
@@ -155,7 +181,7 @@ Dynamic setters
 ---------------
 
 The following control parameters are available via dynamic setter methods.
-Each setter corresponds to a WAMP procedure call and must be awaited.
+Each setter corresponds to a WAMP procedure call (awaited with ``AsyncProteox``).
 
 Example
 """""""
@@ -188,7 +214,7 @@ Magnet Control
 
 .. note::
 
-   Setter operations must always be awaited, and they raise if the WAMP call fails.
+   ``AsyncProteox`` setters must always be awaited (``Proteox`` setters block), and they raise if the WAMP call fails.
    Parameters follow the Proteox manual (MAN-NS-0002) Appendix D: a tuple value
    is passed as the list of call parameters.
    Example: ``await instrument.set_MAG_STATE(30)``
@@ -233,7 +259,7 @@ The state recognition logic is based on the following operational truth table:
 Available high-level methods
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-You can access the recognized-state API directly from the ``Proteox`` object.
+You can access the recognized-state API directly from the ``AsyncProteox`` object (awaited, as below) or from the ``Proteox`` wrapper (same names, without ``await``).
 
 **Check whether the current state is recognized**
 
@@ -302,10 +328,10 @@ Full example
 .. code-block:: python
 
    from asyncio import run
-   from qtics import Proteox
+   from qtics import AsyncProteox
 
    async def myfun():
-       instrument = Proteox()
+       instrument = AsyncProteox()
        await instrument.connect()
 
        ok = await instrument.is_in_recognized_state()
@@ -330,7 +356,7 @@ Full example
 Internal recognized-state manager
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ``Proteox`` object internally exposes a recognized-state manager:
+The ``AsyncProteox`` object internally exposes a recognized-state manager:
 
 .. code-block:: python
 

@@ -28,6 +28,9 @@ extensions = [
     "sphinx_last_updated_by_git",
 ]
 
+# Document each class once, in its defining module, not where it is re-exported
+autodoc_default_options = {"ignore-module-all": True}
+
 templates_path = ["_templates"]
 exclude_patterns = []
 

@@ -10,9 +10,10 @@ jobs:
       run:
         shell: bash
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Setup python
-        uses: actions/setup-python@v4
+        id: setup-python
+        uses: actions/setup-python@v5
         with:
           python-version: "3.12"
       - name: Install and configure poetry
@@ -21,16 +22,16 @@ jobs:
           virtualenvs-create: true
           virtualenvs-in-project: true
       - name: Load cached venv
-        id: cached-pip-wheels
-        uses: actions/cache@v3
+        id: cached-venv
+        uses: actions/cache@v4
         with:
-          path: ~/.cache
-          key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
+          path: .venv
+          key: venv-release-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
       - name: Install dependencies
         run: poetry install --no-interaction --no-root
-        if: steps.cache.outputs.cache-hit != 'true'
+        if: steps.cached-venv.outputs.cache-hit != 'true'
       - name: Install project
-        run: poetry install --no-interaction --with docs,analysis,experiments
+        run: poetry install --no-interaction --with docs,analysis
       - name: Add credentials
         run: poetry config pypi-token.pypi "${{ secrets.PYPI_TOKEN }}"
       - name: Publish package
