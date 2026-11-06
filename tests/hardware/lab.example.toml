@@ -46,6 +46,10 @@ address = "/dev/ttyACM1"  # Arduino serial port
 [Pxie5170R]
 address = "PXI1Slot2"  # NI resource name
 
+[PicoScope5000A]
+serial = ""  # empty opens the first unit found
+resolution = 8
+
 # Cryostats: read-only tests.
 [Triton]
 address = "192.168.0.x"

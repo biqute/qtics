@@ -30,6 +30,7 @@ _EXPORTS = {
     "FSW0010": "qtics.instruments.ni.quicksyn",
     "FSW0020": "qtics.instruments.ni.quicksyn",
     "Pxie5170R": "qtics.instruments.ni.pxie5170r",
+    "PicoScope5000A": "qtics.instruments.pico.ps5000a",
     "Valon5019": "qtics.instruments.valon.v5019",
     "SIM928": "qtics.instruments.srs.sim928",
     "Triton": "qtics.instruments.oxford.triton",
@@ -98,6 +99,7 @@ if TYPE_CHECKING:
     )
     from qtics.instruments.oxford.proteox import AsyncProteox, Proteox
     from qtics.instruments.oxford.triton import Triton
+    from qtics.instruments.pico.ps5000a import PicoScope5000A
     from qtics.instruments.rohde_schwarz.fsv3030 import FSV3030
     from qtics.instruments.rohde_schwarz.sma100b import SMA100B
     from qtics.instruments.rohde_schwarz.znb import ZNB
