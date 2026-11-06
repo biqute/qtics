@@ -33,6 +33,7 @@ _EXPORTS = {
     "Valon5019": "qtics.instruments.valon.v5019",
     "SIM928": "qtics.instruments.srs.sim928",
     "Triton": "qtics.instruments.oxford.triton",
+    "DPO3014": "qtics.instruments.tektronix.dpo3014",
     "Proteox": "qtics.instruments.oxford.proteox",
     "AsyncProteox": "qtics.instruments.oxford.proteox",
     "R591Switch": "qtics.instruments.arduino.r591_switch",
@@ -102,6 +103,7 @@ if TYPE_CHECKING:
     from qtics.instruments.rohde_schwarz.sma100b import SMA100B
     from qtics.instruments.rohde_schwarz.znb import ZNB
     from qtics.instruments.srs.sim928 import SIM928
+    from qtics.instruments.tektronix.dpo3014 import DPO3014
     from qtics.instruments.valon.v5019 import Valon5019
 
     RSZNB = ZNB
