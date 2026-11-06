@@ -133,9 +133,8 @@ class Pxie5170R(Instrument):
 
     @coupling.setter
     def coupling(self, value: str):
-        # TODO: add validate
         mapping = {"AC": ni.VerticalCoupling.AC, "DC": ni.VerticalCoupling.DC}
-        self._coupling = mapping[value]
+        self._coupling = mapping[self.validate_opt(value, tuple(mapping))]
 
     @property
     def sample_rate(self) -> int:
