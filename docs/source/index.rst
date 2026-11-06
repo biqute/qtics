@@ -8,7 +8,6 @@ Welcome to Qtics's documentation!
    installation
    migration
    arduino
-   experiments
    instruments/modules
 
 .. toctree::

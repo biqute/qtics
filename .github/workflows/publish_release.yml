@@ -31,7 +31,7 @@ jobs:
         run: poetry install --no-interaction --no-root
         if: steps.cached-venv.outputs.cache-hit != 'true'
       - name: Install project
-        run: poetry install --no-interaction --with docs,analysis,experiments
+        run: poetry install --no-interaction --with docs,analysis
       - name: Add credentials
         run: poetry config pypi-token.pypi "${{ secrets.PYPI_TOKEN }}"
       - name: Publish package
