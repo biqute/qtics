@@ -11,6 +11,7 @@ Supported Instruments
    6514
    2231A
    SMA100B
+   SDG6052X
    VALON519
    RSZNB
    RSFSV

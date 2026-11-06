@@ -1,0 +1,82 @@
+Siglent SDG6052X arbitrary waveform generator
+=============================================
+
+Siglent SDG6052X 2-channel arbitrary waveform generator.
+The manuals of this instrument and similar models are available at `Siglent <https://www.siglent.com/products/sdg6000x-series/>`_.
+The SCPI commands and functions can be found in the `programming guide <https://siglentna.com/resources/documents/waveform-generators/>`_.
+
+Base class: :class:`qtics.instruments.base.SCPIInstrument`.
+
+The instrument is controlled through the raw socket port 5025. Each channel is
+accessed with ``awg.channel(n)`` (``n`` = 1 or 2), which returns an
+:class:`~qtics.instruments.siglent.sdg6052x.SDGChannel`. The burst, sweep and
+modulation parameters can only be read while the respective mode is enabled.
+
+Example of operations
+---------------------
+.. code-block:: python
+
+  from qtics import SDG6052X
+
+  awg = SDG6052X("192.168.40.20")
+  awg.connect()
+  ch = awg.channel(1)
+
+Output a 1 kHz sine of 0.1 Vpp into a high impedance load.
+
+.. code-block:: python
+
+  ch.output = False
+  ch.load = "HZ"
+  ch.waveform = "SINE"
+  ch.frequency = 1e3
+  ch.amplitude = 0.1
+  ch.offset = 0
+  ch.output = True
+
+Sweep the frequency from 1 kHz to 1 MHz in 2 seconds.
+
+.. code-block:: python
+
+  ch.sweep_enable = True
+  ch.sweep_start = 1e3
+  ch.sweep_stop = 1e6
+  ch.sweep_time = 2
+  ch.sweep_mode = "LOG"
+
+Upload an arbitrary waveform (samples in [-1, 1]) and play it.
+
+.. code-block:: python
+
+  import numpy as np
+
+  t = np.linspace(0, 2 * np.pi, 4096, endpoint=False)
+  ch.upload_waveform(np.sin(t) * np.exp(-t / 2), "decay", frequency=1e3, amplitude=1)
+  ch.output = True
+
+Commands
+""""""""
+
+Instrument functions
+--------------------
+- channel(number)
+- get_id()
+- reset()
+- clear()
+- wait()
+
+Channel functions
+-----------------
+- basic_wave()
+- trigger_burst()
+- trigger_sweep()
+- upload_waveform(data, name, frequency, amplitude, offset, select)
+
+Channel properties
+------------------
+- output, load, polarity
+- waveform, frequency, amplitude, offset, phase, duty, symmetry, high_level, low_level
+- burst_enable, burst_mode, burst_cycles, burst_period, burst_delay, burst_trigger_source
+- sweep_enable, sweep_start, sweep_stop, sweep_time, sweep_mode, sweep_direction, sweep_trigger_source
+- mod_enable, mod_type, mod_source, mod_shape, mod_frequency, mod_depth, mod_deviation
+- arb_name
