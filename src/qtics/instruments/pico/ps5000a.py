@@ -690,9 +690,7 @@ class PicoScope5000A(Instrument):
         )  # fmt: skip
         self._warn_overflow(overflow.value, channels)
         return {
-            name: self._to_volts(
-                np.frombuffer(buffer, dtype=np.int16, count=count.value), name
-            )
+            name: self._to_volts(np.ctypeslib.as_array(buffer)[: count.value], name)
             for name, buffer in buffers.items()
         }
 
@@ -812,9 +810,7 @@ class PicoScope5000A(Instrument):
         return {
             name: np.stack(
                 [
-                    self._to_volts(
-                        np.frombuffer(buffer, dtype=np.int16, count=count.value), name
-                    )
+                    self._to_volts(np.ctypeslib.as_array(buffer)[: count.value], name)
                     for buffer in segments
                 ]
             )
