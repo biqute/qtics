@@ -21,6 +21,9 @@ Some drivers need optional packages, installed with the corresponding extra:
    pip install "qtics[proteox]"
    pip install "qtics[all]"
 
+GPIB instruments (``GPIBTransport``) need the GPIB driver, no Python package:
+linux-gpib on Linux or NI-488.2 on Windows.
+
 For development, clone the repository and install it with Poetry, including the
 extras and the dependency groups for experiments, analysis (tests, linters) and docs:
 
