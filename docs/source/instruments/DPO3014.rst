@@ -1,0 +1,70 @@
+Tektronix DPO3014 oscilloscope
+==============================
+
+Driver for the 4-channel `DPO3014` digital phosphor oscilloscope by Tektronix (MSO3000 and DPO3000 series), controlled over LAN through its socket server.
+
+The SCPI commands can be found in the `MSO3000 and DPO3000 Series Programmer Manual <https://download.tek.com/manual/MSO3000-and-DPO3000-Programmer-Manual.pdf>`_.
+
+Enabling the socket server
+--------------------------
+On the oscilloscope push ``Utility``, ``Utility Page``, select ``I/O``, push ``Socket Server`` and enable it with protocol ``None``. The default port is 4000 and can be changed on the same menu (pass ``port=...`` to the driver in that case).
+
+Base class: :class:`qtics.instruments.base.SCPIInstrument` (socket transport, port 4000). On connection the response headers are switched off, so that queries return bare values.
+
+Example of operation
+---------------------
+
+.. code-block:: python
+
+  from qtics import DPO3014
+
+  scope = DPO3014("192.168.0.20")
+  scope.connect()
+
+  scope.horizontal_scale = 1e-6  # s/div
+  scope.record_length = 10000
+  scope.channel(1).scale = 0.1  # V/div
+  scope.trigger_source = "CH1"
+  scope.trigger_level = 0.1
+
+  data = scope.acquire([1, 2])  # single sequence, {channel: (time, volts)}
+  t, v = data[1]
+  freq = scope.measure("FREQuency", 1)
+
+Commands
+""""""""
+Other than featuring all the methods of :class:`qtics.instruments.base.SCPIInstrument`, the :class:`qtics.instruments.tektronix.dpo3014.DPO3014` class contains the following methods and properties:
+
+Functions
+------------
+- channel(): :class:`qtics.instruments.tektronix.dpo3014.DPOChannel` of channel 1-4
+- force_trigger()
+- run()
+- stop()
+- single(): single sequence acquisition waiting for completion
+- read_waveform(): read a channel record as ``(time, volts)``
+- acquire(): single sequence and read of several channels
+- measure(): immediate measurement (FREQuency, PERIod, PK2Pk, MEAN, RMS, AMPlitude, HIGH, LOW, RISe, FALL, ...)
+
+Properties
+------------
+- horizontal_scale
+- record_length
+- horizontal_position
+- trigger_source
+- trigger_level
+- trigger_slope
+- trigger_mode
+- acquire_mode
+- averages
+- running
+
+Channel properties (:class:`qtics.instruments.tektronix.dpo3014.DPOChannel`)
+----------------------------------------------------------------------------
+- enabled
+- scale
+- offset
+- position
+- coupling
+- termination
+- bandwidth

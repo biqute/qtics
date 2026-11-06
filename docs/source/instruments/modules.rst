@@ -14,6 +14,7 @@ Supported Instruments
    VALON519
    RSZNB
    RSFSV
+   DPO3014
    N9916A
    triton
    proteox

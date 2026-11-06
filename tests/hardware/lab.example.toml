@@ -51,3 +51,8 @@ address = "PXI1Slot2"  # NI resource name
 address = "192.168.0.x"
 
 [Proteox]  # empty table enables the tests, credentials come from the usual env/.env
+
+# Oscilloscope: the socket server must be enabled (Utility > I/O > Socket Server,
+# protocol None). The port is 4000 unless changed on the scope.
+[DPO3014]
+address = "192.168.0.x"  # optional: port = 4000
