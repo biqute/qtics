@@ -1,0 +1,36 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+*{box-sizing:border-box;margin:0}
+body{width:1440px;height:900px;overflow:hidden;font-family:system-ui,sans-serif;color:#1f2328;background:#fff;display:grid;grid-template-columns:280px 1fr 240px}
+nav{background:#f8f9fb;border-right:1px solid #e6e8eb;padding:24px}
+.logo{font-weight:700;font-size:20px;color:#6400ff;margin-bottom:18px}
+.s{border:1px solid #d8dbe0;border-radius:6px;padding:8px 10px;color:#5f6670;font-size:14px;margin-bottom:22px}
+nav h4{font-size:12px;color:#6b7280;text-transform:uppercase;letter-spacing:.06em;margin:18px 0 8px}
+nav a{display:block;font-size:15px;padding:4px 0;color:#1f2328}
+nav a.here{color:#6400ff;font-weight:600}
+main{padding:48px 64px}
+h1{font-size:40px;font-weight:700;margin-bottom:14px}
+p{font-size:17px;line-height:1.6;max-width:62ch;color:#3d434b}
+pre{margin:24px 0;background:#f6f8fa;border:1px solid #e6e8eb;border-radius:8px;padding:18px 22px;font:14px/1.7 ui-monospace,monospace;max-width:760px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:820px}
+.cards div{border:1px solid #e6e8eb;border-radius:8px;padding:14px;font-size:15px}
+.cards i{display:block;font-style:normal;font-size:12px;color:#6b7280}
+aside{padding:48px 20px;font-size:14px;color:#3d434b}
+aside a{display:block;padding:4px 0}
+</style></head><body>
+<nav><div class="logo">qtics</div><div class="s">Search…</div>
+<h4>Guides</h4><a class="here">Overview</a><a>Installation</a><a>Experiments</a><a>Migration</a>
+<h4>Instruments</h4><a>ZNB</a><a>N9916A</a><a>SMA100B</a><a>Valon 5019</a><a>Triton</a>
+<h4>Reference</h4><a>API reference</a></nav>
+<main><h1>qtics</h1>
+<p>Python drivers for the instruments of the BiQuTe cryogenic lab, with one interface per instrument type.</p>
+<pre>pip install qtics
+
+from qtics import SMA100B, ZNB
+with ZNB("192.168.0.4") as vna:
+    freqs, s21 = vna.snapshot()</pre>
+<div class="cards"><div><i>VNA</i>R&amp;S ZNB</div><div><i>RF source</i>R&amp;S SMA100B</div><div><i>Cryostat</i>Oxford Triton</div>
+<div><i>VNA</i>Keysight N9916A</div><div><i>RF source</i>Valon 5019</div><div><i>Power supply</i>Keithley 2231A</div></div></main>
+<aside>On this page<a>Install</a><a>Quick start</a><a>Instruments</a></aside>
+</body></html>

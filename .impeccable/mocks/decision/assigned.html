@@ -1,0 +1,70 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--red:#e2001a;--ink:#1d1d1b;--stone:#f1f2f0;--rule:#d5d8d4;--m2:#00843d;--m3:#f7b500;--m5:#8e6fb5;--m4:#0072bc;}
+*{box-sizing:border-box;margin:0}
+body{width:1440px;height:900px;overflow:hidden;font-family:Archivo,sans-serif;color:var(--ink);background:#fff}
+.band{height:76px;background:var(--red);color:#fff;display:flex;align-items:center;padding:0 40px;gap:28px}
+.band .logo{background:#fff;border-radius:3px;padding:6px 10px;font-weight:800;color:var(--red);font-size:15px}
+.band .station{font-stretch:112%;font-weight:700;font-size:30px;letter-spacing:.01em}
+.band .station small{font-weight:500;font-size:15px;opacity:.85;margin-left:14px}
+.band .right{margin-left:auto;display:flex;gap:14px;align-items:center;font-size:14px}
+.ver{border:2px solid #fff;border-radius:3px;padding:5px 10px;font-weight:600}
+.search{background:rgba(255,255,255,.16);border-radius:3px;padding:7px 14px;width:220px}
+.wrap{display:grid;grid-template-columns:270px 1fr 230px;height:824px}
+nav{background:var(--stone);padding:28px 0 0 40px;border-right:1px solid var(--rule)}
+nav h4{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#6b6e6a;margin:22px 0 10px}
+.line{position:relative;padding-left:22px}
+.line:before{content:"";position:absolute;left:5px;top:6px;bottom:6px;width:4px;background:var(--c,var(--red))}
+.line a{display:block;position:relative;font-size:15px;padding:5px 0;color:var(--ink)}
+.line a:before{content:"";position:absolute;left:-21px;top:11px;width:10px;height:4px;background:var(--c,var(--red))}
+.line a.here{font-weight:700}
+.line a.here:before{left:-24px;top:6px;width:14px;height:14px;border-radius:50%;background:#fff;border:4px solid var(--c,var(--red))}
+main{padding:44px 64px;max-width:780px}
+.kick{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--red);font-weight:700}
+h1{font-stretch:115%;font-size:52px;font-weight:800;line-height:1.02;margin:10px 0 16px}
+p{font-size:17px;line-height:1.6;max-width:62ch;color:#33342f}
+pre{margin:26px 0;background:#1d1d1b;color:#e9eae6;border-radius:4px;padding:18px 0;font:14px/1.7 "JetBrains Mono",monospace}
+pre span{display:block;padding:0 22px}
+pre .hl{background:rgba(226,0,26,.28);box-shadow:inset 4px 0 var(--red)}
+.u{display:inline-block;font:600 11px "JetBrains Mono";background:#fff;color:var(--ink);border-radius:2px;padding:0 4px;margin-left:6px}
+h2{font-size:24px;font-weight:700;margin:6px 0 14px;display:flex;align-items:center;gap:10px}
+.cat{display:grid;grid-template-columns:1fr 1fr;gap:10px 28px}
+.cat div{display:flex;align-items:center;gap:10px;font-size:15px;border-bottom:1px solid var(--rule);padding:8px 0}
+.r{width:26px;height:26px;border-radius:50%;color:#fff;font-weight:800;font-size:12px;display:grid;place-items:center;flex:none}
+aside{padding:44px 24px;border-left:1px solid var(--rule);font-size:14px}
+aside h4{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#6b6e6a;margin-bottom:12px}
+aside a{display:block;padding:5px 0;color:var(--ink)}
+</style></head><body>
+<header class="band"><span class="logo">BiQuTe</span><span class="station">qtics<small>Quantum Technologies Instrumentation ControlS</small></span>
+<div class="right"><span class="search">Search docs</span><span class="ver">● 0.1.0 latest ▾</span><span>GitHub</span></div></header>
+<div class="wrap">
+<nav>
+<h4>Guides</h4>
+<div class="line"><a class="here">Overview</a><a>Installation</a><a>Experiments</a><a>Migrating to 0.1</a></div>
+<h4>Instruments</h4>
+<div class="line" style="--c:var(--m2)"><a>Network &amp; spectrum analyzers</a></div>
+<div class="line" style="--c:var(--m3)"><a>RF sources</a></div>
+<div class="line" style="--c:var(--m4)"><a>Power supplies &amp; meters</a></div>
+<div class="line" style="--c:var(--m5)"><a>Cryostats</a><a>Arduino devices</a></div>
+<h4>Reference</h4>
+<div class="line" style="--c:#6b6e6a"><a>API reference</a></div>
+</nav>
+<main>
+<div class="kick">BiQuTe cryogenic lab · Python</div>
+<h1>Drive the lab's instruments from Python.</h1>
+<p>One driver per instrument, one interface per instrument type: SI units, on/off as booleans, settings as properties and actions as methods.</p>
+<pre><span>from qtics import SMA100B, ZNB</span><span> </span><span>with ZNB("192.168.0.4") as vna, SMA100B("192.168.0.5") as src:</span><span>    src.frequency = 5e9<span class="u">Hz</span></span><span>    src.output = True</span><span>    vna.set(f_start=4e9, f_stop=6e9, points=1001)</span><span class="hl">    freqs, s21 = vna.snapshot()</span></pre>
+<h2>Instruments</h2>
+<div class="cat">
+<div><span class="r" style="background:var(--m2)">VNA</span>Rohde &amp; Schwarz ZNB</div>
+<div><span class="r" style="background:var(--m3);color:var(--ink)">RF</span>Rohde &amp; Schwarz SMA100B</div>
+<div><span class="r" style="background:var(--m2)">VNA</span>Keysight N9916A</div>
+<div><span class="r" style="background:var(--m3);color:var(--ink)">RF</span>Valon 5019</div>
+<div><span class="r" style="background:var(--m2)">SA</span>Rohde &amp; Schwarz FSV3030</div>
+<div><span class="r" style="background:var(--m4)">PS</span>Keithley 2231A</div>
+</div>
+</main>
+<aside><h4>On this page</h4><a>Quick start</a><a>Instruments</a><a>Experiments</a><a>Testing without hardware</a></aside>
+</div></body></html>

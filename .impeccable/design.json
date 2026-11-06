@@ -1,0 +1,532 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-05T13:30:00Z",
+  "title": "Design System: qtics documentation",
+  "extensions": {
+    "colorMeta": {
+      "can": {
+        "role": "neutral",
+        "displayName": "Can Navy",
+        "canonical": "#0f1b2a",
+        "tonalRamp": [
+          "#0f1b2a",
+          "#172a41",
+          "#284870",
+          "#39669f",
+          "#5585c2",
+          "#84a7d3",
+          "#b2c8e4",
+          "#e1eaf4"
+        ]
+      },
+      "can-raised": {
+        "role": "neutral",
+        "displayName": "Raised Can",
+        "canonical": "#172638",
+        "tonalRamp": [
+          "#070c12",
+          "#172638",
+          "#2c496c",
+          "#3f6899",
+          "#5b87bc",
+          "#88a8ce",
+          "#b5c9e1",
+          "#e2eaf3"
+        ]
+      },
+      "can-line": {
+        "role": "neutral",
+        "displayName": "Can Seam",
+        "canonical": "#2c3d52",
+        "tonalRamp": [
+          "#090c11",
+          "#1f2b3a",
+          "#2c3d52",
+          "#4b688c",
+          "#6988ae",
+          "#92a9c4",
+          "#bbc9db",
+          "#e4eaf1"
+        ]
+      },
+      "accent": {
+        "role": "primary",
+        "displayName": "Lab Blue",
+        "canonical": "#4fa3d1",
+        "tonalRamp": [
+          "#050f14",
+          "#123446",
+          "#205979",
+          "#2d7eab",
+          "#4fa3d1",
+          "#7abadc",
+          "#acd4e9",
+          "#dfeef7"
+        ]
+      },
+      "accent-light": {
+        "role": "primary",
+        "displayName": "Pale Lab Blue",
+        "canonical": "#8cc6e6",
+        "tonalRamp": [
+          "#050f15",
+          "#103549",
+          "#1b5a7d",
+          "#2780b1",
+          "#41a1d6",
+          "#8cc6e6",
+          "#a9d5ec",
+          "#ddeef8"
+        ]
+      },
+      "plate": {
+        "role": "neutral",
+        "displayName": "Plate Navy",
+        "canonical": "#182a3f",
+        "tonalRamp": [
+          "#070c12",
+          "#182a3f",
+          "#2a4a6e",
+          "#3b689c",
+          "#5888bf",
+          "#86a8d1",
+          "#b4c9e2",
+          "#e1eaf4"
+        ]
+      },
+      "plate-link": {
+        "role": "neutral",
+        "displayName": "Plate Link",
+        "canonical": "#e6edf4",
+        "tonalRamp": [
+          "#080d12",
+          "#1b2c3e",
+          "#2f4c6a",
+          "#426c96",
+          "#5f8cb8",
+          "#8babcc",
+          "#b7cbdf",
+          "#e6edf4"
+        ]
+      },
+      "window": {
+        "role": "neutral",
+        "displayName": "Window Pane",
+        "canonical": "#f5f7fa",
+        "tonalRamp": [
+          "#090c11",
+          "#1e293b",
+          "#334766",
+          "#486590",
+          "#6584b2",
+          "#8fa6c7",
+          "#bac7dc",
+          "#f5f7fa"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#1b2430",
+        "tonalRamp": [
+          "#090c10",
+          "#1b2430",
+          "#374961",
+          "#4e688a",
+          "#6b87ac",
+          "#94a8c3",
+          "#bcc9d9",
+          "#e5eaf0"
+        ]
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Soft Ink",
+        "canonical": "#475466",
+        "tonalRamp": [
+          "#0a0c0f",
+          "#242b34",
+          "#475466",
+          "#59697f",
+          "#7788a0",
+          "#9ca9ba",
+          "#c2c9d4",
+          "#e7eaee"
+        ]
+      },
+      "ink-muted": {
+        "role": "neutral",
+        "displayName": "Muted Ink",
+        "canonical": "#566273",
+        "tonalRamp": [
+          "#0b0c0f",
+          "#262b33",
+          "#414a57",
+          "#566273",
+          "#7b899c",
+          "#9fa9b7",
+          "#c3cad2",
+          "#e8eaee"
+        ]
+      },
+      "link": {
+        "role": "primary",
+        "displayName": "Link Blue",
+        "canonical": "#1b6290",
+        "tonalRamp": [
+          "#040f15",
+          "#0e334b",
+          "#1b6290",
+          "#227cb6",
+          "#3d9cdb",
+          "#72b7e5",
+          "#a7d3ef",
+          "#ddeef9"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Rule",
+        "canonical": "#d5dde6",
+        "tonalRamp": [
+          "#0a0d10",
+          "#212c38",
+          "#394b5f",
+          "#506a87",
+          "#6e8aa9",
+          "#96aac0",
+          "#becad8",
+          "#d5dde6"
+        ]
+      },
+      "tint": {
+        "role": "neutral",
+        "displayName": "Tint",
+        "canonical": "#e7edf3",
+        "tonalRamp": [
+          "#090d11",
+          "#1e2c3b",
+          "#334c66",
+          "#486c90",
+          "#658cb2",
+          "#8fabc7",
+          "#bacbdc",
+          "#e7edf3"
+        ]
+      },
+      "highlight": {
+        "role": "neutral",
+        "displayName": "Highlight",
+        "canonical": "#d9eaf6",
+        "tonalRamp": [
+          "#050e15",
+          "#113148",
+          "#1d547b",
+          "#2977ae",
+          "#4498d3",
+          "#78b4df",
+          "#abd0eb",
+          "#d9eaf6"
+        ]
+      },
+      "can-dark": {
+        "role": "neutral",
+        "displayName": "Can Navy (dark mode)",
+        "canonical": "#0a131e",
+        "tonalRamp": [
+          "#0a131e",
+          "#162a43",
+          "#264872",
+          "#3666a2",
+          "#5286c5",
+          "#81a7d5",
+          "#b1c8e5",
+          "#e0eaf5"
+        ]
+      },
+      "window-dark": {
+        "role": "neutral",
+        "displayName": "Window Pane (dark mode)",
+        "canonical": "#141e2a",
+        "tonalRamp": [
+          "#080c11",
+          "#141e2a",
+          "#314a67",
+          "#466892",
+          "#6388b4",
+          "#8da9c9",
+          "#b8c9dd",
+          "#e3eaf2"
+        ]
+      },
+      "ink-dark": {
+        "role": "neutral",
+        "displayName": "Ink (dark mode)",
+        "canonical": "#e3e9f0",
+        "tonalRamp": [
+          "#090c11",
+          "#1f2b3a",
+          "#354a63",
+          "#4b698c",
+          "#6989ae",
+          "#92a9c5",
+          "#bbcadb",
+          "#e3e9f0"
+        ]
+      },
+      "tint-dark": {
+        "role": "neutral",
+        "displayName": "Tint (dark mode)",
+        "canonical": "#1c2836",
+        "tonalRamp": [
+          "#090c11",
+          "#1c2836",
+          "#344a64",
+          "#4a698e",
+          "#6789b0",
+          "#91a9c6",
+          "#bacadb",
+          "#e4eaf1"
+        ]
+      },
+      "link-dark": {
+        "role": "primary",
+        "displayName": "Link Blue (dark mode)",
+        "canonical": "#7fc0e6",
+        "tonalRamp": [
+          "#040f15",
+          "#0f344a",
+          "#195a7f",
+          "#237fb4",
+          "#3ea0d9",
+          "#7fc0e6",
+          "#a8d4ee",
+          "#ddeef8"
+        ]
+      },
+      "placeholder": {
+        "role": "neutral",
+        "displayName": "Placeholder Blue-Grey",
+        "canonical": "#9fb0c3",
+        "tonalRamp": [
+          "#0a0d10",
+          "#222c37",
+          "#3b4b5e",
+          "#536a85",
+          "#718aa6",
+          "#9fb0c3",
+          "#bfcad7",
+          "#e6eaef"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Page H1 only; 2rem below 67em."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Article h2, always preceded by the accent bar."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Article h3."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Paragraphs and list items, capped at 72ch."
+      },
+      "stage-caption": {
+        "displayName": "Stage Caption",
+        "purpose": "Sidebar plate names, sentence case; the caption is a link."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Instrument group rubrics, muted, 0.8125rem."
+      },
+      "code": {
+        "displayName": "Code",
+        "purpose": "Code blocks; inline code at 0.85em."
+      },
+      "group-link": {
+        "displayName": "Group Link",
+        "purpose": "Instrument catalogue links, 550 weight."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "sidebar-hover",
+        "value": "background-color 150ms ease-out",
+        "purpose": "Hover fill on stage plate entries."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "narrow",
+        "value": "67em",
+        "purpose": "Window gutter tightens to 0.5rem, H1 drops to 2rem (intentional)."
+      },
+      {
+        "name": "wide",
+        "value": "82em",
+        "purpose": "Window right margin becomes max(0.75rem, 50% - 41em), mirroring the left gutter."
+      }
+    ],
+    "states": [
+      {
+        "name": "focus-ring",
+        "value": "outline: 2px solid #4fa3d1; outline-offset: 2px"
+      },
+      {
+        "name": "selection",
+        "value": "background: #4fa3d159"
+      },
+      {
+        "name": "hover-on-dark",
+        "value": "#ffffff14",
+        "purpose": "intentional hover overlay"
+      },
+      {
+        "name": "hover-on-accent",
+        "value": "#00000014",
+        "purpose": "intentional hover overlay"
+      },
+      {
+        "name": "code-emphasis",
+        "value": "#4fa3d133",
+        "purpose": "forced with !important over pygments"
+      },
+      {
+        "name": "code-edge-dark",
+        "value": "1px solid #2a3a4e"
+      },
+      {
+        "name": "placeholder",
+        "value": "color: #9fb0c3 (intentional)"
+      },
+      {
+        "name": "panel-radius",
+        "value": "border-radius: 8px (intentional)"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Stage Plate",
+      "kind": "nav",
+      "refersTo": "stage-plate",
+      "description": "A sidebar toctree section as a resting cryostat stage; the caption is a link.",
+      "html": "<nav class=\"ds-stages\"><div class=\"ds-plate\"><p class=\"ds-caption\"><a href=\"#\">Instruments</a></p><ul><li><a href=\"#\">Supported instruments</a></li><li><a href=\"#\">Compile Arduino firmware</a></li></ul></div><div class=\"ds-plate\"><p class=\"ds-caption\"><a href=\"#\">Experiments</a></p><ul><li><a href=\"#\">Experiments</a></li></ul></div></nav>",
+      "css": ".ds-stages { background: #0f1b2a; padding: 0.75rem 0; width: 15rem; font-family: 'Archivo', system-ui, sans-serif; } .ds-plate { margin: 0.75rem 0.75rem 0; background: #182a3f; border-radius: 6px; } .ds-caption { margin: 0; padding: 0.7rem 1rem 0.35rem; font-weight: 650; font-size: 1rem; } .ds-caption a { color: #e6edf4; text-decoration: none; } .ds-caption a:hover { text-decoration: underline; text-underline-offset: 0.25em; } .ds-plate ul { list-style: none; margin: 0; padding: 0 0 0.6rem; } .ds-plate li a { display: block; padding: 0.35rem 1rem; color: #e6edf4; text-decoration: none; font-size: 0.875rem; transition: background-color 150ms ease-out; } .ds-plate li a:hover { background: #ffffff14; } a:focus-visible { outline: 2px solid #4fa3d1; outline-offset: 2px; }"
+    },
+    {
+      "name": "Current Stage Plate",
+      "kind": "nav",
+      "refersTo": "stage-plate-current",
+      "description": "The plate holding the current page: solid accent fill, can-colored text, current page bold and underlined.",
+      "html": "<div class=\"ds-plate-current\"><p class=\"ds-caption-c\"><a href=\"#\">Getting started</a></p><ul><li><a href=\"#\" class=\"ds-here\">Installation</a></li><li><a href=\"#\">Migrating to qtics 0.1</a></li></ul></div>",
+      "css": ".ds-plate-current { width: 15rem; background: #4fa3d1; border-radius: 6px; font-family: 'Archivo', system-ui, sans-serif; } .ds-caption-c { margin: 0; padding: 0.7rem 1rem 0.35rem; font-weight: 650; font-size: 1rem; color: #0f1b2a; } .ds-caption-c a { color: #0f1b2a; text-decoration: none; } .ds-plate-current ul { list-style: none; margin: 0; padding: 0 0 0.6rem; } .ds-plate-current a { display: block; padding: 0.35rem 1rem; color: #0f1b2a; text-decoration: none; font-size: 0.875rem; transition: background-color 150ms ease-out; } .ds-plate-current a:hover { background: #00000014; } .ds-plate-current a:focus-visible { outline: 2px solid #0f1b2a; outline-offset: 2px; } .ds-plate-current a.ds-here { font-weight: 700; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.3em; }"
+    },
+    {
+      "name": "Version Select",
+      "kind": "input",
+      "refersTo": "version-select",
+      "description": "Sidebar version switcher on the can: pale accent label, raised mono select.",
+      "html": "<div class=\"ds-versions\"><label class=\"ds-versions-label\" for=\"ds-v\">Version</label><select id=\"ds-v\" class=\"ds-versions-select\"><option>latest (0.1.0)</option><option>v0.0.6</option><option>v0.0.5</option></select></div>",
+      "css": ".ds-versions { display: flex; align-items: center; gap: 0.6rem; background: #0f1b2a; padding: 0.75rem; width: 15rem; } .ds-versions-label { font: 600 0.8125rem 'Archivo', system-ui, sans-serif; color: #8cc6e6; } .ds-versions-select { flex: 1; min-width: 0; padding: 0.4rem 0.5rem; font: 0.8125rem 'JetBrains Mono', ui-monospace, monospace; color: #e6edf4; background: #172638; border: 1px solid #2c3d52; border-radius: 4px; cursor: pointer; } .ds-versions-select:hover { border-color: #4fa3d1; } .ds-versions-select:focus-visible { outline: 2px solid #4fa3d1; outline-offset: 2px; }"
+    },
+    {
+      "name": "Sidebar Search",
+      "kind": "input",
+      "refersTo": "sidebar-search",
+      "description": "Search field on the can.",
+      "html": "<div class=\"ds-search-wrap\"><input class=\"ds-search\" type=\"search\" placeholder=\"Search\"></div>",
+      "css": ".ds-search-wrap { background: #0f1b2a; padding: 0.75rem; width: 15rem; } .ds-search { width: 100%; padding: 0.55rem 0.75rem; font: 0.875rem 'Archivo', system-ui, sans-serif; color: #e6edf4; background: #172638; border: 1px solid #2c3d52; border-radius: 4px; } .ds-search::placeholder { color: #9fb0c3; } .ds-search:focus-visible { outline: 2px solid #4fa3d1; outline-offset: 2px; }"
+    },
+    {
+      "name": "Section Heading",
+      "kind": "custom",
+      "refersTo": "headline",
+      "description": "Article h2 with the 2.5rem x 3px accent bar.",
+      "html": "<div class=\"ds-window\"><h2 class=\"ds-h2\">Instruments</h2><p class=\"ds-body\">Every driver also accepts a <a href=\"#\" class=\"ds-link\">FakeTransport</a>, so scripts can be tested without hardware.</p></div>",
+      "css": ".ds-window { background: #f5f7fa; color: #1b2430; border-radius: 10px; padding: 1.5rem 2rem; font-family: 'Archivo', system-ui, sans-serif; } .ds-h2 { font-size: 1.6rem; font-weight: 720; letter-spacing: -0.01em; margin: 0 0 0.75rem; } .ds-h2::before { content: ''; display: block; width: 2.5rem; height: 3px; margin-bottom: 0.9rem; background: #4fa3d1; } .ds-body { font-size: 1.0625rem; line-height: 1.65; max-width: 72ch; margin: 0; } .ds-link { color: #1b6290; text-decoration: underline; text-decoration-color: #1b629055; } .ds-link:hover { color: #124466; text-decoration-color: #1b6290; } .ds-link:focus-visible { outline: 2px solid #4fa3d1; outline-offset: 2px; }"
+    },
+    {
+      "name": "Code Block",
+      "kind": "card",
+      "refersTo": "code-block",
+      "description": "Code on the can's own color, with a translucent accent band for emphasized lines.",
+      "html": "<pre class=\"ds-code\"><span>from qtics import SMA100B</span>\n<span>with SMA100B(\"192.168.0.5\") as source:</span>\n<span class=\"ds-hll\">    source.frequency = 5e9  # Hz</span></pre>",
+      "css": ".ds-code { margin: 0; background: #0f1b2a; color: #e6edf4; border-radius: 6px; padding: 1rem 1.25rem; font: 0.8125rem/1.7 'JetBrains Mono', ui-monospace, monospace; overflow: hidden; } .ds-code span { display: block; } .ds-hll { margin: 0 -1.25rem; padding: 0 1.25rem; background: #4fa3d133; }"
+    },
+    {
+      "name": "Instrument Group",
+      "kind": "card",
+      "refersTo": "instrument-group",
+      "description": "Catalogue grid cell: tint panel, 8px radius, muted rubric, bare ink links at 550 weight.",
+      "html": "<div class=\"ds-group\"><p class=\"ds-rubric\">RF sources</p><ul><li><a href=\"#\">Rohde &amp; Schwarz SMA100B</a></li><li><a href=\"#\">Valon 5019</a></li></ul></div>",
+      "css": ".ds-group { width: 15rem; box-sizing: border-box; padding: 0.9rem 1.1rem 0.7rem; background: #e7edf3; border-radius: 8px; font-family: 'Archivo', system-ui, sans-serif; } .ds-rubric { margin: 0 0 0.35rem; font-weight: 650; font-size: 0.8125rem; color: #566273; } .ds-group ul { list-style: none; margin: 0; padding: 0; } .ds-group a { display: block; padding: 0.2rem 0; color: #1b2430; text-decoration: none; font-size: 1.0625rem; font-weight: 550; line-height: 1.4; } .ds-group a:hover { text-decoration: underline; text-underline-offset: 0.25em; color: #1b6290; } .ds-group a:focus-visible { outline: 2px solid #4fa3d1; outline-offset: 2px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Cryostat Descent",
+    "overview": "The docs are a dilution refrigerator seen in section. The whole frame is the deep navy vacuum can; the sidebar navigation is the stack of lab-blue stages, read top to bottom from the setup plate down to the API reference; the page itself is a light window inset into the can. A reader always knows which stage they are on because that plate fills with the accent.\n\nThe system is a restyle of Furo, not a replacement: every color lands through Furo's own custom properties, layered on a small set of `--qt-*` primitives on `body`. Density is that of a reference manual: a 72ch reading column, generous section breaks, code blocks that look like terminal output on the can's own color. Decoration is structural only: the accent bar on h2 and the accent edge on class signatures, which describe the cryostat rather than ornament the page.\n\nIt replaces the stock white-sidebar, purple-accent Python docs look.",
+    "keyCharacteristics": [
+      "Dark navy can frame around a single rounded light reading window.",
+      "Navigation as stage plates with 6px outer corners (caption 6px 6px 0 0, list 0 0 6px 6px); each plate caption is a link.",
+      "Current stage plate fills solid with the accent.",
+      "The instrument catalogue is a grid of tinted, 8px-rounded panels.",
+      "One accent family (Lab blue: accent for fills and edges, link blue for text links).",
+      "Archivo for all prose and headings, JetBrains Mono for code, both self-hosted."
+    ],
+    "rules": [
+      {
+        "name": "The Plating Rule",
+        "body": "The accent is the plating of the cryostat: it appears as the current-stage fill, as edges (the h2 bar, the class signature top border), and as focus. It is never a background for a resting surface on the reading window.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Hue Rule",
+        "body": "The palette has one hue family, blue. The accent (#4fa3d1) is for fills, edges and focus; link blue (#1b6290 light, #7fc0e6 dark) is for text. A second accent hue is not part of this system.",
+        "section": "colors"
+      },
+      {
+        "name": "The Sentence Case Caption Rule",
+        "body": "Stage captions override Furo's uppercase: sentence case, letter-spacing 0. Small-caps-style uppercase labels are not part of this system.",
+        "section": "typography"
+      },
+      {
+        "name": "The Readout Rule",
+        "body": "Monospace is reserved for code and measured values (version numbers in the select). Prose never goes mono.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat Can Rule",
+        "body": "Nothing casts a shadow. If a surface must stand out, change its tone or give it an accent edge.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Accent Edge Rule",
+        "body": "Structural markers are accent lines: the 2.5rem x 3px bar above each h2 and the 3px top border on API class signatures. Sidebar plates carry no top edge.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "**Do** route every color through Furo's custom properties backed by the `--qt-*` primitives, and define both light and dark values.",
+      "**Do** keep the 3px accent top border on class signatures and the 2.5rem x 3px accent bar above every article h2.",
+      "**Do** keep plates at 6px outer corners (caption 6px 6px 0 0, list 0 0 6px 6px) and the reading window as the only large rounded surface (rounded.window); catalogue panels stay at rounded.panel.",
+      "**Do** mark the current stage by filling its plate with the accent and switching its text to Can Navy.",
+      "**Do** keep stage captions in sentence case, and keep them as links.",
+      "**Do** use JetBrains Mono only for code and measured values; Archivo for everything else; self-host both.",
+      "**Do** keep code blocks dark on the can's own color in both themes."
+    ],
+    "donts": [
+      "**Don't** add box-shadows; depth comes from tone (The Flat Can Rule).",
+      "**Don't** introduce a second accent hue beyond the blue family.",
+      "**Don't** fill resting surfaces on the reading window with the accent; accent is edge, focus and current state only.",
+      "**Don't** add uppercase tracked labels or kickers above headings."
+    ]
+  }
+}
