@@ -2,7 +2,14 @@
 
 from qtics.transport.base import Transport
 from qtics.transport.fake import FakeTransport
+from qtics.transport.gpib import GPIBTransport
 from qtics.transport.serial import SerialTransport
 from qtics.transport.socket import SocketTransport
 
-__all__ = ["Transport", "SocketTransport", "SerialTransport", "FakeTransport"]
+__all__ = [
+    "Transport",
+    "SocketTransport",
+    "SerialTransport",
+    "GPIBTransport",
+    "FakeTransport",
+]
