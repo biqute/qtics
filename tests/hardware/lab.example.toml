@@ -51,3 +51,6 @@ address = "PXI1Slot2"  # NI resource name
 address = "192.168.0.x"
 
 [Proteox]  # empty table enables the tests, credentials come from the usual env/.env
+
+[SDG6052X]
+address = "192.168.0.x"  # raw socket port 5025 (default; 5024 is telnet), set port = ... to change it

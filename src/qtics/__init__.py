@@ -32,6 +32,7 @@ _EXPORTS = {
     "Pxie5170R": "qtics.instruments.ni.pxie5170r",
     "Valon5019": "qtics.instruments.valon.v5019",
     "SIM928": "qtics.instruments.srs.sim928",
+    "SDG6052X": "qtics.instruments.siglent.sdg6052x",
     "Triton": "qtics.instruments.oxford.triton",
     "Proteox": "qtics.instruments.oxford.proteox",
     "AsyncProteox": "qtics.instruments.oxford.proteox",
@@ -101,6 +102,7 @@ if TYPE_CHECKING:
     from qtics.instruments.rohde_schwarz.fsv3030 import FSV3030
     from qtics.instruments.rohde_schwarz.sma100b import SMA100B
     from qtics.instruments.rohde_schwarz.znb import ZNB
+    from qtics.instruments.siglent.sdg6052x import SDG6052X
     from qtics.instruments.srs.sim928 import SIM928
     from qtics.instruments.valon.v5019 import Valon5019
 
