@@ -7,7 +7,6 @@ one interface per instrument type. Units are SI, on/off states are booleans,
 settings are properties and actions are methods.
 
 .. code-block:: python
-   :emphasize-lines: 7
 
    from qtics import SMA100B, ZNB
 

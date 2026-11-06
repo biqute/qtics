@@ -60,8 +60,8 @@ html_sidebars = {
     ]
 }
 
-pygments_style = "a11y-dark"
-pygments_dark_style = "a11y-dark"
+pygments_style = "github-dark"
+pygments_dark_style = "github-dark"
 
 html_theme_options = {
     "top_of_page_button": "edit",
