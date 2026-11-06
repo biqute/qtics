@@ -6,6 +6,10 @@ type a common interface. ``from qtics import <Class>`` keeps working for every
 driver (old class names are kept as aliases), but deep module paths changed and
 several attributes were renamed.
 
+.. image:: _static/class_diagram.png
+   :alt: qtics 0.1 class organization
+   :width: 100%
+
 Connections
 -----------
 
