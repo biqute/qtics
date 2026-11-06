@@ -17,7 +17,7 @@ settings are properties and actions are methods.
        freqs, s21 = vna.snapshot()
 
 Install it with ``pip install qtics`` (see :ref:`installation` for the optional
-extras), then write your measurement as an :ref:`experiment <experiments>`.
+extras).
 
 Instruments
 -----------
@@ -40,12 +40,6 @@ be tested without hardware. Coming from qtics 0.0.x? Read :doc:`migration`.
 
    instruments/modules
    arduino
-
-.. toctree::
-   :hidden:
-   :caption: Experiments
-
-   experiments
 
 .. toctree::
    :hidden:

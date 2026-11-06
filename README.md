@@ -8,8 +8,6 @@
 Qtics is a collection of tools designed to facilitate the instrumentation of the
 [BiQuTe Cryogenic Laboratory](https://biqute.unimib.it/research/cryogenic-lab).
 
-In the examples folder, some experiments are provided as examples.
-
 ## Documentation
 
 You can find the latest documentation [here](https://biqute.github.io/qtics).
@@ -46,7 +44,7 @@ Use poetry to install the latest version in developer mode, remember to also
 install the pre-commits!
 
 ```bash
-poetry install --all-extras --with docs,analysis,experiments
+poetry install --all-extras --with docs,analysis
 pre-commit install
 ```
 
