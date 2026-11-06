@@ -21,6 +21,10 @@ Some drivers need optional packages, installed with the corresponding extra:
    pip install "qtics[proteox]"
    pip install "qtics[all]"
 
+``PicoScope5000A`` needs the PicoSDK C libraries (``libps5000a``), installed from the
+`Pico Technology downloads <https://www.picotech.com/downloads>`_; no Python package is
+needed.
+
 For development, clone the repository and install it with Poetry, including the
 extras and the dependency groups for experiments, analysis (tests, linters) and docs:
 

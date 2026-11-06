@@ -8,6 +8,7 @@ Supported Instruments
    3494_64
    SIM928
    QUICKSYNTH
+   PicoScope5000A
    6514
    2231A
    SMA100B
