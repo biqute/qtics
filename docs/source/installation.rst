@@ -31,3 +31,23 @@ extras and the dependency groups for experiments, analysis (tests, linters) and 
 
    poetry install --all-extras --with experiments,analysis,docs
    pre-commit install
+
+Tests
+-----
+
+``poetry run pytest`` runs the tests that need no instrument (this is what CI runs).
+
+The tests in ``tests/hardware`` check the drivers on real instruments, and are skipped
+unless a config file is given. Copy ``tests/hardware/lab.example.toml`` to
+``tests/hardware/lab.toml`` (ignored by git), keep the tables of the instruments on the
+bench with their addresses, then run:
+
+.. code-block:: bash
+
+   poetry run pytest tests/hardware --hw-config tests/hardware/lab.toml
+
+Instruments missing from the config are skipped. Each test sets values, reads them back
+and restores the original ones; a few checks ask the operator to confirm what the
+instrument shows (``--no-manual`` skips them). Tests that switch on an output (RF,
+voltage, RF switches and attenuators) only run with ``--allow-output``. The cryostat
+tests (Triton, Proteox) only read.
