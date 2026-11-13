@@ -18,7 +18,7 @@
 
    .. container:: qt-group
 
-      .. rubric:: Power supplies and meters
+      .. rubric:: DC sources and meters
 
       - :doc:`Keithley 2231A </instruments/2231A>`
       - :doc:`Keithley 6514 </instruments/6514>`
