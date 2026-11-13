@@ -5,12 +5,12 @@ Controller of the Keithley2231A DC Power Supply.
 """
 
 from qtics.instruments.base import SCPIInstrument
-from qtics.instruments.types import PowerSupply
+from qtics.instruments.types import DCSource
 from qtics.instruments.utils import to_bool
 from qtics.transport import SerialTransport, Transport
 
 
-class Keithley2231A(PowerSupply, SCPIInstrument):
+class Keithley2231A(DCSource, SCPIInstrument):
     """Keithley Model 2231A-30-3 Triple Channel DC Power Supply by Keithley Instruments.
 
     ``voltage``, ``current`` and their limits act on the channel selected with

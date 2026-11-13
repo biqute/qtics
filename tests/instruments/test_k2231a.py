@@ -3,7 +3,7 @@
 import pytest
 
 from qtics.instruments.keithley.k2231a import Keithley2231A
-from qtics.instruments.types import PowerSupply
+from qtics.instruments.types import DCSource
 from qtics.transport import FakeTransport, SerialTransport
 
 
@@ -18,7 +18,7 @@ def psu():
 def test_interface_and_defaults():
     """Type interface and serial defaults."""
     inst = Keithley2231A("/dev/null")
-    assert isinstance(inst, PowerSupply)
+    assert isinstance(inst, DCSource)
     assert isinstance(inst.transport, SerialTransport)
     assert inst.transport.serial.baudrate == 9600
     assert inst.transport.delay == 0.3

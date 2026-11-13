@@ -6,6 +6,14 @@ type a common interface. ``from qtics import <Class>`` keeps working for every
 driver (old class names are kept as aliases), but deep module paths changed and
 several attributes were renamed.
 
+qtics now contains only instrument drivers: the experiment classes
+(``qtics.experiment``: ``Experiment``, ``MonitorExperiment``, ``BaseExperiment``)
+and the ``experiments`` dependency group (h5py, matplotlib) were removed.
+
+.. image:: _static/class_diagram.png
+   :alt: qtics 0.1 class organization
+   :width: 100%
+
 Connections
 -----------
 
@@ -38,8 +46,7 @@ default transport, or pass a transport explicitly:
   is the primary address (e.g. ``20``) or ``"GPIB0::20::INSTR"``.
 - The default ``name`` is now the class name (e.g. ``"ZNB"`` instead of
   ``"RSZNB"``, ``"Valon5019"`` instead of ``"VALON"``, ``"VNAN9916A"`` instead of
-  ``"N9916A"``). ``Experiment.add_instrument`` matches instruments by name, so
-  pass ``name=`` explicitly when adding them to an experiment.
+  ``"N9916A"``).
 - Writing to a disconnected instrument raises ``ConnectionError`` (network
   instruments used to log a warning and ignore the command).
 - Network addresses are no longer validated as IPs: hostnames are accepted.
@@ -116,18 +123,6 @@ RF sources:
   ``freq_step`` -> ``f_step_cw``; ``output`` and ``power_pdn`` take bool.
 - ``QuickSyn``: ``freq`` -> ``frequency``, ``output_on`` -> ``output``.
 
-Experiments:
-
-- ``Experiment.monitors`` declared on the class are now used (they were ignored).
-- With monitors, an exception in ``main`` is re-raised after resetting the
-  instruments (it was only logged), and a failed monitor makes ``run()`` raise
-  ``qtics.experiment.MonitorError`` once ``main`` returns.
-- ``add_instrument(inst, name=None)`` raises ``ValueError`` for an unknown name
-  (it only logged a warning).
-- Experiments no longer disconnect their instruments when garbage collected
-  (class-level instruments are shared between instances): call ``close()`` or
-  use ``with MyExperiment(...) as exp:``.
-
 Triton:
 
 - ``mixing_chamber_tset`` is set in K, like it is read (the setter took mK).
@@ -135,7 +130,7 @@ Triton:
 - ``get_action`` reports "Circulating" only below 2 K (the threshold compared K
   with 2000).
 
-Power supplies and others:
+DC sources and others:
 
 - ``Keithley2231A``: new ``output`` property.
 - ``SIM928``: ``output_on()``/``output_off()``/``on()``/``off()``/``is_on()`` ->

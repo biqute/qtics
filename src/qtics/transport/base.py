@@ -34,7 +34,7 @@ class Transport(ABC):
         self.terminator = terminator
         self.delay = delay
         # A query is a write followed by a read: the lock makes it atomic when
-        # the instrument is shared between threads (e.g. experiment monitors).
+        # the instrument is shared between threads (e.g. monitoring threads).
         self.lock = RLock()
 
     @property

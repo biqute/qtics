@@ -1,0 +1,500 @@
+@font-face {
+  font-family: "Archivo";
+  font-style: normal;
+  font-weight: 400 800;
+  font-stretch: 100% 125%;
+  font-display: swap;
+  src: url("../fonts/archivo-latin.woff2") format("woff2");
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("../fonts/jetbrains-mono-latin.woff2") format("woff2");
+}
+
+/* qtics docs: the frame is the cryostat's vacuum can, the navigation its stack of
+   stages, the page a light window inset into the can. */
+
+body {
+  --qt-can: #0f1b2a;
+  --qt-can-raised: #172638;
+  --qt-can-line: #2c3d52;
+  --qt-accent: #4fa3d1;
+  --qt-accent-light: #8cc6e6;
+  --qt-plate: #182a3f;
+  --qt-plate-link: #e6edf4;
+  --qt-window: #f5f7fa;
+  --qt-ink: #1b2430;
+  --qt-ink-soft: #475466;
+  --qt-link: #1b6290;
+  --qt-rule: #d5dde6;
+  --qt-tint: #e7edf3;
+  --qt-code: #0f1b2a;
+
+  --font-stack: "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-stack--headings: var(--font-stack);
+  --font-stack--monospace: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-size--small: 87.5%;
+
+  --color-foreground-primary: var(--qt-ink);
+  --color-foreground-secondary: var(--qt-ink-soft);
+  --color-foreground-muted: #566273;
+  --color-foreground-border: #9aa6b4;
+  --color-background-primary: var(--qt-window);
+  --color-background-secondary: var(--qt-tint);
+  --color-background-hover: #dde5ee;
+  --color-background-hover--transparent: #dde5ee00;
+  --color-background-border: var(--qt-rule);
+  --color-background-item: #a8b4c2;
+
+  --color-brand-primary: var(--qt-link);
+  --color-brand-content: var(--qt-link);
+  --color-brand-visited: #15507a;
+  --color-link: var(--qt-link);
+  --color-link--hover: #124466;
+  --color-link--visited: #15507a;
+  --color-link-underline: #1b629055;
+  --color-link-underline--hover: var(--qt-link);
+
+  --color-sidebar-background: var(--qt-can);
+  --color-sidebar-background-border: transparent;
+  --color-sidebar-brand-text: var(--qt-plate-link);
+  --color-sidebar-caption-text: var(--qt-plate-link);
+  --color-sidebar-link-text: var(--qt-plate-link);
+  --color-sidebar-link-text--top-level: var(--qt-plate-link);
+  --color-sidebar-item-background--current: transparent;
+  --color-sidebar-item-background--hover: #ffffff14;
+  --color-sidebar-item-expander-background--hover: #ffffff14;
+  --color-sidebar-search-background: var(--qt-can-raised);
+  --color-sidebar-search-background--focus: var(--qt-can-raised);
+  --color-sidebar-search-border: var(--qt-can-line);
+  --color-sidebar-search-icon: #9fb0c3;
+  --color-sidebar-search-foreground: var(--qt-plate-link);
+
+  --color-header-background: var(--qt-can);
+  --color-header-border: transparent;
+  --color-header-text: var(--qt-plate-link);
+
+  --color-toc-title-text: var(--color-foreground-muted);
+  --color-toc-item-text: var(--color-foreground-secondary);
+  --color-toc-item-text--hover: var(--color-foreground-primary);
+  --color-toc-item-text--active: var(--qt-link);
+
+  --color-code-background: var(--qt-code);
+  --color-code-foreground: #e6edf4;
+  --color-inline-code-background: var(--qt-tint);
+  --color-highlighted-background: #d9eaf6;
+  --color-highlight-on-target: #d9eaf6;
+  --color-api-background: var(--qt-tint);
+  --color-api-background-hover: #dde5ee;
+  --color-api-name: var(--qt-ink);
+  --color-api-pre-name: var(--qt-ink-soft);
+  --color-admonition-background: #eaf0f6;
+  --color-table-header-background: var(--qt-tint);
+  --color-table-border: var(--qt-rule);
+
+  background: var(--qt-can);
+  caret-color: var(--qt-link);
+}
+
+body[data-theme="dark"] {
+  --qt-can: #0a131e;
+  --qt-code-edge: #2a3a4e;
+  --qt-window: #141e2a;
+  --qt-ink: #e3e9f0;
+  --qt-ink-soft: #b0bccb;
+  --qt-link: #7fc0e6;
+  --qt-rule: #2a3644;
+  --qt-tint: #1c2836;
+  --qt-code: #0d1620;
+
+  --color-foreground-muted: #93a1b2;
+  --color-foreground-border: #4e5c6d;
+  --color-background-hover: #24313f;
+  --color-background-hover--transparent: #24313f00;
+  --color-background-item: #4e5c6d;
+  --color-brand-visited: #6aaed6;
+  --color-link--hover: #b5dcf2;
+  --color-link--visited: #6aaed6;
+  --color-link-underline: #7fc0e655;
+  --color-highlighted-background: #1f3f5a;
+  --color-highlight-on-target: #1f3f5a;
+  --color-api-background-hover: #24313f;
+  --color-admonition-background: #1a2531;
+  --color-foreground-primary: var(--qt-ink);
+  --color-foreground-secondary: var(--qt-ink-soft);
+  --color-background-primary: var(--qt-window);
+  --color-background-secondary: var(--qt-tint);
+  --color-background-border: var(--qt-rule);
+  --color-brand-primary: var(--qt-link);
+  --color-brand-content: var(--qt-link);
+  --color-link: var(--qt-link);
+}
+
+@media (prefers-color-scheme: dark) {
+  body:not([data-theme="light"]) {
+    --qt-can: #0a131e;
+    --qt-code-edge: #2a3a4e;
+    --qt-window: #141e2a;
+    --qt-ink: #e3e9f0;
+    --qt-ink-soft: #b0bccb;
+    --qt-link: #7fc0e6;
+    --qt-rule: #2a3644;
+    --qt-tint: #1c2836;
+    --qt-code: #0d1620;
+
+    --color-foreground-muted: #93a1b2;
+    --color-foreground-border: #4e5c6d;
+    --color-background-hover: #24313f;
+    --color-background-hover--transparent: #24313f00;
+    --color-background-item: #4e5c6d;
+    --color-brand-visited: #6aaed6;
+    --color-link--hover: #b5dcf2;
+    --color-link--visited: #6aaed6;
+    --color-link-underline: #7fc0e655;
+    --color-highlighted-background: #1f3f5a;
+    --color-highlight-on-target: #1f3f5a;
+    --color-api-background-hover: #24313f;
+    --color-admonition-background: #1a2531;
+    --color-foreground-primary: var(--qt-ink);
+    --color-foreground-secondary: var(--qt-ink-soft);
+    --color-background-primary: var(--qt-window);
+    --color-background-secondary: var(--qt-tint);
+    --color-background-border: var(--qt-rule);
+    --color-brand-primary: var(--qt-link);
+    --color-brand-content: var(--qt-link);
+    --color-link: var(--qt-link);
+  }
+}
+
+/* Furo writes the pygments colours inline after this file */
+html body {
+  --color-code-background: var(--qt-code) !important;
+  --color-code-foreground: #e6edf4 !important;
+}
+
+/* Browser surfaces */
+::selection {
+  background: #4fa3d159;
+}
+:focus-visible {
+  outline: 2px solid var(--qt-accent);
+  outline-offset: 2px;
+}
+.sidebar-scroll,
+.toc-scroll {
+  scrollbar-color: var(--qt-can-line) transparent;
+}
+
+/* The window: the page inset into the can */
+.page {
+  background: var(--qt-can);
+}
+.main {
+  background: var(--color-background-primary);
+  margin: 0.75rem 0.75rem 0.75rem 0;
+  border-radius: 10px;
+  min-height: calc(100vh - 1.5rem);
+}
+@media (min-width: 82em) {
+  .main {
+    margin-right: max(0.75rem, calc(50% - 41em));
+  }
+}
+.toc-drawer {
+  border-left: none;
+  border-radius: 0 10px 10px 0;
+}
+
+/* Logo straight on the can */
+.sidebar-brand {
+  margin: 1.25rem 0.75rem 0.25rem;
+  padding: 0 0.25rem;
+}
+.sidebar-logo-container {
+  margin: 0;
+}
+.sidebar-logo {
+  max-width: 9.5rem;
+}
+
+/* Version switcher */
+.qt-versions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0.75rem 0.75rem 0;
+}
+.qt-versions-label {
+  font: 600 0.8125rem var(--font-stack);
+  color: var(--qt-accent-light);
+}
+.qt-versions-select {
+  flex: 1;
+  min-width: 0;
+  padding: 0.4rem 0.5rem;
+  font: 0.8125rem var(--font-stack--monospace);
+  color: var(--qt-plate-link);
+  background: var(--qt-can-raised);
+  border: 1px solid var(--qt-can-line);
+  border-radius: 4px;
+  cursor: pointer;
+}
+.qt-versions-select:hover:not(:disabled) {
+  border-color: var(--qt-accent);
+}
+.qt-versions-select:disabled {
+  cursor: default;
+  opacity: 0.85;
+}
+
+/* Search */
+.sidebar-search-container {
+  margin: 0.75rem 0.75rem 0;
+  border-radius: 4px;
+  border: 1px solid var(--qt-can-line);
+  background: var(--qt-can-raised);
+}
+.sidebar-search {
+  color: var(--qt-plate-link);
+  border: none;
+}
+.sidebar-search::placeholder {
+  color: #9fb0c3;
+}
+
+/* Stages: each toctree caption plus its list is one plate */
+.sidebar-tree {
+  margin-top: 0.5rem;
+  padding-bottom: 1.5rem;
+}
+.sidebar-tree p.caption {
+  margin: 0.75rem 0.75rem 0;
+  padding: 0.7rem 1rem 0.35rem;
+  border-radius: 6px 6px 0 0;
+  background: var(--qt-plate);
+  text-transform: none;
+}
+.sidebar-tree .caption-link {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+.sidebar-tree .caption-link:hover .caption-text {
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+.sidebar-tree .caption-text,
+.sidebar-tree .caption-link .caption-text {
+  text-transform: none;
+  margin: 0;
+  padding: 0;
+  font: 650 1rem var(--font-stack);
+  letter-spacing: 0;
+  color: var(--qt-plate-link);
+}
+.sidebar-tree p.caption + ul {
+  position: relative;
+  margin: 0 0.75rem;
+  padding: 0 0 0.6rem;
+  background: var(--qt-plate);
+  border-radius: 0 0 6px 6px;
+}
+.sidebar-tree .reference {
+  padding-left: 1rem;
+  transition: background-color 150ms ease-out;
+}
+.sidebar-tree .toctree-l2 > .reference,
+.sidebar-tree .toctree-l3 > .reference {
+  padding-left: 1.75rem;
+}
+
+/* The stage you are on is filled with the accent */
+.sidebar-tree p.caption:has(+ ul .current),
+.sidebar-tree p.caption + ul:has(.current),
+.qt-home p.caption:first-of-type,
+.qt-home p.caption:first-of-type + ul {
+  background: var(--qt-accent);
+}
+.sidebar-tree p.caption:has(+ ul .current) .caption-text,
+.sidebar-tree p.caption + ul:has(.current) .reference,
+.sidebar-tree p.caption + ul:has(.current) .toctree-checkbox ~ label,
+.qt-home p.caption:first-of-type .caption-text,
+.qt-home p.caption:first-of-type + ul .reference {
+  color: var(--qt-can);
+}
+.sidebar-tree p.caption + ul:has(.current) .reference:hover,
+.qt-home p.caption:first-of-type + ul .reference:hover {
+  background: #00000014;
+}
+.sidebar-tree .current-page > .reference {
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.3em;
+}
+
+/* Mobile header belongs to the can */
+.mobile-header .brand {
+  font-weight: 700;
+}
+.mobile-header .icon,
+.mobile-header .theme-toggle svg {
+  color: var(--qt-plate-link);
+}
+
+/* Right-hand contents: plain text, no code chips, one line per entry */
+.toc-tree li > a:has(> code.literal) {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.toc-tree code.literal {
+  padding: 0;
+  background: none;
+  font-size: 0.75rem;
+}
+
+/* Reading column */
+article {
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+article h1 {
+  font-size: 2.5rem;
+  font-weight: 780;
+  font-stretch: 108%;
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+  margin-bottom: 1.25rem;
+}
+article h2 {
+  font-size: 1.6rem;
+  font-weight: 720;
+  letter-spacing: -0.01em;
+  margin-top: 3rem;
+  text-wrap: balance;
+}
+article h2::before {
+  content: "";
+  display: block;
+  width: 2.5rem;
+  height: 3px;
+  margin-bottom: 0.9rem;
+  background: var(--qt-accent);
+}
+article h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-top: 2rem;
+}
+article p,
+article li {
+  max-width: 72ch;
+}
+
+/* Code */
+.highlight,
+.highlight pre {
+  background: var(--color-code-background) !important;
+}
+div[class*="highlight-"] {
+  border: 1px solid var(--qt-code-edge, transparent);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.highlight pre {
+  padding: 1rem 1.25rem;
+  font-size: 0.8125rem;
+  line-height: 1.7;
+}
+.highlight .hll {
+  display: block;
+  margin: 0 -1.25rem;
+  padding: 0 1.25rem;
+}
+/* pygments sets a yellow .hll per theme with body-level selectors */
+html body .highlight .hll {
+  background-color: #4fa3d133 !important;
+}
+code.literal {
+  padding: 0.1em 0.35em;
+  border: none;
+  border-radius: 3px;
+  font-size: 0.85em;
+}
+button.copybtn {
+  background: var(--qt-can-raised);
+  border-color: var(--qt-can-line);
+  color: var(--qt-plate-link);
+}
+
+/* API reference: class signatures sit on a plate */
+dl.py.class > dt,
+dl.py.exception > dt {
+  padding-top: 0.5rem;
+  border-radius: 0;
+  border-top: 3px solid var(--qt-accent);
+}
+
+/* Instrument catalogue (home and Instruments page) */
+.qt-instruments {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 0.75rem;
+  margin: 1.5rem 0 2.25rem;
+}
+/* beats Furo's [role=main] .container { padding-left/right: 0 } */
+[role=main] .qt-group.container {
+  padding: 0.9rem 1.1rem 0.7rem;
+  background: var(--qt-tint);
+  border-radius: 8px;
+}
+article .qt-group p.rubric {
+  margin: 0 0 0.35rem;
+  font: 650 0.8125rem var(--font-stack);
+  color: var(--color-foreground-muted);
+}
+article .qt-group ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+article .qt-group li,
+article .qt-group li > p {
+  margin: 0;
+}
+article .qt-group a {
+  display: block;
+  padding: 0.2rem 0;
+  font-weight: 550;
+  line-height: 1.4;
+  color: var(--color-foreground-primary);
+  text-decoration: none;
+}
+article .qt-group a:hover {
+  color: var(--qt-link);
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+article .qt-group code.literal {
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+}
+
+@media (max-width: 67em) {
+  .main {
+    margin: 0 0.5rem 0.5rem;
+    min-height: calc(100vh - 0.5rem);
+  }
+  article h1 {
+    font-size: 2rem;
+  }
+}

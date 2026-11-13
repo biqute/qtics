@@ -25,9 +25,9 @@ GPIB instruments (``GPIBTransport``) need the GPIB driver, no Python package:
 linux-gpib on Linux or NI-488.2 on Windows.
 
 For development, clone the repository and install it with Poetry, including the
-extras and the dependency groups for experiments, analysis (tests, linters) and docs:
+extras and the dependency groups for analysis (tests, linters) and docs:
 
 .. code-block:: bash
 
-   poetry install --all-extras --with experiments,analysis,docs
+   poetry install --all-extras --with analysis,docs
    pre-commit install
