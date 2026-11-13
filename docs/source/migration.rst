@@ -40,6 +40,10 @@ default transport, or pass a transport explicitly:
 - The old ``sleep`` option is the transport ``delay``. The ``sleep``, ``socket``
   and ``serial`` attributes of the instruments are gone: use ``inst.transport``
   (e.g. ``inst.transport.delay``, ``inst.transport.socket``).
+- GPIB instruments use :class:`~qtics.transport.gpib.GPIBTransport` instead of a
+  ``GpibInst`` base class. It calls the GPIB driver (linux-gpib or NI-488.2)
+  directly, pyvisa is not needed. ``board`` is a transport option and the address
+  is the primary address (e.g. ``20``) or ``"GPIB0::20::INSTR"``.
 - The default ``name`` is now the class name (e.g. ``"ZNB"`` instead of
   ``"RSZNB"``, ``"Valon5019"`` instead of ``"VALON"``, ``"VNAN9916A"`` instead of
   ``"N9916A"``).
