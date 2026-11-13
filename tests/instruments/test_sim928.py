@@ -25,11 +25,11 @@ def test_interface_and_defaults():
 
 
 def test_connect_disconnect_hooks():
-    """Port forwarding on connect, esc and reset before closing."""
+    """Port buffers flushed and forwarded on connect, esc and reset before closing."""
     inst = SIM928(FakeTransport(), mainframe_port=3)
     inst.connect()
     inst.disconnect()
-    assert inst.transport.written == ['CONN 3, "esc"', "esc", "*RST"]
+    assert inst.transport.written == ["FLSH 3", 'CONN 3, "esc"', "esc", "*RST"]
     assert not inst.is_connected
 
 
@@ -44,7 +44,11 @@ def test_voltage(source):
     source.transport.answers["VOLT?"] = "1.25\r"
     assert source.voltage == 1.25
     source.voltage = 2
-    assert source.transport.written[-1] == "VOLT 2"
+    assert source.transport.written[-1] == "VOLT 2.000"
+    source.voltage = 0.1 + 0.2  # 0.30000000000000004
+    assert source.transport.written[-1] == "VOLT 0.300"
+    source.voltage = -1e-5
+    assert source.transport.written[-1] == "VOLT 0.000"
 
 
 def test_output(source):

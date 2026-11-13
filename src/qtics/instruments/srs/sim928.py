@@ -41,8 +41,13 @@ class SIM928(DCSource, SCPIInstrument):
         log.info(f"Instrument connected to port {self._mainframe_port}")
 
     def connect_port(self, port: int):
-        """Connect to the a specific port in the mainframe."""
+        """Connect to a specific port in the mainframe.
+
+        The port buffers are flushed first: answers left there by a previous program
+        would otherwise be read as answers to the next queries.
+        """
         self._mainframe_port = port
+        self.write(f"FLSH {port}")
         self.write(f'CONN {port}, "esc"')
 
     def _before_disconnect(self):
@@ -71,8 +76,8 @@ class SIM928(DCSource, SCPIInstrument):
 
     @voltage.setter
     def voltage(self, value: float):
-        """Set the output voltage."""
-        self.write(f"VOLT {value}")
+        """Set the output voltage, sent with the 1 mV resolution of the SIM928."""
+        self.write(f"VOLT {round(value, 3) + 0.0:.3f}")  # + 0.0 turns -0.0 into 0.0
 
     # Battery commands
     def battery_charger_override(self):
