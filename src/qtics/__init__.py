@@ -14,9 +14,6 @@ __version__ = im.version(__package__)
 from qtics.logger import qtics_log as log  # isort: skip
 
 _EXPORTS = {
-    "BaseExperiment": "qtics.experiment",
-    "Experiment": "qtics.experiment",
-    "MonitorExperiment": "qtics.experiment",
     "VNAN9916A": "qtics.instruments.keysight.n9916a",
     "SAN9916A": "qtics.instruments.keysight.n9916a",
     "ZNB": "qtics.instruments.rohde_schwarz.znb",
@@ -82,7 +79,6 @@ def __dir__():
 
 
 if TYPE_CHECKING:
-    from qtics.experiment import BaseExperiment, Experiment, MonitorExperiment
     from qtics.instruments.arduino.kratos_3494 import Kratos3494Attenuator
     from qtics.instruments.arduino.r591_switch import R591Switch
     from qtics.instruments.keithley.k2231a import Keithley2231A

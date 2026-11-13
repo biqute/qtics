@@ -1,7 +1,7 @@
-"""Sources: RF generators and power supplies.
+"""Sources: RF generators and DC sources.
 
-Optional capabilities (e.g. ``power`` of an RF source, ``current`` of a power
-supply) are documented here and implemented only by the drivers supporting them.
+Optional capabilities (e.g. ``power`` of an RF source, ``current`` of a DC
+source) are documented here and implemented only by the drivers supporting them.
 """
 
 from abc import abstractmethod
@@ -26,8 +26,8 @@ class RFSource(Instrument):
         """Whether the RF output is on."""
 
 
-class PowerSupply(Instrument):
-    """DC power supply.
+class DCSource(Instrument):
+    """DC voltage source (e.g. a power supply).
 
     Optional: ``current`` [A], ``voltage_limit`` [V], ``current_limit`` [A],
     ``channel``.
