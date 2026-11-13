@@ -138,7 +138,7 @@ class SIM928(DCSource, SCPIInstrument):
             "Wrong token",
             "Invalid bit",
         )
-        return options[int(a)]
+        return _error_name(options, a, "execution error")
 
     def dev_error(self) -> str:
         """Get last command/device error."""
@@ -160,4 +160,10 @@ class SIM928(DCSource, SCPIInstrument):
             "Bad hex block",
             "Unknown token",
         )
-        return options[int(a)]
+        return _error_name(options, a, "command error")
+
+
+def _error_name(names: tuple, answer: str, kind: str) -> str:
+    """Name of an error code, also for codes missing from ``names``."""
+    code = int(answer)
+    return names[code] if 0 <= code < len(names) else f"Unknown {kind} (code {code})"

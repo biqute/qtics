@@ -74,3 +74,7 @@ def test_dev_error(source):
     """Error decoding."""
     source.transport.answers["LCME?"] = "1\r"
     assert source.dev_error() == "Illegal command"
+    source.transport.answers["LEXE?"] = "2\r"
+    assert source.exe_error() == "Wrong token"
+    source.transport.answers["LEXE?"] = "5\r"
+    assert source.exe_error() == "Unknown execution error (code 5)"
