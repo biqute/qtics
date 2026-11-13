@@ -1,5 +1,5 @@
-"""Instruments submodule: collection of drivers."""
+"""Instruments submodule: base classes and drivers, grouped by vendor."""
 
-from .instrument import Instrument
-from .network_inst import NetworkInst
-from .serial_inst import SerialInst
+from qtics.instruments.base import Instrument, MessageInstrument, SCPIInstrument
+
+__all__ = ["Instrument", "MessageInstrument", "SCPIInstrument"]
