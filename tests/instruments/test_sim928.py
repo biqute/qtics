@@ -3,7 +3,7 @@
 import pytest
 
 from qtics.instruments.srs.sim928 import SIM928
-from qtics.instruments.types import PowerSupply
+from qtics.instruments.types import DCSource
 from qtics.transport import FakeTransport, SerialTransport
 
 
@@ -18,7 +18,7 @@ def source():
 def test_interface_and_defaults():
     """Type interface and serial defaults."""
     inst = SIM928("/dev/null")
-    assert isinstance(inst, PowerSupply)
+    assert isinstance(inst, DCSource)
     assert isinstance(inst.transport, SerialTransport)
     assert inst.transport.delay == 0.1
     assert inst.transport.serial.baudrate == 9600

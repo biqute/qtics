@@ -126,7 +126,7 @@ Triton:
 - ``get_action`` reports "Circulating" only below 2 K (the threshold compared K
   with 2000).
 
-Power supplies and others:
+DC sources and others:
 
 - ``Keithley2231A``: new ``output`` property.
 - ``SIM928``: ``output_on()``/``output_off()``/``on()``/``off()``/``is_on()`` ->

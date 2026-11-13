@@ -4,12 +4,12 @@ import time
 
 from qtics import log
 from qtics.instruments.base import SCPIInstrument
-from qtics.instruments.types import PowerSupply
+from qtics.instruments.types import DCSource
 from qtics.instruments.utils import to_bool
 from qtics.transport import SerialTransport, Transport
 
 
-class SIM928(PowerSupply, SCPIInstrument):
+class SIM928(DCSource, SCPIInstrument):
     """
     SIM928 isolated voltage source by Stanford Research Systems.
 
