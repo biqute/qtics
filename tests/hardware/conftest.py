@@ -81,8 +81,12 @@ def confirm(request):
         if request.config.getoption("no_manual"):
             pytest.skip("manual check, --no-manual given")
         capture = request.config.pluginmanager.getplugin("capturemanager")
-        with capture.global_and_fixture_disabled():
+        # in_=True also releases stdin, global_and_fixture_disabled() keeps it captured
+        capture.suspend_global_capture(in_=True)
+        try:
             answer = input(f"\n[{request.node.name}] {question} [y/N] ")
+        finally:
+            capture.resume_global_capture()
         assert answer.strip().lower() in ("y", "yes"), f"Not confirmed: {question}"
 
     return _confirm
