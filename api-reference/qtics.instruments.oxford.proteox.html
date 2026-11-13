@@ -1,0 +1,814 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <meta property="article:modified_time" content="2026-11-13T14:04:26+00:00" /><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="qtics.instruments.rohde_schwarz package" href="qtics.instruments.rohde_schwarz.html" /><link rel="prev" title="qtics.instruments.oxford package" href="qtics.instruments.oxford.html" />
+        <link rel="canonical" href="https://biqute.github.io/qtics/api-reference/qtics.instruments.oxford.proteox.html" />
+
+    <link rel="shortcut icon" href="../_static/favicon.ico"/><!-- Generated with Sphinx 6.2.1 and Furo 2023.09.10 -->
+        <title>qtics.instruments.oxford.proteox package - Qtics · 0.1.0</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=369552022d0b975c8e74270ce6eabe0fb7978f24" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #0d1117;
+  --color-code-foreground: #e6edf3;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #0d1117;
+  --color-code-foreground: #e6edf3;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #0d1117;
+  --color-code-foreground: #e6edf3;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">Qtics · 0.1.0</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo only-light" src="../_static/biqute_logo.png" alt="Light Logo"/>
+    <img class="sidebar-logo only-dark" src="../_static/biqute_logo.png" alt="Dark Logo"/>
+  </div>
+  
+  
+</a><div class="qt-versions">
+  <label class="qt-versions-label" for="qt-version-select">Version</label>
+  <select id="qt-version-select" class="qt-versions-select" data-versions="https://biqute.github.io/qtics/versions.json" data-current="0.1.0">
+    <option selected>0.1.0</option>
+  </select>
+</div><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migration.html">Migrating to qtics 0.1</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Instruments</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../instruments/modules.html">Instruments</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Instruments</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../instruments/RSZNB.html">R&amp;S®ZNB vector network analyzer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../instruments/RSFSV.html">R&amp;S®FSV3030 Spectrum Analyzer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../instruments/N9916A.html">Handheld Microwave Analyzer FieldFox N9916A</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../instruments/SMA100B.html">R&amp;S®SMA100B RF and microwave signal generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../instruments/VALON519.html">Frequency Synthesizer module Valon Model 5019</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../instruments/QUICKSYNTH.html">Microwave synthesizers by QuickSynth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../instruments/2231A.html">Keithley Model 2231A-30-3 Triple Channel DC Power Supply.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../instruments/6514.html">Keithley Model 6514 System Electrometer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../instruments/SIM928.html">Isolated voltage source Stanford Research Systems SIM928</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../instruments/triton.html">Triton controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../instruments/proteox.html">Proteox controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../instruments/R591722600.html">RF switch Radiall R591722600</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../instruments/3494_64.html">Attenuator Kratos 3494-64</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../arduino.html">Compile Arduino Firmwares</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="modules.html">qtics</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of qtics</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current has-children"><a class="reference internal" href="qtics.html">qtics package</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of qtics package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3 current has-children"><a class="reference internal" href="qtics.instruments.html">qtics.instruments package</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of qtics.instruments package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l4 has-children"><a class="reference internal" href="qtics.instruments.arduino.html">qtics.instruments.arduino package</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of qtics.instruments.arduino package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="qtics.instruments.arduino.kratos_3494.html">qtics.instruments.arduino.kratos_3494 package</a></li>
+<li class="toctree-l5"><a class="reference internal" href="qtics.instruments.arduino.r591_switch.html">qtics.instruments.arduino.r591_switch package</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.keithley.html">qtics.instruments.keithley package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.keysight.html">qtics.instruments.keysight package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.ni.html">qtics.instruments.ni package</a></li>
+<li class="toctree-l4 current has-children"><a class="reference internal" href="qtics.instruments.oxford.html">qtics.instruments.oxford package</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of qtics.instruments.oxford package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l5 current current-page"><a class="current reference internal" href="#">qtics.instruments.oxford.proteox package</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.rohde_schwarz.html">qtics.instruments.rohde_schwarz package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.srs.html">qtics.instruments.srs package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.types.html">qtics.instruments.types package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.valon.html">qtics.instruments.valon package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="qtics.transport.html">qtics.transport package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+</ul>
+
+</div></div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="module-qtics.instruments.oxford.proteox">
+<span id="qtics-instruments-oxford-proteox-package"></span><h1>qtics.instruments.oxford.proteox package<a class="headerlink" href="#module-qtics.instruments.oxford.proteox" title="Permalink to this heading">#</a></h1>
+<p>Proteox cryostat driver (WAMP), asynchronous and synchronous.</p>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="module-qtics.instruments.oxford.proteox.proteox">
+<span id="qtics-instruments-oxford-proteox-proteox-module"></span><h2>qtics.instruments.oxford.proteox.proteox module<a class="headerlink" href="#module-qtics.instruments.oxford.proteox.proteox" title="Permalink to this heading">#</a></h2>
+<p>Define proteox instrument object.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.proteox.AsyncProteox">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qtics.instruments.oxford.proteox.proteox.</span></span><span class="sig-name descname"><span class="pre">AsyncProteox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">realm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secret</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/instruments/oxford/proteox/proteox.html#AsyncProteox"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instruments.oxford.proteox.proteox.AsyncProteox" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Asynchronous high-level API for interacting with Proteox over WAMP.</p>
+<p>Missing connection parameters are read from the environment (after loading a
+<code class="docutils literal notranslate"><span class="pre">.env</span></code> file, if any): <code class="docutils literal notranslate"><span class="pre">WAMP_ROUTER_URL</span></code>, <code class="docutils literal notranslate"><span class="pre">WAMP_REALM</span></code>, <code class="docutils literal notranslate"><span class="pre">WAMP_USER</span></code> and
+<code class="docutils literal notranslate"><span class="pre">WAMP_USER_SECRET</span></code>.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.proteox.AsyncProteox.close">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/instruments/oxford/proteox/proteox.html#AsyncProteox.close"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instruments.oxford.proteox.proteox.AsyncProteox.close" title="Permalink to this definition">#</a></dt>
+<dd><p>Close the WAMP session.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.proteox.AsyncProteox.connect">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">connect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/instruments/oxford/proteox/proteox.html#AsyncProteox.connect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instruments.oxford.proteox.proteox.AsyncProteox.connect" title="Permalink to this definition">#</a></dt>
+<dd><p>Connect to the WAMP router and establish session.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.proteox.AsyncProteox.get_recognized_states">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_recognized_states</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/instruments/oxford/proteox/proteox.html#AsyncProteox.get_recognized_states"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instruments.oxford.proteox.proteox.AsyncProteox.get_recognized_states" title="Permalink to this definition">#</a></dt>
+<dd><p>Return all matched recognized states.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.proteox.AsyncProteox.get_sensor">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_sensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">uri</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#qtics.instruments.oxford.proteox.proteox.AsyncProteox.get_sensor" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.proteox.AsyncProteox.how_to_go_to_recognized_state">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">how_to_go_to_recognized_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span></span><a class="reference internal" href="../_modules/qtics/instruments/oxford/proteox/proteox.html#AsyncProteox.how_to_go_to_recognized_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instruments.oxford.proteox.proteox.AsyncProteox.how_to_go_to_recognized_state" title="Permalink to this definition">#</a></dt>
+<dd><p>Return instructions to reach a state.</p>
+<p>In particular:
+- the closest recognized state, if target_state is None
+- or a specific recognized state</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.proteox.AsyncProteox.is_in_recognized_state">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_in_recognized_state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../_modules/qtics/instruments/oxford/proteox/proteox.html#AsyncProteox.is_in_recognized_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instruments.oxford.proteox.proteox.AsyncProteox.is_in_recognized_state" title="Permalink to this definition">#</a></dt>
+<dd><p>Return True if the cryostat is in a recognized state.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.proteox.AsyncProteox.is_in_remote">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_in_remote</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../_modules/qtics/instruments/oxford/proteox/proteox.html#AsyncProteox.is_in_remote"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instruments.oxford.proteox.proteox.AsyncProteox.is_in_remote" title="Permalink to this definition">#</a></dt>
+<dd><p>Check if Proteox is in remote mode, i.e. it can be controlled.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.proteox.AsyncProteox.set_sensor">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_sensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">uri</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#qtics.instruments.oxford.proteox.proteox.AsyncProteox.set_sensor" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.proteox.Proteox">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qtics.instruments.oxford.proteox.proteox.</span></span><span class="sig-name descname"><span class="pre">Proteox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">realm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secret</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Proteox'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/instruments/oxford/proteox/proteox.html#Proteox"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instruments.oxford.proteox.proteox.Proteox" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="qtics.instruments.html#qtics.instruments.base.Instrument" title="qtics.instruments.base.Instrument"><code class="xref py py-class docutils literal notranslate"><span class="pre">Instrument</span></code></a></p>
+<p>Synchronous Proteox driver.</p>
+<p>Wraps <a class="reference internal" href="#qtics.instruments.oxford.proteox.proteox.AsyncProteox" title="qtics.instruments.oxford.proteox.proteox.AsyncProteox"><code class="xref py py-class docutils literal notranslate"><span class="pre">AsyncProteox</span></code></a>, which runs on an event loop in a daemon thread.
+The dynamic <code class="docutils literal notranslate"><span class="pre">get_&lt;KEY&gt;()</span></code> and <code class="docutils literal notranslate"><span class="pre">set_&lt;KEY&gt;(value)</span></code> methods of
+<a class="reference internal" href="#qtics.instruments.oxford.proteox.proteox.AsyncProteox" title="qtics.instruments.oxford.proteox.proteox.AsyncProteox"><code class="xref py py-class docutils literal notranslate"><span class="pre">AsyncProteox</span></code></a> are available as blocking calls. Exceptions raised in the
+coroutines propagate to the caller.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.proteox.Proteox.connect">
+<span class="sig-name descname"><span class="pre">connect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/instruments/oxford/proteox/proteox.html#Proteox.connect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instruments.oxford.proteox.proteox.Proteox.connect" title="Permalink to this definition">#</a></dt>
+<dd><p>Start the event loop thread and open the WAMP session.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.proteox.Proteox.disconnect">
+<span class="sig-name descname"><span class="pre">disconnect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/instruments/oxford/proteox/proteox.html#Proteox.disconnect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instruments.oxford.proteox.proteox.Proteox.disconnect" title="Permalink to this definition">#</a></dt>
+<dd><p>Close the WAMP session and stop the event loop thread.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.proteox.Proteox.get_recognized_states">
+<span class="sig-name descname"><span class="pre">get_recognized_states</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/instruments/oxford/proteox/proteox.html#Proteox.get_recognized_states"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instruments.oxford.proteox.proteox.Proteox.get_recognized_states" title="Permalink to this definition">#</a></dt>
+<dd><p>Return all matched recognized states.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.proteox.Proteox.how_to_go_to_recognized_state">
+<span class="sig-name descname"><span class="pre">how_to_go_to_recognized_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span></span><a class="reference internal" href="../_modules/qtics/instruments/oxford/proteox/proteox.html#Proteox.how_to_go_to_recognized_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instruments.oxford.proteox.proteox.Proteox.how_to_go_to_recognized_state" title="Permalink to this definition">#</a></dt>
+<dd><p>Return instructions to reach a recognized state, see <a class="reference internal" href="#qtics.instruments.oxford.proteox.proteox.AsyncProteox" title="qtics.instruments.oxford.proteox.proteox.AsyncProteox"><code class="xref py py-class docutils literal notranslate"><span class="pre">AsyncProteox</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.proteox.Proteox.is_connected">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_connected</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></em><a class="headerlink" href="#qtics.instruments.oxford.proteox.proteox.Proteox.is_connected" title="Permalink to this definition">#</a></dt>
+<dd><p>Whether the event loop thread is running and the session is open.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.proteox.Proteox.is_in_recognized_state">
+<span class="sig-name descname"><span class="pre">is_in_recognized_state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../_modules/qtics/instruments/oxford/proteox/proteox.html#Proteox.is_in_recognized_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instruments.oxford.proteox.proteox.Proteox.is_in_recognized_state" title="Permalink to this definition">#</a></dt>
+<dd><p>Return True if the cryostat is in a recognized state.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.proteox.Proteox.is_in_remote">
+<span class="sig-name descname"><span class="pre">is_in_remote</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../_modules/qtics/instruments/oxford/proteox/proteox.html#Proteox.is_in_remote"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instruments.oxford.proteox.proteox.Proteox.is_in_remote" title="Permalink to this definition">#</a></dt>
+<dd><p>Check if Proteox is in remote mode, i.e. it can be controlled.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-qtics.instruments.oxford.proteox.session">
+<span id="qtics-instruments-oxford-proteox-session-module"></span><h2>qtics.instruments.oxford.proteox.session module<a class="headerlink" href="#module-qtics.instruments.oxford.proteox.session" title="Permalink to this heading">#</a></h2>
+<p>Manager for WAMP session.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.session.InstrumentSession">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qtics.instruments.oxford.proteox.session.</span></span><span class="sig-name descname"><span class="pre">InstrumentSession</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">instrument</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/instruments/oxford/proteox/session.html#InstrumentSession"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instruments.oxford.proteox.session.InstrumentSession" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ApplicationSession</span></code></p>
+<p>WAMP session class.</p>
+<p>Manages the connection to the router and ensures the
+instrument has control of the system if in remote mode.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.session.InstrumentSession.instrument">
+<span class="sig-name descname"><span class="pre">instrument</span></span><a class="headerlink" href="#qtics.instruments.oxford.proteox.session.InstrumentSession.instrument" title="Permalink to this definition">#</a></dt>
+<dd><p>Reference to the parent instrument instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Any</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.session.InstrumentSession.onChallenge">
+<span class="sig-name descname"><span class="pre">onChallenge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">challenge</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/instruments/oxford/proteox/session.html#InstrumentSession.onChallenge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instruments.oxford.proteox.session.InstrumentSession.onChallenge" title="Permalink to this definition">#</a></dt>
+<dd><p>Authenticate.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>challenge</strong> (<em>Challenge</em>) – The challenge object containing auth parameters.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Signature computed for the challenge.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.session.InstrumentSession.onConnect">
+<span class="sig-name descname"><span class="pre">onConnect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/instruments/oxford/proteox/session.html#InstrumentSession.onConnect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instruments.oxford.proteox.session.InstrumentSession.onConnect" title="Permalink to this definition">#</a></dt>
+<dd><p>Join the realm using WAMP-CRA authentication.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.session.InstrumentSession.onDisconnect">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">onDisconnect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/instruments/oxford/proteox/session.html#InstrumentSession.onDisconnect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instruments.oxford.proteox.session.InstrumentSession.onDisconnect" title="Permalink to this definition">#</a></dt>
+<dd><p>Forget the session and signal the instrument’s disconnect_event if set.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.session.InstrumentSession.onJoin">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">onJoin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">details</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/instruments/oxford/proteox/session.html#InstrumentSession.onJoin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instruments.oxford.proteox.session.InstrumentSession.onJoin" title="Permalink to this definition">#</a></dt>
+<dd><p>Check the control mode of the system and claims control if no controller exists.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.session.InstrumentSession.onLeave">
+<span class="sig-name descname"><span class="pre">onLeave</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">details</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">CloseDetails</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/instruments/oxford/proteox/session.html#InstrumentSession.onLeave"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instruments.oxford.proteox.session.InstrumentSession.onLeave" title="Permalink to this definition">#</a></dt>
+<dd><p>Override standard onLeave to avoid not necessary warning.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.session.wamp_call_handler_get">
+<span class="sig-prename descclassname"><span class="pre">qtics.instruments.oxford.proteox.session.</span></span><span class="sig-name descname"><span class="pre">wamp_call_handler_get</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/instruments/oxford/proteox/session.html#wamp_call_handler_get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instruments.oxford.proteox.session.wamp_call_handler_get" title="Permalink to this definition">#</a></dt>
+<dd><p>Create the decorator for wrapping getters WAMP RPC calls.</p>
+<p>Handles exceptions and extracts the item at <cite>index</cite> (default the 5th, the
+value of most records) from the call response.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The wrapped function.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Callable</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.session.wamp_call_handler_set">
+<span class="sig-prename descclassname"><span class="pre">qtics.instruments.oxford.proteox.session.</span></span><span class="sig-name descname"><span class="pre">wamp_call_handler_set</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/instruments/oxford/proteox/session.html#wamp_call_handler_set"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instruments.oxford.proteox.session.wamp_call_handler_set" title="Permalink to this definition">#</a></dt>
+<dd><p>Create the decorator for wrapping setters WAMP RPC calls.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The wrapped function.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Callable</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-qtics.instruments.oxford.proteox.states">
+<span id="qtics-instruments-oxford-proteox-states-module"></span><h2>qtics.instruments.oxford.proteox.states module<a class="headerlink" href="#module-qtics.instruments.oxford.proteox.states" title="Permalink to this heading">#</a></h2>
+<p>Recognized state evaluator for Proteox.</p>
+<p>This module evaluates whether the cryostat is in one of the recognized
+states defined by the Proteox truth table.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.states.Condition">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qtics.instruments.oxford.proteox.states.</span></span><span class="sig-name descname"><span class="pre">Condition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.15)"><span class="pre">Callable</span></a><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">suggestion_if_false</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">suggestion_if_true</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/instruments/oxford/proteox/states.html#Condition"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instruments.oxford.proteox.states.Condition" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>A boolean condition used to identify a recognized cryostat state.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.states.Condition.evaluator">
+<span class="sig-name descname"><span class="pre">evaluator</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.15)"><span class="pre">Callable</span></a><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#qtics.instruments.oxford.proteox.states.Condition.evaluator" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.states.Condition.key">
+<span class="sig-name descname"><span class="pre">key</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></em><a class="headerlink" href="#qtics.instruments.oxford.proteox.states.Condition.key" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.states.Condition.label">
+<span class="sig-name descname"><span class="pre">label</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></em><a class="headerlink" href="#qtics.instruments.oxford.proteox.states.Condition.label" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.states.Condition.suggestion_if_false">
+<span class="sig-name descname"><span class="pre">suggestion_if_false</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></em><a class="headerlink" href="#qtics.instruments.oxford.proteox.states.Condition.suggestion_if_false" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.states.Condition.suggestion_if_true">
+<span class="sig-name descname"><span class="pre">suggestion_if_true</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><span class="pre">None</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#qtics.instruments.oxford.proteox.states.Condition.suggestion_if_true" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.states.RecognizedStateManager">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qtics.instruments.oxford.proteox.states.</span></span><span class="sig-name descname"><span class="pre">RecognizedStateManager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">proteox</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/instruments/oxford/proteox/states.html#RecognizedStateManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instruments.oxford.proteox.states.RecognizedStateManager" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Evaluates whether the cryostat is in a recognized state.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.states.RecognizedStateManager.evaluate_conditions">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">evaluate_conditions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/qtics/instruments/oxford/proteox/states.html#RecognizedStateManager.evaluate_conditions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instruments.oxford.proteox.states.RecognizedStateManager.evaluate_conditions" title="Permalink to this definition">#</a></dt>
+<dd><p>Evaluate all defined conditions.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.states.RecognizedStateManager.get_closest_state">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_closest_state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#qtics.instruments.oxford.proteox.states.StateMatch" title="qtics.instruments.oxford.proteox.states.StateMatch"><span class="pre">StateMatch</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/qtics/instruments/oxford/proteox/states.html#RecognizedStateManager.get_closest_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instruments.oxford.proteox.states.RecognizedStateManager.get_closest_state" title="Permalink to this definition">#</a></dt>
+<dd><p>Return the closest recognized state (minimum total mismatches).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.states.RecognizedStateManager.get_condition_report">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_condition_report</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/qtics/instruments/oxford/proteox/states.html#RecognizedStateManager.get_condition_report"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instruments.oxford.proteox.states.RecognizedStateManager.get_condition_report" title="Permalink to this definition">#</a></dt>
+<dd><p>Return a diagnostic condition report.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;PTR_IS_ON&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;3CL-PTR-01 is On&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="o">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.states.RecognizedStateManager.get_recognized_states">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_recognized_states</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/qtics/instruments/oxford/proteox/states.html#RecognizedStateManager.get_recognized_states"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instruments.oxford.proteox.states.RecognizedStateManager.get_recognized_states" title="Permalink to this definition">#</a></dt>
+<dd><p>Return all currently matched recognized states.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.states.RecognizedStateManager.get_state_gap">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_state_gap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#qtics.instruments.oxford.proteox.states.StateMatch" title="qtics.instruments.oxford.proteox.states.StateMatch"><span class="pre">StateMatch</span></a></span></span><a class="reference internal" href="../_modules/qtics/instruments/oxford/proteox/states.html#RecognizedStateManager.get_state_gap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instruments.oxford.proteox.states.RecognizedStateManager.get_state_gap" title="Permalink to this definition">#</a></dt>
+<dd><p>Return mismatches relative to a specific target state.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.states.RecognizedStateManager.get_transition_plan">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_transition_plan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/qtics/instruments/oxford/proteox/states.html#RecognizedStateManager.get_transition_plan"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instruments.oxford.proteox.states.RecognizedStateManager.get_transition_plan" title="Permalink to this definition">#</a></dt>
+<dd><p>Return a structured transition plan.</p>
+<p>Useful if you later want to drive a GUI or automatic action planner.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.states.RecognizedStateManager.how_to_go_to_recognized_state">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">how_to_go_to_recognized_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span></span><a class="reference internal" href="../_modules/qtics/instruments/oxford/proteox/states.html#RecognizedStateManager.how_to_go_to_recognized_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instruments.oxford.proteox.states.RecognizedStateManager.how_to_go_to_recognized_state" title="Permalink to this definition">#</a></dt>
+<dd><p>Return a human-readable suggestion to reach.</p>
+<p>In particular:
+- the closest recognized state
+- or a user-requested target state</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.states.RecognizedStateManager.is_in_recognized_state">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_in_recognized_state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../_modules/qtics/instruments/oxford/proteox/states.html#RecognizedStateManager.is_in_recognized_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instruments.oxford.proteox.states.RecognizedStateManager.is_in_recognized_state" title="Permalink to this definition">#</a></dt>
+<dd><p>Return True if current conditions match at least one recognized state.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.states.RecognizedStateManager.match_all_states">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">match_all_states</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#qtics.instruments.oxford.proteox.states.StateMatch" title="qtics.instruments.oxford.proteox.states.StateMatch"><span class="pre">qtics.instruments.oxford.proteox.states.StateMatch</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/qtics/instruments/oxford/proteox/states.html#RecognizedStateManager.match_all_states"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instruments.oxford.proteox.states.RecognizedStateManager.match_all_states" title="Permalink to this definition">#</a></dt>
+<dd><p>Evaluate all recognized states using EXCLUSIVE matching.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.states.RecognizedStateManager.read_signals">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read_signals</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/qtics/instruments/oxford/proteox/states.html#RecognizedStateManager.read_signals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instruments.oxford.proteox.states.RecognizedStateManager.read_signals" title="Permalink to this definition">#</a></dt>
+<dd><p>Collect all raw values needed to evaluate state conditions.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.states.StateMatch">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qtics.instruments.oxford.proteox.states.</span></span><span class="sig-name descname"><span class="pre">StateMatch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">matched</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">missing_true_conditions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">violating_false_conditions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">satisfied_true_conditions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">satisfied_false_conditions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mismatch_count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/instruments/oxford/proteox/states.html#StateMatch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instruments.oxford.proteox.states.StateMatch" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Result for one candidate state.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.states.StateMatch.matched">
+<span class="sig-name descname"><span class="pre">matched</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></em><a class="headerlink" href="#qtics.instruments.oxford.proteox.states.StateMatch.matched" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.states.StateMatch.mismatch_count">
+<span class="sig-name descname"><span class="pre">mismatch_count</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><span class="pre">int</span></a></em><a class="headerlink" href="#qtics.instruments.oxford.proteox.states.StateMatch.mismatch_count" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.states.StateMatch.missing_true_conditions">
+<span class="sig-name descname"><span class="pre">missing_true_conditions</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#qtics.instruments.oxford.proteox.states.StateMatch.missing_true_conditions" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.states.StateMatch.satisfied_false_conditions">
+<span class="sig-name descname"><span class="pre">satisfied_false_conditions</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#qtics.instruments.oxford.proteox.states.StateMatch.satisfied_false_conditions" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.states.StateMatch.satisfied_true_conditions">
+<span class="sig-name descname"><span class="pre">satisfied_true_conditions</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#qtics.instruments.oxford.proteox.states.StateMatch.satisfied_true_conditions" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.states.StateMatch.state_name">
+<span class="sig-name descname"><span class="pre">state_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></em><a class="headerlink" href="#qtics.instruments.oxford.proteox.states.StateMatch.state_name" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.states.StateMatch.violating_false_conditions">
+<span class="sig-name descname"><span class="pre">violating_false_conditions</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#qtics.instruments.oxford.proteox.states.StateMatch.violating_false_conditions" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.states.build_conditions">
+<span class="sig-prename descclassname"><span class="pre">qtics.instruments.oxford.proteox.states.</span></span><span class="sig-name descname"><span class="pre">build_conditions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#qtics.instruments.oxford.proteox.states.Condition" title="qtics.instruments.oxford.proteox.states.Condition"><span class="pre">qtics.instruments.oxford.proteox.states.Condition</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/qtics/instruments/oxford/proteox/states.html#build_conditions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instruments.oxford.proteox.states.build_conditions" title="Permalink to this definition">#</a></dt>
+<dd><p>Define all boolean conditions used by the Proteox recognized-state table.</p>
+<p>You should adapt / refine these once the exact raw API signals are confirmed.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qtics.instruments.oxford.proteox.states.state">
+<span class="sig-prename descclassname"><span class="pre">qtics.instruments.oxford.proteox.states.</span></span><span class="sig-name descname"><span class="pre">state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">true_conditions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/qtics/instruments/oxford/proteox/states.html#state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.instruments.oxford.proteox.states.state" title="Permalink to this definition">#</a></dt>
+<dd><p>Exclusive-state helper.</p>
+<p>Every condition not explicitly listed as True is assumed False.
+This is the correct interpretation if your Proteox truth table is exclusive.</p>
+</dd></dl>
+
+</section>
+<section id="module-qtics.instruments.oxford.proteox.uris">
+<span id="qtics-instruments-oxford-proteox-uris-module"></span><h2>qtics.instruments.oxford.proteox.uris module<a class="headerlink" href="#module-qtics.instruments.oxford.proteox.uris" title="Permalink to this heading">#</a></h2>
+<p>URI and state mapping.</p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="qtics.instruments.rohde_schwarz.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">qtics.instruments.rohde_schwarz package</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="qtics.instruments.oxford.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">qtics.instruments.oxford package</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023, The BiQuTe Team
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            <div class="last-updated">
+              Last updated on Nov 13, 2026</div>
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              <a class="muted-link " href="https://github.com/biqute/qtics" aria-label="GitHub">
+                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+                    </svg>
+                </a>
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">qtics.instruments.oxford.proteox package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-qtics.instruments.oxford.proteox.proteox">qtics.instruments.oxford.proteox.proteox module</a><ul>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.proteox.AsyncProteox"><code class="docutils literal notranslate"><span class="pre">AsyncProteox</span></code></a><ul>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.proteox.AsyncProteox.close"><code class="docutils literal notranslate"><span class="pre">AsyncProteox.close()</span></code></a></li>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.proteox.AsyncProteox.connect"><code class="docutils literal notranslate"><span class="pre">AsyncProteox.connect()</span></code></a></li>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.proteox.AsyncProteox.get_recognized_states"><code class="docutils literal notranslate"><span class="pre">AsyncProteox.get_recognized_states()</span></code></a></li>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.proteox.AsyncProteox.get_sensor"><code class="docutils literal notranslate"><span class="pre">AsyncProteox.get_sensor()</span></code></a></li>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.proteox.AsyncProteox.how_to_go_to_recognized_state"><code class="docutils literal notranslate"><span class="pre">AsyncProteox.how_to_go_to_recognized_state()</span></code></a></li>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.proteox.AsyncProteox.is_in_recognized_state"><code class="docutils literal notranslate"><span class="pre">AsyncProteox.is_in_recognized_state()</span></code></a></li>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.proteox.AsyncProteox.is_in_remote"><code class="docutils literal notranslate"><span class="pre">AsyncProteox.is_in_remote()</span></code></a></li>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.proteox.AsyncProteox.set_sensor"><code class="docutils literal notranslate"><span class="pre">AsyncProteox.set_sensor()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.proteox.Proteox"><code class="docutils literal notranslate"><span class="pre">Proteox</span></code></a><ul>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.proteox.Proteox.connect"><code class="docutils literal notranslate"><span class="pre">Proteox.connect()</span></code></a></li>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.proteox.Proteox.disconnect"><code class="docutils literal notranslate"><span class="pre">Proteox.disconnect()</span></code></a></li>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.proteox.Proteox.get_recognized_states"><code class="docutils literal notranslate"><span class="pre">Proteox.get_recognized_states()</span></code></a></li>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.proteox.Proteox.how_to_go_to_recognized_state"><code class="docutils literal notranslate"><span class="pre">Proteox.how_to_go_to_recognized_state()</span></code></a></li>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.proteox.Proteox.is_connected"><code class="docutils literal notranslate"><span class="pre">Proteox.is_connected</span></code></a></li>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.proteox.Proteox.is_in_recognized_state"><code class="docutils literal notranslate"><span class="pre">Proteox.is_in_recognized_state()</span></code></a></li>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.proteox.Proteox.is_in_remote"><code class="docutils literal notranslate"><span class="pre">Proteox.is_in_remote()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-qtics.instruments.oxford.proteox.session">qtics.instruments.oxford.proteox.session module</a><ul>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.session.InstrumentSession"><code class="docutils literal notranslate"><span class="pre">InstrumentSession</span></code></a><ul>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.session.InstrumentSession.instrument"><code class="docutils literal notranslate"><span class="pre">InstrumentSession.instrument</span></code></a></li>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.session.InstrumentSession.onChallenge"><code class="docutils literal notranslate"><span class="pre">InstrumentSession.onChallenge()</span></code></a></li>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.session.InstrumentSession.onConnect"><code class="docutils literal notranslate"><span class="pre">InstrumentSession.onConnect()</span></code></a></li>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.session.InstrumentSession.onDisconnect"><code class="docutils literal notranslate"><span class="pre">InstrumentSession.onDisconnect()</span></code></a></li>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.session.InstrumentSession.onJoin"><code class="docutils literal notranslate"><span class="pre">InstrumentSession.onJoin()</span></code></a></li>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.session.InstrumentSession.onLeave"><code class="docutils literal notranslate"><span class="pre">InstrumentSession.onLeave()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.session.wamp_call_handler_get"><code class="docutils literal notranslate"><span class="pre">wamp_call_handler_get()</span></code></a></li>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.session.wamp_call_handler_set"><code class="docutils literal notranslate"><span class="pre">wamp_call_handler_set()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-qtics.instruments.oxford.proteox.states">qtics.instruments.oxford.proteox.states module</a><ul>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.states.Condition"><code class="docutils literal notranslate"><span class="pre">Condition</span></code></a><ul>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.states.Condition.evaluator"><code class="docutils literal notranslate"><span class="pre">Condition.evaluator</span></code></a></li>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.states.Condition.key"><code class="docutils literal notranslate"><span class="pre">Condition.key</span></code></a></li>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.states.Condition.label"><code class="docutils literal notranslate"><span class="pre">Condition.label</span></code></a></li>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.states.Condition.suggestion_if_false"><code class="docutils literal notranslate"><span class="pre">Condition.suggestion_if_false</span></code></a></li>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.states.Condition.suggestion_if_true"><code class="docutils literal notranslate"><span class="pre">Condition.suggestion_if_true</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.states.RecognizedStateManager"><code class="docutils literal notranslate"><span class="pre">RecognizedStateManager</span></code></a><ul>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.states.RecognizedStateManager.evaluate_conditions"><code class="docutils literal notranslate"><span class="pre">RecognizedStateManager.evaluate_conditions()</span></code></a></li>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.states.RecognizedStateManager.get_closest_state"><code class="docutils literal notranslate"><span class="pre">RecognizedStateManager.get_closest_state()</span></code></a></li>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.states.RecognizedStateManager.get_condition_report"><code class="docutils literal notranslate"><span class="pre">RecognizedStateManager.get_condition_report()</span></code></a></li>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.states.RecognizedStateManager.get_recognized_states"><code class="docutils literal notranslate"><span class="pre">RecognizedStateManager.get_recognized_states()</span></code></a></li>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.states.RecognizedStateManager.get_state_gap"><code class="docutils literal notranslate"><span class="pre">RecognizedStateManager.get_state_gap()</span></code></a></li>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.states.RecognizedStateManager.get_transition_plan"><code class="docutils literal notranslate"><span class="pre">RecognizedStateManager.get_transition_plan()</span></code></a></li>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.states.RecognizedStateManager.how_to_go_to_recognized_state"><code class="docutils literal notranslate"><span class="pre">RecognizedStateManager.how_to_go_to_recognized_state()</span></code></a></li>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.states.RecognizedStateManager.is_in_recognized_state"><code class="docutils literal notranslate"><span class="pre">RecognizedStateManager.is_in_recognized_state()</span></code></a></li>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.states.RecognizedStateManager.match_all_states"><code class="docutils literal notranslate"><span class="pre">RecognizedStateManager.match_all_states()</span></code></a></li>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.states.RecognizedStateManager.read_signals"><code class="docutils literal notranslate"><span class="pre">RecognizedStateManager.read_signals()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.states.StateMatch"><code class="docutils literal notranslate"><span class="pre">StateMatch</span></code></a><ul>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.states.StateMatch.matched"><code class="docutils literal notranslate"><span class="pre">StateMatch.matched</span></code></a></li>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.states.StateMatch.mismatch_count"><code class="docutils literal notranslate"><span class="pre">StateMatch.mismatch_count</span></code></a></li>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.states.StateMatch.missing_true_conditions"><code class="docutils literal notranslate"><span class="pre">StateMatch.missing_true_conditions</span></code></a></li>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.states.StateMatch.satisfied_false_conditions"><code class="docutils literal notranslate"><span class="pre">StateMatch.satisfied_false_conditions</span></code></a></li>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.states.StateMatch.satisfied_true_conditions"><code class="docutils literal notranslate"><span class="pre">StateMatch.satisfied_true_conditions</span></code></a></li>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.states.StateMatch.state_name"><code class="docutils literal notranslate"><span class="pre">StateMatch.state_name</span></code></a></li>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.states.StateMatch.violating_false_conditions"><code class="docutils literal notranslate"><span class="pre">StateMatch.violating_false_conditions</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.states.build_conditions"><code class="docutils literal notranslate"><span class="pre">build_conditions()</span></code></a></li>
+<li><a class="reference internal" href="#qtics.instruments.oxford.proteox.states.state"><code class="docutils literal notranslate"><span class="pre">state()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-qtics.instruments.oxford.proteox.uris">qtics.instruments.oxford.proteox.uris module</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/scripts/furo.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <script src="../_static/js/captions.js"></script>
+    </body>
+</html>

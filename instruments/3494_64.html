@@ -3,10 +3,12 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Isolated voltage source Stanford Research Systems SIM928" href="SIM928.html" /><link rel="prev" title="RF switch Radiall R591722600" href="R591722600.html" />
+
+    <meta property="article:modified_time" content="2026-11-13T14:04:26+00:00" /><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Compile Arduino Firmwares" href="../arduino.html" /><link rel="prev" title="RF switch Radiall R591722600" href="R591722600.html" />
+        <link rel="canonical" href="https://biqute.github.io/qtics/instruments/3494_64.html" />
 
     <link rel="shortcut icon" href="../_static/favicon.ico"/><!-- Generated with Sphinx 6.2.1 and Furo 2023.09.10 -->
-        <title>Attenuator Kratos 3494-64 - Qtics · 0.0.6</title>
+        <title>Attenuator Kratos 3494-64 - Qtics · 0.1.0</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=369552022d0b975c8e74270ce6eabe0fb7978f24" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -18,23 +20,20 @@
 
 <style>
   body {
-    --color-code-background: #f8f8f8;
-  --color-code-foreground: black;
-  --color-brand-primary: #6400FF;
-  --color-brand-secondary: #6400FF;
-  --color-brand-content: #6400FF;
+    --color-code-background: #0d1117;
+  --color-code-foreground: #e6edf3;
   
   }
   @media not print {
     body[data-theme="dark"] {
-      --color-code-background: #202020;
-  --color-code-foreground: #d0d0d0;
+      --color-code-background: #0d1117;
+  --color-code-foreground: #e6edf3;
   
     }
     @media (prefers-color-scheme: dark) {
       body:not([data-theme="light"]) {
-        --color-code-background: #202020;
-  --color-code-foreground: #d0d0d0;
+        --color-code-background: #0d1117;
+  --color-code-foreground: #e6edf3;
   
       }
     }
@@ -128,7 +127,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../index.html"><div class="brand">Qtics · 0.0.6</div></a>
+      <a href="../index.html"><div class="brand">Qtics · 0.1.0</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -155,49 +154,75 @@
     <img class="sidebar-logo only-dark" src="../_static/biqute_logo.png" alt="Dark Logo"/>
   </div>
   
-  <span class="sidebar-brand-text">Qtics · 0.0.6</span>
   
-</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+</a><div class="qt-versions">
+  <label class="qt-versions-label" for="qt-version-select">Version</label>
+  <select id="qt-version-select" class="qt-versions-select" data-versions="https://biqute.github.io/qtics/versions.json" data-current="0.1.0">
+    <option selected>0.1.0</option>
+  </select>
+</div><form class="sidebar-search-container" method="get" action="../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
   <input type="hidden" name="check_keywords" value="yes">
   <input type="hidden" name="area" value="default">
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
-  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
+  <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../arduino.html">Compile Arduino Firmwares</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../experiments.html">Experiments</a></li>
-<li class="toctree-l1 current has-children"><a class="reference internal" href="modules.html">Supported Instruments</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Supported Instruments</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="R591722600.html">RF switch Radiall R591722600</a></li>
-<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Attenuator Kratos 3494-64</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SIM928.html">Isolated voltage source Stanford Research Systems SIM928</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QUICKSYNTH.html">Microwave synthesizers by QuickSynth</a></li>
-<li class="toctree-l2"><a class="reference internal" href="6514.html">Keithley Model 6514 System Electrometer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="2231A.html">Keithley Model 2231A-30-3 Triple Channel DC Power Supply.</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SMA100B.html">R&amp;S®SMA100B RF and microwave signal generator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="VALON519.html">Frequency Synthesizer module Valon Model 5019</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migration.html">Migrating to qtics 0.1</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Instruments</span></p>
+<ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="modules.html">Instruments</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Instruments</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="RSZNB.html">R&amp;S®ZNB vector network analyzer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="RSFSV.html">R&amp;S®FSV3030 Spectrum Analyzer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="N9916A.html">Handheld Microwave Analyzer FieldFox N9916A</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SMA100B.html">R&amp;S®SMA100B RF and microwave signal generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VALON519.html">Frequency Synthesizer module Valon Model 5019</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QUICKSYNTH.html">Microwave synthesizers by QuickSynth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2231A.html">Keithley Model 2231A-30-3 Triple Channel DC Power Supply.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6514.html">Keithley Model 6514 System Electrometer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SIM928.html">Isolated voltage source Stanford Research Systems SIM928</a></li>
 <li class="toctree-l2"><a class="reference internal" href="triton.html">Triton controller</a></li>
 <li class="toctree-l2"><a class="reference internal" href="proteox.html">Proteox controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="R591722600.html">RF switch Radiall R591722600</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Attenuator Kratos 3494-64</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../arduino.html">Compile Arduino Firmwares</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Api reference</span></p>
+<p class="caption" role="heading"><span class="caption-text">API reference</span></p>
 <ul>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../api-reference/modules.html">qtics</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of qtics</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../api-reference/qtics.html">qtics package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of qtics package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../api-reference/qtics.instruments.html">qtics.instruments package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api-reference/qtics.instruments.html">qtics.instruments package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of qtics.instruments package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api-reference/qtics.instruments.arduino.html">qtics.instruments.arduino package</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of qtics.instruments.arduino package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api-reference/qtics.instruments.arduino.kratos_3494.html">qtics.instruments.arduino.kratos_3494 package</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api-reference/qtics.instruments.arduino.r591_switch.html">qtics.instruments.arduino.r591_switch package</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../api-reference/qtics.instruments.keithley.html">qtics.instruments.keithley package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api-reference/qtics.instruments.keysight.html">qtics.instruments.keysight package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api-reference/qtics.instruments.ni.html">qtics.instruments.ni package</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api-reference/qtics.instruments.oxford.html">qtics.instruments.oxford package</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of qtics.instruments.oxford package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api-reference/qtics.instruments.oxford.proteox.html">qtics.instruments.oxford.proteox package</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../api-reference/qtics.instruments.rohde_schwarz.html">qtics.instruments.rohde_schwarz package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api-reference/qtics.instruments.srs.html">qtics.instruments.srs package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api-reference/qtics.instruments.types.html">qtics.instruments.types package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api-reference/qtics.instruments.valon.html">qtics.instruments.valon package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api-reference/qtics.transport.html">qtics.transport package</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
 </ul>
 
-</div>
-</div>
+</div></div>
 
       </div>
       
@@ -242,19 +267,19 @@
 Manual of the instrument is available at <a class="reference external" href="https://www.kratosmed.com/gmcatalog/microwave-attenuators/series-349-and-349h-octave-band-11-bit-digital-pin-diode-attenuators">Kratosmed</a>.</p>
 <p>This instrument requires the correspondent Arduino firmware to be compiled and loaded.
 See related instruction at <a class="reference internal" href="../arduino.html#arduino-firmware"><span class="std std-ref">Compile Arduino Firmwares</span></a>.</p>
-<p>Base class: <a class="reference internal" href="../api-reference/qtics.instruments.html#qtics.instruments.serial_inst.SerialInst" title="qtics.instruments.serial_inst.SerialInst"><code class="xref py py-class docutils literal notranslate"><span class="pre">qtics.instruments.serial_inst.SerialInst</span></code></a>.</p>
+<p>Base class: <a class="reference internal" href="../api-reference/qtics.instruments.html#qtics.instruments.base.SCPIInstrument" title="qtics.instruments.base.SCPIInstrument"><code class="xref py py-class docutils literal notranslate"><span class="pre">qtics.instruments.base.SCPIInstrument</span></code></a>.</p>
 <section id="example-of-operations">
 <h2>Example of operations<a class="headerlink" href="#example-of-operations" title="Permalink to this heading">#</a></h2>
 <p>To initialize a controller you can execute the following directives on any Python script or notebook:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qtics</span> <span class="kn">import</span> <span class="n">Kratos_349464</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qtics</span> <span class="kn">import</span> <span class="n">Kratos3494Attenuator</span>
 
-<span class="n">attenuator</span> <span class="o">=</span> <span class="n">Kratos_349464</span><span class="p">(</span><span class="n">address</span> <span class="o">=</span> <span class="s2">&quot;/dev/ttyACM0&quot;</span><span class="p">)</span>
+<span class="n">attenuator</span> <span class="o">=</span> <span class="n">Kratos3494Attenuator</span><span class="p">(</span><span class="s2">&quot;/dev/ttyACM0&quot;</span><span class="p">)</span>
 <span class="n">attenuator</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>To execute commands:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">attenuator</span><span class="o">.</span><span class="n">attenuation</span> <span class="o">=</span> <span class="mf">20.5</span>  <span class="c1"># set attenuation at 20 dB</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">attenuator</span><span class="o">.</span><span class="n">attenuation</span><span class="p">)</span>  <span class="c1"># get attenuation from instrument</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">attenuator</span><span class="o">.</span><span class="n">attenuation</span> <span class="o">=</span> <span class="mf">20.5</span>  <span class="c1"># set attenuation at 20.5 dB</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">attenuator</span><span class="o">.</span><span class="n">attenuation</span><span class="p">)</span>  <span class="c1"># get attenuation in dB (float)</span>
 </pre></div>
 </div>
 </section>
@@ -280,12 +305,12 @@ See related instruction at <a class="reference internal" href="../arduino.html#a
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="SIM928.html">
+          <a class="next-page" href="../arduino.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Isolated voltage source Stanford Research Systems SIM928</div>
+                <div class="title">Compile Arduino Firmwares</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
@@ -309,7 +334,8 @@ See related instruction at <a class="reference internal" href="../arduino.html#a
             Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
             
             <a href="https://github.com/pradyunsg/furo">Furo</a>
-            
+            <div class="last-updated">
+              Last updated on Nov 13, 2026</div>
           </div>
           <div class="right-details">
             <div class="icons">
@@ -361,5 +387,7 @@ See related instruction at <a class="reference internal" href="../arduino.html#a
     <script src="../_static/scripts/furo.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <script src="../_static/js/captions.js"></script>
     </body>
 </html>

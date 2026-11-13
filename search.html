@@ -3,8 +3,9 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="#" />
+        <link rel="canonical" href="https://biqute.github.io/qtics/search.html" />
 
-    <link rel="shortcut icon" href="_static/favicon.ico"/><!-- Generated with Sphinx 6.2.1 and Furo 2023.09.10 --><title>Search - Qtics · 0.0.6</title><link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="shortcut icon" href="_static/favicon.ico"/><!-- Generated with Sphinx 6.2.1 and Furo 2023.09.10 --><title>Search - Qtics · 0.1.0</title><link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=369552022d0b975c8e74270ce6eabe0fb7978f24" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/css/style.css" />
@@ -15,23 +16,20 @@
 
 <style>
   body {
-    --color-code-background: #f8f8f8;
-  --color-code-foreground: black;
-  --color-brand-primary: #6400FF;
-  --color-brand-secondary: #6400FF;
-  --color-brand-content: #6400FF;
+    --color-code-background: #0d1117;
+  --color-code-foreground: #e6edf3;
   
   }
   @media not print {
     body[data-theme="dark"] {
-      --color-code-background: #202020;
-  --color-code-foreground: #d0d0d0;
+      --color-code-background: #0d1117;
+  --color-code-foreground: #e6edf3;
   
     }
     @media (prefers-color-scheme: dark) {
       body:not([data-theme="light"]) {
-        --color-code-background: #202020;
-  --color-code-foreground: #d0d0d0;
+        --color-code-background: #0d1117;
+  --color-code-foreground: #e6edf3;
   
       }
     }
@@ -125,7 +123,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">Qtics · 0.0.6</div></a>
+      <a href="index.html"><div class="brand">Qtics · 0.1.0</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -152,49 +150,75 @@
     <img class="sidebar-logo only-dark" src="_static/biqute_logo.png" alt="Dark Logo"/>
   </div>
   
-  <span class="sidebar-brand-text">Qtics · 0.0.6</span>
   
-</a><form class="sidebar-search-container" method="get" action="#" role="search">
+</a><div class="qt-versions">
+  <label class="qt-versions-label" for="qt-version-select">Version</label>
+  <select id="qt-version-select" class="qt-versions-select" data-versions="https://biqute.github.io/qtics/versions.json" data-current="0.1.0">
+    <option selected>0.1.0</option>
+  </select>
+</div><form class="sidebar-search-container" method="get" action="#" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
   <input type="hidden" name="check_keywords" value="yes">
   <input type="hidden" name="area" value="default">
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
-  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+  <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="arduino.html">Compile Arduino Firmwares</a></li>
-<li class="toctree-l1"><a class="reference internal" href="experiments.html">Experiments</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="instruments/modules.html">Supported Instruments</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Supported Instruments</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="instruments/R591722600.html">RF switch Radiall R591722600</a></li>
-<li class="toctree-l2"><a class="reference internal" href="instruments/3494_64.html">Attenuator Kratos 3494-64</a></li>
-<li class="toctree-l2"><a class="reference internal" href="instruments/SIM928.html">Isolated voltage source Stanford Research Systems SIM928</a></li>
-<li class="toctree-l2"><a class="reference internal" href="instruments/QUICKSYNTH.html">Microwave synthesizers by QuickSynth</a></li>
-<li class="toctree-l2"><a class="reference internal" href="instruments/6514.html">Keithley Model 6514 System Electrometer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="instruments/2231A.html">Keithley Model 2231A-30-3 Triple Channel DC Power Supply.</a></li>
-<li class="toctree-l2"><a class="reference internal" href="instruments/SMA100B.html">R&amp;S®SMA100B RF and microwave signal generator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="instruments/VALON519.html">Frequency Synthesizer module Valon Model 5019</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">Migrating to qtics 0.1</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Instruments</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="instruments/modules.html">Instruments</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Instruments</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="instruments/RSZNB.html">R&amp;S®ZNB vector network analyzer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="instruments/RSFSV.html">R&amp;S®FSV3030 Spectrum Analyzer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="instruments/N9916A.html">Handheld Microwave Analyzer FieldFox N9916A</a></li>
+<li class="toctree-l2"><a class="reference internal" href="instruments/SMA100B.html">R&amp;S®SMA100B RF and microwave signal generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="instruments/VALON519.html">Frequency Synthesizer module Valon Model 5019</a></li>
+<li class="toctree-l2"><a class="reference internal" href="instruments/QUICKSYNTH.html">Microwave synthesizers by QuickSynth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="instruments/2231A.html">Keithley Model 2231A-30-3 Triple Channel DC Power Supply.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="instruments/6514.html">Keithley Model 6514 System Electrometer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="instruments/SIM928.html">Isolated voltage source Stanford Research Systems SIM928</a></li>
 <li class="toctree-l2"><a class="reference internal" href="instruments/triton.html">Triton controller</a></li>
 <li class="toctree-l2"><a class="reference internal" href="instruments/proteox.html">Proteox controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="instruments/R591722600.html">RF switch Radiall R591722600</a></li>
+<li class="toctree-l2"><a class="reference internal" href="instruments/3494_64.html">Attenuator Kratos 3494-64</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="arduino.html">Compile Arduino Firmwares</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Api reference</span></p>
+<p class="caption" role="heading"><span class="caption-text">API reference</span></p>
 <ul>
 <li class="toctree-l1 has-children"><a class="reference internal" href="api-reference/modules.html">qtics</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of qtics</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2 has-children"><a class="reference internal" href="api-reference/qtics.html">qtics package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of qtics package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="api-reference/qtics.instruments.html">qtics.instruments package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="api-reference/qtics.instruments.html">qtics.instruments package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of qtics.instruments package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4 has-children"><a class="reference internal" href="api-reference/qtics.instruments.arduino.html">qtics.instruments.arduino package</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of qtics.instruments.arduino package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="api-reference/qtics.instruments.arduino.kratos_3494.html">qtics.instruments.arduino.kratos_3494 package</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api-reference/qtics.instruments.arduino.r591_switch.html">qtics.instruments.arduino.r591_switch package</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="api-reference/qtics.instruments.keithley.html">qtics.instruments.keithley package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api-reference/qtics.instruments.keysight.html">qtics.instruments.keysight package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api-reference/qtics.instruments.ni.html">qtics.instruments.ni package</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="api-reference/qtics.instruments.oxford.html">qtics.instruments.oxford package</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of qtics.instruments.oxford package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="api-reference/qtics.instruments.oxford.proteox.html">qtics.instruments.oxford.proteox package</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="api-reference/qtics.instruments.rohde_schwarz.html">qtics.instruments.rohde_schwarz package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api-reference/qtics.instruments.srs.html">qtics.instruments.srs package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api-reference/qtics.instruments.types.html">qtics.instruments.types package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api-reference/qtics.instruments.valon.html">qtics.instruments.valon package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api-reference/qtics.transport.html">qtics.transport package</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
 </ul>
 
-</div>
-</div>
+</div></div>
 
       </div>
       
@@ -280,6 +304,8 @@
     <script src="_static/scripts/furo.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script src="_static/js/versions.js"></script>
+    <script src="_static/js/captions.js"></script>
     
 <script src="_static/searchtools.js"></script>
 <script src="_static/language_data.js"></script>

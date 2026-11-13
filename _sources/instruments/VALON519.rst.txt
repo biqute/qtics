@@ -3,16 +3,19 @@ Frequency Synthesizer module Valon Model 5019
 
 The manuals of this instrument and similar models are available at `Valon <https://www.valonrf.com/5019-frequency-synthesizer-20ghz-542911.html>`_.
 
-Base class: :class:`qtics.instruments.serial_inst.SerialInst`.
+Base classes: :class:`qtics.instruments.types.RFSource` and :class:`qtics.instruments.base.MessageInstrument` (serial transport, terminator ``\r``, delay 0.3 s).
 
 Example of operations
 """""""""""""""""""""
 .. code-block:: python
 
-  from qtics import VALON5019
+  from qtics import Valon5019
 
-  fs = VALON5019(address = "/dev/ttyUSB0")
+  fs = Valon5019("/dev/ttyUSB0")
   fs.connect()
+  fs.frequency = 5e9
+  fs.power = -10
+  fs.output = True
 
 Commands
 """"""""
@@ -34,18 +37,18 @@ Properties
 ----------
 
 - mode
-- f_fixed
-- freq_offset
-- freq_step
-- sweep_start
-- sweep_stop
-- sweep_step
+- frequency
+- f_offset
+- f_step_cw
+- f_start
+- f_stop
+- f_step
 - sweep_rate
 - sweep_rtime
 - sweep_tmode
 - list_entry (setter only; getter raises `NotImplementedError`)
-- p_fixed
-- rf_status
+- power
+- output
 - power_pdn
 - am_modulation
 - am_frequency

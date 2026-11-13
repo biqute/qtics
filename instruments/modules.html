@@ -3,10 +3,12 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="RF switch Radiall R591722600" href="R591722600.html" /><link rel="prev" title="Experiments" href="../experiments.html" />
+
+    <meta property="article:modified_time" content="2026-11-13T14:08:42+00:00" /><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="R&amp;S®ZNB vector network analyzer" href="RSZNB.html" /><link rel="prev" title="Migrating to qtics 0.1" href="../migration.html" />
+        <link rel="canonical" href="https://biqute.github.io/qtics/instruments/modules.html" />
 
     <link rel="shortcut icon" href="../_static/favicon.ico"/><!-- Generated with Sphinx 6.2.1 and Furo 2023.09.10 -->
-        <title>Supported Instruments - Qtics · 0.0.6</title>
+        <title>Instruments - Qtics · 0.1.0</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=369552022d0b975c8e74270ce6eabe0fb7978f24" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -18,23 +20,20 @@
 
 <style>
   body {
-    --color-code-background: #f8f8f8;
-  --color-code-foreground: black;
-  --color-brand-primary: #6400FF;
-  --color-brand-secondary: #6400FF;
-  --color-brand-content: #6400FF;
+    --color-code-background: #0d1117;
+  --color-code-foreground: #e6edf3;
   
   }
   @media not print {
     body[data-theme="dark"] {
-      --color-code-background: #202020;
-  --color-code-foreground: #d0d0d0;
+      --color-code-background: #0d1117;
+  --color-code-foreground: #e6edf3;
   
     }
     @media (prefers-color-scheme: dark) {
       body:not([data-theme="light"]) {
-        --color-code-background: #202020;
-  --color-code-foreground: #d0d0d0;
+        --color-code-background: #0d1117;
+  --color-code-foreground: #e6edf3;
   
       }
     }
@@ -128,7 +127,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../index.html"><div class="brand">Qtics · 0.0.6</div></a>
+      <a href="../index.html"><div class="brand">Qtics · 0.1.0</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -155,49 +154,75 @@
     <img class="sidebar-logo only-dark" src="../_static/biqute_logo.png" alt="Dark Logo"/>
   </div>
   
-  <span class="sidebar-brand-text">Qtics · 0.0.6</span>
   
-</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+</a><div class="qt-versions">
+  <label class="qt-versions-label" for="qt-version-select">Version</label>
+  <select id="qt-version-select" class="qt-versions-select" data-versions="https://biqute.github.io/qtics/versions.json" data-current="0.1.0">
+    <option selected>0.1.0</option>
+  </select>
+</div><form class="sidebar-search-container" method="get" action="../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
   <input type="hidden" name="check_keywords" value="yes">
   <input type="hidden" name="area" value="default">
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
-  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
+  <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../arduino.html">Compile Arduino Firmwares</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../experiments.html">Experiments</a></li>
-<li class="toctree-l1 current has-children current-page"><a class="current reference internal" href="#">Supported Instruments</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Supported Instruments</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="R591722600.html">RF switch Radiall R591722600</a></li>
-<li class="toctree-l2"><a class="reference internal" href="3494_64.html">Attenuator Kratos 3494-64</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SIM928.html">Isolated voltage source Stanford Research Systems SIM928</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QUICKSYNTH.html">Microwave synthesizers by QuickSynth</a></li>
-<li class="toctree-l2"><a class="reference internal" href="6514.html">Keithley Model 6514 System Electrometer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="2231A.html">Keithley Model 2231A-30-3 Triple Channel DC Power Supply.</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SMA100B.html">R&amp;S®SMA100B RF and microwave signal generator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="VALON519.html">Frequency Synthesizer module Valon Model 5019</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migration.html">Migrating to qtics 0.1</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Instruments</span></p>
+<ul class="current">
+<li class="toctree-l1 current has-children current-page"><a class="current reference internal" href="#">Instruments</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Instruments</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="RSZNB.html">R&amp;S®ZNB vector network analyzer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="RSFSV.html">R&amp;S®FSV3030 Spectrum Analyzer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="N9916A.html">Handheld Microwave Analyzer FieldFox N9916A</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SMA100B.html">R&amp;S®SMA100B RF and microwave signal generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VALON519.html">Frequency Synthesizer module Valon Model 5019</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QUICKSYNTH.html">Microwave synthesizers by QuickSynth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2231A.html">Keithley Model 2231A-30-3 Triple Channel DC Power Supply.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6514.html">Keithley Model 6514 System Electrometer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SIM928.html">Isolated voltage source Stanford Research Systems SIM928</a></li>
 <li class="toctree-l2"><a class="reference internal" href="triton.html">Triton controller</a></li>
 <li class="toctree-l2"><a class="reference internal" href="proteox.html">Proteox controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="R591722600.html">RF switch Radiall R591722600</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3494_64.html">Attenuator Kratos 3494-64</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../arduino.html">Compile Arduino Firmwares</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Api reference</span></p>
+<p class="caption" role="heading"><span class="caption-text">API reference</span></p>
 <ul>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../api-reference/modules.html">qtics</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of qtics</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../api-reference/qtics.html">qtics package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of qtics package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../api-reference/qtics.instruments.html">qtics.instruments package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api-reference/qtics.instruments.html">qtics.instruments package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of qtics.instruments package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api-reference/qtics.instruments.arduino.html">qtics.instruments.arduino package</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of qtics.instruments.arduino package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api-reference/qtics.instruments.arduino.kratos_3494.html">qtics.instruments.arduino.kratos_3494 package</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api-reference/qtics.instruments.arduino.r591_switch.html">qtics.instruments.arduino.r591_switch package</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../api-reference/qtics.instruments.keithley.html">qtics.instruments.keithley package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api-reference/qtics.instruments.keysight.html">qtics.instruments.keysight package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api-reference/qtics.instruments.ni.html">qtics.instruments.ni package</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api-reference/qtics.instruments.oxford.html">qtics.instruments.oxford package</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of qtics.instruments.oxford package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api-reference/qtics.instruments.oxford.proteox.html">qtics.instruments.oxford.proteox package</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../api-reference/qtics.instruments.rohde_schwarz.html">qtics.instruments.rohde_schwarz package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api-reference/qtics.instruments.srs.html">qtics.instruments.srs package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api-reference/qtics.instruments.types.html">qtics.instruments.types package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api-reference/qtics.instruments.valon.html">qtics.instruments.valon package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api-reference/qtics.transport.html">qtics.transport package</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
 </ul>
 
-</div>
-</div>
+</div></div>
 
       </div>
       
@@ -236,156 +261,58 @@
           </label>
         </div>
         <article role="main">
-          <section id="supported-instruments">
-<h1>Supported Instruments<a class="headerlink" href="#supported-instruments" title="Permalink to this heading">#</a></h1>
+          <section id="instruments">
+<h1>Instruments<a class="headerlink" href="#instruments" title="Permalink to this heading">#</a></h1>
+<p>The supported instruments, grouped by type. Drivers of the same type share one
+interface (<a class="reference internal" href="../api-reference/qtics.instruments.types.html#module-qtics.instruments.types" title="qtics.instruments.types"><code class="xref py py-mod docutils literal notranslate"><span class="pre">qtics.instruments.types</span></code></a>), so a VNA script works with any VNA.</p>
+<div class="qt-instruments docutils container">
+<div class="qt-group docutils container">
+<p class="rubric">Network and spectrum analyzers</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="RSZNB.html"><span class="doc">Rohde &amp; Schwarz ZNB</span></a></p></li>
+<li><p><a class="reference internal" href="RSFSV.html"><span class="doc">Rohde &amp; Schwarz FSV3030</span></a></p></li>
+<li><p><a class="reference internal" href="N9916A.html"><span class="doc">Keysight FieldFox N9916A</span></a></p></li>
+</ul>
+</div>
+<div class="qt-group docutils container">
+<p class="rubric">RF sources</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="SMA100B.html"><span class="doc">Rohde &amp; Schwarz SMA100B</span></a></p></li>
+<li><p><a class="reference internal" href="VALON519.html"><span class="doc">Valon 5019</span></a></p></li>
+<li><p><a class="reference internal" href="QUICKSYNTH.html"><span class="doc">NI QuickSyn</span></a></p></li>
+</ul>
+</div>
+<div class="qt-group docutils container">
+<p class="rubric">DC sources and meters</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="2231A.html"><span class="doc">Keithley 2231A</span></a></p></li>
+<li><p><a class="reference internal" href="6514.html"><span class="doc">Keithley 6514</span></a></p></li>
+<li><p><a class="reference internal" href="SIM928.html"><span class="doc">SRS SIM928</span></a></p></li>
+</ul>
+</div>
+<div class="qt-group docutils container">
+<p class="rubric">Cryostats</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="triton.html"><span class="doc">Oxford Instruments Triton</span></a></p></li>
+<li><p><a class="reference internal" href="proteox.html"><span class="doc">Oxford Instruments Proteox</span></a></p></li>
+</ul>
+</div>
+<div class="qt-group docutils container">
+<p class="rubric">RF switches and attenuators</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="R591722600.html"><span class="doc">Radiall R591722600</span></a></p></li>
+<li><p><a class="reference internal" href="3494_64.html"><span class="doc">Kratos 3494-64</span></a></p></li>
+<li><p><a class="reference internal" href="../arduino.html#arduino-firmware"><span class="std std-ref">Arduino firmware</span></a></p></li>
+</ul>
+</div>
+<div class="qt-group docutils container">
+<p class="rubric">Digitizers</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../api-reference/qtics.instruments.ni.html#qtics.instruments.ni.pxie5170r.Pxie5170R" title="qtics.instruments.ni.pxie5170r.Pxie5170R"><code class="xref py py-class docutils literal notranslate"><span class="pre">NI</span> <span class="pre">PXIe-5170R</span></code></a></p></li>
+</ul>
+</div>
+</div>
 <div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="R591722600.html">RF switch Radiall R591722600</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="R591722600.html#example-of-operations">Example of operations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="R591722600.html#commands">Commands</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="R591722600.html#functions">Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="R591722600.html#properties">Properties</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="3494_64.html">Attenuator Kratos 3494-64</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="3494_64.html#example-of-operations">Example of operations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="3494_64.html#commands">Commands</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="3494_64.html#functions">Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3494_64.html#properties">Properties</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="SIM928.html">Isolated voltage source Stanford Research Systems SIM928</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="SIM928.html#example-of-operations">Example of operations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SIM928.html#commands">Commands</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="SIM928.html#functions">Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="SIM928.html#properties">Properties</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="QUICKSYNTH.html">Microwave synthesizers by QuickSynth</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="QUICKSYNTH.html#example-of-operation">Example of operation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QUICKSYNTH.html#commands">Commands</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="QUICKSYNTH.html#properties">Properties</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="6514.html">Keithley Model 6514 System Electrometer</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="6514.html#example-of-operations">Example of operations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="6514.html#commands">Commands</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="6514.html#functions">Functions</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="2231A.html">Keithley Model 2231A-30-3 Triple Channel DC Power Supply.</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="2231A.html#example-of-operations">Example of operations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="2231A.html#commands">Commands</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="2231A.html#functions">Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="2231A.html#properties">Properties</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="SMA100B.html">R&amp;S®SMA100B RF and microwave signal generator</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="SMA100B.html#example-of-operations">Example of operations</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="SMA100B.html#commands">Commands</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="SMA100B.html#functions">Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SMA100B.html#properties">Properties</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="VALON519.html">Frequency Synthesizer module Valon Model 5019</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="VALON519.html#example-of-operations">Example of operations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="VALON519.html#commands">Commands</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="VALON519.html#functions">Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="VALON519.html#properties">Properties</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="RSZNB.html">R&amp;S®ZNB vector network analyzer</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="RSZNB.html#commands">Commands</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="RSZNB.html#functions">Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="RSZNB.html#properties">Properties</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="RSFSV.html">R&amp;S®FSV3030 Spectrum Analyzer</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="RSFSV.html#commands">Commands</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="RSFSV.html#functions">Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="RSFSV.html#properties">Properties</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="N9916A.html">Handheld Microwave Analyzer FieldFox N9916A</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="N9916A.html#commands">Commands</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="N9916A.html#functions">Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="N9916A.html#properties">Properties</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="N9916A.html#vna-mode">VNA mode</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="N9916A.html#example-of-operation">Example of operation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="N9916A.html#id1">Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="N9916A.html#id2">Properties</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="N9916A.html#sa-mode">SA mode</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="N9916A.html#id3">Example of operation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="N9916A.html#id4">Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="N9916A.html#id5">Properties</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="triton.html">Triton controller</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="triton.html#example-of-opertations">Example of opertations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="triton.html#commands">Commands</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="triton.html#functions">Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="triton.html#properties">Properties</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="proteox.html">Proteox controller</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="proteox.html#example-of-operations">Example of operations</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="proteox.html#commands">Commands</a></li>
-<li class="toctree-l3"><a class="reference internal" href="proteox.html#dynamic-getters">Dynamic getters</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="proteox.html#temperatures">Temperatures</a></li>
-<li class="toctree-l4"><a class="reference internal" href="proteox.html#heaters-and-powers">Heaters and Powers</a></li>
-<li class="toctree-l4"><a class="reference internal" href="proteox.html#pressures">Pressures</a></li>
-<li class="toctree-l4"><a class="reference internal" href="proteox.html#flows">Flows</a></li>
-<li class="toctree-l4"><a class="reference internal" href="proteox.html#magnetic-field-control">Magnetic Field Control</a></li>
-<li class="toctree-l4"><a class="reference internal" href="proteox.html#cryostat-state">Cryostat State</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="proteox.html#dynamic-setters">Dynamic setters</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="proteox.html#example">Example</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="proteox.html#temperature-and-heater-control">Temperature and Heater Control</a></li>
-<li class="toctree-l3"><a class="reference internal" href="proteox.html#magnet-control">Magnet Control</a></li>
-<li class="toctree-l3"><a class="reference internal" href="proteox.html#recognized-states">Recognized states</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="proteox.html#recognized-state-table">Recognized state table</a></li>
-<li class="toctree-l4"><a class="reference internal" href="proteox.html#available-high-level-methods">Available high-level methods</a></li>
-<li class="toctree-l4"><a class="reference internal" href="proteox.html#full-example">Full example</a></li>
-<li class="toctree-l4"><a class="reference internal" href="proteox.html#internal-recognized-state-manager">Internal recognized-state manager</a></li>
-<li class="toctree-l4"><a class="reference internal" href="proteox.html#typical-usage-pattern">Typical usage pattern</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
 </div>
 </section>
 
@@ -394,23 +321,23 @@
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="R591722600.html">
+          <a class="next-page" href="RSZNB.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">RF switch Radiall R591722600</div>
+                <div class="title">R&amp;S®ZNB vector network analyzer</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="../experiments.html">
+          <a class="prev-page" href="../migration.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Experiments</div>
+                <div class="title">Migrating to qtics 0.1</div>
                 
               </div>
             </a>
@@ -423,7 +350,8 @@
             Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
             
             <a href="https://github.com/pradyunsg/furo">Furo</a>
-            
+            <div class="last-updated">
+              Last updated on Nov 13, 2026</div>
           </div>
           <div class="right-details">
             <div class="icons">
@@ -451,5 +379,7 @@
     <script src="../_static/scripts/furo.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <script src="../_static/js/captions.js"></script>
     </body>
 </html>

@@ -1,0 +1,15 @@
+[
+  {
+    "name": "latest",
+    "version": "0.1.0",
+    "url": "https://biqute.github.io/qtics/"
+  },
+  {
+    "name": "v0.0.6",
+    "url": "https://biqute.github.io/qtics/v0.0.6/"
+  },
+  {
+    "name": "v0.0.5",
+    "url": "https://biqute.github.io/qtics/v0.0.5/"
+  }
+]

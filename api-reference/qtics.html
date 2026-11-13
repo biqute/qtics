@@ -3,10 +3,12 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="qtics.instruments package" href="qtics.instruments.html" /><link rel="prev" title="qtics" href="modules.html" />
+
+    <meta property="article:modified_time" content="2026-11-13T14:06:22+00:00" /><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="qtics.instruments package" href="qtics.instruments.html" /><link rel="prev" title="qtics" href="modules.html" />
+        <link rel="canonical" href="https://biqute.github.io/qtics/api-reference/qtics.html" />
 
     <link rel="shortcut icon" href="../_static/favicon.ico"/><!-- Generated with Sphinx 6.2.1 and Furo 2023.09.10 -->
-        <title>qtics package - Qtics · 0.0.6</title>
+        <title>qtics package - Qtics · 0.1.0</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=369552022d0b975c8e74270ce6eabe0fb7978f24" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -18,23 +20,20 @@
 
 <style>
   body {
-    --color-code-background: #f8f8f8;
-  --color-code-foreground: black;
-  --color-brand-primary: #6400FF;
-  --color-brand-secondary: #6400FF;
-  --color-brand-content: #6400FF;
+    --color-code-background: #0d1117;
+  --color-code-foreground: #e6edf3;
   
   }
   @media not print {
     body[data-theme="dark"] {
-      --color-code-background: #202020;
-  --color-code-foreground: #d0d0d0;
+      --color-code-background: #0d1117;
+  --color-code-foreground: #e6edf3;
   
     }
     @media (prefers-color-scheme: dark) {
       body:not([data-theme="light"]) {
-        --color-code-background: #202020;
-  --color-code-foreground: #d0d0d0;
+        --color-code-background: #0d1117;
+  --color-code-foreground: #e6edf3;
   
       }
     }
@@ -128,7 +127,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../index.html"><div class="brand">Qtics · 0.0.6</div></a>
+      <a href="../index.html"><div class="brand">Qtics · 0.1.0</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -155,49 +154,75 @@
     <img class="sidebar-logo only-dark" src="../_static/biqute_logo.png" alt="Dark Logo"/>
   </div>
   
-  <span class="sidebar-brand-text">Qtics · 0.0.6</span>
   
-</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+</a><div class="qt-versions">
+  <label class="qt-versions-label" for="qt-version-select">Version</label>
+  <select id="qt-version-select" class="qt-versions-select" data-versions="https://biqute.github.io/qtics/versions.json" data-current="0.1.0">
+    <option selected>0.1.0</option>
+  </select>
+</div><form class="sidebar-search-container" method="get" action="../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
   <input type="hidden" name="check_keywords" value="yes">
   <input type="hidden" name="area" value="default">
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
-  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+  <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../arduino.html">Compile Arduino Firmwares</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../experiments.html">Experiments</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../instruments/modules.html">Supported Instruments</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Supported Instruments</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../instruments/R591722600.html">RF switch Radiall R591722600</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../instruments/3494_64.html">Attenuator Kratos 3494-64</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../instruments/SIM928.html">Isolated voltage source Stanford Research Systems SIM928</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../instruments/QUICKSYNTH.html">Microwave synthesizers by QuickSynth</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../instruments/6514.html">Keithley Model 6514 System Electrometer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../instruments/2231A.html">Keithley Model 2231A-30-3 Triple Channel DC Power Supply.</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../instruments/SMA100B.html">R&amp;S®SMA100B RF and microwave signal generator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../instruments/VALON519.html">Frequency Synthesizer module Valon Model 5019</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migration.html">Migrating to qtics 0.1</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Instruments</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../instruments/modules.html">Instruments</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Instruments</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../instruments/RSZNB.html">R&amp;S®ZNB vector network analyzer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../instruments/RSFSV.html">R&amp;S®FSV3030 Spectrum Analyzer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../instruments/N9916A.html">Handheld Microwave Analyzer FieldFox N9916A</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../instruments/SMA100B.html">R&amp;S®SMA100B RF and microwave signal generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../instruments/VALON519.html">Frequency Synthesizer module Valon Model 5019</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../instruments/QUICKSYNTH.html">Microwave synthesizers by QuickSynth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../instruments/2231A.html">Keithley Model 2231A-30-3 Triple Channel DC Power Supply.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../instruments/6514.html">Keithley Model 6514 System Electrometer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../instruments/SIM928.html">Isolated voltage source Stanford Research Systems SIM928</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../instruments/triton.html">Triton controller</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../instruments/proteox.html">Proteox controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../instruments/R591722600.html">RF switch Radiall R591722600</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../instruments/3494_64.html">Attenuator Kratos 3494-64</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../arduino.html">Compile Arduino Firmwares</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Api reference</span></p>
+<p class="caption" role="heading"><span class="caption-text">API reference</span></p>
 <ul class="current">
 <li class="toctree-l1 current has-children"><a class="reference internal" href="modules.html">qtics</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of qtics</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l2 current has-children current-page"><a class="current reference internal" href="#">qtics package</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of qtics package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="qtics.instruments.html">qtics.instruments package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="qtics.instruments.html">qtics.instruments package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of qtics.instruments package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4 has-children"><a class="reference internal" href="qtics.instruments.arduino.html">qtics.instruments.arduino package</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of qtics.instruments.arduino package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="qtics.instruments.arduino.kratos_3494.html">qtics.instruments.arduino.kratos_3494 package</a></li>
+<li class="toctree-l5"><a class="reference internal" href="qtics.instruments.arduino.r591_switch.html">qtics.instruments.arduino.r591_switch package</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.keithley.html">qtics.instruments.keithley package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.keysight.html">qtics.instruments.keysight package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.ni.html">qtics.instruments.ni package</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="qtics.instruments.oxford.html">qtics.instruments.oxford package</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of qtics.instruments.oxford package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="qtics.instruments.oxford.proteox.html">qtics.instruments.oxford.proteox package</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.rohde_schwarz.html">qtics.instruments.rohde_schwarz package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.srs.html">qtics.instruments.srs package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.types.html">qtics.instruments.types package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.valon.html">qtics.instruments.valon package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="qtics.transport.html">qtics.transport package</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
 </ul>
 
-</div>
-</div>
+</div></div>
 
       </div>
       
@@ -230,51 +255,157 @@
           <section id="module-qtics">
 <span id="qtics-package"></span><h1>qtics package<a class="headerlink" href="#module-qtics" title="Permalink to this heading">#</a></h1>
 <p>Qtics module.</p>
+<p>Drivers are imported lazily, so that optional heavy dependencies (e.g. autobahn,
+niscope) are loaded only when the corresponding driver is used.</p>
 <section id="subpackages">
 <h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this heading">#</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="qtics.instruments.html">qtics.instruments package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="qtics.instruments.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="qtics.instruments.arduino.html">qtics.instruments.arduino package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.arduino.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="qtics.instruments.keithley.html">qtics.instruments.keithley package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.keithley.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.keithley.html#module-qtics.instruments.keithley.k2231a">qtics.instruments.keithley.k2231a module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.keithley.html#module-qtics.instruments.keithley.k6514">qtics.instruments.keithley.k6514 module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="qtics.instruments.keysight.html">qtics.instruments.keysight package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.keysight.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.keysight.html#module-qtics.instruments.keysight.n9916a">qtics.instruments.keysight.n9916a module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="qtics.instruments.ni.html">qtics.instruments.ni package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.ni.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.ni.html#module-qtics.instruments.ni.pxie5170r">qtics.instruments.ni.pxie5170r module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.ni.html#module-qtics.instruments.ni.quicksyn">qtics.instruments.ni.quicksyn module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="qtics.instruments.oxford.html">qtics.instruments.oxford package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.oxford.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.oxford.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.oxford.html#module-qtics.instruments.oxford.triton">qtics.instruments.oxford.triton module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="qtics.instruments.rohde_schwarz.html">qtics.instruments.rohde_schwarz package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.rohde_schwarz.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.rohde_schwarz.html#module-qtics.instruments.rohde_schwarz.fsv3030">qtics.instruments.rohde_schwarz.fsv3030 module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.rohde_schwarz.html#module-qtics.instruments.rohde_schwarz.sma100b">qtics.instruments.rohde_schwarz.sma100b module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.rohde_schwarz.html#module-qtics.instruments.rohde_schwarz.znb">qtics.instruments.rohde_schwarz.znb module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="qtics.instruments.srs.html">qtics.instruments.srs package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.srs.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.srs.html#module-qtics.instruments.srs.sim928">qtics.instruments.srs.sim928 module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="qtics.instruments.types.html">qtics.instruments.types package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.types.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.types.html#module-qtics.instruments.types.source">qtics.instruments.types.source module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.types.html#module-qtics.instruments.types.swept">qtics.instruments.types.swept module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="qtics.instruments.valon.html">qtics.instruments.valon package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.valon.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.valon.html#module-qtics.instruments.valon.v5019">qtics.instruments.valon.v5019 module</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="qtics.instruments.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="qtics.instruments.html#module-qtics.instruments.instrument">qtics.instruments.instrument module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.instrument.Instrument"><code class="docutils literal notranslate"><span class="pre">Instrument</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.instrument.Instrument.clear_defaults"><code class="docutils literal notranslate"><span class="pre">Instrument.clear_defaults()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.instrument.Instrument.connect"><code class="docutils literal notranslate"><span class="pre">Instrument.connect()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.instrument.Instrument.defaults"><code class="docutils literal notranslate"><span class="pre">Instrument.defaults</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.instrument.Instrument.disconnect"><code class="docutils literal notranslate"><span class="pre">Instrument.disconnect()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.instrument.Instrument.get"><code class="docutils literal notranslate"><span class="pre">Instrument.get()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.instrument.Instrument.get_id"><code class="docutils literal notranslate"><span class="pre">Instrument.get_id()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.instrument.Instrument.query"><code class="docutils literal notranslate"><span class="pre">Instrument.query()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.instrument.Instrument.read"><code class="docutils literal notranslate"><span class="pre">Instrument.read()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.instrument.Instrument.reset"><code class="docutils literal notranslate"><span class="pre">Instrument.reset()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.instrument.Instrument.set"><code class="docutils literal notranslate"><span class="pre">Instrument.set()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.instrument.Instrument.set_defaults"><code class="docutils literal notranslate"><span class="pre">Instrument.set_defaults()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.instrument.Instrument.update_defaults"><code class="docutils literal notranslate"><span class="pre">Instrument.update_defaults()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.instrument.Instrument.validate_opt"><code class="docutils literal notranslate"><span class="pre">Instrument.validate_opt()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.instrument.Instrument.validate_range"><code class="docutils literal notranslate"><span class="pre">Instrument.validate_range()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.instrument.Instrument.write"><code class="docutils literal notranslate"><span class="pre">Instrument.write()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="qtics.instruments.html#module-qtics.instruments.base">qtics.instruments.base module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.base.Instrument"><code class="docutils literal notranslate"><span class="pre">Instrument</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.base.Instrument.clear_defaults"><code class="docutils literal notranslate"><span class="pre">Instrument.clear_defaults()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.base.Instrument.connect"><code class="docutils literal notranslate"><span class="pre">Instrument.connect()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.base.Instrument.defaults"><code class="docutils literal notranslate"><span class="pre">Instrument.defaults</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.base.Instrument.disconnect"><code class="docutils literal notranslate"><span class="pre">Instrument.disconnect()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.base.Instrument.get"><code class="docutils literal notranslate"><span class="pre">Instrument.get()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.base.Instrument.reset"><code class="docutils literal notranslate"><span class="pre">Instrument.reset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.base.Instrument.set"><code class="docutils literal notranslate"><span class="pre">Instrument.set()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.base.Instrument.set_defaults"><code class="docutils literal notranslate"><span class="pre">Instrument.set_defaults()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.base.Instrument.update_defaults"><code class="docutils literal notranslate"><span class="pre">Instrument.update_defaults()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.base.Instrument.validate_opt"><code class="docutils literal notranslate"><span class="pre">Instrument.validate_opt()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.base.Instrument.validate_range"><code class="docutils literal notranslate"><span class="pre">Instrument.validate_range()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.base.MessageInstrument"><code class="docutils literal notranslate"><span class="pre">MessageInstrument</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.base.MessageInstrument.address"><code class="docutils literal notranslate"><span class="pre">MessageInstrument.address</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.base.MessageInstrument.connect"><code class="docutils literal notranslate"><span class="pre">MessageInstrument.connect()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.base.MessageInstrument.default_transport"><code class="docutils literal notranslate"><span class="pre">MessageInstrument.default_transport</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.base.MessageInstrument.disconnect"><code class="docutils literal notranslate"><span class="pre">MessageInstrument.disconnect()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.base.MessageInstrument.is_connected"><code class="docutils literal notranslate"><span class="pre">MessageInstrument.is_connected</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.base.MessageInstrument.query"><code class="docutils literal notranslate"><span class="pre">MessageInstrument.query()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.base.MessageInstrument.read"><code class="docutils literal notranslate"><span class="pre">MessageInstrument.read()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.base.MessageInstrument.read_raw"><code class="docutils literal notranslate"><span class="pre">MessageInstrument.read_raw()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.base.MessageInstrument.transport_defaults"><code class="docutils literal notranslate"><span class="pre">MessageInstrument.transport_defaults</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.base.MessageInstrument.write"><code class="docutils literal notranslate"><span class="pre">MessageInstrument.write()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.base.SCPIInstrument"><code class="docutils literal notranslate"><span class="pre">SCPIInstrument</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.base.SCPIInstrument.clear"><code class="docutils literal notranslate"><span class="pre">SCPIInstrument.clear()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.base.SCPIInstrument.get_id"><code class="docutils literal notranslate"><span class="pre">SCPIInstrument.get_id()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.base.SCPIInstrument.is_completed"><code class="docutils literal notranslate"><span class="pre">SCPIInstrument.is_completed</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.base.SCPIInstrument.query"><code class="docutils literal notranslate"><span class="pre">SCPIInstrument.query()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.base.SCPIInstrument.reset"><code class="docutils literal notranslate"><span class="pre">SCPIInstrument.reset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.base.SCPIInstrument.wait"><code class="docutils literal notranslate"><span class="pre">SCPIInstrument.wait()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="qtics.instruments.html#module-qtics.instruments.network_inst">qtics.instruments.network_inst module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.network_inst.NetworkInst"><code class="docutils literal notranslate"><span class="pre">NetworkInst</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.network_inst.NetworkInst.connect"><code class="docutils literal notranslate"><span class="pre">NetworkInst.connect()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.network_inst.NetworkInst.disconnect"><code class="docutils literal notranslate"><span class="pre">NetworkInst.disconnect()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.network_inst.NetworkInst.query"><code class="docutils literal notranslate"><span class="pre">NetworkInst.query()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.network_inst.NetworkInst.read"><code class="docutils literal notranslate"><span class="pre">NetworkInst.read()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.network_inst.NetworkInst.write"><code class="docutils literal notranslate"><span class="pre">NetworkInst.write()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="qtics.instruments.html#module-qtics.instruments.utils">qtics.instruments.utils module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.utils.query_binblock"><code class="docutils literal notranslate"><span class="pre">query_binblock()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.utils.to_bool"><code class="docutils literal notranslate"><span class="pre">to_bool()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="qtics.instruments.html#module-qtics.instruments.serial_inst">qtics.instruments.serial_inst module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.serial_inst.SerialInst"><code class="docutils literal notranslate"><span class="pre">SerialInst</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.serial_inst.SerialInst.connect"><code class="docutils literal notranslate"><span class="pre">SerialInst.connect()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.serial_inst.SerialInst.disconnect"><code class="docutils literal notranslate"><span class="pre">SerialInst.disconnect()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.serial_inst.SerialInst.query"><code class="docutils literal notranslate"><span class="pre">SerialInst.query()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.serial_inst.SerialInst.read"><code class="docutils literal notranslate"><span class="pre">SerialInst.read()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.serial_inst.SerialInst.write"><code class="docutils literal notranslate"><span class="pre">SerialInst.write()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="qtics.transport.html">qtics.transport package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="qtics.transport.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qtics.transport.html#module-qtics.transport.base">qtics.transport.base module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="qtics.transport.html#qtics.transport.base.Transport"><code class="docutils literal notranslate"><span class="pre">Transport</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="qtics.transport.html#qtics.transport.base.Transport.close"><code class="docutils literal notranslate"><span class="pre">Transport.close()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.transport.html#qtics.transport.base.Transport.connect"><code class="docutils literal notranslate"><span class="pre">Transport.connect()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.transport.html#qtics.transport.base.Transport.is_connected"><code class="docutils literal notranslate"><span class="pre">Transport.is_connected</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.transport.html#qtics.transport.base.Transport.query"><code class="docutils literal notranslate"><span class="pre">Transport.query()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.transport.html#qtics.transport.base.Transport.read"><code class="docutils literal notranslate"><span class="pre">Transport.read()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.transport.html#qtics.transport.base.Transport.read_raw"><code class="docutils literal notranslate"><span class="pre">Transport.read_raw()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.transport.html#qtics.transport.base.Transport.write"><code class="docutils literal notranslate"><span class="pre">Transport.write()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="qtics.transport.html#module-qtics.transport.fake">qtics.transport.fake module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="qtics.transport.html#qtics.transport.fake.FakeTransport"><code class="docutils literal notranslate"><span class="pre">FakeTransport</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="qtics.transport.html#qtics.transport.fake.FakeTransport.close"><code class="docutils literal notranslate"><span class="pre">FakeTransport.close()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.transport.html#qtics.transport.fake.FakeTransport.connect"><code class="docutils literal notranslate"><span class="pre">FakeTransport.connect()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.transport.html#qtics.transport.fake.FakeTransport.is_connected"><code class="docutils literal notranslate"><span class="pre">FakeTransport.is_connected</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.transport.html#qtics.transport.fake.FakeTransport.read"><code class="docutils literal notranslate"><span class="pre">FakeTransport.read()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.transport.html#qtics.transport.fake.FakeTransport.read_raw"><code class="docutils literal notranslate"><span class="pre">FakeTransport.read_raw()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="qtics.transport.html#module-qtics.transport.serial">qtics.transport.serial module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="qtics.transport.html#qtics.transport.serial.SerialTransport"><code class="docutils literal notranslate"><span class="pre">SerialTransport</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="qtics.transport.html#qtics.transport.serial.SerialTransport.close"><code class="docutils literal notranslate"><span class="pre">SerialTransport.close()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.transport.html#qtics.transport.serial.SerialTransport.connect"><code class="docutils literal notranslate"><span class="pre">SerialTransport.connect()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.transport.html#qtics.transport.serial.SerialTransport.is_connected"><code class="docutils literal notranslate"><span class="pre">SerialTransport.is_connected</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.transport.html#qtics.transport.serial.SerialTransport.read"><code class="docutils literal notranslate"><span class="pre">SerialTransport.read()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.transport.html#qtics.transport.serial.SerialTransport.read_raw"><code class="docutils literal notranslate"><span class="pre">SerialTransport.read_raw()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="qtics.transport.html#module-qtics.transport.socket">qtics.transport.socket module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="qtics.transport.html#qtics.transport.socket.SocketTransport"><code class="docutils literal notranslate"><span class="pre">SocketTransport</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="qtics.transport.html#qtics.transport.socket.SocketTransport.close"><code class="docutils literal notranslate"><span class="pre">SocketTransport.close()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.transport.html#qtics.transport.socket.SocketTransport.connect"><code class="docutils literal notranslate"><span class="pre">SocketTransport.connect()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.transport.html#qtics.transport.socket.SocketTransport.is_connected"><code class="docutils literal notranslate"><span class="pre">SocketTransport.is_connected</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.transport.html#qtics.transport.socket.SocketTransport.read"><code class="docutils literal notranslate"><span class="pre">SocketTransport.read()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qtics.transport.html#qtics.transport.socket.SocketTransport.read_raw"><code class="docutils literal notranslate"><span class="pre">SocketTransport.read_raw()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -286,102 +417,6 @@
 </section>
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">#</a></h2>
-</section>
-<section id="module-qtics.experiment">
-<span id="qtics-experiment-module"></span><h2>qtics.experiment module<a class="headerlink" href="#module-qtics.experiment" title="Permalink to this heading">#</a></h2>
-<p>Base Experiment classes.</p>
-<span class="target" id="module-experiment.py"></span><dl class="py class">
-<dt class="sig sig-object py" id="qtics.experiment.BaseExperiment">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qtics.experiment.</span></span><span class="sig-name descname"><span class="pre">BaseExperiment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/experiment.html#BaseExperiment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.experiment.BaseExperiment" title="Permalink to this definition">#</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></a></p>
-<p>Base experiment class.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="qtics.experiment.BaseExperiment.add_instrument">
-<span class="sig-name descname"><span class="pre">add_instrument</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inst</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="qtics.instruments.html#qtics.instruments.instrument.Instrument" title="qtics.instruments.instrument.Instrument"><span class="pre">Instrument</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/experiment.html#BaseExperiment.add_instrument"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.experiment.BaseExperiment.add_instrument" title="Permalink to this definition">#</a></dt>
-<dd><p>Add an instrument with the correct name.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="qtics.experiment.BaseExperiment.all_instruments">
-<span class="sig-name descname"><span class="pre">all_instruments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/experiment.html#BaseExperiment.all_instruments"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.experiment.BaseExperiment.all_instruments" title="Permalink to this definition">#</a></dt>
-<dd><p>Apply function to all instruments.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="qtics.experiment.BaseExperiment.append_data_group">
-<span class="sig-name descname"><span class="pre">append_data_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">group_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datasets</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><span class="pre">dict</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">attributes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/experiment.html#BaseExperiment.append_data_group"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.experiment.BaseExperiment.append_data_group" title="Permalink to this definition">#</a></dt>
-<dd><p>Save data appending to hdf5 file.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="qtics.experiment.BaseExperiment.get_datasets_dict">
-<span class="sig-name descname"><span class="pre">get_datasets_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/experiment.html#BaseExperiment.get_datasets_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.experiment.BaseExperiment.get_datasets_dict" title="Permalink to this definition">#</a></dt>
-<dd><p>Load the datasets of an hdf5 file as dictionary.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="qtics.experiment.BaseExperiment.main">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/experiment.html#BaseExperiment.main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.experiment.BaseExperiment.main" title="Permalink to this definition">#</a></dt>
-<dd><p>Execute main part of the experiment.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="qtics.experiment.BaseExperiment.run">
-<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/experiment.html#BaseExperiment.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.experiment.BaseExperiment.run" title="Permalink to this definition">#</a></dt>
-<dd><p>Run the experiment.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="qtics.experiment.BaseExperiment.save_config">
-<span class="sig-name descname"><span class="pre">save_config</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/experiment.html#BaseExperiment.save_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.experiment.BaseExperiment.save_config" title="Permalink to this definition">#</a></dt>
-<dd><p>Save experiment’s attributes and instruments defaults.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="qtics.experiment.Experiment">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qtics.experiment.</span></span><span class="sig-name descname"><span class="pre">Experiment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/experiment.html#Experiment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.experiment.Experiment" title="Permalink to this definition">#</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#qtics.experiment.BaseExperiment" title="qtics.experiment.BaseExperiment"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseExperiment</span></code></a></p>
-<p>Experiment with monitoring functions.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="qtics.experiment.Experiment.add_monitor">
-<span class="sig-name descname"><span class="pre">add_monitor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">monitor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#qtics.experiment.MonitorExperiment" title="qtics.experiment.MonitorExperiment"><span class="pre">MonitorExperiment</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/experiment.html#Experiment.add_monitor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.experiment.Experiment.add_monitor" title="Permalink to this definition">#</a></dt>
-<dd><p>Add monitoring experiment.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="qtics.experiment.Experiment.monitor_failed">
-<span class="sig-name descname"><span class="pre">monitor_failed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../_modules/qtics/experiment.html#Experiment.monitor_failed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.experiment.Experiment.monitor_failed" title="Permalink to this definition">#</a></dt>
-<dd><p>Check if monitoring condition has failed and restore safe values.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="qtics.experiment.Experiment.run">
-<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/experiment.html#Experiment.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.experiment.Experiment.run" title="Permalink to this definition">#</a></dt>
-<dd><p>Run the experiment with parallel monitoring functions.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="qtics.experiment.MonitorExperiment">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qtics.experiment.</span></span><span class="sig-name descname"><span class="pre">MonitorExperiment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/experiment.html#MonitorExperiment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.experiment.MonitorExperiment" title="Permalink to this definition">#</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#qtics.experiment.BaseExperiment" title="qtics.experiment.BaseExperiment"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseExperiment</span></code></a></p>
-<p>Base monitoring experiment class.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="qtics.experiment.MonitorExperiment.sleep">
-<span class="sig-name descname"><span class="pre">sleep</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#qtics.experiment.MonitorExperiment.sleep" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="qtics.experiment.MonitorExperiment.watch">
-<span class="sig-name descname"><span class="pre">watch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/threading.html#threading.Event" title="(in Python v3.15)"><span class="pre">Event</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/experiment.html#MonitorExperiment.watch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.experiment.MonitorExperiment.watch" title="Permalink to this definition">#</a></dt>
-<dd><p>Run the experiment continuously until event is set.</p>
-</dd></dl>
-
-</dd></dl>
-
 </section>
 <section id="module-qtics.logger">
 <span id="qtics-logger-module"></span><h2>qtics.logger module<a class="headerlink" href="#module-qtics.logger" title="Permalink to this heading">#</a></h2>
@@ -436,7 +471,8 @@
             Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
             
             <a href="https://github.com/pradyunsg/furo">Furo</a>
-            
+            <div class="last-updated">
+              Last updated on Nov 13, 2026</div>
           </div>
           <div class="right-details">
             <div class="icons">
@@ -467,30 +503,6 @@
 <li><a class="reference internal" href="#">qtics package</a><ul>
 <li><a class="reference internal" href="#subpackages">Subpackages</a></li>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#module-qtics.experiment">qtics.experiment module</a><ul>
-<li><a class="reference internal" href="#qtics.experiment.BaseExperiment"><code class="docutils literal notranslate"><span class="pre">BaseExperiment</span></code></a><ul>
-<li><a class="reference internal" href="#qtics.experiment.BaseExperiment.add_instrument"><code class="docutils literal notranslate"><span class="pre">BaseExperiment.add_instrument()</span></code></a></li>
-<li><a class="reference internal" href="#qtics.experiment.BaseExperiment.all_instruments"><code class="docutils literal notranslate"><span class="pre">BaseExperiment.all_instruments()</span></code></a></li>
-<li><a class="reference internal" href="#qtics.experiment.BaseExperiment.append_data_group"><code class="docutils literal notranslate"><span class="pre">BaseExperiment.append_data_group()</span></code></a></li>
-<li><a class="reference internal" href="#qtics.experiment.BaseExperiment.get_datasets_dict"><code class="docutils literal notranslate"><span class="pre">BaseExperiment.get_datasets_dict()</span></code></a></li>
-<li><a class="reference internal" href="#qtics.experiment.BaseExperiment.main"><code class="docutils literal notranslate"><span class="pre">BaseExperiment.main()</span></code></a></li>
-<li><a class="reference internal" href="#qtics.experiment.BaseExperiment.run"><code class="docutils literal notranslate"><span class="pre">BaseExperiment.run()</span></code></a></li>
-<li><a class="reference internal" href="#qtics.experiment.BaseExperiment.save_config"><code class="docutils literal notranslate"><span class="pre">BaseExperiment.save_config()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#qtics.experiment.Experiment"><code class="docutils literal notranslate"><span class="pre">Experiment</span></code></a><ul>
-<li><a class="reference internal" href="#qtics.experiment.Experiment.add_monitor"><code class="docutils literal notranslate"><span class="pre">Experiment.add_monitor()</span></code></a></li>
-<li><a class="reference internal" href="#qtics.experiment.Experiment.monitor_failed"><code class="docutils literal notranslate"><span class="pre">Experiment.monitor_failed()</span></code></a></li>
-<li><a class="reference internal" href="#qtics.experiment.Experiment.run"><code class="docutils literal notranslate"><span class="pre">Experiment.run()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#qtics.experiment.MonitorExperiment"><code class="docutils literal notranslate"><span class="pre">MonitorExperiment</span></code></a><ul>
-<li><a class="reference internal" href="#qtics.experiment.MonitorExperiment.sleep"><code class="docutils literal notranslate"><span class="pre">MonitorExperiment.sleep</span></code></a></li>
-<li><a class="reference internal" href="#qtics.experiment.MonitorExperiment.watch"><code class="docutils literal notranslate"><span class="pre">MonitorExperiment.watch()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
 <li><a class="reference internal" href="#module-qtics.logger">qtics.logger module</a><ul>
 <li><a class="reference internal" href="#qtics.logger.CustomHandler"><code class="docutils literal notranslate"><span class="pre">CustomHandler</span></code></a><ul>
 <li><a class="reference internal" href="#qtics.logger.CustomHandler.format"><code class="docutils literal notranslate"><span class="pre">CustomHandler.format()</span></code></a></li>
@@ -515,5 +527,7 @@
     <script src="../_static/scripts/furo.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <script src="../_static/js/captions.js"></script>
     </body>
 </html>
