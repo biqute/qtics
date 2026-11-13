@@ -168,7 +168,7 @@ def test_averages_switch_state():
 
 def test_s_parameter():
     """The S parameter of the active trace."""
-    inst = make({"CALCulate1:PARameter:DEFine? 'Trc1'": "S21"})
+    inst = make({"CALCulate1:PARameter:MEASure? 'Trc1'": "'S21'"})
     assert inst.s_parameter == "S21"
     inst.s_parameter = "S11"
     assert inst.transport.written[-1] == "CALCulate1:PARameter:MEASure 'Trc1', 'S11'"

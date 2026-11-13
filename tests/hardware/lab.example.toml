@@ -1,0 +1,53 @@
+# Instruments for the hardware tests: copy to lab.toml (gitignored), keep the
+# tables of the instruments on the bench and run
+#   poetry run pytest tests/hardware --hw-config tests/hardware/lab.toml
+# Each table is named after the driver class. "address" is the first argument of
+# the driver, the other keys are passed as keyword arguments (driver or transport
+# options, e.g. port, baudrate, delay).
+
+[SMA100B]
+address = "192.168.0.x"
+
+[ZNB]
+address = "192.168.0.x"  # optional: channel = 1; connecting resets the instrument
+
+[FSV3030]
+address = "192.168.0.x"
+
+# The same FieldFox for both tables, the two modes are tested one after the other.
+[VNAN9916A]
+address = "192.168.0.x"
+
+[SAN9916A]
+address = "192.168.0.x"
+
+[Keithley2231A]
+address = "/dev/ttyUSB0"
+
+[Keithley6514]
+address = "/dev/ttyUSB1"
+
+[SIM928]
+address = "/dev/ttyUSB2"  # serial port of the SIM900 mainframe
+mainframe_port = 1  # slot of the SIM928 module
+
+[Valon5019]
+address = "/dev/ttyUSB3"
+
+[QuickSyn]
+address = "/dev/ttyUSB4"
+
+[R591Switch]
+address = "/dev/ttyACM0"  # Arduino serial port
+
+[Kratos3494Attenuator]
+address = "/dev/ttyACM1"  # Arduino serial port
+
+[Pxie5170R]
+address = "PXI1Slot2"  # NI resource name
+
+# Cryostats: read-only tests.
+[Triton]
+address = "192.168.0.x"
+
+[Proteox]  # empty table enables the tests, credentials come from the usual env/.env
