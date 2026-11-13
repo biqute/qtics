@@ -1,0 +1,137 @@
+Handheld Microwave Analyzer FieldFox N9916A
+===========================================
+
+N9916A FieldFox Handheld Microwave Analyzer by Keysight
+The manuals of this instrument and similar models are available at `Keysight <https://www.keysight.com/us/en/lib/resources/service-manuals/keysight-fieldfox-library-help-and-manuals-2153870.html>`_.
+The SCPI commands and functions can be found in the `programming guide <https://www.keysight.com/us/en/assets/9921-02561/programming-guides/FFProgrammingHelp.pdf>`_.
+
+Base class: :class:`qtics.instruments.network_inst.NetworkInst`.
+
+This instrument features different operational modes (VNA, SA, CAT...), with mostly different commands. Each mode is controlled by its respective class. When connecting, these classes will automatically try to initialize a basic measurement setup with the specific mode.
+
+Commands
+""""""""
+Other than featuring all the methods of :class:`qtics.instruments.network_inst.NetworkInst`, the base :class:`qtics.instruments.network.NA_N9916A.N9916A` class contains the following methods and properties common to all the operational modes of the instrument.
+
+Functions
+------------
+- clear()
+- reset()
+- hold()
+- write_and_hold()
+- autoscale()
+- clear_average()
+- single_sweep()
+- query_data()
+- read_trace_data()
+- read_freqs()
+- snapshot()
+- survey()
+
+Properties
+------------
+- f_min
+- f_max
+- f_center
+- f_span
+- sweep_points
+- sweep_time
+- average
+- continuous
+- data_format
+- yformat
+
+VNA mode
+""""""""
+Measure the scattering value parameter of a connected RF network by sweeping a probe signal over a range of frequencies. This mode is implemented by the :class:`qtics.instruments.network.NA_N9916A.VNAN9916A` class.
+
+Example of operation
+---------------------
+
+.. code-block:: python
+
+  from qtics import VNAN9916A
+
+  VNA = VNAN9916A(address = "192.168.40.10")
+  VNA.connect()
+
+
+Measure the :math:`S_{11}` parameter in the 4-8 GHz frequency range, averaging 5 sweeps of the VNA. The result consists of the frequency array and the raw IQ values, given as an array of complex numbers:
+
+.. code-block:: python
+
+  VNA.S_par = "S11"
+  VNA.average = 5 # number of averages of the recorded trace
+  VNA.power = -20 # power of the probe signal in dB
+  f, z = VNA.snapshot(f_min=4e9, f_max=8e9)
+
+Since the instrument allows a maximum number of 10001 points in a single sweep, the ``survey()`` function allows to perform more precise measurements over a large frequency range by patching together multiple snapshots over smaller ranges.
+
+.. code-block:: python
+
+  VNA.sweep_points = 10001
+  f, z = VNA.survey(4e9, 8e9, 0.5e9) # patch multiple snapshots, each with 10001 points and a 500 MHz span
+
+
+Functions
+------------
+- setup()
+- activate_trace()
+- sweep()
+
+Properties
+------------
+- S_par
+- yformat
+- smoothing
+- average_mode
+- IFBW
+- power
+
+SA mode
+""""""""
+Measure the magnitude of an RF signal as a function of frequency. This mode is implemented by the :class:`qtics.instruments.network.NA_N9916A.SAN9916A` class.
+
+Example of operation
+---------------------
+
+.. code-block:: python
+
+  from qtics import SAN9916A
+
+  SA = SAN9916A(address = "192.168.40.10")
+  SA.connect()
+
+
+Measure the amplitude of the signal in dB over the 4-8 GHz frequency range, averaging 5 sweeps of the SA and using a logarithmic scale for the amplitude. The result consists of the frequency array and the amplitude array of real numbers with the correct measurement unit and scale:
+
+.. code-block:: python
+
+  SA.average = 5 # number of averages of the recorded trace
+  SA.yscale = "LOG" # amplitude scale
+  SA.yformat = "DBM" # amplitude measurement unit
+  f, z = SA.snapshot(f_min=4e9, f_max=8e9)
+
+Since the instrument allows a maximum number of 10001 points in a single sweep, the ``survey()`` function allows to perform more precise measurements over a large frequency range by patching together multiple snapshots over smaller ranges.
+
+.. code-block:: python
+
+  SA.sweep_points = 10001
+  f, z = SA.survey(4e9, 8e9, 0.5e9) # patch multiple snapshots, each with 10001 points and a 500 MHz span
+
+Functions
+------------
+- set_full_span()
+- set_zero_span()
+
+Properties
+------------
+- gain
+- attenuation
+- auto_attenuation
+- res_bandwidth
+- auto_res_bandwidth
+- trace_type
+- average_type
+- yformat
+- yscale
