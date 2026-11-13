@@ -172,8 +172,8 @@ class ZNB(VNA, SCPIInstrument):
     def s_parameter(self) -> str:
         """The current scattering matrix parameter."""
         return self.query(
-            f"CALCulate{self._channel}:PARameter:DEFine? '{self._active_trace}'"
-        )
+            f"CALCulate{self._channel}:PARameter:MEASure? '{self._active_trace}'"
+        ).strip("'")
 
     @s_parameter.setter
     def s_parameter(self, par="S21"):

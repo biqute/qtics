@@ -45,6 +45,7 @@ def test_readonly(vna):
         ("ifbw", [1000, 10000]),
         ("power", [-30, -20.5]),
         ("averages", [1, 4]),
+        ("s_parameter", ["S11", "S21"]),
     ],
 )
 def test_roundtrip(vna, roundtrip, prop, values):
