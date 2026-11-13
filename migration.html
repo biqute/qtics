@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <meta property="article:modified_time" content="2026-11-13T14:06:22+00:00" /><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Instruments" href="instruments/modules.html" /><link rel="prev" title="Installation" href="installation.html" />
+    <meta property="article:modified_time" content="2026-11-13T14:20:48+00:00" /><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Instruments" href="instruments/modules.html" /><link rel="prev" title="Installation" href="installation.html" />
         <link rel="canonical" href="https://biqute.github.io/qtics/migration.html" />
 
     <link rel="shortcut icon" href="_static/favicon.ico"/><!-- Generated with Sphinx 6.2.1 and Furo 2023.09.10 -->
@@ -295,6 +295,10 @@ default transport, or pass a transport explicitly:</p>
 <li><p>The old <code class="docutils literal notranslate"><span class="pre">sleep</span></code> option is the transport <code class="docutils literal notranslate"><span class="pre">delay</span></code>. The <code class="docutils literal notranslate"><span class="pre">sleep</span></code>, <code class="docutils literal notranslate"><span class="pre">socket</span></code>
 and <code class="docutils literal notranslate"><span class="pre">serial</span></code> attributes of the instruments are gone: use <code class="docutils literal notranslate"><span class="pre">inst.transport</span></code>
 (e.g. <code class="docutils literal notranslate"><span class="pre">inst.transport.delay</span></code>, <code class="docutils literal notranslate"><span class="pre">inst.transport.socket</span></code>).</p></li>
+<li><p>GPIB instruments use <a class="reference internal" href="api-reference/qtics.transport.html#qtics.transport.gpib.GPIBTransport" title="qtics.transport.gpib.GPIBTransport"><code class="xref py py-class docutils literal notranslate"><span class="pre">GPIBTransport</span></code></a> instead of a
+<code class="docutils literal notranslate"><span class="pre">GpibInst</span></code> base class. It calls the GPIB driver (linux-gpib or NI-488.2)
+directly, pyvisa is not needed. <code class="docutils literal notranslate"><span class="pre">board</span></code> is a transport option and the address
+is the primary address (e.g. <code class="docutils literal notranslate"><span class="pre">20</span></code>) or <code class="docutils literal notranslate"><span class="pre">&quot;GPIB0::20::INSTR&quot;</span></code>.</p></li>
 <li><p>The default <code class="docutils literal notranslate"><span class="pre">name</span></code> is now the class name (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;ZNB&quot;</span></code> instead of
 <code class="docutils literal notranslate"><span class="pre">&quot;RSZNB&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;Valon5019&quot;</span></code> instead of <code class="docutils literal notranslate"><span class="pre">&quot;VALON&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;VNAN9916A&quot;</span></code> instead of
 <code class="docutils literal notranslate"><span class="pre">&quot;N9916A&quot;</span></code>).</p></li>

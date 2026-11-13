@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <meta property="article:modified_time" content="2026-11-13T14:04:26+00:00" /><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="prev" title="qtics.instruments.valon package" href="qtics.instruments.valon.html" />
+    <meta property="article:modified_time" content="2026-11-13T14:20:48+00:00" /><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="prev" title="qtics.instruments.valon package" href="qtics.instruments.valon.html" />
         <link rel="canonical" href="https://biqute.github.io/qtics/api-reference/qtics.transport.html" />
 
     <link rel="shortcut icon" href="../_static/favicon.ico"/><!-- Generated with Sphinx 6.2.1 and Furo 2023.09.10 -->
@@ -359,6 +359,84 @@ Queries (commands containing “?”) without a scripted answer get <code class=
 </dd></dl>
 
 </section>
+<section id="module-qtics.transport.gpib">
+<span id="qtics-transport-gpib-module"></span><h2>qtics.transport.gpib module<a class="headerlink" href="#module-qtics.transport.gpib" title="Permalink to this heading">#</a></h2>
+<p>GPIB (IEEE-488) transport.</p>
+<p>Calls the IEEE 488.2 C library of the GPIB driver through ctypes: linux-gpib
+(<code class="docutils literal notranslate"><span class="pre">libgpib.so</span></code>) on Linux, NI-488.2 (<code class="docutils literal notranslate"><span class="pre">ni4882.dll</span></code>) on Windows. Only the driver
+is needed, no Python package.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="qtics.transport.gpib.GPIBTransport">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qtics.transport.gpib.</span></span><span class="sig-name descname"><span class="pre">GPIBTransport</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">board</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">terminator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'\n'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delay</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">library</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/transport/gpib.html#GPIBTransport"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.transport.gpib.GPIBTransport" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#qtics.transport.base.Transport" title="qtics.transport.base.Transport"><code class="xref py py-class docutils literal notranslate"><span class="pre">Transport</span></code></a></p>
+<p>GPIB transport.</p>
+<p><code class="docutils literal notranslate"><span class="pre">address</span></code> is the primary address (e.g. 20, combined with <code class="docutils literal notranslate"><span class="pre">board</span></code>) or a
+VISA-like resource string (e.g. “GPIB0::20::INSTR”). Reads end when the
+instrument asserts EOI, as IEEE 488.2 requires, so binary data is never cut at
+the terminator.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="qtics.transport.gpib.GPIBTransport.clear">
+<span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/transport/gpib.html#GPIBTransport.clear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.transport.gpib.GPIBTransport.clear" title="Permalink to this definition">#</a></dt>
+<dd><p>Send a GPIB device clear, which empties the instrument buffers.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qtics.transport.gpib.GPIBTransport.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/transport/gpib.html#GPIBTransport.close"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.transport.gpib.GPIBTransport.close" title="Permalink to this definition">#</a></dt>
+<dd><p>Close the device descriptor.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qtics.transport.gpib.GPIBTransport.connect">
+<span class="sig-name descname"><span class="pre">connect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtics/transport/gpib.html#GPIBTransport.connect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.transport.gpib.GPIBTransport.connect" title="Permalink to this definition">#</a></dt>
+<dd><p>Open the device descriptor.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qtics.transport.gpib.GPIBTransport.is_connected">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_connected</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></em><a class="headerlink" href="#qtics.transport.gpib.GPIBTransport.is_connected" title="Permalink to this definition">#</a></dt>
+<dd><p>Whether the device descriptor is open.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qtics.transport.gpib.GPIBTransport.lib">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">lib</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><span class="pre">Any</span></a></em><a class="headerlink" href="#qtics.transport.gpib.GPIBTransport.lib" title="Permalink to this definition">#</a></dt>
+<dd><p>The loaded driver library.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qtics.transport.gpib.GPIBTransport.read">
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span></span><a class="reference internal" href="../_modules/qtics/transport/gpib.html#GPIBTransport.read"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.transport.gpib.GPIBTransport.read" title="Permalink to this definition">#</a></dt>
+<dd><p>Read until the end of message (EOI), strip the terminator.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qtics.transport.gpib.GPIBTransport.read_raw">
+<span class="sig-name descname"><span class="pre">read_raw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_bytes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#bytes" title="(in Python v3.15)"><span class="pre">bytes</span></a></span></span><a class="reference internal" href="../_modules/qtics/transport/gpib.html#GPIBTransport.read_raw"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.transport.gpib.GPIBTransport.read_raw" title="Permalink to this definition">#</a></dt>
+<dd><p>Read <code class="docutils literal notranslate"><span class="pre">n_bytes</span></code> bytes, or fewer if the message ends before.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="qtics.transport.gpib.GPIBTransport.timeout">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">timeout</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></em><a class="headerlink" href="#qtics.transport.gpib.GPIBTransport.timeout" title="Permalink to this definition">#</a></dt>
+<dd><p>Read timeout in seconds, also applied to an open session.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qtics.transport.gpib.load_library">
+<span class="sig-prename descclassname"><span class="pre">qtics.transport.gpib.</span></span><span class="sig-name descname"><span class="pre">load_library</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><span class="pre">Any</span></a></span></span><a class="reference internal" href="../_modules/qtics/transport/gpib.html#load_library"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.transport.gpib.load_library" title="Permalink to this definition">#</a></dt>
+<dd><p>Load the GPIB driver library, found automatically if <code class="docutils literal notranslate"><span class="pre">path</span></code> is empty.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qtics.transport.gpib.timeout_code">
+<span class="sig-prename descclassname"><span class="pre">qtics.transport.gpib.</span></span><span class="sig-name descname"><span class="pre">timeout_code</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seconds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../_modules/qtics/transport/gpib.html#timeout_code"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qtics.transport.gpib.timeout_code" title="Permalink to this definition">#</a></dt>
+<dd><p>Return the ibtmo code of the shortest timeout of at least <code class="docutils literal notranslate"><span class="pre">seconds</span></code>.</p>
+</dd></dl>
+
+</section>
 <section id="module-qtics.transport.serial">
 <span id="qtics-transport-serial-module"></span><h2>qtics.transport.serial module<a class="headerlink" href="#module-qtics.transport.serial" title="Permalink to this heading">#</a></h2>
 <p>Serial port transport.</p>
@@ -525,6 +603,22 @@ Queries (commands containing “?”) without a scripted answer get <code class=
 <li><a class="reference internal" href="#qtics.transport.fake.FakeTransport.read_raw"><code class="docutils literal notranslate"><span class="pre">FakeTransport.read_raw()</span></code></a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-qtics.transport.gpib">qtics.transport.gpib module</a><ul>
+<li><a class="reference internal" href="#qtics.transport.gpib.GPIBTransport"><code class="docutils literal notranslate"><span class="pre">GPIBTransport</span></code></a><ul>
+<li><a class="reference internal" href="#qtics.transport.gpib.GPIBTransport.clear"><code class="docutils literal notranslate"><span class="pre">GPIBTransport.clear()</span></code></a></li>
+<li><a class="reference internal" href="#qtics.transport.gpib.GPIBTransport.close"><code class="docutils literal notranslate"><span class="pre">GPIBTransport.close()</span></code></a></li>
+<li><a class="reference internal" href="#qtics.transport.gpib.GPIBTransport.connect"><code class="docutils literal notranslate"><span class="pre">GPIBTransport.connect()</span></code></a></li>
+<li><a class="reference internal" href="#qtics.transport.gpib.GPIBTransport.is_connected"><code class="docutils literal notranslate"><span class="pre">GPIBTransport.is_connected</span></code></a></li>
+<li><a class="reference internal" href="#qtics.transport.gpib.GPIBTransport.lib"><code class="docutils literal notranslate"><span class="pre">GPIBTransport.lib</span></code></a></li>
+<li><a class="reference internal" href="#qtics.transport.gpib.GPIBTransport.read"><code class="docutils literal notranslate"><span class="pre">GPIBTransport.read()</span></code></a></li>
+<li><a class="reference internal" href="#qtics.transport.gpib.GPIBTransport.read_raw"><code class="docutils literal notranslate"><span class="pre">GPIBTransport.read_raw()</span></code></a></li>
+<li><a class="reference internal" href="#qtics.transport.gpib.GPIBTransport.timeout"><code class="docutils literal notranslate"><span class="pre">GPIBTransport.timeout</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#qtics.transport.gpib.load_library"><code class="docutils literal notranslate"><span class="pre">load_library()</span></code></a></li>
+<li><a class="reference internal" href="#qtics.transport.gpib.timeout_code"><code class="docutils literal notranslate"><span class="pre">timeout_code()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-qtics.transport.serial">qtics.transport.serial module</a><ul>

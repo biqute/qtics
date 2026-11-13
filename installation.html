@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <meta property="article:modified_time" content="2026-11-13T14:04:26+00:00" /><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Migrating to qtics 0.1" href="migration.html" /><link rel="prev" title="Drive the lab’s instruments from Python" href="index.html" />
+    <meta property="article:modified_time" content="2026-11-13T14:20:48+00:00" /><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Migrating to qtics 0.1" href="migration.html" /><link rel="prev" title="Drive the lab’s instruments from Python" href="index.html" />
         <link rel="canonical" href="https://biqute.github.io/qtics/installation.html" />
 
     <link rel="shortcut icon" href="_static/favicon.ico"/><!-- Generated with Sphinx 6.2.1 and Furo 2023.09.10 -->
@@ -278,6 +278,8 @@ separately).</p></li>
 pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;qtics[all]&quot;</span>
 </pre></div>
 </div>
+<p>GPIB instruments (<code class="docutils literal notranslate"><span class="pre">GPIBTransport</span></code>) need the GPIB driver, no Python package:
+linux-gpib on Linux or NI-488.2 on Windows.</p>
 <p>For development, clone the repository and install it with Poetry, including the
 extras and the dependency groups for analysis (tests, linters) and docs:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry<span class="w"> </span>install<span class="w"> </span>--all-extras<span class="w"> </span>--with<span class="w"> </span>analysis,docs

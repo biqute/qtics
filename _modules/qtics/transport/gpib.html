@@ -1,0 +1,492 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" />
+        <link rel="canonical" href="https://biqute.github.io/qtics/_modules/qtics/transport/gpib.html" />
+
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/><!-- Generated with Sphinx 6.2.1 and Furo 2023.09.10 -->
+        <title>qtics.transport.gpib - Qtics · 0.1.0</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?digest=369552022d0b975c8e74270ce6eabe0fb7978f24" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #0d1117;
+  --color-code-foreground: #e6edf3;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #0d1117;
+  --color-code-foreground: #e6edf3;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #0d1117;
+  --color-code-foreground: #e6edf3;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../../index.html"><div class="brand">Qtics · 0.1.0</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo only-light" src="../../../_static/biqute_logo.png" alt="Light Logo"/>
+    <img class="sidebar-logo only-dark" src="../../../_static/biqute_logo.png" alt="Dark Logo"/>
+  </div>
+  
+  
+</a><div class="qt-versions">
+  <label class="qt-versions-label" for="qt-version-select">Version</label>
+  <select id="qt-version-select" class="qt-versions-select" data-versions="https://biqute.github.io/qtics/versions.json" data-current="0.1.0">
+    <option selected>0.1.0</option>
+  </select>
+</div><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../migration.html">Migrating to qtics 0.1</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Instruments</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../instruments/modules.html">Instruments</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Instruments</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../instruments/RSZNB.html">R&amp;S®ZNB vector network analyzer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../instruments/RSFSV.html">R&amp;S®FSV3030 Spectrum Analyzer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../instruments/N9916A.html">Handheld Microwave Analyzer FieldFox N9916A</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../instruments/SMA100B.html">R&amp;S®SMA100B RF and microwave signal generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../instruments/VALON519.html">Frequency Synthesizer module Valon Model 5019</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../instruments/QUICKSYNTH.html">Microwave synthesizers by QuickSynth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../instruments/2231A.html">Keithley Model 2231A-30-3 Triple Channel DC Power Supply.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../instruments/6514.html">Keithley Model 6514 System Electrometer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../instruments/SIM928.html">Isolated voltage source Stanford Research Systems SIM928</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../instruments/triton.html">Triton controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../instruments/proteox.html">Proteox controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../instruments/R591722600.html">RF switch Radiall R591722600</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../instruments/3494_64.html">Attenuator Kratos 3494-64</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../arduino.html">Compile Arduino Firmwares</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API reference</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../api-reference/modules.html">qtics</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of qtics</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../api-reference/qtics.html">qtics package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of qtics package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../api-reference/qtics.instruments.html">qtics.instruments package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of qtics.instruments package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../../../api-reference/qtics.instruments.arduino.html">qtics.instruments.arduino package</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of qtics.instruments.arduino package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../api-reference/qtics.instruments.arduino.kratos_3494.html">qtics.instruments.arduino.kratos_3494 package</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../api-reference/qtics.instruments.arduino.r591_switch.html">qtics.instruments.arduino.r591_switch package</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api-reference/qtics.instruments.keithley.html">qtics.instruments.keithley package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api-reference/qtics.instruments.keysight.html">qtics.instruments.keysight package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api-reference/qtics.instruments.ni.html">qtics.instruments.ni package</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../../../api-reference/qtics.instruments.oxford.html">qtics.instruments.oxford package</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of qtics.instruments.oxford package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../api-reference/qtics.instruments.oxford.proteox.html">qtics.instruments.oxford.proteox package</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api-reference/qtics.instruments.rohde_schwarz.html">qtics.instruments.rohde_schwarz package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api-reference/qtics.instruments.srs.html">qtics.instruments.srs package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api-reference/qtics.instruments.types.html">qtics.instruments.types package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api-reference/qtics.instruments.valon.html">qtics.instruments.valon package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api-reference/qtics.transport.html">qtics.transport package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
+</ul>
+
+</div></div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <h1>Source code for qtics.transport.gpib</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;GPIB (IEEE-488) transport.</span>
+
+<span class="sd">Calls the IEEE 488.2 C library of the GPIB driver through ctypes: linux-gpib</span>
+<span class="sd">(``libgpib.so``) on Linux, NI-488.2 (``ni4882.dll``) on Windows. Only the driver</span>
+<span class="sd">is needed, no Python package.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">ctypes</span>
+<span class="kn">import</span> <span class="nn">ctypes.util</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">lru_cache</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">from</span> <span class="nn">qtics</span> <span class="kn">import</span> <span class="n">log</span>
+<span class="kn">from</span> <span class="nn">qtics.transport.base</span> <span class="kn">import</span> <span class="n">Transport</span>
+
+<span class="c1"># ibsta status bits</span>
+<span class="n">ERR</span> <span class="o">=</span> <span class="mh">0x8000</span>
+<span class="n">END</span> <span class="o">=</span> <span class="mh">0x2000</span>
+<span class="c1"># iberr code of a timeout</span>
+<span class="n">EABO</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="c1"># ibtmo codes: index of the first timeout (s) not shorter than the requested one</span>
+<span class="n">TIMEOUTS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="mi">0</span><span class="p">,</span> <span class="mf">10e-6</span><span class="p">,</span> <span class="mf">30e-6</span><span class="p">,</span> <span class="mf">100e-6</span><span class="p">,</span> <span class="mf">300e-6</span><span class="p">,</span> <span class="mf">1e-3</span><span class="p">,</span> <span class="mf">3e-3</span><span class="p">,</span> <span class="mf">10e-3</span><span class="p">,</span> <span class="mf">30e-3</span><span class="p">,</span> <span class="mf">100e-3</span><span class="p">,</span> <span class="mf">300e-3</span><span class="p">,</span>
+    <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span>
+<span class="p">)</span>  <span class="c1"># fmt: skip</span>
+<span class="n">CHUNK</span> <span class="o">=</span> <span class="mi">4096</span>
+
+
+<div class="viewcode-block" id="load_library"><a class="viewcode-back" href="../../../api-reference/qtics.transport.html#qtics.transport.gpib.load_library">[docs]</a><span class="nd">@lru_cache</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">load_library</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Load the GPIB driver library, found automatically if ``path`` is empty.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s2">&quot;win32&quot;</span><span class="p">:</span>
+        <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="n">path</span><span class="p">]</span> <span class="k">if</span> <span class="n">path</span> <span class="k">else</span> <span class="p">[</span><span class="s2">&quot;ni4882.dll&quot;</span><span class="p">,</span> <span class="s2">&quot;gpib-32.dll&quot;</span><span class="p">]</span>
+        <span class="n">loader</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">WinDLL</span>  <span class="c1"># type: ignore[attr-defined]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="n">path</span> <span class="ow">or</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">find_library</span><span class="p">(</span><span class="s2">&quot;gpib&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">&quot;libgpib.so.0&quot;</span><span class="p">]</span>
+        <span class="n">loader</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">CDLL</span>
+    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">lib</span> <span class="o">=</span> <span class="n">loader</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">break</span>
+        <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+            <span class="k">continue</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">OSError</span><span class="p">(</span>
+            <span class="s2">&quot;GPIB library not found: install the GPIB driver (linux-gpib or &quot;</span>
+            <span class="s2">&quot;NI-488.2) or pass its path as library.&quot;</span>
+        <span class="p">)</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_size_t</span>
+    <span class="n">lib</span><span class="o">.</span><span class="n">ibdev</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">]</span> <span class="o">*</span> <span class="mi">6</span>
+    <span class="n">lib</span><span class="o">.</span><span class="n">ibwrt</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">,</span> <span class="n">count</span><span class="p">]</span>
+    <span class="n">lib</span><span class="o">.</span><span class="n">ibrd</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">,</span> <span class="n">count</span><span class="p">]</span>
+    <span class="n">lib</span><span class="o">.</span><span class="n">ThreadIbcntl</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_long</span>
+    <span class="k">return</span> <span class="n">lib</span></div>
+
+
+<div class="viewcode-block" id="timeout_code"><a class="viewcode-back" href="../../../api-reference/qtics.transport.html#qtics.transport.gpib.timeout_code">[docs]</a><span class="k">def</span> <span class="nf">timeout_code</span><span class="p">(</span><span class="n">seconds</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the ibtmo code of the shortest timeout of at least ``seconds``.&quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">code</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">TIMEOUTS</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="o">&gt;=</span> <span class="n">seconds</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">code</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">TIMEOUTS</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span></div>
+
+
+<div class="viewcode-block" id="GPIBTransport"><a class="viewcode-back" href="../../../api-reference/qtics.transport.html#qtics.transport.gpib.GPIBTransport">[docs]</a><span class="k">class</span> <span class="nc">GPIBTransport</span><span class="p">(</span><span class="n">Transport</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;GPIB transport.</span>
+
+<span class="sd">    ``address`` is the primary address (e.g. 20, combined with ``board``) or a</span>
+<span class="sd">    VISA-like resource string (e.g. &quot;GPIB0::20::INSTR&quot;). Reads end when the</span>
+<span class="sd">    instrument asserts EOI, as IEEE 488.2 requires, so binary data is never cut at</span>
+<span class="sd">    the terminator.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">address</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span>
+        <span class="n">board</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="n">terminator</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">delay</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
+        <span class="n">library</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize, ``library`` is the path of the driver library.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ud</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;GPIB(\d+)::(\d+)(::INSTR)?&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">address</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+            <span class="n">board</span><span class="p">,</span> <span class="n">address</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">match</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">match</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">board</span> <span class="o">=</span> <span class="n">board</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">primary_address</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">address</span><span class="p">)</span>
+        <span class="n">resource</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;GPIB</span><span class="si">{</span><span class="n">board</span><span class="si">}</span><span class="s2">::</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">primary_address</span><span class="si">}</span><span class="s2">::INSTR&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">resource</span><span class="p">,</span> <span class="n">timeout</span><span class="p">,</span> <span class="n">terminator</span><span class="p">,</span> <span class="n">delay</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">library</span> <span class="o">=</span> <span class="n">library</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">lib</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The loaded driver library.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">load_library</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">library</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Raise if ``status`` has the error bit set, otherwise return it.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">status</span> <span class="o">&amp;</span> <span class="n">ERR</span><span class="p">:</span>
+            <span class="n">error</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">ThreadIberr</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">error</span> <span class="o">==</span> <span class="n">EABO</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">TimeoutError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;GPIB </span><span class="si">{</span><span class="n">action</span><span class="si">}</span><span class="s2"> on </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">address</span><span class="si">}</span><span class="s2"> timed out.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ConnectionError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;GPIB </span><span class="si">{</span><span class="n">action</span><span class="si">}</span><span class="s2"> on </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">address</span><span class="si">}</span><span class="s2"> failed (iberr </span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s2">).&quot;</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">status</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">timeout</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Read timeout in seconds, also applied to an open session.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_timeout</span>
+
+    <span class="nd">@timeout</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">timeout</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_timeout</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ud</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_check</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">ibtmo</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ud</span><span class="p">,</span> <span class="n">timeout_code</span><span class="p">(</span><span class="n">value</span><span class="p">)),</span> <span class="s2">&quot;ibtmo&quot;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">is_connected</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Whether the device descriptor is open.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ud</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="GPIBTransport.connect"><a class="viewcode-back" href="../../../api-reference/qtics.transport.html#qtics.transport.gpib.GPIBTransport.connect">[docs]</a>    <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Open the device descriptor.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ud</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="c1"># no secondary address, assert EOI on the last written byte, no EOS</span>
+        <span class="n">ud</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">ibdev</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">primary_address</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">timeout_code</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">timeout</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">ud</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ConnectionError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;GPIB device </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">address</span><span class="si">}</span><span class="s2"> could not be opened &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;(iberr </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">ThreadIberr</span><span class="p">()</span><span class="si">}</span><span class="s2">).&quot;</span>
+            <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ud</span> <span class="o">=</span> <span class="n">ud</span></div>
+
+<div class="viewcode-block" id="GPIBTransport.close"><a class="viewcode-back" href="../../../api-reference/qtics.transport.html#qtics.transport.gpib.GPIBTransport.close">[docs]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Close the device descriptor.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ud</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">ibonl</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ud</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ud</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+<div class="viewcode-block" id="GPIBTransport.clear"><a class="viewcode-back" href="../../../api-reference/qtics.transport.html#qtics.transport.gpib.GPIBTransport.clear">[docs]</a>    <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Send a GPIB device clear, which empties the instrument buffers.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ud</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ConnectionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Transport to </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">address</span><span class="si">}</span><span class="s2"> is not connected.&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">ibclr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ud</span><span class="p">),</span> <span class="s2">&quot;device clear&quot;</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_write_bytes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">ud</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">ibwrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ud</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)),</span> <span class="s2">&quot;write&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_read_chunk</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Read up to ``size`` bytes, return them and whether the message ended.&quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">ud</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="n">buffer</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">create_string_buffer</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+        <span class="n">status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">ibrd</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ud</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="n">size</span><span class="p">),</span> <span class="s2">&quot;read&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">buffer</span><span class="o">.</span><span class="n">raw</span><span class="p">[:</span> <span class="bp">self</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">ThreadIbcntl</span><span class="p">()],</span> <span class="nb">bool</span><span class="p">(</span><span class="n">status</span> <span class="o">&amp;</span> <span class="n">END</span><span class="p">)</span>
+
+<div class="viewcode-block" id="GPIBTransport.read"><a class="viewcode-back" href="../../../api-reference/qtics.transport.html#qtics.transport.gpib.GPIBTransport.read">[docs]</a>    <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Read until the end of message (EOI), strip the terminator.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ud</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ConnectionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Transport to </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">address</span><span class="si">}</span><span class="s2"> is not connected.&quot;</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span>
+        <span class="n">ended</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">while</span> <span class="ow">not</span> <span class="n">ended</span><span class="p">:</span>
+            <span class="n">chunk</span><span class="p">,</span> <span class="n">ended</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read_chunk</span><span class="p">(</span><span class="n">CHUNK</span><span class="p">)</span>
+            <span class="n">response</span> <span class="o">+=</span> <span class="n">chunk</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;READ: </span><span class="si">{</span><span class="n">res</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span></div>
+
+<div class="viewcode-block" id="GPIBTransport.read_raw"><a class="viewcode-back" href="../../../api-reference/qtics.transport.html#qtics.transport.gpib.GPIBTransport.read_raw">[docs]</a>    <span class="k">def</span> <span class="nf">read_raw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_bytes</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Read ``n_bytes`` bytes, or fewer if the message ends before.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ud</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ConnectionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Transport to </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">address</span><span class="si">}</span><span class="s2"> is not connected.&quot;</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span>
+        <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">n_bytes</span><span class="p">:</span>
+            <span class="n">chunk</span><span class="p">,</span> <span class="n">ended</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read_chunk</span><span class="p">(</span><span class="n">n_bytes</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+            <span class="n">data</span> <span class="o">+=</span> <span class="n">chunk</span>
+            <span class="k">if</span> <span class="n">ended</span><span class="p">:</span>
+                <span class="k">break</span>
+        <span class="k">return</span> <span class="n">data</span></div></div>
+</pre></div>
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023, The BiQuTe Team
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              <a class="muted-link " href="https://github.com/biqute/qtics" aria-label="GitHub">
+                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+                    </svg>
+                </a>
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/scripts/furo.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/js/versions.js"></script>
+    <script src="../../../_static/js/captions.js"></script>
+    </body>
+</html>
